@@ -6,12 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - PORT=8080
-      - HOST=0.0.0.0
-      - DB=postgres://user:password@db:5432/dbname
-      - JWT_SECRET=your_jwt_secret
-      - INIT_USER=admin
-      - INIT_PASS=password
+      - PORT=${PORT:-8080}
+      - HOST=${HOST:-0.0.0.0}
+      - DB=${DB:-postgres://user:password@db:5432/dbname}
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret}
+      - INIT_USER=${INIT_USER:-admin}
+      - INIT_PASS=${INIT_PASS:-password}
     ports:
       - "8080:8080"
     depends_on:
@@ -23,11 +23,11 @@ services:
       context: ./web
       dockerfile: Dockerfile
     environment:
-      - NODE_ENV=production
-      - BACKEND_URL=http://api:8080/v1
-      - AUTH_SECRET=your_auth_secret
-      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
-      - TZ=Asia/Jakarta
+      - NODE_ENV=${NODE_ENV:-production}
+      - BACKEND_URL=${BACKEND_URL:-http://api:8080/v1}
+      - AUTH_SECRET=${AUTH_SECRET:-your_auth_secret}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
+      - TZ=${TZ:-Asia/Jakarta}
     ports:
       - "3000:3000"
     depends_on:
@@ -36,9 +36,9 @@ services:
   db:
     image: postgres:13
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=dbname
+      - POSTGRES_USER=${POSTGRES_USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - POSTGRES_DB=${POSTGRES_DB:-dbname}
     ports:
       - "5432:5432"
     volumes:
@@ -48,7 +48,7 @@ services:
     image: migrate/migrate
     command: [
       "-path", "/migrations",
-      "-database", "postgres://user:password@db:5432/dbname?sslmode=disable",
+      "-database", "${DB:-postgres://user:password@db:5432/dbname}?sslmode=disable",
       "up"
     ]
     volumes:
