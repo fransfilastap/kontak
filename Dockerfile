@@ -23,9 +23,18 @@ WORKDIR /root/
 
 # Copy the Pre-built binary file from the previous stage
 COPY --from=builder /app/main .
+# Set environment variables for PORT, HOST, DB, JWT_SECRET, INIT_USER, and INIT_PASS
+ENV PORT ${PORT:-8080}
+ENV HOST ${HOST:-'localhost'}
+ENV DB ${DB:-'postgres://user:password@localhost:5432/dbname'}
+ENV JWT_SECRET ${JWT_SECRET:-'your_jwt_secret'}
+ENV INIT_USER ${INIT_USER:-'admin'}
+ENV INIT_PASS ${INIT_PASS:-'password'}
+
+
 
 # Expose port 8080 to the outside world
-EXPOSE 8080
+EXPOSE ${PORT}
 
 # Command to run the executable
 CMD ["./main"]

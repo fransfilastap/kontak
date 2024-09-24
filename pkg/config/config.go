@@ -21,7 +21,7 @@ func LoadConfig() *Config {
 
 	err := godotenv.Load()
 	if err != nil {
-		log.Println("Error loading .env file")
+		log.Println("Error loading .env.example file")
 	}
 
 	port := os.Getenv("PORT")

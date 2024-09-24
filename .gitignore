@@ -4,7 +4,7 @@ tmp/
 web/node_modules
 web/.next
 
-.env
+.env.example
 .env.local
 .env.development
 .env.production
