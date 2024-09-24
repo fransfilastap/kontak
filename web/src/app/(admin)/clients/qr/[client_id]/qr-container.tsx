@@ -30,7 +30,7 @@ export default function QRContainer({ client_id }: Readonly<QRContainerProps>) {
             ) : data?.is_connected ? (
               <p>Already connected</p>
             ) : (
-              <QRCodeCanvas value={data?.code} />
+              <QRCodeCanvas value={data?.code ?? ''} />
             )}
           </div>
           <p className="text-center text-gray-600 mb-4">
