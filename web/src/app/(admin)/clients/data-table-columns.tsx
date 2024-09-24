@@ -17,9 +17,6 @@ import { ConnectionStatusResponse, KontakClient } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import useSWR from "swr";
 import fetcher from "@/lib/swr";
-import { connectDeviceAction } from "../../providers/actions/connect-device";
-import { disconnectDeviceAction } from "../../providers/actions/disconnect-device";
-import { useAction } from "next-safe-action/hooks";
 import { useKontak } from "@/app/providers/kontak-providers";
 
 export const columns: ColumnDef<KontakClient>[] = [

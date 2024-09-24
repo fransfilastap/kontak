@@ -2,7 +2,6 @@ import { ClientDataTable } from "@/app/(admin)/clients/data-table";
 import { kontakClient } from "@/lib/kontak";
 import { Metadata } from "next";
 import { KontakProvider } from "@/app/providers/kontak-providers";
-import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "Clients",
   description: "Manage your clients.",
