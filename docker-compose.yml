@@ -25,6 +25,7 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV:-production}
       - BACKEND_URL=${BACKEND_URL:-http://api:8080/v1}
+      - KONTAK_API_URL=${KONTAK_API_URL:-http://api:8080/v1}
       - AUTH_SECRET=${AUTH_SECRET:-your_auth_secret}
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
       - TZ=${TZ:-Asia/Jakarta}

@@ -44,6 +44,7 @@ WORKDIR /app
 
 ENV NODE_ENV production
 ENV BACKEND_URL ${BACKEND_URL:-http://localhost:8080/v1}
+ENV KONTAK_API_URL ${KONTAK_API_URL:-http://localhost:8080/v1}
 ENV AUTH_SECRET ${AUTH_SECRET:-''}
 ENV NEXT_PUBLIC_API_URL ${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
 ENV TZ ${TZ:-Asia/Jakarta}
