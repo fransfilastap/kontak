@@ -11,3 +11,4 @@ web/.next
 .env.test
 .env.*
 
+.idea
