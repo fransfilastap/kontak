@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/router";
-import { KontakProvider, useKontak } from "@/app/providers/kontak-providers";
 import { useAction } from "next-safe-action/hooks";
 import { generateApiKeyAction } from "./action";
+import Link from "next/link";
 
 export default function Page() {
   const { execute, isPending, result } = useAction(generateApiKeyAction);
@@ -29,6 +26,9 @@ export default function Page() {
           </div>
         )}
       </div>
+      <Button>
+        <Link href="/clients">Back to Clients</Link>
+      </Button>
     </div>
   );
 }

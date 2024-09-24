@@ -14,7 +14,7 @@ import { ChevronDown } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between p-4 bg-background text-foreground border-b">
+    <header className=" flex items-center justify-between p-4 bg-background text-foreground border-border border-b">
       <h1 className="text-xl font-bold">Kontak</h1>
 
       <div className="relative">

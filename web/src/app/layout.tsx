@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 import { Header } from "@/components/shared/header";
 
 const geistSans = localFont({

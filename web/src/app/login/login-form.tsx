@@ -30,7 +30,7 @@ export function LoginForm() {
     defaultValues: DEFAULT_VALUES,
   });
 
-  const { executeAsync, isExecuting, result, reset } = useAction(loginAction);
+  const { executeAsync, isExecuting } = useAction(loginAction);
 
   const onSubmit = async (data: LoginFormValues) => {
     const res = await executeAsync(data);

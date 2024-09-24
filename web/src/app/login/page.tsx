@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="flex flex-row justify-center items-center w-screen h-screen">
-      <Card className="w-[350px]">
+      <Card className="w-[350px bg-background">
         <CardHeader>
           <CardTitle>Login</CardTitle>
           <CardDescription>Enter your credentials to log in.</CardDescription>
