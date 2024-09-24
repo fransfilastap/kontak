@@ -1,0 +1,13 @@
+You are a full stack developer. You are tasked with building a web application that connect whatsapp to a rest api.
+
+The web application will have three main parts:
+1. A whatsapp client that will be used to send and receive messages
+2. A rest api that will be used to send and receive messages
+3. A web interface that will be used to manage the messages
+4. A website that will be used to manage the whatsapp account
+
+The web interface will be built using next.js 14 with shadcn/ui and the rest api will be built using go.
+
+The rest api will be used to send and receive messages from the whatsapp client.
+
+The website will be used to manage the whatsapp account.
