@@ -1,0 +1,6 @@
+ALTER TABLE clients
+DROP COLUMN token;
+
+ALTER TABLE users
+ADD COLUMN api_key_prefix VARCHAR(255),
+ADD COLUMN api_key VARCHAR(255);

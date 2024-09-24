@@ -1,0 +1,13 @@
+.air.toml
+.cursorrules
+tmp/
+web/node_modules
+web/.next
+
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*
+

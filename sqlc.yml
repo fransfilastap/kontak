@@ -1,0 +1,16 @@
+version: 2
+sql:
+  - engine: "postgresql"
+    queries: "sql/queries"
+    schema: "sql/schema"
+    database:
+      uri: "postgres://ffilasta:password@localhost:5432/kontak_db?sslmode=disable"
+    gen:
+      go:
+        package: "db"
+        out: "pkg/db"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+plugins: []
+rules: []
