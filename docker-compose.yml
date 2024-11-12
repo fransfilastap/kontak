@@ -15,8 +15,10 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
-      - migrate
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_started
 
   web:
     build:
@@ -44,6 +46,11 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER:-user}" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   migrate:
     image: migrate/migrate
@@ -55,7 +62,8 @@ services:
     volumes:
       - ./sql:/migrations
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: on-failure
 
 volumes:

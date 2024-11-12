@@ -24,6 +24,7 @@ ENV NODE_ENV production
 ENV BACKEND_URL ${BACKEND_URL:-http://api:8080/v1}
 ENV KONTAK_API_URL ${KONTAK_API_URL:-http://api:8080/v1}
 ENV AUTH_SECRET ${AUTH_SECRET:-''}
+ENV AUTH_TRUST_HOST ${AUTH_TRUST_HOST:-true}
 ENV NEXT_PUBLIC_API_URL ${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
 
 # Next.js collects completely anonymous telemetry data about general usage.
