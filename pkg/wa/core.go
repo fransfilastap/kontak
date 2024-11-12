@@ -56,11 +56,13 @@ func (w *WhatsappClient) ConnectToWhatsapp() {
 }
 
 func (w *WhatsappClient) StartClient(client db.Client) {
-	log.Println("Starting client", client.ID)
 
 	if w.runningClients[client.ID] != nil && w.IsConnected(client.ID) {
+		log.Println("Client already connected")
 		return
 	}
+
+	log.Println("Starting client", client.ID)
 
 	deviceStore, err := w.getDeviceStore(client)
 	if err != nil {
@@ -68,10 +70,16 @@ func (w *WhatsappClient) StartClient(client db.Client) {
 		return
 	}
 
+	if deviceStore == nil {
+		deviceStore = w.container.NewDevice()
+	}
+
 	clientLog := waLog.Stdout("Client", "DEBUG", true)
 	waClient := whatsmeow.NewClient(deviceStore, clientLog)
 	eventHandler := NewKontakEventHandler(client.ID, w, w.dbQueries)
 	waClient.AddEventHandler(eventHandler.handler)
+
+	log.Println("Connecting to Whatsapp", deviceStore)
 
 	w.runningClients[client.ID] = waClient
 

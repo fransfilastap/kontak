@@ -37,7 +37,10 @@ func NewKontak(config *config.Config) *Kontak {
 	}
 
 	// Create initial user
-	createInitialUser(dbQueries)
+	err := createInitialUser(dbQueries)
+	if err != nil {
+		return nil
+	}
 
 	waClient := wa.NewWhatsappClient(config.DB, dbQueries, qrChan)
 	deviceManagement := wa.NewDeviceManagement(dbQueries)

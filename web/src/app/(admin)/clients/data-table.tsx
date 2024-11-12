@@ -11,7 +11,7 @@ import {
   SortingState,
   useReactTable,
   VisibilityState,
-} from "@tanstack/react-table";
+} from '@tanstack/react-table';
 import {  ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
