@@ -45,7 +45,7 @@ func (w *Webhook) ConnectDevice(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, DeviceConnectionResponse{ServerError: true, Message: err.Error()})
 	}
 
-	go w.whatsappClient.StartClient(client)
+	go w.whatsappClient.StartClient(c.Request().Context(), client)
 
 	// wait for 5 seconds to connect
 	time.Sleep(5 * time.Second)
@@ -132,5 +132,4 @@ func (w *Webhook) SendMessage(c echo.Context) error {
 	}
 
 	return c.JSON(200, GenericResponse{Message: "Message sent successfully"})
-
 }

@@ -42,7 +42,9 @@ func NewKontak(config *config.Config) *Kontak {
 		return nil
 	}
 
-	waClient := wa.NewWhatsappClient(config.DB, dbQueries, qrChan)
+	ctx := context.Background()
+
+	waClient := wa.NewWhatsappClient(ctx, config.DB, dbQueries, qrChan)
 	deviceManagement := wa.NewDeviceManagement(dbQueries)
 
 	webhookHandler := webhook.NewWebhook(waClient, deviceManagement)
@@ -63,7 +65,7 @@ func (app *Kontak) Run() {
 	var wg sync.WaitGroup
 	go app.HttpServer.Start()
 
-	app.WhatsappClient.ConnectToWhatsapp()
+	app.WhatsappClient.ConnectToWhatsapp(context.Background())
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)

@@ -45,17 +45,17 @@ func (w *WhatsappClient) SendMessage(clientID string, recipient string, message 
 }
 
 // ConnectToWhatsapp initializes and connects the WhatsApp client.
-func (w *WhatsappClient) ConnectToWhatsapp() {
+func (w *WhatsappClient) ConnectToWhatsapp(ctx context.Context) {
 
 	clients, _ := w.dbQueries.GetClients(context.Background())
 
 	for _, client := range clients {
 		log.Println("Connecting to Whatsapp", client.Jid.String)
-		go w.StartClient(client)
+		go w.StartClient(ctx, client)
 	}
 }
 
-func (w *WhatsappClient) StartClient(client db.Client) {
+func (w *WhatsappClient) StartClient(ctx context.Context, client db.Client) {
 
 	if w.runningClients[client.ID] != nil && w.IsConnected(client.ID) {
 		log.Println("Client already connected")
@@ -64,7 +64,7 @@ func (w *WhatsappClient) StartClient(client db.Client) {
 
 	log.Println("Starting client", client.ID)
 
-	deviceStore, err := w.getDeviceStore(client)
+	deviceStore, err := w.getDeviceStore(ctx, client)
 	if err != nil {
 		log.Println("Failed to get device store", err)
 		return
@@ -98,10 +98,10 @@ func (w *WhatsappClient) StartClient(client db.Client) {
 }
 
 // New helper function to get device store
-func (w *WhatsappClient) getDeviceStore(client db.Client) (*store.Device, error) {
+func (w *WhatsappClient) getDeviceStore(ctx context.Context, client db.Client) (*store.Device, error) {
 	if client.Jid.String != "" {
 		jid, _ := parseJID(client.Jid.String)
-		return w.container.GetDevice(jid)
+		return w.container.GetDevice(ctx, jid)
 	}
 	log.Println("JID is empty. Creating new device")
 	return w.container.NewDevice(), nil
@@ -175,9 +175,9 @@ func (w *WhatsappClient) DisconnectClient(clientID string) (bool, error) {
 }
 
 // NewWhatsappClient creates a new instance of WhatsappClient.
-func NewWhatsappClient(database string, dbQueries db.Querier, qr chan<- kontaktypes.WaConnectEvent) *WhatsappClient {
+func NewWhatsappClient(ctx context.Context, database string, dbQueries db.Querier, qr chan<- kontaktypes.WaConnectEvent) *WhatsappClient {
 	dbLog := waLog.Stdout("Database", "DEBUG", true)
-	container, err := sqlstore.New("pgx", database, dbLog)
+	container, err := sqlstore.New(ctx, "pgx", database, dbLog)
 	if err != nil {
 		panic(err)
 	}
