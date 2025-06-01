@@ -12,6 +12,13 @@ services:
       - JWT_SECRET=${JWT_SECRET:-your_jwt_secret}
       - INIT_USER=${INIT_USER:-admin}
       - INIT_PASS=${INIT_PASS:-password}
+      - ENV LOG_LEVEL=${LOG_LEVEL:-'info'}
+      - ENV LOG_FILE_ENABLED=${LOG_FILE_ENABLED:-true}
+      - ENV LOG_FILE_PATH=${LOG_FILE_PATH:-'logs/kontak.log'}
+      - ENV LOG_FILE_MAX_SIZE=${LOG_FILE_MAX_SIZE:-100}
+      - ENV LOG_FILE_MAX_BACKUPS=${LOG_FILE_MAX_BACKUPS:-3}
+      - ENV LOG_FILE_MAX_AGE=${LOG_FILE_MAX_AGE:-28}
+      - ENV LOG_FILE_COMPRESS=${LOG_FILE_COMPRESS:-true}
     ports:
       - "8080:8080"
     depends_on:

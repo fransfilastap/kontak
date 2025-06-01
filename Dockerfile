@@ -30,7 +30,13 @@ ENV DB ${DB:-'postgres://user:password@localhost:5432/dbname'}
 ENV JWT_SECRET ${JWT_SECRET:-'your_jwt_secret'}
 ENV INIT_USER ${INIT_USER:-'admin'}
 ENV INIT_PASS ${INIT_PASS:-'password'}
-
+ENV LOG_LEVEL=${LOG_LEVEL:-'info'}
+ENV LOG_FILE_ENABLED=${LOG_FILE_ENABLED:-'true'}
+ENV LOG_FILE_PATH=${LOG_FILE_PATH:-'logs/kontak.log'}
+ENV LOG_FILE_MAX_SIZE=${LOG_FILE_MAX_SIZE:-100}
+ENV LOG_FILE_MAX_BACKUPS=${LOG_FILE_MAX_BACKUPS:-3}
+ENV LOG_FILE_MAX_AGE=${LOG_FILE_MAX_AGE:-28}
+ENV LOG_FILE_COMPRESS=${LOG_FILE_COMPRESS:-true}
 
 
 # Expose port 8080 to the outside world
