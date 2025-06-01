@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/fransfilastap/kontak/compare/v1.0.0...v1.0.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* **docker image:** Add logging configuration to Docker setup ([96b70ab](https://github.com/fransfilastap/kontak/commit/96b70ab33a0325bc01f525dc2213eb99f06cd5ea))
+
 # 1.0.0 (2025-06-01)
 
 
