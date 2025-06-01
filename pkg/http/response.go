@@ -1,4 +1,4 @@
-package webhook
+package http
 
 type QRCodeResponse struct {
 	IsConnected bool   `json:"is_connected"`

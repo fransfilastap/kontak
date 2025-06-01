@@ -30,6 +30,7 @@ type Store interface {
 
 	// Group operations
 	SyncGroups(ctx context.Context, clientID string, groups []*types.GroupInfo) error
+	GetJoinedGroups(ctx context.Context, clientID string) ([]db.WhatsappGroup, error)
 }
 
 // PostgresStore implements the Store interface using PostgreSQL
@@ -148,4 +149,13 @@ func (s *PostgresStore) SyncGroups(ctx context.Context, clientID string, groups 
 	}
 
 	return nil
+}
+
+func (s *PostgresStore) GetJoinedGroups(ctx context.Context, clientID string) ([]db.WhatsappGroup, error) {
+	groups, err := s.dbQueries.GetDeviceGroups(ctx, pgtype.Text{
+		String: clientID,
+		Valid:  true,
+	})
+
+	return groups, err
 }

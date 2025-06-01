@@ -1,9 +1,10 @@
-package webhook
+package http
 
 import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/go-playground/validator/v10"
 	"log"
 	"net/http"
 
@@ -16,7 +17,7 @@ import (
 // Server represents the server configuration.
 type Server struct {
 	httpServer             *http.Server
-	webhookHandler         *Webhook
+	webhookHandler         *DeviceHandler
 	authHandler            *AuthHandler
 	messageTemplateHandler *MessageTemplateHandler
 	groupHandler           *GroupHandler
@@ -24,7 +25,7 @@ type Server struct {
 }
 
 // NewServer initializes a new Server instance.
-func NewServer(addr string, webhook *Webhook, authHandler *AuthHandler, groupHandler *GroupHandler, db db.Querier) *Server {
+func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, db db.Querier) *Server {
 	messageTemplateHandler := NewMessageTemplateHandler(db)
 	return &Server{
 		httpServer: &http.Server{
@@ -40,8 +41,10 @@ func NewServer(addr string, webhook *Webhook, authHandler *AuthHandler, groupHan
 }
 
 // createEchoServer sets up the Echo server with middleware.
-func createEchoServer(webhook *Webhook, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) *echo.Echo {
+func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) *echo.Echo {
 	e := echo.New()
+
+	e.Validator = &CustomValidator{validator: validator.New()}
 
 	// Middleware configuration
 	e.Use(middleware.Logger())
@@ -62,8 +65,8 @@ func createEchoServer(webhook *Webhook, authHandler *AuthHandler, messageTemplat
 // It configures the following endpoints:
 // - GET /client/qr: Handles requests to retrieve a QR code using the SendQrHandler method of the ConnectionHandler.
 // - GET /: Handles requests to the root path using the Index method of the ConnectionHandler.
-// - POST /webhook: Handles webhook events using the SendMessage method of the Webhook.
-func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) {
+// - POST /http: Handles http events using the SendMessage method of the DeviceHandler.
+func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) {
 
 	e.POST("/login", authHandler.Login)
 
@@ -83,6 +86,7 @@ func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, me
 	v1 := e.Group("/v1", AppKeyAuthMiddleware(db))
 	v1.POST("/chats", webhook.SendMessage)
 	v1.POST("/chats/template", webhook.SendTemplateMessage)
+	v1.POST("/chats/media", webhook.SendMediaMessage)
 
 	// Message Templates
 	v1.POST("/templates", messageTemplateHandler.CreateTemplate)
@@ -91,7 +95,8 @@ func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, me
 	v1.GET("/templates", messageTemplateHandler.GetUserTemplates)
 
 	// Groups
-	v1.GET("/groups/:client_id", groupHandler.SyncJoinedGroup)
+	v1.PUT("/groups/:client_id/sync", groupHandler.SyncJoinedGroup)
+	v1.GET("/groups/:client_id", groupHandler.GetJoinedGroups)
 
 }
 

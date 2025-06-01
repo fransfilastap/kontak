@@ -1,4 +1,4 @@
-package webhook
+package http
 
 import (
 	"bytes"
@@ -17,7 +17,7 @@ type Event struct {
 	Data []byte
 	// Event is a string identifying the type of event described. If this is specified, an event
 	// will be dispatched on the browser to the listener for the specified event name; the website
-	// source code should use addEventListener() to listen for named events. The onmessage handler
+	// source code should use addEventListener() to listen for named events. The onmessage http
 	// is called if no event name is specified for a message.
 	Event []byte
 	// Retry is the reconnection time. If the connection to the server is lost, the browser will

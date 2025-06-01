@@ -11,16 +11,16 @@ import (
 
 	"github.com/fransfilastap/kontak/pkg/config"
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/http"
 	"github.com/fransfilastap/kontak/pkg/logger"
 	"github.com/fransfilastap/kontak/pkg/security"
 	"github.com/fransfilastap/kontak/pkg/types"
 	"github.com/fransfilastap/kontak/pkg/wa"
-	"github.com/fransfilastap/kontak/pkg/webhook"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Kontak struct {
-	HttpServer     *webhook.Server
+	HttpServer     *http.Server
 	WhatsappClient *wa.WhatsappClient
 	Config         *config.Config
 	qrChan         chan types.WaConnectEvent
@@ -79,11 +79,11 @@ func NewKontak(config *config.Config) *Kontak {
 	}
 	deviceManagement := wa.NewDeviceStore(store)
 
-	webhookHandler := webhook.NewWebhook(waClient, deviceManagement, dbQueries)
-	authHandler := webhook.NewAuthHandler(dbQueries, config)
-	groupHandler := webhook.NewGroupHandler(deviceManagement, waClient)
+	webhookHandler := http.NewWebhook(waClient, deviceManagement, dbQueries)
+	authHandler := http.NewAuthHandler(dbQueries, config)
+	groupHandler := http.NewGroupHandler(deviceManagement, waClient)
 
-	httpServer := webhook.NewServer(addr, webhookHandler, authHandler, groupHandler, dbQueries)
+	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, dbQueries)
 
 	return &Kontak{
 		HttpServer: httpServer,

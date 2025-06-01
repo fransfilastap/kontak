@@ -2,6 +2,7 @@ package wa
 
 import (
 	"encoding/base64"
+	"fmt"
 	"github.com/google/uuid"
 	_ "github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
@@ -35,6 +36,16 @@ func parseJID(arg string) (types.JID, bool) {
 		}
 		return recipient, true
 	}
+}
+
+func getJID(recipient string) (types.JID, error) {
+	formatJID := fmt.Sprintf("%s@s.whatsapp.net", recipient)
+	jid, err := types.ParseJID(formatJID)
+	if err != nil {
+		return types.JID{}, fmt.Errorf("failed to parse jid: %v", err)
+	}
+
+	return jid, nil
 }
 
 func UUID2String(pgUUID pgtype.UUID) string {

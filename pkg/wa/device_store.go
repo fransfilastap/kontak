@@ -108,3 +108,7 @@ func (cm *DeviceStore) SyncJoinedGroups(ctx context.Context, clientID string, gr
 
 	return cm.store.SyncGroups(ctx, clientID, groups)
 }
+
+func (cm *DeviceStore) GetJoinedGroups(ctx context.Context, clientID string) ([]db.WhatsappGroup, error) {
+	return cm.store.GetJoinedGroups(ctx, clientID)
+}

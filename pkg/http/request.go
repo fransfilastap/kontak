@@ -1,10 +1,12 @@
-package webhook
+package http
+
+import "mime/multipart"
 
 type MessageType string
 
 const (
-	MessageTypeText  MessageType = "text"
-	MessageTypeMedia MessageType = "media"
+	MessageTypeText       MessageType = "text"
+	MessageTypeMediaImage MessageType = "image"
 )
 
 // SendMessageRequest represents a WhatsApp message structure with fields for mobile number, text, and type.
@@ -16,6 +18,17 @@ type SendMessageRequest struct {
 	MobileNumber string      `json:"mobile_number" validate:"required"`
 	Text         string      `json:"text" validate:"required"`
 	Type         MessageType `json:"type" validate:"required"`
+}
+
+type SendMessageResponse struct {
+	MessageID string `json:"message_id"`
+}
+
+type SendMediaMessageRequest struct {
+	ClientID     string                `json:"client_id" form:"client_id" validate:"required"`
+	MobileNumber string                `json:"mobile_number" form:"mobile_number" validate:"required"`
+	MediaURL     *multipart.FileHeader `json:"media_url" form:"media_url" validate:"required"`
+	Caption      string                `json:"caption,omitempty" form:"caption"`
 }
 
 type LoginRequest struct {
