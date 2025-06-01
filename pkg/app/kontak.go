@@ -13,6 +13,7 @@ import (
 	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/fransfilastap/kontak/pkg/http"
 	"github.com/fransfilastap/kontak/pkg/logger"
+	"github.com/fransfilastap/kontak/pkg/migrations"
 	"github.com/fransfilastap/kontak/pkg/security"
 	"github.com/fransfilastap/kontak/pkg/types"
 	"github.com/fransfilastap/kontak/pkg/wa"
@@ -57,6 +58,11 @@ func NewKontak(config *config.Config) *Kontak {
 
 	addr := fmt.Sprintf("%s:%d", config.Host, config.Port)
 	qrChan := make(chan types.WaConnectEvent)
+
+	// Run database migrations
+	if err := migrations.RunMigrations(config.DB); err != nil {
+		logger.Fatal("Failed to run database migrations: %v", err)
+	}
 
 	dbQueries, dberr := connectDatabase(config.DB)
 	if dberr != nil {

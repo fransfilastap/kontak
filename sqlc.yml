@@ -2,7 +2,7 @@ version: 2
 sql:
   - engine: "postgresql"
     queries: "sql/queries"
-    schema: "sql/schema"
+    schema: "pkg/migrations/schema"
     database:
       uri: "postgres://ffilasta:password@localhost:5432/kontak_db?sslmode=disable"
     gen:
