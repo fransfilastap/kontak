@@ -133,3 +133,22 @@ func (w *Webhook) SendMessage(c echo.Context) error {
 
 	return c.JSON(200, GenericResponse{Message: "Message sent successfully"})
 }
+
+func (w *Webhook) DeleteDevice(c echo.Context) error {
+	client, err := w.deviceManagement.GetClient(c.Request().Context(), c.Param("client_id"))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	if success, err := w.whatsappClient.DisconnectClient(client.Jid.String); !success {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	_, err = w.deviceManagement.DeleteClient(c.Request().Context(), c.Param("client_id"))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.JSON(200, GenericResponse{Message: "Successfully disconnected from whatsapp"})
+
+}

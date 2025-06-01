@@ -80,3 +80,27 @@ func (cm *DeviceManagement) SetQR(ctx context.Context, clientID string, qr strin
 	return client, nil
 
 }
+
+func (cm *DeviceManagement) SetClientJID(ctx context.Context, clientID string, jid string) (db.Client, error) {
+	client, err := cm.db.SetClientJID(ctx, db.SetClientJIDParams{
+		Jid: pgtype.Text{
+			String: jid,
+			Valid:  true,
+		},
+		ID: clientID,
+	})
+
+	if err != nil {
+		return db.Client{}, fmt.Errorf("failed to update qr code: %w", err)
+	}
+
+	return client, nil
+}
+
+func (cm *DeviceManagement) DeleteClient(ctx context.Context, clientID string) (db.Client, error) {
+	err := cm.db.DeleteClient(ctx, clientID)
+	if err != nil {
+		return db.Client{}, fmt.Errorf("failed to delete client: %w", err)
+	}
+	return db.Client{}, nil
+}

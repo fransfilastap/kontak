@@ -1,0 +1,11 @@
+{
+  "name": "kontak",
+  "private": true,
+  "version": "0.1.0-development",
+  "description": "Kontak - WhatsApp API",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^22.0.12"
+  }
+}
