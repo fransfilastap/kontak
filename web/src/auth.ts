@@ -22,16 +22,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text" },
+        email: { label: "email", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         try {
           if (!credentials) return null;
-          const { username, password } = await loginSchema.parseAsync(
+          const { email, password } = await loginSchema.parseAsync(
             credentials
           );
-          const response = await kontakClient.login(username, password);
+          const response = await kontakClient.login(email, password);
           return {
             access_token: response.token,
           };

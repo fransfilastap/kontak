@@ -34,12 +34,12 @@ const fetchWithAuth = async (
 };
 
 // Auth
-const login = async (username: string, password: string) => {
+const login = async (email: string, password: string) => {
   try {
     const response = await fetch(`${DEFAULT_BASE_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

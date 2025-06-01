@@ -11,13 +11,15 @@ import (
 
 type CustomClaims struct {
 	Username string `json:"username"`
+	UserID   int32  `json:"user_id"`
 	jwt.RegisteredClaims
 }
 
-// GenerateToken generates a JWT token for the given user ID.
-func GenerateToken(username string) (string, error) {
+// GenerateToken generates a JWT token for the given username (email) and user ID.
+func GenerateToken(username string, userID int32) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		Username: username,
+		UserID:   userID,
 	})
 
 	return token.SignedString([]byte(os.Getenv("JWT_SECRET")))

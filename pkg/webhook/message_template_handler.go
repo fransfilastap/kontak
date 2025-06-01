@@ -1,6 +1,7 @@
 package webhook
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/fransfilastap/kontak/pkg/db"
@@ -20,6 +21,7 @@ func NewMessageTemplateHandler(db db.Querier) *MessageTemplateHandler {
 
 // GetUserTemplates returns all message templates for the authenticated user
 func (h *MessageTemplateHandler) GetUserTemplates(c echo.Context) error {
+
 	// Get user ID from context (set by auth middleware)
 	userID := getUserIDFromContext(c)
 	if userID == 0 {
@@ -35,6 +37,11 @@ func (h *MessageTemplateHandler) GetUserTemplates(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
+	// Ensure we return an empty array instead of null for empty results
+	if templates == nil {
+		templates = []db.MessageTemplate{}
+	}
+
 	return c.JSON(http.StatusOK, templates)
 }
 
@@ -47,13 +54,15 @@ func (h *MessageTemplateHandler) CreateTemplate(c echo.Context) error {
 	}
 
 	// Bind request body
-	var req struct {
-		Name      string `json:"name"`
-		Content   string `json:"content"`
-		Variables []byte `json:"variables"`
-	}
+	var req MessageTemplateRequest
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
+	}
+
+	// Convert variables array to JSON bytes
+	variablesBytes, err := json.Marshal(req.Variables)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: "Failed to marshal variables: " + err.Error()})
 	}
 
 	// Create template in database
@@ -61,7 +70,7 @@ func (h *MessageTemplateHandler) CreateTemplate(c echo.Context) error {
 		UserID:    pgtype.Int4{Int32: int32(userID), Valid: true},
 		Name:      req.Name,
 		Content:   req.Content,
-		Variables: req.Variables,
+		Variables: variablesBytes,
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
@@ -91,13 +100,15 @@ func (h *MessageTemplateHandler) UpdateTemplate(c echo.Context) error {
 	}
 
 	// Bind request body
-	var req struct {
-		Name      string `json:"name"`
-		Content   string `json:"content"`
-		Variables []byte `json:"variables"`
-	}
+	var req MessageTemplateRequest
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
+	}
+
+	// Convert variables array to JSON bytes
+	variablesBytes, err := json.Marshal(req.Variables)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: "Failed to marshal variables: " + err.Error()})
 	}
 
 	// Update template in database
@@ -106,7 +117,7 @@ func (h *MessageTemplateHandler) UpdateTemplate(c echo.Context) error {
 		UserID:    pgtype.Int4{Int32: int32(userID), Valid: true},
 		Name:      req.Name,
 		Content:   req.Content,
-		Variables: req.Variables,
+		Variables: variablesBytes,
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
@@ -148,18 +159,6 @@ func (h *MessageTemplateHandler) DeleteTemplate(c echo.Context) error {
 }
 
 // Helper function to get user ID from context
-func getUserIDFromContext(c echo.Context) int {
-	user := c.Get("user")
-	if user == nil {
-		return 0
-	}
-
-	// Check if user is a map (from JWT claims)
-	if claims, ok := user.(map[string]interface{}); ok {
-		if id, ok := claims["id"].(float64); ok {
-			return int(id)
-		}
-	}
-
-	return 0
+func getUserIDFromContext(c echo.Context) int32 {
+	return c.Get("userID").(int32)
 }

@@ -41,7 +41,7 @@ func (w *AuthHandler) Login(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "invalid credentials #2"})
 	}
 
-	token, err := security.GenerateToken(request.Email)
+	token, err := security.GenerateToken(request.Email, user.ID)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
 	}

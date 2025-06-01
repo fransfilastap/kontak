@@ -39,3 +39,10 @@ type SendTemplateMessageRequest struct {
 	TemplateID string                 `json:"templateId" validate:"required"`
 	Variables  map[string]interface{} `json:"variables"`
 }
+
+// MessageTemplateRequest represents a request to create or update a message template
+type MessageTemplateRequest struct {
+	Name      string        `json:"name" validate:"required"`
+	Content   string        `json:"content" validate:"required"`
+	Variables []interface{} `json:"variables"`
+}

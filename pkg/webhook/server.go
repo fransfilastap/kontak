@@ -77,16 +77,16 @@ func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, me
 	admin.GET("/clients/:client_id/qr", webhook.GetClientQRC)
 	admin.GET("/clients/:client_id/status", webhook.ConnectionStatus)
 
-	// Message Templates
-	admin.GET("/templates", messageTemplateHandler.GetUserTemplates)
-	admin.POST("/templates", messageTemplateHandler.CreateTemplate)
-	admin.PUT("/templates/:id", messageTemplateHandler.UpdateTemplate)
-	admin.DELETE("/templates/:id", messageTemplateHandler.DeleteTemplate)
-
 	// API Key
 	v1 := e.Group("/v1", AppKeyAuthMiddleware(db))
 	v1.POST("/chats", webhook.SendMessage)
 	v1.POST("/chats/template", webhook.SendTemplateMessage)
+
+	// Message Templates
+	v1.POST("/templates", messageTemplateHandler.CreateTemplate)
+	v1.PUT("/templates/:id", messageTemplateHandler.UpdateTemplate)
+	v1.DELETE("/templates/:id", messageTemplateHandler.DeleteTemplate)
+	v1.GET("/templates", messageTemplateHandler.GetUserTemplates)
 
 }
 

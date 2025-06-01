@@ -21,6 +21,10 @@ func AppKeyAuthMiddleware(db db.Querier) echo.MiddlewareFunc {
 			if err != nil {
 				return false, err
 			}
+
+			// Store the client in the context for later access
+			c.Set("userID", client.ID)
+
 			return client.ApiKey.String == key, nil
 		},
 	})
