@@ -2,20 +2,25 @@ package webhook
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
+	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/fransfilastap/kontak/pkg/wa"
+	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/labstack/echo/v4"
 )
 
 type Webhook struct {
 	whatsappClient   *wa.WhatsappClient
 	deviceManagement *wa.DeviceManagement
+	db               db.Querier
 }
 
-func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceManagement) *Webhook {
-	return &Webhook{whatsappClient: whatsappClient, deviceManagement: management}
+func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceManagement, db db.Querier) *Webhook {
+	return &Webhook{whatsappClient: whatsappClient, deviceManagement: management, db: db}
 }
 
 // RegisterDevice registers a new WhatsApp device from the provided request data.
@@ -40,17 +45,17 @@ func (w *Webhook) RegisterDevice(c echo.Context) error {
 
 func (w *Webhook) ConnectDevice(c echo.Context) error {
 
-	client, err := w.deviceManagement.GetClient(c.Request().Context(), c.Param("client_id"))
+	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
 	if err != nil && errors.Is(err, wa.ErrClientNotFound) {
 		return c.JSON(http.StatusNotFound, DeviceConnectionResponse{ServerError: true, Message: err.Error()})
 	}
 
-	go w.whatsappClient.StartClient(c.Request().Context(), client)
+	go w.whatsappClient.Start(c.Request().Context(), client)
 
 	// wait for 5 seconds to connect
 	time.Sleep(5 * time.Second)
 
-	if w.whatsappClient.GetClient(c.Param("client_id")) == nil {
+	if w.whatsappClient.RetrieveDevice(c.Param("client_id")) == nil {
 		return c.JSON(http.StatusInternalServerError, DeviceConnectionResponse{ServerError: true, Message: "Failed to connect to whatsapp"})
 	} else {
 		if w.whatsappClient.IsConnected(c.Param("client_id")) {
@@ -63,12 +68,12 @@ func (w *Webhook) ConnectDevice(c echo.Context) error {
 }
 
 func (w *Webhook) DisconnectDevice(c echo.Context) error {
-	client, err := w.deviceManagement.GetClient(c.Request().Context(), c.Param("client_id"))
+	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
 	if err != nil {
 		return err
 	}
 
-	if ok, err := w.whatsappClient.DisconnectClient(client.ID); err != nil {
+	if ok, err := w.whatsappClient.DisconnectDevice(client.ID); err != nil {
 		return c.JSON(http.StatusInternalServerError, DeviceDisconnectionResponse{ServerError: true, Message: err.Error()})
 	} else if ok {
 		return c.JSON(200, DeviceDisconnectionResponse{ServerError: false, Message: "Disconnected from whatsapp"})
@@ -78,7 +83,7 @@ func (w *Webhook) DisconnectDevice(c echo.Context) error {
 }
 
 func (w *Webhook) GetDevices(c echo.Context) error {
-	clients, err := w.deviceManagement.GetClients(c.Request().Context())
+	clients, err := w.deviceManagement.GetDevices(c.Request().Context())
 	if err != nil {
 		return err
 	}
@@ -99,7 +104,7 @@ func (w *Webhook) ConnectionStatus(c echo.Context) error {
 
 func (w *Webhook) GetClientQRC(c echo.Context) error {
 
-	client, err := w.deviceManagement.GetClient(c.Request().Context(), c.Param("client_id"))
+	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -121,7 +126,7 @@ func (w *Webhook) SendMessage(c echo.Context) error {
 		return err
 	}
 
-	client, err := w.deviceManagement.GetClient(c.Request().Context(), message.ClientID)
+	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), message.ClientID)
 	if errors.Is(err, wa.ErrClientNotFound) {
 		return c.JSON(http.StatusNotFound, GenericResponse{Message: err.Error()})
 	}
@@ -134,13 +139,55 @@ func (w *Webhook) SendMessage(c echo.Context) error {
 	return c.JSON(200, GenericResponse{Message: "Message sent successfully"})
 }
 
+// SendTemplateMessage sends a message using a template
+func (w *Webhook) SendTemplateMessage(c echo.Context) error {
+	var request SendTemplateMessageRequest
+	if err := c.Bind(&request); err != nil {
+		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
+	}
+
+	// Get the device
+	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), request.DeviceID)
+	if errors.Is(err, wa.ErrClientNotFound) {
+		return c.JSON(http.StatusNotFound, GenericResponse{Message: "Device not found"})
+	}
+
+	// Parse template ID
+	var templateID pgtype.UUID
+	if err := templateID.Scan(request.TemplateID); err != nil {
+		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Invalid template ID"})
+	}
+
+	// Get the template from database
+	template, err := w.db.GetMessageTemplateByID(c.Request().Context(), templateID)
+	if err != nil {
+		return c.JSON(http.StatusNotFound, GenericResponse{Message: "Template not found"})
+	}
+
+	// Process the template with variables
+	processedMessage := template.Content
+	for key, value := range request.Variables {
+		// Simple placeholder replacement
+		placeholder := "{{" + key + "}}"
+		processedMessage = strings.Replace(processedMessage, placeholder, fmt.Sprintf("%v", value), -1)
+	}
+
+	// Send the processed message
+	err = w.whatsappClient.SendMessage(client.ID, request.To, processedMessage)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, GenericResponse{Message: "Template message sent successfully"})
+}
+
 func (w *Webhook) DeleteDevice(c echo.Context) error {
-	client, err := w.deviceManagement.GetClient(c.Request().Context(), c.Param("client_id"))
+	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	if success, err := w.whatsappClient.DisconnectClient(client.Jid.String); !success {
+	if success, err := w.whatsappClient.DisconnectDevice(client.Jid.String); !success {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 

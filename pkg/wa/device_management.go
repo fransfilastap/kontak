@@ -5,8 +5,6 @@ import (
 	"fmt"
 
 	"github.com/fransfilastap/kontak/pkg/db"
-	"github.com/jackc/pgx/v5/pgtype"
-	"github.com/oklog/ulid/v2"
 )
 
 // Device represents a device with a name and mobile number.
@@ -17,46 +15,37 @@ type Device struct {
 
 // DeviceManagement manages device operations with the database.
 type DeviceManagement struct {
-	db db.Querier
+	store Store
 }
 
 // NewDeviceManagement creates a new instance of DeviceManagement.
-func NewDeviceManagement(db db.Querier) *DeviceManagement {
+func NewDeviceManagement(store Store) *DeviceManagement {
 	return &DeviceManagement{
-		db: db,
+		store: store,
 	}
 }
 
 // Register registers a new device in the database.
 func (cm *DeviceManagement) Register(ctx context.Context, device Device) (db.Client, error) {
-	dvc, err := cm.db.CreateNewClient(ctx, db.CreateNewClientParams{
-		ID:   ulid.Make().String(),
-		Name: device.Name,
-		WhatsappNumber: pgtype.Text{
-			String: device.MobileNumber,
-			Valid:  true,
-		},
-	})
+	dvc, err := cm.store.CreateClient(ctx, device.Name, device.MobileNumber)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to register device: %w", err)
 	}
 	return dvc, nil
 }
 
-// GetClient retrieves a client from the database by ID.
-func (cm *DeviceManagement) GetClient(ctx context.Context, id string) (db.Client, error) {
-
-	dvc, err := cm.db.GetClient(ctx, id)
+// GetDeviceByID retrieves a client from the database by ID.
+func (cm *DeviceManagement) GetDeviceByID(ctx context.Context, id string) (db.Client, error) {
+	dvc, err := cm.store.GetClient(ctx, id)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to get device: %w", ErrClientNotFound)
 	}
-
 	return dvc, nil
 }
 
-// GetClients retrieves all clients from the database.
-func (cm *DeviceManagement) GetClients(ctx context.Context) ([]db.Client, error) {
-	dvc, err := cm.db.GetClients(ctx)
+// GetDevices retrieves all clients from the database.
+func (cm *DeviceManagement) GetDevices(ctx context.Context) ([]db.Client, error) {
+	dvc, err := cm.store.GetClients(ctx)
 	if err != nil {
 		return []db.Client{}, fmt.Errorf("failed to get clients: %w", err)
 	}
@@ -64,43 +53,45 @@ func (cm *DeviceManagement) GetClients(ctx context.Context) ([]db.Client, error)
 }
 
 func (cm *DeviceManagement) SetQR(ctx context.Context, clientID string, qr string) (db.Client, error) {
-
-	client, err := cm.db.UpdateQRCode(ctx, db.UpdateQRCodeParams{
-		QrCode: pgtype.Text{
-			String: qr,
-			Valid:  true,
-		},
-		ID: clientID,
-	})
-
+	err := cm.store.UpdateQRCode(ctx, clientID, qr)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to update qr code: %w", err)
 	}
 
-	return client, nil
+	// Get the updated client
+	client, err := cm.store.GetClient(ctx, clientID)
+	if err != nil {
+		return db.Client{}, fmt.Errorf("failed to get updated client: %w", err)
+	}
 
+	return client, nil
 }
 
-func (cm *DeviceManagement) SetClientJID(ctx context.Context, clientID string, jid string) (db.Client, error) {
-	client, err := cm.db.SetClientJID(ctx, db.SetClientJIDParams{
-		Jid: pgtype.Text{
-			String: jid,
-			Valid:  true,
-		},
-		ID: clientID,
-	})
-
+func (cm *DeviceManagement) SetDeviceJID(ctx context.Context, clientID string, jid string) (db.Client, error) {
+	err := cm.store.SetClientJID(ctx, clientID, jid)
 	if err != nil {
-		return db.Client{}, fmt.Errorf("failed to update qr code: %w", err)
+		return db.Client{}, fmt.Errorf("failed to update client jid: %w", err)
+	}
+
+	// Get the updated client
+	client, err := cm.store.GetClient(ctx, clientID)
+	if err != nil {
+		return db.Client{}, fmt.Errorf("failed to get updated client: %w", err)
 	}
 
 	return client, nil
 }
 
 func (cm *DeviceManagement) DeleteClient(ctx context.Context, clientID string) (db.Client, error) {
-	err := cm.db.DeleteClient(ctx, clientID)
+	// Get the client before deleting it
+	client, err := cm.store.GetClient(ctx, clientID)
+	if err != nil {
+		return db.Client{}, fmt.Errorf("failed to get client: %w", err)
+	}
+
+	err = cm.store.DeleteClient(ctx, clientID)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to delete client: %w", err)
 	}
-	return db.Client{}, nil
+	return client, nil
 }

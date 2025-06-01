@@ -19,7 +19,7 @@ type SendMessageRequest struct {
 }
 
 type LoginRequest struct {
-	Username string `json:"username" validate:"required"`
+	Email    string `json:"email" validate:"required"`
 	Password string `json:"password" validate:"required"`
 }
 
@@ -28,6 +28,14 @@ type LoginResponse struct {
 }
 
 type RegisterRequest struct {
-	Username string `json:"username" validate:"required"`
+	Email    string `json:"email" validate:"required"`
 	Password string `json:"password" validate:"required"`
+}
+
+// SendTemplateMessageRequest represents a request to send a message using a template
+type SendTemplateMessageRequest struct {
+	DeviceID   string                 `json:"deviceId" validate:"required"`
+	To         string                 `json:"to" validate:"required"`
+	TemplateID string                 `json:"templateId" validate:"required"`
+	Variables  map[string]interface{} `json:"variables"`
 }

@@ -3,26 +3,22 @@ package wa
 import (
 	"context"
 	"fmt"
-	"log"
 
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/logger"
 	kontaktypes "github.com/fransfilastap/kontak/pkg/types"
-	"github.com/jackc/pgx/v5/pgtype"
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"go.mau.fi/whatsmeow"
 	"go.mau.fi/whatsmeow/proto/waE2E"
 	"go.mau.fi/whatsmeow/store"
-	"go.mau.fi/whatsmeow/store/sqlstore"
 	"go.mau.fi/whatsmeow/types"
 	waLog "go.mau.fi/whatsmeow/util/log"
 )
 
 // WhatsappClient handles the WhatsApp client operations including sending and receiving messages, connecting, and disconnecting.
-// It uses the whatsmeow library to interact with the WhatsApp service and sqlstore for database operations.
+// It uses the whatsmeow library to interact with the WhatsApp service and a Store interface for database operations.
 type WhatsappClient struct {
-	database       string // database connection string
-	dbQueries      db.Querier
-	container      *sqlstore.Container               // SQLStore container for managing database interactions
+	store          Store                             // Store interface for database and device operations
 	qr             chan<- kontaktypes.WaConnectEvent // Channel to send WhatsApp connection events such as QR codes
 	runningClients map[string]*whatsmeow.Client
 }
@@ -44,56 +40,56 @@ func (w *WhatsappClient) SendMessage(clientID string, recipient string, message 
 	return nil
 }
 
-// ConnectToWhatsapp initializes and connects the WhatsApp client.
-func (w *WhatsappClient) ConnectToWhatsapp(ctx context.Context) {
+// Connect initializes and connects the WhatsApp client.
+func (w *WhatsappClient) Connect(ctx context.Context) {
 
-	clients, _ := w.dbQueries.GetClients(context.Background())
+	clients, _ := w.store.GetClients(context.Background())
 
 	for _, client := range clients {
-		log.Println("Connecting to Whatsapp", client.Jid.String)
-		go w.StartClient(ctx, client)
+		logger.Info("Connecting to Whatsapp %s", client.Jid.String)
+		go w.Start(ctx, client)
 	}
 }
 
-func (w *WhatsappClient) StartClient(ctx context.Context, client db.Client) {
+func (w *WhatsappClient) Start(ctx context.Context, client db.Client) {
 
 	if w.runningClients[client.ID] != nil && w.IsConnected(client.ID) {
-		log.Println("Client already connected")
+		logger.Info("Client already connected")
 		return
 	}
 
-	log.Println("Starting client", client.ID)
+	logger.Info("Starting client %s", client.ID)
 
 	deviceStore, err := w.getDeviceStore(ctx, client)
 	if err != nil {
-		log.Println("Failed to get device store", err)
+		logger.Error("Failed to get device store: %v", err)
 		return
 	}
 
 	if deviceStore == nil {
-		deviceStore = w.container.NewDevice()
+		deviceStore = w.store.NewDevice()
 	}
 
 	clientLog := waLog.Stdout("Client", "DEBUG", true)
 	waClient := whatsmeow.NewClient(deviceStore, clientLog)
-	eventHandler := NewKontakEventHandler(client.ID, w, w.dbQueries)
+	eventHandler := NewKontakEventHandler(client.ID, w, w.store)
 	waClient.AddEventHandler(eventHandler.handler)
 
-	log.Println("Connecting to Whatsapp", deviceStore)
+	logger.Info("Connecting to Whatsapp %v", deviceStore)
 
 	w.runningClients[client.ID] = waClient
 
 	if waClient.Store.ID == nil {
 		w.handleQRCode(client, waClient)
 	} else {
-		log.Println("Already logged in")
+		logger.Info("Already logged in")
 		err = waClient.Connect()
 
 		if err != nil {
-			log.Println("Failed to connect to whatsapp", err)
+			logger.Error("Failed to connect to whatsapp: %v", err)
 			return
 		}
-		log.Println("Connected to whatsapp")
+		logger.Info("Connected to whatsapp")
 	}
 }
 
@@ -101,10 +97,10 @@ func (w *WhatsappClient) StartClient(ctx context.Context, client db.Client) {
 func (w *WhatsappClient) getDeviceStore(ctx context.Context, client db.Client) (*store.Device, error) {
 	if client.Jid.String != "" {
 		jid, _ := parseJID(client.Jid.String)
-		return w.container.GetDevice(ctx, jid)
+		return w.store.GetDevice(ctx, jid)
 	}
-	log.Println("JID is empty. Creating new device")
-	return w.container.NewDevice(), nil
+	logger.Info("JID is empty. Creating new device")
+	return w.store.NewDevice(), nil
 }
 
 // New helper function to handle QR code events
@@ -118,35 +114,35 @@ func (w *WhatsappClient) handleQRCode(client db.Client, waClient *whatsmeow.Clie
 	for evt := range qrChan {
 		switch evt.Event {
 		case "code":
-			log.Println("Received QR code", evt.Code)
+			logger.Info("Received QR code %s", evt.Code)
 			w.updateQRCode(client.ID, evt.Code)
 		case "success":
 			w.updateQRCode(client.ID, "")
 		case "timeout":
-			w.GetClient(client.ID).Disconnect()
+			w.RetrieveDevice(client.ID).Disconnect()
 			delete(w.runningClients, client.ID)
 			w.updateQRCode(client.ID, "")
 		default:
-			log.Println("Unknown event", evt)
+			logger.Warn("Unknown event %v", evt)
 		}
 	}
 }
 
 // New helper function to update QR code
 func (w *WhatsappClient) updateQRCode(clientID string, code string) {
-	_, err := w.dbQueries.UpdateQRCode(context.Background(), db.UpdateQRCodeParams{
-		QrCode: pgtype.Text{String: code, Valid: true},
-		ID:     clientID,
-	})
+	err := w.store.UpdateQRCode(context.Background(), clientID, code)
 	if err != nil {
-		log.Println("Failed to update QR code", err)
+		logger.Error("Failed to update QR code: %v", err)
 	}
 }
 
-// DisconnectFromWhatsapp disconnects the WhatsApp client.
-func (w *WhatsappClient) DisconnectFromWhatsapp() {
+// Disconnect disconnects the WhatsApp client.
+func (w *WhatsappClient) Disconnect() {
 	for id := range w.runningClients { // Simplified range expression
-		w.DisconnectClient(id)
+		_, err := w.DisconnectDevice(id)
+		if err != nil {
+			return
+		}
 	}
 }
 
@@ -158,14 +154,14 @@ func (w *WhatsappClient) IsConnected(clientID string) bool {
 
 }
 
-func (w *WhatsappClient) GetClient(clientID string) *whatsmeow.Client {
+func (w *WhatsappClient) RetrieveDevice(clientID string) *whatsmeow.Client {
 	if client, ok := w.runningClients[clientID]; ok {
 		return client
 	}
 	return nil
 }
 
-func (w *WhatsappClient) DisconnectClient(clientID string) (bool, error) {
+func (w *WhatsappClient) DisconnectDevice(clientID string) (bool, error) {
 	if client, ok := w.runningClients[clientID]; ok {
 		client.Disconnect()
 		delete(w.runningClients, clientID)
@@ -177,17 +173,15 @@ func (w *WhatsappClient) DisconnectClient(clientID string) (bool, error) {
 // NewWhatsappClient creates a new instance of WhatsappClient.
 func NewWhatsappClient(ctx context.Context, database string, dbQueries db.Querier, qr chan<- kontaktypes.WaConnectEvent) *WhatsappClient {
 	dbLog := waLog.Stdout("Database", "DEBUG", true)
-	container, err := sqlstore.New(ctx, "pgx", database, dbLog)
+	store, err := NewPostgresStore(ctx, database, dbQueries, dbLog)
 	if err != nil {
 		panic(err)
 	}
 
 	client := &WhatsappClient{
-		database:       database,
-		container:      container,
+		store:          store,
 		qr:             qr,
 		runningClients: make(map[string]*whatsmeow.Client),
-		dbQueries:      dbQueries,
 	}
 
 	return client

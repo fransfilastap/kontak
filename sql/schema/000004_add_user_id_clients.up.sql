@@ -1,2 +1,2 @@
 ALTER TABLE clients
-ADD COLUMN user_id VARCHAR(255);
+ADD COLUMN user_id int;

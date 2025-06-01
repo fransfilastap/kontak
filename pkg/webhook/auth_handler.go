@@ -1,6 +1,7 @@
 package webhook
 
 import (
+	"errors"
 	"net/http"
 
 	"github.com/fransfilastap/kontak/pkg/config"
@@ -27,8 +28,8 @@ func (w *AuthHandler) Login(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, echo.Map{"error": err.Error()})
 	}
 
-	user, err := w.db.GetUserByUsername(c.Request().Context(), request.Username)
-	if err != nil && err == pgx.ErrNoRows {
+	user, err := w.db.GetUserByUsername(c.Request().Context(), request.Email)
+	if err != nil && errors.Is(err, pgx.ErrNoRows) {
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "invalid credentials"})
 	}
 
@@ -40,7 +41,7 @@ func (w *AuthHandler) Login(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "invalid credentials #2"})
 	}
 
-	token, err := security.GenerateToken(request.Username)
+	token, err := security.GenerateToken(request.Email)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
 	}
@@ -61,7 +62,7 @@ func (w *AuthHandler) Register(c echo.Context) error {
 	}
 
 	_, err = w.db.CreateUser(c.Request().Context(), db.CreateUserParams{
-		Username: request.Username,
+		Email:    request.Email,
 		Password: hash,
 	})
 	if err != nil {

@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
 	"sync"
@@ -12,6 +11,7 @@ import (
 
 	"github.com/fransfilastap/kontak/pkg/config"
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/logger"
 	"github.com/fransfilastap/kontak/pkg/security"
 	"github.com/fransfilastap/kontak/pkg/types"
 	"github.com/fransfilastap/kontak/pkg/wa"
@@ -27,13 +27,40 @@ type Kontak struct {
 }
 
 func NewKontak(config *config.Config) *Kontak {
+	// Initialize logger
+	logLevel := logger.InfoLevel
+	switch config.LogLevel {
+	case "debug":
+		logLevel = logger.DebugLevel
+	case "info":
+		logLevel = logger.InfoLevel
+	case "warn":
+		logLevel = logger.WarnLevel
+	case "error":
+		logLevel = logger.ErrorLevel
+	}
+
+	logger.Init(logger.Config{
+		Level:             logLevel,
+		Output:            os.Stdout,
+		TimeFormat:        time.RFC3339,
+		NoColor:           false,
+		EnableFileLogging: config.LogFileEnabled,
+		LogFilePath:       config.LogFilePath,
+		MaxSize:           config.LogFileMaxSize,
+		MaxBackups:        config.LogFileMaxBackups,
+		MaxAge:            config.LogFileMaxAge,
+		Compress:          config.LogFileCompress,
+	})
+
+	logger.Info("Initializing Kontak application")
 
 	addr := fmt.Sprintf("%s:%d", config.Host, config.Port)
 	qrChan := make(chan types.WaConnectEvent)
 
 	dbQueries, dberr := connectDatabase(config.DB)
 	if dberr != nil {
-		log.Fatalf("Could not connect to database: %v\n", dberr)
+		logger.Fatal("Could not connect to database: %v", dberr)
 	}
 
 	// Create initial user
@@ -45,9 +72,14 @@ func NewKontak(config *config.Config) *Kontak {
 	ctx := context.Background()
 
 	waClient := wa.NewWhatsappClient(ctx, config.DB, dbQueries, qrChan)
-	deviceManagement := wa.NewDeviceManagement(dbQueries)
+	// Use the same store implementation for device management
+	store, err := wa.NewPostgresStore(ctx, config.DB, dbQueries, nil)
+	if err != nil {
+		logger.Fatal("Could not create store: %v", err)
+	}
+	deviceManagement := wa.NewDeviceManagement(store)
 
-	webhookHandler := webhook.NewWebhook(waClient, deviceManagement)
+	webhookHandler := webhook.NewWebhook(waClient, deviceManagement, dbQueries)
 	authHandler := webhook.NewAuthHandler(dbQueries, config)
 
 	httpServer := webhook.NewServer(addr, webhookHandler, authHandler, dbQueries)
@@ -65,13 +97,13 @@ func (app *Kontak) Run() {
 	var wg sync.WaitGroup
 	go app.HttpServer.Start()
 
-	app.WhatsappClient.ConnectToWhatsapp(context.Background())
+	app.WhatsappClient.Connect(context.Background())
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	sig := <-quit
 
-	log.Printf("Server is shutting down due to signal: %v\n", sig)
+	logger.Info("Server is shutting down due to signal: %v", sig)
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
@@ -79,19 +111,19 @@ func (app *Kontak) Run() {
 	go func() {
 		defer wg.Done()
 		if err := app.HttpServer.Shutdown(ctx); err != nil {
-			log.Fatalf("Could not gracefully shutdown the server: %v\n", err)
+			logger.Fatal("Could not gracefully shutdown the server: %v", err)
 		}
 	}()
 
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		log.Println("Disconnecting from Whatsapp")
-		app.WhatsappClient.DisconnectFromWhatsapp()
+		logger.Info("Disconnecting from Whatsapp")
+		app.WhatsappClient.Disconnect()
 	}()
 
 	wg.Wait()
-	log.Println("Server gracefully stopped")
+	logger.Info("Server gracefully stopped")
 	cancel() // Call cancel to ensure context is released
 }
 
@@ -120,14 +152,14 @@ func createInitialUser(dbQuerier db.Querier) error {
 		}
 
 		_, err = dbQuerier.CreateUser(ctx, db.CreateUserParams{
-			Username: initialUsername,
+			Email:    initialUsername,
 			Password: hash,
 		})
 		if err != nil {
 			return fmt.Errorf("failed to create initial user: %w", err)
 		}
 
-		log.Println("Initial user 'admin' created. Please change the password after first login.")
+		logger.Info("Initial user 'admin' created. Please change the password after first login.")
 	}
 
 	return nil

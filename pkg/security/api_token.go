@@ -7,7 +7,7 @@ import (
 	"math/big"
 )
 
-// generatePrefix creates a random 5-letter prefix for API keys.
+// GeneratePrefix creates a random 5-letter prefix for API keys.
 // It returns the generated prefix as a string and any error encountered.
 func GeneratePrefix() (string, error) {
 	const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -23,7 +23,7 @@ func GeneratePrefix() (string, error) {
 }
 
 // GenerateAPIKey creates a new API key with the given prefix.
-// It returns the generated API key as a string and any error encountered.
+// It returns the generated API key as a string, and any error is encountered.
 func GenerateAPIKey(prefix string) (string, error) {
 	key := make([]byte, 32)
 	_, err := rand.Read(key)
@@ -34,7 +34,7 @@ func GenerateAPIKey(prefix string) (string, error) {
 }
 
 // GenerateAPIKeyWithPrefix creates a new API key with a randomly generated prefix.
-// It returns the generated API key as a string and any error encountered.
+// It returns the generated API key as a string, and any error is encountered.
 func GenerateAPIKeyWithPrefix() (string, error) {
 	prefix, err := GeneratePrefix()
 	if err != nil {
