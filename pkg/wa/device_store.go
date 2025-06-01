@@ -3,6 +3,7 @@ package wa
 import (
 	"context"
 	"fmt"
+	"go.mau.fi/whatsmeow/types"
 
 	"github.com/fransfilastap/kontak/pkg/db"
 )
@@ -13,20 +14,20 @@ type Device struct {
 	MobileNumber string `json:"mobile_number"`
 }
 
-// DeviceManagement manages device operations with the database.
-type DeviceManagement struct {
+// DeviceStore manages device operations with the database.
+type DeviceStore struct {
 	store Store
 }
 
-// NewDeviceManagement creates a new instance of DeviceManagement.
-func NewDeviceManagement(store Store) *DeviceManagement {
-	return &DeviceManagement{
+// NewDeviceStore creates a new instance of DeviceStore.
+func NewDeviceStore(store Store) *DeviceStore {
+	return &DeviceStore{
 		store: store,
 	}
 }
 
 // Register registers a new device in the database.
-func (cm *DeviceManagement) Register(ctx context.Context, device Device) (db.Client, error) {
+func (cm *DeviceStore) Register(ctx context.Context, device Device) (db.Client, error) {
 	dvc, err := cm.store.CreateClient(ctx, device.Name, device.MobileNumber)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to register device: %w", err)
@@ -35,7 +36,7 @@ func (cm *DeviceManagement) Register(ctx context.Context, device Device) (db.Cli
 }
 
 // GetDeviceByID retrieves a client from the database by ID.
-func (cm *DeviceManagement) GetDeviceByID(ctx context.Context, id string) (db.Client, error) {
+func (cm *DeviceStore) GetDeviceByID(ctx context.Context, id string) (db.Client, error) {
 	dvc, err := cm.store.GetClient(ctx, id)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to get device: %w", ErrClientNotFound)
@@ -44,7 +45,7 @@ func (cm *DeviceManagement) GetDeviceByID(ctx context.Context, id string) (db.Cl
 }
 
 // GetDevices retrieves all clients from the database.
-func (cm *DeviceManagement) GetDevices(ctx context.Context) ([]db.Client, error) {
+func (cm *DeviceStore) GetDevices(ctx context.Context) ([]db.Client, error) {
 	dvc, err := cm.store.GetClients(ctx)
 	if err != nil {
 		return []db.Client{}, fmt.Errorf("failed to get clients: %w", err)
@@ -52,7 +53,7 @@ func (cm *DeviceManagement) GetDevices(ctx context.Context) ([]db.Client, error)
 	return dvc, nil
 }
 
-func (cm *DeviceManagement) SetQR(ctx context.Context, clientID string, qr string) (db.Client, error) {
+func (cm *DeviceStore) SetQR(ctx context.Context, clientID string, qr string) (db.Client, error) {
 	err := cm.store.UpdateQRCode(ctx, clientID, qr)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to update qr code: %w", err)
@@ -67,7 +68,7 @@ func (cm *DeviceManagement) SetQR(ctx context.Context, clientID string, qr strin
 	return client, nil
 }
 
-func (cm *DeviceManagement) SetDeviceJID(ctx context.Context, clientID string, jid string) (db.Client, error) {
+func (cm *DeviceStore) SetDeviceJID(ctx context.Context, clientID string, jid string) (db.Client, error) {
 	err := cm.store.SetClientJID(ctx, clientID, jid)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to update client jid: %w", err)
@@ -82,7 +83,7 @@ func (cm *DeviceManagement) SetDeviceJID(ctx context.Context, clientID string, j
 	return client, nil
 }
 
-func (cm *DeviceManagement) DeleteClient(ctx context.Context, clientID string) (db.Client, error) {
+func (cm *DeviceStore) DeleteClient(ctx context.Context, clientID string) (db.Client, error) {
 	// Get the client before deleting it
 	client, err := cm.store.GetClient(ctx, clientID)
 	if err != nil {
@@ -94,4 +95,16 @@ func (cm *DeviceManagement) DeleteClient(ctx context.Context, clientID string) (
 		return db.Client{}, fmt.Errorf("failed to delete client: %w", err)
 	}
 	return client, nil
+}
+
+// :TODO - Add logging
+// SyncJoinedGroups syncs the list of joined groups with the database.
+// Returns an error if the client is not found or another issue occurs.
+func (cm *DeviceStore) SyncJoinedGroups(ctx context.Context, clientID string, groups []*types.GroupInfo) error {
+	_, err := cm.store.GetClient(ctx, clientID)
+	if err != nil {
+		return fmt.Errorf("failed to get client: %w", err)
+	}
+
+	return cm.store.SyncGroups(ctx, clientID, groups)
 }
