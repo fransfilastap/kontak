@@ -77,12 +77,13 @@ func NewKontak(config *config.Config) *Kontak {
 	if err != nil {
 		logger.Fatal("Could not create store: %v", err)
 	}
-	deviceManagement := wa.NewDeviceManagement(store)
+	deviceManagement := wa.NewDeviceStore(store)
 
 	webhookHandler := webhook.NewWebhook(waClient, deviceManagement, dbQueries)
 	authHandler := webhook.NewAuthHandler(dbQueries, config)
+	groupHandler := webhook.NewGroupHandler(deviceManagement, waClient)
 
-	httpServer := webhook.NewServer(addr, webhookHandler, authHandler, dbQueries)
+	httpServer := webhook.NewServer(addr, webhookHandler, authHandler, groupHandler, dbQueries)
 
 	return &Kontak{
 		HttpServer: httpServer,

@@ -9,21 +9,21 @@ import (
 	"go.mau.fi/whatsmeow/types/events"
 )
 
-type KontakEventHandler struct {
+type EventHandler struct {
 	client   *WhatsappClient
 	store    Store
 	clientID string
 }
 
-func NewKontakEventHandler(clientID string, client *WhatsappClient, store Store) *KontakEventHandler {
-	return &KontakEventHandler{
+func BuildEventHandler(clientID string, client *WhatsappClient, store Store) *EventHandler {
+	return &EventHandler{
 		clientID: clientID,
 		client:   client,
 		store:    store,
 	}
 }
 
-func (w *KontakEventHandler) handler(rawEvt interface{}) {
+func (w *EventHandler) handle(rawEvt interface{}) {
 	switch evt := rawEvt.(type) {
 	case *events.AppStateSyncComplete:
 		w.handleAppStateSyncComplete(evt)
@@ -43,14 +43,14 @@ func (w *KontakEventHandler) handler(rawEvt interface{}) {
 	}
 }
 
-func (w *KontakEventHandler) handleAppStateSyncComplete(evt *events.AppStateSyncComplete) {
+func (w *EventHandler) handleAppStateSyncComplete(evt *events.AppStateSyncComplete) {
 	if len(w.client.RetrieveDevice(w.clientID).Store.PushName) > 0 && evt.Name == appstate.WAPatchCriticalBlock {
 		w.sendPresence()
 	}
 	w.setConnectionStatus(true)
 }
 
-func (w *KontakEventHandler) handleConnection(evt interface{}) {
+func (w *EventHandler) handleConnection(evt interface{}) {
 	if len(w.client.RetrieveDevice(w.clientID).Store.PushName) == 0 {
 		return
 	}
@@ -58,20 +58,20 @@ func (w *KontakEventHandler) handleConnection(evt interface{}) {
 	w.setConnectionStatus(true)
 }
 
-func (w *KontakEventHandler) handlePairSuccess(evt *events.PairSuccess) {
+func (w *EventHandler) handlePairSuccess(evt *events.PairSuccess) {
 	logger.Info("Pairing successful")
 	jid := evt.ID
 	w.setClientJID(jid.String())
 	w.setConnectionStatus(true)
 }
 
-func (w *KontakEventHandler) handleLoggedOut(evt *events.LoggedOut) {
+func (w *EventHandler) handleLoggedOut(evt *events.LoggedOut) {
 	logger.Info("Reason for logout: %v", evt.Reason)
 	w.client.DisconnectDevice(w.clientID)
 	w.setConnectionStatus(false)
 }
 
-func (w *KontakEventHandler) sendPresence() {
+func (w *EventHandler) sendPresence() {
 	err := w.client.RetrieveDevice(w.clientID).SendPresence(types.PresenceAvailable)
 	if err != nil {
 		logger.Error("Failed to send available presence: %v", err)
@@ -80,14 +80,14 @@ func (w *KontakEventHandler) sendPresence() {
 	}
 }
 
-func (w *KontakEventHandler) setConnectionStatus(isConnected bool) {
+func (w *EventHandler) setConnectionStatus(isConnected bool) {
 	err := w.store.SetConnectionStatus(context.Background(), w.clientID, isConnected)
 	if err != nil {
 		logger.Error("Failed to set connection status to %v: %v", isConnected, err)
 	}
 }
 
-func (w *KontakEventHandler) setClientJID(jid string) {
+func (w *EventHandler) setClientJID(jid string) {
 	err := w.store.SetClientJID(context.Background(), w.clientID, jid)
 	if err != nil {
 		logger.Error("Failed to set client jid: %v", err)

@@ -2,14 +2,13 @@ package wa
 
 import (
 	"context"
+	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/oklog/ulid/v2"
-	"go.mau.fi/whatsmeow/store/sqlstore"
-	waLog "go.mau.fi/whatsmeow/util/log"
-
-	"github.com/fransfilastap/kontak/pkg/db"
 	"go.mau.fi/whatsmeow/store"
+	"go.mau.fi/whatsmeow/store/sqlstore"
 	"go.mau.fi/whatsmeow/types"
+	waLog "go.mau.fi/whatsmeow/util/log"
 )
 
 // Store defines the interface for WhatsApp storage operations
@@ -28,6 +27,9 @@ type Store interface {
 	UpdateQRCode(ctx context.Context, clientID, code string) error
 	SetConnectionStatus(ctx context.Context, clientID string, isConnected bool) error
 	SetClientJID(ctx context.Context, clientID, jid string) error
+
+	// Group operations
+	SyncGroups(ctx context.Context, clientID string, groups []*types.GroupInfo) error
 }
 
 // PostgresStore implements the Store interface using PostgreSQL
@@ -120,4 +122,30 @@ func (s *PostgresStore) SetClientJID(ctx context.Context, clientID, jid string) 
 		ID: clientID,
 	})
 	return err
+}
+
+func (s *PostgresStore) SyncGroups(ctx context.Context, clientID string, groups []*types.GroupInfo) error {
+	for _, group := range groups {
+		err := s.dbQueries.UpsertWhatsAppGroup(ctx, db.UpsertWhatsAppGroupParams{
+			DeviceID: pgtype.Text{
+				String: clientID,
+				Valid:  true,
+			},
+			GroupID:   group.JID.String(),
+			GroupName: group.Name,
+			GroupDescription: pgtype.Text{
+				String: group.Name,
+				Valid:  true,
+			},
+			ParticipantCount: pgtype.Int4{
+				Int32: int32(len(group.Participants)),
+				Valid: true,
+			},
+		})
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }

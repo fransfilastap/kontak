@@ -157,8 +157,3 @@ func (h *MessageTemplateHandler) DeleteTemplate(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, GenericResponse{Message: "Template deleted successfully"})
 }
-
-// Helper function to get user ID from context
-func getUserIDFromContext(c echo.Context) int32 {
-	return c.Get("userID").(int32)
-}

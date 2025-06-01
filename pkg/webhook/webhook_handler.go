@@ -15,11 +15,11 @@ import (
 
 type Webhook struct {
 	whatsappClient   *wa.WhatsappClient
-	deviceManagement *wa.DeviceManagement
+	deviceManagement *wa.DeviceStore
 	db               db.Querier
 }
 
-func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceManagement, db db.Querier) *Webhook {
+func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceStore, db db.Querier) *Webhook {
 	return &Webhook{whatsappClient: whatsappClient, deviceManagement: management, db: db}
 }
 
@@ -102,7 +102,7 @@ func (w *Webhook) ConnectionStatus(c echo.Context) error {
 	})
 }
 
-func (w *Webhook) GetClientQRC(c echo.Context) error {
+func (w *Webhook) GetDeviceQR(c echo.Context) error {
 
 	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
 	if err != nil {

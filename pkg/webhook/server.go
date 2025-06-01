@@ -19,26 +19,28 @@ type Server struct {
 	webhookHandler         *Webhook
 	authHandler            *AuthHandler
 	messageTemplateHandler *MessageTemplateHandler
+	groupHandler           *GroupHandler
 	db                     db.Querier
 }
 
 // NewServer initializes a new Server instance.
-func NewServer(addr string, webhook *Webhook, authHandler *AuthHandler, db db.Querier) *Server {
+func NewServer(addr string, webhook *Webhook, authHandler *AuthHandler, groupHandler *GroupHandler, db db.Querier) *Server {
 	messageTemplateHandler := NewMessageTemplateHandler(db)
 	return &Server{
 		httpServer: &http.Server{
 			Addr:    addr,
-			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, db),
+			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, db),
 		},
 		webhookHandler:         webhook,
 		authHandler:            authHandler,
 		messageTemplateHandler: messageTemplateHandler,
+		groupHandler:           groupHandler,
 		db:                     db,
 	}
 }
 
 // createEchoServer sets up the Echo server with middleware.
-func createEchoServer(webhook *Webhook, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, db db.Querier) *echo.Echo {
+func createEchoServer(webhook *Webhook, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) *echo.Echo {
 	e := echo.New()
 
 	// Middleware configuration
@@ -51,7 +53,7 @@ func createEchoServer(webhook *Webhook, authHandler *AuthHandler, messageTemplat
 	)))
 
 	// Separate function for routes configuration
-	registerRoutes(e, webhook, authHandler, messageTemplateHandler, db)
+	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, db)
 
 	return e
 }
@@ -61,7 +63,7 @@ func createEchoServer(webhook *Webhook, authHandler *AuthHandler, messageTemplat
 // - GET /client/qr: Handles requests to retrieve a QR code using the SendQrHandler method of the ConnectionHandler.
 // - GET /: Handles requests to the root path using the Index method of the ConnectionHandler.
 // - POST /webhook: Handles webhook events using the SendMessage method of the Webhook.
-func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, db db.Querier) {
+func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) {
 
 	e.POST("/login", authHandler.Login)
 
@@ -74,7 +76,7 @@ func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, me
 	admin.GET("/clients", webhook.GetDevices)
 	admin.POST("/clients/:client_id/connect", webhook.ConnectDevice)
 	admin.DELETE("/clients/:client_id/disconnect", webhook.DisconnectDevice)
-	admin.GET("/clients/:client_id/qr", webhook.GetClientQRC)
+	admin.GET("/clients/:client_id/qr", webhook.GetDeviceQR)
 	admin.GET("/clients/:client_id/status", webhook.ConnectionStatus)
 
 	// API Key
@@ -87,6 +89,9 @@ func registerRoutes(e *echo.Echo, webhook *Webhook, authHandler *AuthHandler, me
 	v1.PUT("/templates/:id", messageTemplateHandler.UpdateTemplate)
 	v1.DELETE("/templates/:id", messageTemplateHandler.DeleteTemplate)
 	v1.GET("/templates", messageTemplateHandler.GetUserTemplates)
+
+	// Groups
+	v1.GET("/groups/:client_id", groupHandler.SyncJoinedGroup)
 
 }
 
