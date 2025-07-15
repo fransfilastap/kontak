@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/fransfilastap/kontak/compare/v1.0.1...v1.1.0) (2025-06-01)
+
+
+### Features
+
+* Add group sync functionality and refactor DeviceManagement ([c1b289a](https://github.com/fransfilastap/kontak/commit/c1b289a511c8e313c5d0a87513a0f63d762988d8))
+* **api:** Refactor webhook package to http and add media message handling ([7454808](https://github.com/fransfilastap/kontak/commit/7454808c167f8132c96212e2f0e9f1f76dddc399))
+
 ## [1.0.1](https://github.com/fransfilastap/kontak/compare/v1.0.0...v1.0.1) (2025-06-01)
 
 
