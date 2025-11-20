@@ -67,12 +67,15 @@ func (w *EventHandler) handlePairSuccess(evt *events.PairSuccess) {
 
 func (w *EventHandler) handleLoggedOut(evt *events.LoggedOut) {
 	logger.Info("Reason for logout: %v", evt.Reason)
-	w.client.DisconnectDevice(w.clientID)
+	_, err := w.client.DisconnectDevice(w.clientID)
+	if err != nil {
+		return
+	}
 	w.setConnectionStatus(false)
 }
 
 func (w *EventHandler) sendPresence() {
-	err := w.client.RetrieveDevice(w.clientID).SendPresence(types.PresenceAvailable)
+	err := w.client.RetrieveDevice(w.clientID).SendPresence(context.Background(), types.PresenceAvailable)
 	if err != nil {
 		logger.Error("Failed to send available presence: %v", err)
 	} else {
