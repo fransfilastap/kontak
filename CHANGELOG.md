@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/fransfilastap/kontak/compare/v1.2.0...v1.2.1) (2025-11-20)
+
+
+### Bug Fixes
+
+* **event-handler:** Handle errors in device disconnection and presence sending ([2554312](https://github.com/fransfilastap/kontak/commit/2554312168517846384eacee1603bbf6855770ad))
+
 # [1.2.0](https://github.com/fransfilastap/kontak/compare/v1.1.0...v1.2.0) (2025-07-15)
 
 
