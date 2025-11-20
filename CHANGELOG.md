@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/fransfilastap/kontak/compare/v1.1.0...v1.2.0) (2025-07-15)
+
+
+### Features
+
+* **migration:** Migrate and embed database schemas into application ([b8aaaeb](https://github.com/fransfilastap/kontak/commit/b8aaaeba2546f3e6db298a877d4876721253ef19))
+
 # [1.1.0](https://github.com/fransfilastap/kontak/compare/v1.0.1...v1.1.0) (2025-06-01)
 
 
