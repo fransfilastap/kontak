@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/fransfilastap/kontak/compare/v1.2.1...v1.2.2) (2025-11-20)
+
+
+### Bug Fixes
+
+* **core_group:** Add context to GetJoinedGroups method ([e6d5177](https://github.com/fransfilastap/kontak/commit/e6d51774e48fca1f97783fc181b3cc85c452c5d7))
+
 ## [1.2.1](https://github.com/fransfilastap/kontak/compare/v1.2.0...v1.2.1) (2025-11-20)
 
 
