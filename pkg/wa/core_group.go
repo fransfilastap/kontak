@@ -1,7 +1,9 @@
 package wa
 
 import (
+	"context"
 	"fmt"
+
 	"go.mau.fi/whatsmeow/types"
 )
 
@@ -10,7 +12,7 @@ import (
 func (w *WhatsappClient) GetJoinedGroups(clientID string) ([]*types.GroupInfo, error) {
 	client, ok := w.runningClients[clientID]
 	if ok {
-		groups, err := client.GetJoinedGroups()
+		groups, err := client.GetJoinedGroups(context.Background())
 		if err != nil {
 			return nil, err
 		}
