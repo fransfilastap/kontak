@@ -3,6 +3,7 @@ FROM node:22-alpine AS base
 # Install dependencies only when needed
 FROM base AS deps
 
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
@@ -15,6 +16,7 @@ RUN pnpm install
 
 # Rebuild the source code only when needed
 FROM base AS builder
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -36,6 +38,7 @@ RUN pnpm build
 
 # Production image, copy all the files and run next
 FROM base AS runner
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 WORKDIR /app
 

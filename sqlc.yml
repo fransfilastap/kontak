@@ -4,7 +4,7 @@ sql:
     queries: "sql/queries"
     schema: "pkg/migrations/schema"
     database:
-      uri: "postgres://ffilasta:password@localhost:5432/kontak_db?sslmode=disable"
+      uri: ${DATABASE_URL}
     gen:
       go:
         package: "db"

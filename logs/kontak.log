@@ -1206,3 +1206,7 @@
 {"level":"info","time":"2025-06-01T23:20:21+07:00","message":"Already logged in"}
 {"level":"info","time":"2025-06-01T23:20:22+07:00","message":"Connected to whatsapp"}
 {"level":"info","time":"2025-06-01T23:20:22+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-02-19T20:19:39+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-19T20:19:39+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-19T20:19:40+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-19T20:19:40+07:00","message":"Database already initialized, skipping migrations"}

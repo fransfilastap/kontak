@@ -10,6 +10,7 @@ web/.next
 .env.production
 .env.test
 .env.*
+!.env.template
 
 .idea
 
