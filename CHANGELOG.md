@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/fransfilastap/kontak/compare/v1.5.0...v1.6.0) (2026-02-19)
+
+
+### Features
+
+* Add contact management, templates, and device registration features ([dadac32](https://github.com/fransfilastap/kontak/commit/dadac32f8266621b60db7e39191af745e504cba0))
+
 # [1.5.0](https://github.com/fransfilastap/kontak/compare/v1.4.0...v1.5.0) (2026-02-19)
 
 
