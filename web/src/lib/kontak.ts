@@ -34,12 +34,15 @@ const fetchWithAuth = async (
 };
 
 // Auth
-const login = async (email: string, password: string) => {
+// Login and admin endpoints are at root level, not under /v1 which requires an API key
+const BASE_URL = DEFAULT_BASE_URL.replace(/\/v1\/?$/, "");
+
+const login = async (username: string, password: string) => {
   try {
-    const response = await fetch(`${DEFAULT_BASE_URL}/login`, {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email: username, password }),
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -55,7 +58,7 @@ const login = async (email: string, password: string) => {
 
 // Admin routes
 const registerUser = async (userData: any) => {
-  const response = await fetchWithAuth(DEFAULT_BASE_URL, "/admin/users", {
+  const response = await fetchWithAuth(BASE_URL, "/admin/users", {
     method: "POST",
     body: JSON.stringify(userData),
   });
@@ -64,7 +67,7 @@ const registerUser = async (userData: any) => {
 
 const generateAPIKey = async () => {
   const response = await fetchWithAuth(
-    DEFAULT_BASE_URL,
+    BASE_URL,
     "/admin/users/api-key",
     {
       method: "POST",
@@ -74,7 +77,7 @@ const generateAPIKey = async () => {
 };
 
 const registerDevice = async (deviceData: any) => {
-  const response = await fetchWithAuth(DEFAULT_BASE_URL, "/admin/clients", {
+  const response = await fetchWithAuth(BASE_URL, "/admin/clients", {
     method: "POST",
     body: JSON.stringify(deviceData),
   });
@@ -82,7 +85,7 @@ const registerDevice = async (deviceData: any) => {
 };
 
 const getDevices = async () => {
-  const response = await fetchWithAuth(DEFAULT_BASE_URL, "/admin/clients");
+  const response = await fetchWithAuth(BASE_URL, "/admin/clients");
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
@@ -93,7 +96,7 @@ const getDevices = async () => {
 
 const connectDevice = async (clientId: string) => {
   const response = await fetchWithAuth(
-    DEFAULT_BASE_URL,
+    BASE_URL,
     `/admin/clients/${clientId}/connect`,
     {
       method: "POST",
@@ -104,7 +107,7 @@ const connectDevice = async (clientId: string) => {
 
 const disconnectDevice = async (clientId: string) => {
   const response = await fetchWithAuth(
-    DEFAULT_BASE_URL,
+    BASE_URL,
     `/admin/clients/${clientId}/disconnect`,
     {
       method: "DELETE",
@@ -115,7 +118,7 @@ const disconnectDevice = async (clientId: string) => {
 
 const getClientQRC = async (clientId: string) => {
   const response = await fetchWithAuth(
-    DEFAULT_BASE_URL,
+    BASE_URL,
     `/admin/clients/${clientId}/qr`
   );
   return response.json();
@@ -123,7 +126,7 @@ const getClientQRC = async (clientId: string) => {
 
 const getConnectionStatus = async (clientId: string) => {
   const response = await fetchWithAuth(
-    DEFAULT_BASE_URL,
+    BASE_URL,
     `/admin/clients/${clientId}/status`
   );
   return response.json();

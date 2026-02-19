@@ -24,12 +24,12 @@ import { loginSchema } from "@/app/login/zod-schema";
 import { loginAction } from "@/app/login/action";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
-import { z } from "zod";
+import type { z } from "zod";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const DEFAULT_VALUES: LoginFormValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
@@ -68,14 +68,14 @@ export function LoginForm({
               <div className="grid gap-4">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Username</FormLabel>
                       <FormControl>
                         <Input
-                          type="email"
-                          placeholder="nama@email.com"
+                          type="text"
+                          placeholder="username"
                           {...field}
                         />
                       </FormControl>

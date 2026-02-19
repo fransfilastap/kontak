@@ -1,4 +1,4 @@
-import NextAuth, { DefaultSession } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { kontakClient } from "@/lib/kontak";
 import { ZodError } from "zod";
@@ -22,16 +22,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "text" },
+        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         try {
           if (!credentials) return null;
-          const { email, password } = await loginSchema.parseAsync(
+          const { username, password } = await loginSchema.parseAsync(
             credentials
           );
-          const response = await kontakClient.login(email, password);
+          const response = await kontakClient.login(username, password);
           return {
             access_token: response.token,
           };

@@ -6,11 +6,10 @@ import { signIn } from "@/auth";
 
 export const loginAction = actionClient
   .schema(loginSchema)
-  .action(async ({ parsedInput: { email, password } }) => {
-      console.log("loginAction", email, password);
+  .action(async ({ parsedInput: { username, password } }) => {
     await signIn("credentials", {
       redirect: true,
-      email,
+      username,
       password,
       redirectTo: "/clients",
     });
