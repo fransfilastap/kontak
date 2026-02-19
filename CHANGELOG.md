@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/fransfilastap/kontak/compare/v1.3.0...v1.4.0) (2026-02-19)
+
+
+### Features
+
+* Add Vercel React best practices, Golang, and PostgreSQL skills, along with a new ESLint configuration and CLAUDE.md. ([49e575c](https://github.com/fransfilastap/kontak/commit/49e575c28c8e9202bb493b043565428f6a9ede07))
+* Update UI component styling with refined shadows, hidden outlines, and updated Tailwind CSS configuration. ([c0a94b6](https://github.com/fransfilastap/kontak/commit/c0a94b603bef2189bb5b25278332c360f1122474))
+
 # [1.3.0](https://github.com/fransfilastap/kontak/compare/v1.2.2...v1.3.0) (2026-02-19)
 
 
