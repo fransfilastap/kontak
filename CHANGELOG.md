@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/fransfilastap/kontak/compare/v1.4.0...v1.5.0) (2026-02-19)
+
+
+### Features
+
+* Add dashboard and login pages with new UI components, data table, and navigation structure. ([d2320ce](https://github.com/fransfilastap/kontak/commit/d2320ced1d4f08c5f972fdf89bd4a846c7dd3e22))
+
 # [1.4.0](https://github.com/fransfilastap/kontak/compare/v1.3.0...v1.4.0) (2026-02-19)
 
 
