@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/fransfilastap/kontak/compare/v1.2.2...v1.3.0) (2026-02-19)
+
+
+### Features
+
+* add opencode GitHub Action for issue and PR comment triggers ([9091bc7](https://github.com/fransfilastap/kontak/commit/9091bc7220614a0ea73db8daac9fc930f1c1d794))
+
 ## [1.2.2](https://github.com/fransfilastap/kontak/compare/v1.2.1...v1.2.2) (2025-11-20)
 
 
