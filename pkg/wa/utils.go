@@ -39,6 +39,13 @@ func parseJID(arg string) (types.JID, bool) {
 }
 
 func getJID(recipient string) (types.JID, error) {
+	if strings.ContainsRune(recipient, '@') {
+		jid, err := types.ParseJID(recipient)
+		if err != nil {
+			return types.JID{}, fmt.Errorf("failed to parse jid: %v", err)
+		}
+		return jid, nil
+	}
 	formatJID := fmt.Sprintf("%s@s.whatsapp.net", recipient)
 	jid, err := types.ParseJID(formatJID)
 	if err != nil {

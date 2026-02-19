@@ -1,6 +1,7 @@
 package http
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -9,6 +10,7 @@ import (
 	"time"
 
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/logger"
 	"github.com/fransfilastap/kontak/pkg/wa"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/labstack/echo/v4"
@@ -45,27 +47,25 @@ func (w *DeviceHandler) RegisterDevice(c echo.Context) error {
 }
 
 func (w *DeviceHandler) ConnectDevice(c echo.Context) error {
-
 	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
 	if err != nil && errors.Is(err, wa.ErrClientNotFound) {
 		return c.JSON(http.StatusNotFound, DeviceConnectionResponse{ServerError: true, Message: err.Error()})
 	}
 
-	go w.whatsappClient.Start(c.Request().Context(), client)
+	if client.Jid.String == "" {
+		return c.JSON(http.StatusBadRequest, DeviceConnectionResponse{ServerError: true, Message: "Device is not paired. Please pair with QR code first."})
+	}
+
+	go w.whatsappClient.Start(context.Background(), client)
 
 	// wait for 5 seconds to connect
 	time.Sleep(5 * time.Second)
 
-	if w.whatsappClient.RetrieveDevice(c.Param("client_id")) == nil {
-		return c.JSON(http.StatusInternalServerError, DeviceConnectionResponse{ServerError: true, Message: "Failed to connect to whatsapp"})
-	} else {
-		if w.whatsappClient.IsConnected(c.Param("client_id")) {
-			return c.JSON(200, DeviceConnectionResponse{ServerError: false, Message: "Connected to whatsapp"})
-		}
+	if !w.whatsappClient.IsConnected(c.Param("client_id")) {
+		return c.JSON(http.StatusInternalServerError, DeviceConnectionResponse{ServerError: true, Message: "Failed to connect to whatsapp. Make sure device is paired."})
 	}
 
-	return c.JSON(http.StatusInternalServerError, DeviceConnectionResponse{ServerError: true, Message: "Failed to connect to whatsapp"})
-
+	return c.JSON(200, DeviceConnectionResponse{ServerError: false, Message: "Connected to whatsapp"})
 }
 
 func (w *DeviceHandler) DisconnectDevice(c echo.Context) error {
@@ -110,6 +110,11 @@ func (w *DeviceHandler) GetDeviceQR(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
+	if w.whatsappClient.RetrieveDevice(client.ID) == nil {
+		logger.Info("Device not running, starting client for QR generation: %s", client.ID)
+		go w.whatsappClient.Start(context.Background(), client)
+	}
+
 	if client.QrCode.String != "" {
 		return c.JSON(200, QRCodeResponse{Code: client.QrCode.String})
 	} else {
@@ -132,7 +137,7 @@ func (w *DeviceHandler) SendMessage(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, GenericResponse{Message: err.Error()})
 	}
 
-	err = w.whatsappClient.SendMessage(client.ID, message.MobileNumber, message.Text)
+	_, err = w.whatsappClient.SendMessage(client.ID, message.MobileNumber, message.Text)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -172,7 +177,7 @@ func (w *DeviceHandler) SendMediaMessage(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
-	err = w.whatsappClient.SendMediaMessage(message.ClientID, message.MobileNumber, fileBytes, fileHeader.Filename)
+	_, err = w.whatsappClient.SendMediaMessage(message.ClientID, message.MobileNumber, fileBytes, fileHeader.Filename, fileHeader.Header.Get("Content-Type"))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -214,7 +219,7 @@ func (w *DeviceHandler) SendTemplateMessage(c echo.Context) error {
 	}
 
 	// Send the processed message
-	err = w.whatsappClient.SendMessage(client.ID, request.To, processedMessage)
+	_, err = w.whatsappClient.SendMessage(client.ID, request.To, processedMessage)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}

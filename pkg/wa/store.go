@@ -31,6 +31,10 @@ type Store interface {
 	// Group operations
 	SyncGroups(ctx context.Context, clientID string, groups []*types.GroupInfo) error
 	GetJoinedGroups(ctx context.Context, clientID string) ([]db.WhatsappGroup, error)
+
+	// Contact operations
+	SyncContacts(ctx context.Context, clientID string, contacts map[types.JID]types.ContactInfo) error
+	GetContacts(ctx context.Context, clientID string) ([]db.WhatsappContact, error)
 }
 
 // PostgresStore implements the Store interface using PostgreSQL
@@ -158,4 +162,44 @@ func (s *PostgresStore) GetJoinedGroups(ctx context.Context, clientID string) ([
 	})
 
 	return groups, err
+}
+
+func (s *PostgresStore) SyncContacts(ctx context.Context, clientID string, contacts map[types.JID]types.ContactInfo) error {
+	for jid, contact := range contacts {
+		err := s.dbQueries.UpsertWhatsAppContact(ctx, db.UpsertWhatsAppContactParams{
+			DeviceID: pgtype.Text{
+				String: clientID,
+				Valid:  true,
+			},
+			Jid: jid.String(),
+			FullName: pgtype.Text{
+				String: contact.FullName,
+				Valid:  contact.FullName != "",
+			},
+			PushName: pgtype.Text{
+				String: contact.PushName,
+				Valid:  contact.PushName != "",
+			},
+			BusinessName: pgtype.Text{
+				String: contact.BusinessName,
+				Valid:  contact.BusinessName != "",
+			},
+			PhoneNumber: pgtype.Text{
+				String: jid.User,
+				Valid:  jid.User != "",
+			},
+		})
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (s *PostgresStore) GetContacts(ctx context.Context, clientID string) ([]db.WhatsappContact, error) {
+	return s.dbQueries.GetDeviceContacts(ctx, pgtype.Text{
+		String: clientID,
+		Valid:  true,
+	})
 }

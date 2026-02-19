@@ -3,6 +3,7 @@ package wa
 import (
 	"context"
 	"fmt"
+
 	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/fransfilastap/kontak/pkg/logger"
 	"go.mau.fi/whatsmeow"
@@ -32,7 +33,7 @@ func (w *WhatsappClient) Disconnect() {
 
 func (w *WhatsappClient) IsConnected(clientID string) bool {
 	if client, ok := w.runningClients[clientID]; ok {
-		return client.IsConnected()
+		return client.IsConnected() && client.IsLoggedIn()
 	}
 	return false
 

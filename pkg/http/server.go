@@ -21,27 +21,31 @@ type Server struct {
 	authHandler            *AuthHandler
 	messageTemplateHandler *MessageTemplateHandler
 	groupHandler           *GroupHandler
+	contactHandler         *ContactHandler
+	inboxHandler           *InboxHandler
 	db                     db.Querier
 }
 
 // NewServer initializes a new Server instance.
-func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, db db.Querier) *Server {
+func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, db db.Querier) *Server {
 	messageTemplateHandler := NewMessageTemplateHandler(db)
 	return &Server{
 		httpServer: &http.Server{
 			Addr:    addr,
-			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, db),
+			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, db),
 		},
 		webhookHandler:         webhook,
 		authHandler:            authHandler,
 		messageTemplateHandler: messageTemplateHandler,
 		groupHandler:           groupHandler,
+		contactHandler:         contactHandler,
+		inboxHandler:           inboxHandler,
 		db:                     db,
 	}
 }
 
 // createEchoServer sets up the Echo server with middleware.
-func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) *echo.Echo {
+func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, db db.Querier) *echo.Echo {
 	e := echo.New()
 
 	e.Validator = &CustomValidator{validator: validator.New()}
@@ -56,7 +60,7 @@ func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageT
 	)))
 
 	// Separate function for routes configuration
-	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, db)
+	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, db)
 
 	return e
 }
@@ -66,7 +70,7 @@ func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageT
 // - GET /client/qr: Handles requests to retrieve a QR code using the SendQrHandler method of the ConnectionHandler.
 // - GET /: Handles requests to the root path using the Index method of the ConnectionHandler.
 // - POST /http: Handles http events using the SendMessage method of the DeviceHandler.
-func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, db db.Querier) {
+func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, db db.Querier) {
 
 	e.POST("/login", authHandler.Login)
 
@@ -81,6 +85,28 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 	admin.DELETE("/clients/:client_id/disconnect", webhook.DisconnectDevice)
 	admin.GET("/clients/:client_id/qr", webhook.GetDeviceQR)
 	admin.GET("/clients/:client_id/status", webhook.ConnectionStatus)
+
+	// Admin Message Templates (JWT-protected)
+	admin.GET("/templates", messageTemplateHandler.GetUserTemplates, JwtUserIDMiddleware())
+	admin.POST("/templates", messageTemplateHandler.CreateTemplate, JwtUserIDMiddleware())
+	admin.PUT("/templates/:id", messageTemplateHandler.UpdateTemplate, JwtUserIDMiddleware())
+	admin.DELETE("/templates/:id", messageTemplateHandler.DeleteTemplate, JwtUserIDMiddleware())
+
+	// Admin Contacts (JWT-protected)
+	admin.GET("/contacts/:client_id", contactHandler.GetContacts, JwtUserIDMiddleware())
+	admin.PUT("/contacts/:client_id/sync", contactHandler.SyncContacts, JwtUserIDMiddleware())
+
+	// Admin Groups (JWT-protected)
+	admin.GET("/groups/:client_id", groupHandler.GetJoinedGroups, JwtUserIDMiddleware())
+	admin.PUT("/groups/:client_id/sync", groupHandler.SyncJoinedGroup, JwtUserIDMiddleware())
+
+	// Admin Inbox (JWT-protected)
+	admin.GET("/inbox/:client_id/conversations", inboxHandler.GetConversations)
+	admin.GET("/inbox/:client_id/messages/:chat_jid", inboxHandler.GetMessages)
+	admin.POST("/inbox/:client_id/messages/:chat_jid/send", inboxHandler.SendMessage)
+	admin.POST("/inbox/:client_id/messages/:chat_jid/send-media", inboxHandler.SendMediaMessage)
+	admin.POST("/inbox/:client_id/messages/send", inboxHandler.SendNewMessage)
+	admin.POST("/inbox/:client_id/messages/:chat_jid/read", inboxHandler.MarkRead)
 
 	// API Key
 	v1 := e.Group("/v1", AppKeyAuthMiddleware(db))

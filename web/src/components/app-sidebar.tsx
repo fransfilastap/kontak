@@ -2,10 +2,13 @@
 
 import type * as React from "react"
 import {
+  UsersIcon,
+  HashIcon,
   KeyIcon,
   LayoutDashboardIcon,
   MessageSquareIcon,
   SmartphoneIcon,
+  InboxIcon,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -39,9 +42,24 @@ const data = {
       icon: SmartphoneIcon,
     },
     {
+      title: "Inbox",
+      url: "/inbox",
+      icon: InboxIcon,
+    },
+    {
       title: "Messages",
       url: "/messages",
       icon: MessageSquareIcon,
+    },
+    {
+      title: "Contacts",
+      url: "/contacts",
+      icon: UsersIcon,
+    },
+    {
+      title: "Groups",
+      url: "/groups",
+      icon: HashIcon,
     },
     {
       title: "API Key",

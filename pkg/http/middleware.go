@@ -30,6 +30,19 @@ func AppKeyAuthMiddleware(db db.Querier) echo.MiddlewareFunc {
 	})
 }
 
+// JwtUserIDMiddleware extracts userID from JWT claims and sets it in the echo context,
+// so getUserIDFromContext() works for JWT-authed routes.
+func JwtUserIDMiddleware() echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			token := c.Get("user").(*jwt.Token)
+			claims := token.Claims.(*security.CustomClaims)
+			c.Set("userID", claims.UserID)
+			return next(c)
+		}
+	}
+}
+
 func Jwt() echo.MiddlewareFunc {
 	return echoJwt.WithConfig(echoJwt.Config{
 		SigningKey: []byte(os.Getenv("JWT_SECRET")),

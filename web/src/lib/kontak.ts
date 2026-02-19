@@ -132,6 +132,138 @@ const getConnectionStatus = async (clientId: string) => {
   return response.json();
 };
 
+// Contacts
+const getContacts = async (clientId: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/contacts/${clientId}`);
+  return response.json();
+};
+
+const syncContacts = async (clientId: string) => {
+  const response = await fetchWithAuth(
+    BASE_URL,
+    `/admin/contacts/${clientId}/sync`,
+    { method: "PUT" }
+  );
+  return response.json();
+};
+
+// Groups
+const getGroups = async (clientId: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/groups/${clientId}`);
+  return response.json();
+};
+
+const syncGroups = async (clientId: string) => {
+  const response = await fetchWithAuth(
+    BASE_URL,
+    `/admin/groups/${clientId}/sync`,
+    { method: "PUT" }
+  );
+  return response.json();
+};
+
+// Message Templates
+// Go serializes []byte as base64. Parse variables from base64 or pass through if already an array.
+function parseVariables(variables: unknown): string[] {
+  if (Array.isArray(variables)) return variables;
+  if (typeof variables === "string") {
+    try {
+      const decoded = JSON.parse(atob(variables));
+      return Array.isArray(decoded) ? decoded : [];
+    } catch {
+      try {
+        const parsed = JSON.parse(variables);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+  }
+  return [];
+}
+
+function normalizeTemplate(t: any) {
+  return { ...t, variables: parseVariables(t.variables) };
+}
+
+const getTemplates = async () => {
+  const response = await fetchWithAuth(BASE_URL, "/admin/templates");
+  const data = await response.json();
+  return Array.isArray(data) ? data.map(normalizeTemplate) : data;
+};
+
+const createTemplate = async (data: {
+  name: string;
+  content: string;
+  variables: string[];
+}) => {
+  const response = await fetchWithAuth(BASE_URL, "/admin/templates", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  return normalizeTemplate(await response.json());
+};
+
+const updateTemplate = async (
+  id: string,
+  data: { name: string; content: string; variables: string[] }
+) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/templates/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
+  return normalizeTemplate(await response.json());
+};
+
+const deleteTemplate = async (id: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/templates/${id}`, {
+    method: "DELETE",
+  });
+  return response.json();
+};
+
+// Inbox
+const getConversations = async (clientId: string, params?: { limit?: number; offset?: number }) => {
+  const searchParams = new URLSearchParams();
+  if (params?.limit) searchParams.set("limit", String(params.limit));
+  if (params?.offset) searchParams.set("offset", String(params.offset));
+  const qs = searchParams.toString();
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/conversations${qs ? `?${qs}` : ""}`);
+  return response.json();
+};
+
+const getConversationMessages = async (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => {
+  const searchParams = new URLSearchParams();
+  if (params?.limit) searchParams.set("limit", String(params.limit));
+  if (params?.offset) searchParams.set("offset", String(params.offset));
+  const qs = searchParams.toString();
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/${encodeURIComponent(chatJid)}${qs ? `?${qs}` : ""}`);
+  return response.json();
+};
+
+const sendInboxMessage = async (clientId: string, chatJid: string, text: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/${encodeURIComponent(chatJid)}/send`, {
+    method: "POST",
+    body: JSON.stringify({ text }),
+  });
+  return response.json();
+};
+
+const sendNewInboxMessage = async (clientId: string, to: string, text: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/send`, {
+    method: "POST",
+    body: JSON.stringify({ to, text }),
+  });
+  return response.json();
+};
+
+const markConversationRead = async (clientId: string, chatJid: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/${encodeURIComponent(chatJid)}/read`, {
+    method: "POST",
+  });
+  return response.json();
+};
+
 const kontakClient = {
   login: (username: string, password: string) => login(username, password),
   registerUser: (userData: any) => registerUser(userData),
@@ -142,6 +274,26 @@ const kontakClient = {
   disconnectDevice: (clientId: string) => disconnectDevice(clientId),
   getClientQRC: (clientId: string) => getClientQRC(clientId),
   getConnectionStatus: (clientId: string) => getConnectionStatus(clientId),
+  getTemplates: () => getTemplates(),
+  createTemplate: (data: {
+    name: string;
+    content: string;
+    variables: string[];
+  }) => createTemplate(data),
+  updateTemplate: (
+    id: string,
+    data: { name: string; content: string; variables: string[] }
+  ) => updateTemplate(id, data),
+  deleteTemplate: (id: string) => deleteTemplate(id),
+  getContacts: (clientId: string) => getContacts(clientId),
+  syncContacts: (clientId: string) => syncContacts(clientId),
+  getGroups: (clientId: string) => getGroups(clientId),
+  syncGroups: (clientId: string) => syncGroups(clientId),
+  getConversations: (clientId: string, params?: { limit?: number; offset?: number }) => getConversations(clientId, params),
+  getConversationMessages: (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => getConversationMessages(clientId, chatJid, params),
+  sendInboxMessage: (clientId: string, chatJid: string, text: string) => sendInboxMessage(clientId, chatJid, text),
+  sendNewInboxMessage: (clientId: string, to: string, text: string) => sendNewInboxMessage(clientId, to, text),
+  markConversationRead: (clientId: string, chatJid: string) => markConversationRead(clientId, chatJid),
 };
 
 export { kontakClient };

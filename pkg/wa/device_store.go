@@ -112,3 +112,16 @@ func (cm *DeviceStore) SyncJoinedGroups(ctx context.Context, clientID string, gr
 func (cm *DeviceStore) GetJoinedGroups(ctx context.Context, clientID string) ([]db.WhatsappGroup, error) {
 	return cm.store.GetJoinedGroups(ctx, clientID)
 }
+
+func (cm *DeviceStore) SyncContacts(ctx context.Context, clientID string, contacts map[types.JID]types.ContactInfo) error {
+	_, err := cm.store.GetClient(ctx, clientID)
+	if err != nil {
+		return fmt.Errorf("failed to get client: %w", err)
+	}
+
+	return cm.store.SyncContacts(ctx, clientID, contacts)
+}
+
+func (cm *DeviceStore) GetContacts(ctx context.Context, clientID string) ([]db.WhatsappContact, error) {
+	return cm.store.GetContacts(ctx, clientID)
+}

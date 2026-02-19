@@ -13,7 +13,7 @@ import {toast} from "sonner";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 const DEFAULT_VALUES: LoginFormValues = {
-    email: "",
+    username: "",
     password: "",
 };
 
@@ -38,7 +38,7 @@ export function LoginForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="username"
                     render={({field}) => (
                         <FormItem>
                             <FormLabel>Username</FormLabel>

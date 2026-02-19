@@ -88,8 +88,10 @@ func NewKontak(config *config.Config) *Kontak {
 	webhookHandler := http.NewWebhook(waClient, deviceManagement, dbQueries)
 	authHandler := http.NewAuthHandler(dbQueries, config)
 	groupHandler := http.NewGroupHandler(deviceManagement, waClient)
+	contactHandler := http.NewContactHandler(deviceManagement, waClient)
+	inboxHandler := http.NewInboxHandler(dbQueries, waClient, deviceManagement)
 
-	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, dbQueries)
+	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, contactHandler, inboxHandler, dbQueries)
 
 	return &Kontak{
 		HttpServer: httpServer,
