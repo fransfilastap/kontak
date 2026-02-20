@@ -30,7 +30,7 @@ type GetConversationMessagesParams struct {
 }
 
 type GetConversationMessagesRow struct {
-	ID            int32              `json:"id"`
+	ID            pgtype.UUID        `json:"id"`
 	DeviceID      pgtype.Text        `json:"device_id"`
 	UserID        pgtype.Int4        `json:"user_id"`
 	Recipient     string             `json:"recipient"`
@@ -40,15 +40,15 @@ type GetConversationMessagesRow struct {
 	MediaUrl      pgtype.Text        `json:"media_url"`
 	MediaFilename pgtype.Text        `json:"media_filename"`
 	Buttons       []byte             `json:"buttons"`
-	TemplateID    pgtype.Int4        `json:"template_id"`
-	Status        string             `json:"status"`
+	TemplateID    pgtype.UUID        `json:"template_id"`
+	Status        pgtype.Text        `json:"status"`
 	SentAt        pgtype.Timestamptz `json:"sent_at"`
 	DeliveredAt   pgtype.Timestamptz `json:"delivered_at"`
 	ReadAt        pgtype.Timestamptz `json:"read_at"`
 	Direction     string             `json:"direction"`
 	WaMessageID   pgtype.Text        `json:"wa_message_id"`
 	SenderJid     pgtype.Text        `json:"sender_jid"`
-	SenderName    interface{}        `json:"sender_name"`
+	SenderName    pgtype.Text        `json:"sender_name"`
 }
 
 func (q *Queries) GetConversationMessages(ctx context.Context, arg GetConversationMessagesParams) ([]GetConversationMessagesRow, error) {
@@ -136,7 +136,7 @@ type GetConversationsRow struct {
 	LastMessageContent   string             `json:"last_message_content"`
 	LastMessageDirection string             `json:"last_message_direction"`
 	UnreadCount          int32              `json:"unread_count"`
-	RecipientName        interface{}        `json:"recipient_name"`
+	RecipientName        string             `json:"recipient_name"`
 }
 
 func (q *Queries) GetConversations(ctx context.Context, arg GetConversationsParams) ([]GetConversationsRow, error) {
