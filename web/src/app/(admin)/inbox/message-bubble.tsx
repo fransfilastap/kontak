@@ -27,8 +27,27 @@ function StatusIcon({ status }: { status: string }) {
 function MediaAttachment({ message }: { message: MessageLog }) {
   const type = message.message_type;
   const filename = message.media_filename || message.content;
+  const hasUrl = !!message.media_url;
 
   if (type === "image") {
+    if (hasUrl) {
+      return (
+        <a 
+          href={message.media_url || '#'} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block mb-1 overflow-hidden rounded-md border bg-muted/50 max-w-sm"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src={message.media_url || ''} 
+            alt={filename} 
+            className="w-full h-auto object-cover max-h-[300px]"
+            loading="lazy"
+          />
+        </a>
+      );
+    }
     return (
       <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
         <ImageIcon className="h-4 w-4 shrink-0 text-blue-500" />
@@ -38,6 +57,20 @@ function MediaAttachment({ message }: { message: MessageLog }) {
   }
 
   if (type === "video") {
+    if (hasUrl) {
+      return (
+        <div className="mb-1 overflow-hidden rounded-md border bg-black max-w-sm">
+          <video 
+            src={message.media_url || ''} 
+            controls 
+            className="w-full h-auto max-h-[300px]"
+            preload="metadata"
+          >
+            <track kind="captions" />
+          </video>
+        </div>
+      );
+    }
     return (
       <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
         <VideoIcon className="h-4 w-4 shrink-0 text-purple-500" />
@@ -47,6 +80,20 @@ function MediaAttachment({ message }: { message: MessageLog }) {
   }
 
   if (type === "audio") {
+    if (hasUrl) {
+      return (
+        <div className="mb-1 rounded-md border bg-muted/30 p-2 max-w-sm">
+           <audio 
+            src={message.media_url || ''} 
+            controls 
+            className="w-full h-10"
+            preload="metadata"
+          >
+            <track kind="captions" />
+          </audio>
+        </div>
+      );
+    }
     return (
       <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
         <MusicIcon className="h-4 w-4 shrink-0 text-orange-500" />
@@ -55,12 +102,18 @@ function MediaAttachment({ message }: { message: MessageLog }) {
     );
   }
 
-  if (type === "document") {
+  if (type === "document" || hasUrl) {
     return (
-      <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
+      <a 
+        href={message.media_url || '#'} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        download={filename}
+        className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1 hover:bg-background/80 transition-colors cursor-pointer border shadow-sm"
+      >
         <FileIcon className="h-4 w-4 shrink-0 text-emerald-500" />
-        <span className="text-xs truncate">{filename}</span>
-      </div>
+        <span className="text-xs truncate font-medium hover:underline">{filename}</span>
+      </a>
     );
   }
 

@@ -9,6 +9,7 @@ import {
   MessageSquareIcon,
   SmartphoneIcon,
   InboxIcon,
+  MegaphoneIcon,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -60,6 +61,11 @@ const data = {
       title: "Groups",
       url: "/groups",
       icon: HashIcon,
+    },
+    {
+      title: "Broadcast",
+      url: "/broadcast",
+      icon: MegaphoneIcon,
     },
     {
       title: "API Key",

@@ -4,9 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/go-playground/validator/v10"
 	"log"
 	"net/http"
+
+	"github.com/go-playground/validator/v10"
 
 	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/labstack/echo/v4"
@@ -23,16 +24,17 @@ type Server struct {
 	groupHandler           *GroupHandler
 	contactHandler         *ContactHandler
 	inboxHandler           *InboxHandler
+	broadcastHandler       *BroadcastHandler
 	db                     db.Querier
 }
 
 // NewServer initializes a new Server instance.
-func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, db db.Querier) *Server {
+func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier) *Server {
 	messageTemplateHandler := NewMessageTemplateHandler(db)
 	return &Server{
 		httpServer: &http.Server{
 			Addr:    addr,
-			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, db),
+			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, db),
 		},
 		webhookHandler:         webhook,
 		authHandler:            authHandler,
@@ -40,12 +42,13 @@ func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, gr
 		groupHandler:           groupHandler,
 		contactHandler:         contactHandler,
 		inboxHandler:           inboxHandler,
+		broadcastHandler:       broadcastHandler,
 		db:                     db,
 	}
 }
 
 // createEchoServer sets up the Echo server with middleware.
-func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, db db.Querier) *echo.Echo {
+func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier) *echo.Echo {
 	e := echo.New()
 
 	e.Validator = &CustomValidator{validator: validator.New()}
@@ -59,8 +62,10 @@ func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageT
 		rate.Limit(20),
 	)))
 
+	e.Static("/api/media", "uploads")
+
 	// Separate function for routes configuration
-	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, db)
+	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, db)
 
 	return e
 }
@@ -70,7 +75,7 @@ func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageT
 // - GET /client/qr: Handles requests to retrieve a QR code using the SendQrHandler method of the ConnectionHandler.
 // - GET /: Handles requests to the root path using the Index method of the ConnectionHandler.
 // - POST /http: Handles http events using the SendMessage method of the DeviceHandler.
-func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, db db.Querier) {
+func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier) {
 
 	e.POST("/login", authHandler.Login)
 
@@ -107,6 +112,11 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 	admin.POST("/inbox/:client_id/threads/:chat_jid/send-media", inboxHandler.SendMediaMessage)
 	admin.POST("/inbox/:client_id/threads/send", inboxHandler.SendNewMessage)
 	admin.POST("/inbox/:client_id/threads/:chat_jid/read", inboxHandler.MarkRead)
+
+	// Admin Broadcasts (JWT-protected)
+	admin.GET("/broadcasts", broadcastHandler.GetBroadcastJobs, JwtUserIDMiddleware())
+	admin.POST("/broadcasts", broadcastHandler.CreateBroadcast, JwtUserIDMiddleware())
+	admin.GET("/broadcasts/:id", broadcastHandler.GetBroadcastJob, JwtUserIDMiddleware())
 
 	// API Key
 	v1 := e.Group("/v1", AppKeyAuthMiddleware(db))

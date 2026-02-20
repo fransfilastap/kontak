@@ -264,6 +264,31 @@ const markThreadRead = async (clientId: string, chatJid: string) => {
   return response.json();
 };
 
+const getBroadcasts = async () => {
+  const response = await fetchWithAuth(BASE_URL, "/admin/broadcasts");
+  return response.json();
+};
+
+const getBroadcastJob = async (id: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/broadcasts/${id}`);
+  return response.json();
+};
+
+const createBroadcast = async (data: {
+  device_id: string;
+  name: string;
+  content: string;
+  message_type: string;
+  cooldown: number;
+  recipients: string[];
+}) => {
+  const response = await fetchWithAuth(BASE_URL, "/admin/broadcasts", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  return response.json();
+};
+
 const kontakClient = {
   login: (username: string, password: string) => login(username, password),
   registerUser: (userData: any) => registerUser(userData),
@@ -294,6 +319,9 @@ const kontakClient = {
   sendInboxMessage: (clientId: string, chatJid: string, text: string) => sendInboxMessage(clientId, chatJid, text),
   sendNewInboxMessage: (clientId: string, to: string, text: string) => sendNewInboxMessage(clientId, to, text),
   markThreadRead: (clientId: string, chatJid: string) => markThreadRead(clientId, chatJid),
+  getBroadcasts: () => getBroadcasts(),
+  getBroadcastJob: (id: string) => getBroadcastJob(id),
+  createBroadcast: (data: any) => createBroadcast(data),
 };
 
 export { kontakClient };

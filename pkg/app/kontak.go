@@ -21,10 +21,11 @@ import (
 )
 
 type Kontak struct {
-	HttpServer     *http.Server
-	WhatsappClient *wa.WhatsappClient
-	Config         *config.Config
-	qrChan         chan types.WaConnectEvent
+	HttpServer       *http.Server
+	WhatsappClient   *wa.WhatsappClient
+	BroadcastService *wa.BroadcastService
+	Config           *config.Config
+	qrChan           chan types.WaConnectEvent
 }
 
 func NewKontak(config *config.Config) *Kontak {
@@ -90,21 +91,25 @@ func NewKontak(config *config.Config) *Kontak {
 	groupHandler := http.NewGroupHandler(deviceManagement, waClient)
 	contactHandler := http.NewContactHandler(deviceManagement, waClient)
 	inboxHandler := http.NewInboxHandler(dbQueries, waClient, deviceManagement)
+	broadcastHandler := http.NewBroadcastHandler(dbQueries)
+	broadcastService := wa.NewBroadcastService(dbQueries, waClient)
 
-	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, contactHandler, inboxHandler, dbQueries)
+	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, dbQueries)
 
 	return &Kontak{
 		HttpServer: httpServer,
 
-		WhatsappClient: waClient,
-		Config:         config,
-		qrChan:         qrChan,
+		WhatsappClient:   waClient,
+		BroadcastService: broadcastService,
+		Config:           config,
+		qrChan:           qrChan,
 	}
 }
 
 func (app *Kontak) Run() {
 	var wg sync.WaitGroup
 	go app.HttpServer.Start()
+	go app.BroadcastService.Start(context.Background())
 
 	app.WhatsappClient.Connect(context.Background())
 

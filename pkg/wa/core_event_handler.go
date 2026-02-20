@@ -2,10 +2,15 @@ package wa
 
 import (
 	"context"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/fransfilastap/kontak/pkg/logger"
 	"github.com/jackc/pgx/v5/pgtype"
+	"go.mau.fi/whatsmeow"
 	"go.mau.fi/whatsmeow/appstate"
 	"go.mau.fi/whatsmeow/types"
 	"go.mau.fi/whatsmeow/types/events"
@@ -89,6 +94,7 @@ func (w *EventHandler) handleIncomingMessage(evt *events.Message) {
 	var mediaURL string
 	var mediaFilename string
 
+	var downloadMessage whatsmeow.DownloadableMessage
 	switch {
 	case evt.Message.GetConversation() != "":
 		text = evt.Message.GetConversation()
@@ -100,26 +106,51 @@ func (w *EventHandler) handleIncomingMessage(evt *events.Message) {
 		img := evt.Message.GetImageMessage()
 		text = img.GetCaption()
 		messageType = "image"
-		mediaURL = img.GetURL()
-		mediaFilename = "image"
+		mediaFilename = "image.jpg"
+		downloadMessage = img
 	case evt.Message.GetVideoMessage() != nil:
 		vid := evt.Message.GetVideoMessage()
 		text = vid.GetCaption()
 		messageType = "video"
-		mediaURL = vid.GetURL()
-		mediaFilename = "video"
+		mediaFilename = "video.mp4"
+		downloadMessage = vid
 	case evt.Message.GetDocumentMessage() != nil:
 		doc := evt.Message.GetDocumentMessage()
 		text = doc.GetTitle()
 		messageType = "document"
-		mediaURL = doc.GetURL()
 		mediaFilename = doc.GetFileName()
+		if mediaFilename == "" {
+			mediaFilename = "document"
+		}
+		downloadMessage = doc
 	case evt.Message.GetAudioMessage() != nil:
 		messageType = "audio"
-		mediaURL = evt.Message.GetAudioMessage().GetURL()
-		mediaFilename = "audio"
+		mediaFilename = "audio.ogg"
+		downloadMessage = evt.Message.GetAudioMessage()
 	default:
 		return
+	}
+
+	if downloadMessage != nil {
+		data, err := w.client.runningClients[w.clientID].Download(context.Background(), downloadMessage)
+		if err == nil && len(data) > 0 {
+			// Save media locally
+			if err := os.MkdirAll("uploads", os.ModePerm); err == nil {
+				// generate safe unique filename
+				uniqueFilename := fmt.Sprintf("%s-%s", evt.Info.ID, strings.ReplaceAll(mediaFilename, " ", "_"))
+				filePath := filepath.Join("uploads", uniqueFilename)
+				if err := os.WriteFile(filePath, data, 0644); err == nil { // Fixed: using io/ioutil instead of os for older go versions, but standard since go1.16 is os.WriteFile. Ensure imports
+					// Store the local API route
+					mediaURL = fmt.Sprintf("/api/media/%s", uniqueFilename)
+				} else {
+					logger.Error("Failed to save downloaded media %s: %v", uniqueFilename, err)
+				}
+			} else {
+				logger.Error("Failed to create uploads directory: %v", err)
+			}
+		} else {
+			logger.Error("Failed to download media for message %s: %v", evt.Info.ID, err)
+		}
 	}
 
 	chatJID := evt.Info.Chat.String()

@@ -11,6 +11,8 @@ import (
 )
 
 type Querier interface {
+	CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJobParams) (BroadcastJob, error)
+	CreateBroadcastRecipient(ctx context.Context, arg CreateBroadcastRecipientParams) error
 	// filename: queries/clients/create_new_client.sql
 	CreateNewClient(ctx context.Context, arg CreateNewClientParams) (Client, error)
 	CreateNewMessageTemplate(ctx context.Context, arg CreateNewMessageTemplateParams) (MessageTemplate, error)
@@ -18,6 +20,9 @@ type Querier interface {
 	DeleteClient(ctx context.Context, id string) error
 	DeleteMessageTemplate(ctx context.Context, arg DeleteMessageTemplateParams) error
 	DeleteUser(ctx context.Context, id int32) error
+	GetBroadcastJob(ctx context.Context, arg GetBroadcastJobParams) (BroadcastJob, error)
+	GetBroadcastJobs(ctx context.Context, userID pgtype.Int4) ([]BroadcastJob, error)
+	GetBroadcastRecipients(ctx context.Context, jobID pgtype.UUID) ([]BroadcastRecipient, error)
 	GetClient(ctx context.Context, id string) (Client, error)
 	GetClientByJID(ctx context.Context, jid pgtype.Text) (Client, error)
 	GetClients(ctx context.Context) ([]Client, error)
@@ -27,6 +32,8 @@ type Querier interface {
 	GetDeviceGroups(ctx context.Context, deviceID pgtype.Text) ([]WhatsappGroup, error)
 	GetMessageHistory(ctx context.Context, arg GetMessageHistoryParams) ([]MessageLog, error)
 	GetMessageTemplateByID(ctx context.Context, id pgtype.UUID) (MessageTemplate, error)
+	GetPendingBroadcastJobs(ctx context.Context) ([]BroadcastJob, error)
+	GetPendingRecipients(ctx context.Context, jobID pgtype.UUID) ([]BroadcastRecipient, error)
 	GetThreadMessages(ctx context.Context, arg GetThreadMessagesParams) ([]GetThreadMessagesRow, error)
 	GetThreads(ctx context.Context, arg GetThreadsParams) ([]GetThreadsRow, error)
 	GetUserByAPIKey(ctx context.Context, apiKey pgtype.Text) (User, error)
@@ -44,6 +51,8 @@ type Querier interface {
 	SetConnectionStatus(ctx context.Context, arg SetConnectionStatusParams) (Client, error)
 	SetUserAPIKey(ctx context.Context, arg SetUserAPIKeyParams) (User, error)
 	SetUserAPIPrefix(ctx context.Context, arg SetUserAPIPrefixParams) error
+	UpdateBroadcastJobStatus(ctx context.Context, arg UpdateBroadcastJobStatusParams) error
+	UpdateBroadcastRecipientStatus(ctx context.Context, arg UpdateBroadcastRecipientStatusParams) error
 	UpdateMessageStatus(ctx context.Context, arg UpdateMessageStatusParams) error
 	UpdateMessageTemplate(ctx context.Context, arg UpdateMessageTemplateParams) (MessageTemplate, error)
 	UpdateQRCode(ctx context.Context, arg UpdateQRCodeParams) (Client, error)

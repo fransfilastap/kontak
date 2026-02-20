@@ -8,6 +8,30 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type BroadcastJob struct {
+	ID            pgtype.UUID        `json:"id"`
+	UserID        pgtype.Int4        `json:"user_id"`
+	DeviceID      pgtype.Text        `json:"device_id"`
+	Name          string             `json:"name"`
+	MessageType   pgtype.Text        `json:"message_type"`
+	Content       string             `json:"content"`
+	MediaUrl      pgtype.Text        `json:"media_url"`
+	MediaFilename pgtype.Text        `json:"media_filename"`
+	Cooldown      pgtype.Int4        `json:"cooldown"`
+	Status        pgtype.Text        `json:"status"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+}
+
+type BroadcastRecipient struct {
+	ID           pgtype.UUID        `json:"id"`
+	JobID        pgtype.UUID        `json:"job_id"`
+	RecipientJid string             `json:"recipient_jid"`
+	Status       pgtype.Text        `json:"status"`
+	ErrorMessage pgtype.Text        `json:"error_message"`
+	SentAt       pgtype.Timestamptz `json:"sent_at"`
+}
+
 type Client struct {
 	ID             string             `json:"id"`
 	Name           string             `json:"name"`
