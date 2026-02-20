@@ -222,27 +222,27 @@ const deleteTemplate = async (id: string) => {
   return response.json();
 };
 
-// Inbox
-const getConversations = async (clientId: string, params?: { limit?: number; offset?: number }) => {
+// Inbox / Threads
+const getThreads = async (clientId: string, params?: { limit?: number; offset?: number }) => {
   const searchParams = new URLSearchParams();
   if (params?.limit) searchParams.set("limit", String(params.limit));
   if (params?.offset) searchParams.set("offset", String(params.offset));
   const qs = searchParams.toString();
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/conversations${qs ? `?${qs}` : ""}`);
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads${qs ? `?${qs}` : ""}`);
   return response.json();
 };
 
-const getConversationMessages = async (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => {
+const getThreadMessages = async (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => {
   const searchParams = new URLSearchParams();
   if (params?.limit) searchParams.set("limit", String(params.limit));
   if (params?.offset) searchParams.set("offset", String(params.offset));
   const qs = searchParams.toString();
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/${encodeURIComponent(chatJid)}${qs ? `?${qs}` : ""}`);
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/${encodeURIComponent(chatJid)}/messages${qs ? `?${qs}` : ""}`);
   return response.json();
 };
 
 const sendInboxMessage = async (clientId: string, chatJid: string, text: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/${encodeURIComponent(chatJid)}/send`, {
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/${encodeURIComponent(chatJid)}/send`, {
     method: "POST",
     body: JSON.stringify({ text }),
   });
@@ -250,15 +250,15 @@ const sendInboxMessage = async (clientId: string, chatJid: string, text: string)
 };
 
 const sendNewInboxMessage = async (clientId: string, to: string, text: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/send`, {
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/send`, {
     method: "POST",
     body: JSON.stringify({ to, text }),
   });
   return response.json();
 };
 
-const markConversationRead = async (clientId: string, chatJid: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/messages/${encodeURIComponent(chatJid)}/read`, {
+const markThreadRead = async (clientId: string, chatJid: string) => {
+  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/${encodeURIComponent(chatJid)}/read`, {
     method: "POST",
   });
   return response.json();
@@ -289,11 +289,11 @@ const kontakClient = {
   syncContacts: (clientId: string) => syncContacts(clientId),
   getGroups: (clientId: string) => getGroups(clientId),
   syncGroups: (clientId: string) => syncGroups(clientId),
-  getConversations: (clientId: string, params?: { limit?: number; offset?: number }) => getConversations(clientId, params),
-  getConversationMessages: (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => getConversationMessages(clientId, chatJid, params),
+  getThreads: (clientId: string, params?: { limit?: number; offset?: number }) => getThreads(clientId, params),
+  getThreadMessages: (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => getThreadMessages(clientId, chatJid, params),
   sendInboxMessage: (clientId: string, chatJid: string, text: string) => sendInboxMessage(clientId, chatJid, text),
   sendNewInboxMessage: (clientId: string, to: string, text: string) => sendNewInboxMessage(clientId, to, text),
-  markConversationRead: (clientId: string, chatJid: string) => markConversationRead(clientId, chatJid),
+  markThreadRead: (clientId: string, chatJid: string) => markThreadRead(clientId, chatJid),
 };
 
 export { kontakClient };

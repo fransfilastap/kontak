@@ -101,12 +101,12 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 	admin.PUT("/groups/:client_id/sync", groupHandler.SyncJoinedGroup, JwtUserIDMiddleware())
 
 	// Admin Inbox (JWT-protected)
-	admin.GET("/inbox/:client_id/conversations", inboxHandler.GetConversations)
-	admin.GET("/inbox/:client_id/messages/:chat_jid", inboxHandler.GetMessages)
-	admin.POST("/inbox/:client_id/messages/:chat_jid/send", inboxHandler.SendMessage)
-	admin.POST("/inbox/:client_id/messages/:chat_jid/send-media", inboxHandler.SendMediaMessage)
-	admin.POST("/inbox/:client_id/messages/send", inboxHandler.SendNewMessage)
-	admin.POST("/inbox/:client_id/messages/:chat_jid/read", inboxHandler.MarkRead)
+	admin.GET("/inbox/:client_id/threads", inboxHandler.GetThreads)
+	admin.GET("/inbox/:client_id/threads/:chat_jid/messages", inboxHandler.GetThreadMessages)
+	admin.POST("/inbox/:client_id/threads/:chat_jid/send", inboxHandler.SendMessage)
+	admin.POST("/inbox/:client_id/threads/:chat_jid/send-media", inboxHandler.SendMediaMessage)
+	admin.POST("/inbox/:client_id/threads/send", inboxHandler.SendNewMessage)
+	admin.POST("/inbox/:client_id/threads/:chat_jid/read", inboxHandler.MarkRead)
 
 	// API Key
 	v1 := e.Group("/v1", AppKeyAuthMiddleware(db))

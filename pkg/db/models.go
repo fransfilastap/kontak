@@ -52,6 +52,20 @@ type MessageTemplate struct {
 	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
 }
 
+type MessageThread struct {
+	ID                   pgtype.UUID        `json:"id"`
+	DeviceID             string             `json:"device_id"`
+	ChatJid              string             `json:"chat_jid"`
+	ChatType             string             `json:"chat_type"`
+	LastMessageAt        pgtype.Timestamptz `json:"last_message_at"`
+	LastMessageContent   string             `json:"last_message_content"`
+	LastMessageType      string             `json:"last_message_type"`
+	LastMessageDirection string             `json:"last_message_direction"`
+	UnreadCount          int32              `json:"unread_count"`
+	CreatedAt            pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt            pgtype.Timestamptz `json:"updated_at"`
+}
+
 type User struct {
 	ID           int32            `json:"id"`
 	Email        string           `json:"email"`

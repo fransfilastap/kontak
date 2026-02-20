@@ -83,42 +83,110 @@ func (w *EventHandler) handleLoggedOut(evt *events.LoggedOut) {
 }
 
 func (w *EventHandler) handleIncomingMessage(evt *events.Message) {
-	if evt.Info.IsFromMe {
-		return
-	}
-
-	// Extract text content
+	// Extract content and determine message type
 	var text string
-	if evt.Message.GetConversation() != "" {
+	var messageType string
+	var mediaURL string
+	var mediaFilename string
+
+	switch {
+	case evt.Message.GetConversation() != "":
 		text = evt.Message.GetConversation()
-	} else if evt.Message.GetExtendedTextMessage() != nil {
+		messageType = "text"
+	case evt.Message.GetExtendedTextMessage() != nil:
 		text = evt.Message.GetExtendedTextMessage().GetText()
-	} else {
-		// Skip non-text messages for now
+		messageType = "text"
+	case evt.Message.GetImageMessage() != nil:
+		img := evt.Message.GetImageMessage()
+		text = img.GetCaption()
+		messageType = "image"
+		mediaURL = img.GetURL()
+		mediaFilename = "image"
+	case evt.Message.GetVideoMessage() != nil:
+		vid := evt.Message.GetVideoMessage()
+		text = vid.GetCaption()
+		messageType = "video"
+		mediaURL = vid.GetURL()
+		mediaFilename = "video"
+	case evt.Message.GetDocumentMessage() != nil:
+		doc := evt.Message.GetDocumentMessage()
+		text = doc.GetTitle()
+		messageType = "document"
+		mediaURL = doc.GetURL()
+		mediaFilename = doc.GetFileName()
+	case evt.Message.GetAudioMessage() != nil:
+		messageType = "audio"
+		mediaURL = evt.Message.GetAudioMessage().GetURL()
+		mediaFilename = "audio"
+	default:
 		return
 	}
 
-	// Determine chat JID (the conversation partner / group)
 	chatJID := evt.Info.Chat.String()
-	senderJID := evt.Info.Sender.String()
-
 	recipientType := "individual"
 	if evt.Info.IsGroup {
 		recipientType = "group"
 	}
 
+	direction := "incoming"
+	if evt.Info.IsFromMe {
+		direction = "outgoing"
+	}
+
+	// Upsert the thread
+	threadContent := text
+	if threadContent == "" && messageType != "text" {
+		threadContent = messageType
+	}
+	if err := w.db.UpsertThread(context.Background(), db.UpsertThreadParams{
+		DeviceID:    w.clientID,
+		ChatJid:     chatJID,
+		ChatType:    recipientType,
+		Content:     threadContent,
+		MessageType: messageType,
+		Direction:   direction,
+		IsIncoming:  !evt.Info.IsFromMe,
+	}); err != nil {
+		logger.Error("Failed to upsert thread for chat %s: %v", chatJID, err)
+	}
+
+	// Messages sent from the primary device (phone) — log as outgoing
+	if evt.Info.IsFromMe {
+		_, err := w.db.LogOutgoingMessage(context.Background(), db.LogOutgoingMessageParams{
+			DeviceID:      pgtype.Text{String: w.clientID, Valid: true},
+			Recipient:     chatJID,
+			RecipientType: pgtype.Text{String: recipientType, Valid: true},
+			MessageType:   pgtype.Text{String: messageType, Valid: true},
+			Content:       text,
+			Column6:       mediaURL,
+			Column7:       mediaFilename,
+			WaMessageID:   pgtype.Text{String: evt.Info.ID, Valid: true},
+		})
+		if err != nil {
+			logger.Error("Failed to log synced outgoing message: %v", err)
+		} else {
+			logger.Debug("Logged synced outgoing %s message in chat %s", messageType, chatJID)
+		}
+		return
+	}
+
+	senderJID := evt.Info.Sender.String()
+
 	_, err := w.db.LogIncomingMessage(context.Background(), db.LogIncomingMessageParams{
 		DeviceID:      pgtype.Text{String: w.clientID, Valid: true},
 		Recipient:     chatJID,
 		RecipientType: pgtype.Text{String: recipientType, Valid: true},
+		MessageType:   pgtype.Text{String: messageType, Valid: true},
 		Content:       text,
+		Column6:       mediaURL,
+		Column7:       mediaFilename,
 		SenderJid:     pgtype.Text{String: senderJID, Valid: true},
 		WaMessageID:   pgtype.Text{String: evt.Info.ID, Valid: true},
 	})
 	if err != nil {
 		logger.Error("Failed to log incoming message: %v", err)
 	} else {
-		logger.Debug("Logged incoming message from %s in chat %s", senderJID, chatJID)
+		logger.Debug("Logged incoming %s message from %s in chat %s", messageType, senderJID, chatJID)
 	}
 }
 

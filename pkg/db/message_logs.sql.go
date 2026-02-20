@@ -14,7 +14,7 @@ import (
 const getConversationMessages = `-- name: GetConversationMessages :many
 SELECT 
     m.id, m.device_id, m.user_id, m.recipient, m.recipient_type, m.message_type, m.content, m.media_url, m.media_filename, m.buttons, m.template_id, m.status, m.sent_at, m.delivered_at, m.read_at, m.direction, m.wa_message_id, m.sender_jid,
-    COALESCE(wc.full_name, wc.push_name) AS sender_name
+    COALESCE(wc.full_name, wc.push_name, '') AS sender_name
 FROM message_logs m
 LEFT JOIN whatsapp_contacts wc ON wc.device_id = m.device_id AND wc.jid = m.sender_jid
 WHERE m.device_id = $1 AND m.recipient = $2
@@ -48,7 +48,7 @@ type GetConversationMessagesRow struct {
 	Direction     string             `json:"direction"`
 	WaMessageID   pgtype.Text        `json:"wa_message_id"`
 	SenderJid     pgtype.Text        `json:"sender_jid"`
-	SenderName    pgtype.Text        `json:"sender_name"`
+	SenderName    string             `json:"sender_name"`
 }
 
 func (q *Queries) GetConversationMessages(ctx context.Context, arg GetConversationMessagesParams) ([]GetConversationMessagesRow, error) {
@@ -108,7 +108,7 @@ SELECT
      WHERE u.device_id = m.device_id AND u.recipient = m.recipient
        AND u.direction = 'incoming' AND u.status != 'read'), 0
   )::int AS unread_count,
-  COALESCE(wc.full_name, wc.push_name, wg.group_name) AS recipient_name
+  COALESCE(wc.full_name, wc.push_name, wg.group_name, '') AS recipient_name
 FROM message_logs m
 INNER JOIN (
   SELECT recipient, MAX(sent_at) AS max_sent_at
@@ -220,8 +220,8 @@ func (q *Queries) GetMessageHistory(ctx context.Context, arg GetMessageHistoryPa
 }
 
 const logIncomingMessage = `-- name: LogIncomingMessage :one
-INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, status, direction, sender_jid, wa_message_id)
-VALUES ($1, $2, $3, 'text', $4, 'delivered', 'incoming', $5, $6)
+INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, media_url, media_filename, status, direction, sender_jid, wa_message_id)
+VALUES ($1, $2, $3, $4, $5, $6::text, $7::varchar(255), 'delivered', 'incoming', $8, $9)
 RETURNING id, device_id, user_id, recipient, recipient_type, message_type, content, media_url, media_filename, buttons, template_id, status, sent_at, delivered_at, read_at, direction, wa_message_id, sender_jid
 `
 
@@ -229,7 +229,10 @@ type LogIncomingMessageParams struct {
 	DeviceID      pgtype.Text `json:"device_id"`
 	Recipient     string      `json:"recipient"`
 	RecipientType pgtype.Text `json:"recipient_type"`
+	MessageType   pgtype.Text `json:"message_type"`
 	Content       string      `json:"content"`
+	Column6       string      `json:"column_6"`
+	Column7       string      `json:"column_7"`
 	SenderJid     pgtype.Text `json:"sender_jid"`
 	WaMessageID   pgtype.Text `json:"wa_message_id"`
 }
@@ -239,7 +242,10 @@ func (q *Queries) LogIncomingMessage(ctx context.Context, arg LogIncomingMessage
 		arg.DeviceID,
 		arg.Recipient,
 		arg.RecipientType,
+		arg.MessageType,
 		arg.Content,
+		arg.Column6,
+		arg.Column7,
 		arg.SenderJid,
 		arg.WaMessageID,
 	)
@@ -268,8 +274,8 @@ func (q *Queries) LogIncomingMessage(ctx context.Context, arg LogIncomingMessage
 }
 
 const logOutgoingMessage = `-- name: LogOutgoingMessage :one
-INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, status, direction, wa_message_id)
-VALUES ($1, $2, $3, $4, $5, 'sent', 'outgoing', $6)
+INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, media_url, media_filename, status, direction, wa_message_id)
+VALUES ($1, $2, $3, $4, $5, $6::text, $7::varchar(255), 'sent', 'outgoing', $8)
 RETURNING id, device_id, user_id, recipient, recipient_type, message_type, content, media_url, media_filename, buttons, template_id, status, sent_at, delivered_at, read_at, direction, wa_message_id, sender_jid
 `
 
@@ -279,6 +285,8 @@ type LogOutgoingMessageParams struct {
 	RecipientType pgtype.Text `json:"recipient_type"`
 	MessageType   pgtype.Text `json:"message_type"`
 	Content       string      `json:"content"`
+	Column6       string      `json:"column_6"`
+	Column7       string      `json:"column_7"`
 	WaMessageID   pgtype.Text `json:"wa_message_id"`
 }
 
@@ -289,6 +297,8 @@ func (q *Queries) LogOutgoingMessage(ctx context.Context, arg LogOutgoingMessage
 		arg.RecipientType,
 		arg.MessageType,
 		arg.Content,
+		arg.Column6,
+		arg.Column7,
 		arg.WaMessageID,
 	)
 	var i MessageLog

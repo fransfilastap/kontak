@@ -3,10 +3,12 @@ package http
 import (
 	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/logger"
 	"github.com/fransfilastap/kontak/pkg/wa"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/labstack/echo/v4"
@@ -26,6 +28,23 @@ func NewInboxHandler(dbQuerier db.Querier, waClient *wa.WhatsappClient, deviceSt
 	}
 }
 
+// decodeChatJID URL-decodes the chat_jid path parameter (e.g. "62859106509617%40s.whatsapp.net" → "62859106509617@s.whatsapp.net")
+func decodeChatJID(c echo.Context) string {
+	raw := c.Param("chat_jid")
+	decoded, err := url.PathUnescape(raw)
+	if err != nil {
+		return raw
+	}
+	return decoded
+}
+
+func recipientTypeFromJID(jid string) string {
+	if strings.HasSuffix(jid, "@g.us") {
+		return "group"
+	}
+	return "individual"
+}
+
 type SendInboxMessageRequest struct {
 	Text string `json:"text" validate:"required"`
 }
@@ -35,7 +54,8 @@ type SendNewMessageRequest struct {
 	Text string `json:"text" validate:"required"`
 }
 
-func (h *InboxHandler) GetConversations(c echo.Context) error {
+// GetThreads returns the list of message threads for a device.
+func (h *InboxHandler) GetThreads(c echo.Context) error {
 	clientID := c.Param("client_id")
 	limit, _ := strconv.ParseInt(c.QueryParam("limit"), 10, 64)
 	offset, _ := strconv.ParseInt(c.QueryParam("offset"), 10, 64)
@@ -44,25 +64,26 @@ func (h *InboxHandler) GetConversations(c echo.Context) error {
 		limit = 50
 	}
 
-	conversations, err := h.db.GetConversations(c.Request().Context(), db.GetConversationsParams{
-		DeviceID:    pgtype.Text{String: clientID, Valid: true},
-		QueryLimit:  pgtype.Int8{Int64: limit, Valid: true},
-		QueryOffset: pgtype.Int8{Int64: offset, Valid: true},
+	threads, err := h.db.GetThreads(c.Request().Context(), db.GetThreadsParams{
+		DeviceID:    clientID,
+		QueryLimit:  limit,
+		QueryOffset: offset,
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
-	if conversations == nil {
-		conversations = []db.GetConversationsRow{}
+	if threads == nil {
+		threads = []db.GetThreadsRow{}
 	}
 
-	return c.JSON(http.StatusOK, conversations)
+	return c.JSON(http.StatusOK, threads)
 }
 
-func (h *InboxHandler) GetMessages(c echo.Context) error {
+// GetThreadMessages returns the messages for a specific thread (identified by chat_jid).
+func (h *InboxHandler) GetThreadMessages(c echo.Context) error {
 	clientID := c.Param("client_id")
-	chatJID := c.Param("chat_jid")
+	chatJID := decodeChatJID(c)
 	limit, _ := strconv.ParseInt(c.QueryParam("limit"), 10, 64)
 	offset, _ := strconv.ParseInt(c.QueryParam("offset"), 10, 64)
 
@@ -70,7 +91,7 @@ func (h *InboxHandler) GetMessages(c echo.Context) error {
 		limit = 50
 	}
 
-	messages, err := h.db.GetConversationMessages(c.Request().Context(), db.GetConversationMessagesParams{
+	messages, err := h.db.GetThreadMessages(c.Request().Context(), db.GetThreadMessagesParams{
 		DeviceID:  pgtype.Text{String: clientID, Valid: true},
 		Recipient: chatJID,
 		Limit:     limit,
@@ -81,15 +102,16 @@ func (h *InboxHandler) GetMessages(c echo.Context) error {
 	}
 
 	if messages == nil {
-		messages = []db.GetConversationMessagesRow{}
+		messages = []db.GetThreadMessagesRow{}
 	}
 
 	return c.JSON(http.StatusOK, messages)
 }
 
+// SendMessage sends a text message within an existing thread.
 func (h *InboxHandler) SendMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
-	chatJID := c.Param("chat_jid")
+	chatJID := decodeChatJID(c)
 
 	var req SendInboxMessageRequest
 	if err := c.Bind(&req); err != nil {
@@ -105,11 +127,7 @@ func (h *InboxHandler) SendMessage(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
-	// Determine recipient type
-	recipientType := "individual"
-	if len(chatJID) > 0 && chatJID[len(chatJID)-5:] == "@g.us" {
-		recipientType = "group"
-	}
+	recipientType := recipientTypeFromJID(chatJID)
 
 	msg, err := h.db.LogOutgoingMessage(c.Request().Context(), db.LogOutgoingMessageParams{
 		DeviceID:      pgtype.Text{String: clientID, Valid: true},
@@ -123,9 +141,21 @@ func (h *InboxHandler) SendMessage(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
+	// Update thread
+	_ = h.db.UpsertThread(c.Request().Context(), db.UpsertThreadParams{
+		DeviceID:    clientID,
+		ChatJid:     chatJID,
+		ChatType:    recipientType,
+		Content:     req.Text,
+		MessageType: "text",
+		Direction:   "outgoing",
+		IsIncoming:  false,
+	})
+
 	return c.JSON(http.StatusOK, msg)
 }
 
+// SendNewMessage sends a text message to a new recipient (creates thread if needed).
 func (h *InboxHandler) SendNewMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
 
@@ -143,10 +173,7 @@ func (h *InboxHandler) SendNewMessage(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
-	recipientType := "individual"
-	if len(req.To) > 5 && req.To[len(req.To)-5:] == "@g.us" {
-		recipientType = "group"
-	}
+	recipientType := recipientTypeFromJID(req.To)
 
 	msg, err := h.db.LogOutgoingMessage(c.Request().Context(), db.LogOutgoingMessageParams{
 		DeviceID:      pgtype.Text{String: clientID, Valid: true},
@@ -160,12 +187,24 @@ func (h *InboxHandler) SendNewMessage(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
+	// Upsert thread for the new conversation
+	_ = h.db.UpsertThread(c.Request().Context(), db.UpsertThreadParams{
+		DeviceID:    clientID,
+		ChatJid:     req.To,
+		ChatType:    recipientType,
+		Content:     req.Text,
+		MessageType: "text",
+		Direction:   "outgoing",
+		IsIncoming:  false,
+	})
+
 	return c.JSON(http.StatusOK, msg)
 }
 
+// MarkRead marks all incoming messages in a thread as read and resets unread count.
 func (h *InboxHandler) MarkRead(c echo.Context) error {
 	clientID := c.Param("client_id")
-	chatJID := c.Param("chat_jid")
+	chatJID := decodeChatJID(c)
 
 	err := h.db.MarkConversationRead(c.Request().Context(), db.MarkConversationReadParams{
 		DeviceID:  pgtype.Text{String: clientID, Valid: true},
@@ -175,12 +214,19 @@ func (h *InboxHandler) MarkRead(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
+	// Reset thread unread count
+	_ = h.db.ResetThreadUnread(c.Request().Context(), db.ResetThreadUnreadParams{
+		DeviceID: clientID,
+		ChatJid:  chatJID,
+	})
+
 	return c.JSON(http.StatusOK, GenericResponse{Message: "Conversation marked as read"})
 }
 
+// SendMediaMessage sends a media file within an existing thread.
 func (h *InboxHandler) SendMediaMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
-	chatJID := c.Param("chat_jid")
+	chatJID := decodeChatJID(c)
 
 	err := c.Request().ParseMultipartForm(16 << 20) // 16MB
 	if err != nil {
@@ -204,16 +250,16 @@ func (h *InboxHandler) SendMediaMessage(c echo.Context) error {
 	}
 
 	contentType := fileHeader.Header.Get("Content-Type")
+	logger.Info("Sending media message: client=%s chat=%s file=%s type=%s size=%d",
+		clientID, chatJID, fileHeader.Filename, contentType, fileHeader.Size)
+
 	waMessageID, err := h.waClient.SendMediaMessage(clientID, chatJID, fileBytes, fileHeader.Filename, contentType)
 	if err != nil {
+		logger.Error("Failed to send media message: client=%s chat=%s error=%v", clientID, chatJID, err)
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
-	// Determine recipient type
-	recipientType := "individual"
-	if len(chatJID) > 0 && chatJID[len(chatJID)-5:] == "@g.us" {
-		recipientType = "group"
-	}
+	recipientType := recipientTypeFromJID(chatJID)
 
 	// Determine message type based on content type
 	messageType := "document"
@@ -231,11 +277,24 @@ func (h *InboxHandler) SendMediaMessage(c echo.Context) error {
 		RecipientType: pgtype.Text{String: recipientType, Valid: true},
 		Content:       fileHeader.Filename,
 		MessageType:   pgtype.Text{String: messageType, Valid: true},
+		Column6:       fileHeader.Filename,
+		Column7:       fileHeader.Filename,
 		WaMessageID:   pgtype.Text{String: waMessageID, Valid: true},
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
+
+	// Update thread
+	_ = h.db.UpsertThread(c.Request().Context(), db.UpsertThreadParams{
+		DeviceID:    clientID,
+		ChatJid:     chatJID,
+		ChatType:    recipientType,
+		Content:     fileHeader.Filename,
+		MessageType: messageType,
+		Direction:   "outgoing",
+		IsIncoming:  false,
+	})
 
 	return c.JSON(http.StatusOK, msg)
 }

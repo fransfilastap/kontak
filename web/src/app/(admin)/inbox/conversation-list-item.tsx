@@ -1,12 +1,12 @@
 "use client";
 
-import type { Conversation } from "@/lib/types";
+import type { MessageThread } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
 interface ConversationListItemProps {
-  conversation: Conversation;
+  thread: MessageThread;
   isSelected: boolean;
   onClick: () => void;
 }
@@ -26,28 +26,31 @@ function formatRelativeTime(dateStr: string): string {
   return date.toLocaleDateString([], { month: "short", day: "numeric" });
 }
 
-function getDisplayName(recipient: string, recipientName: string | null): string {
-  if (recipientName) return recipientName;
-  // Strip @s.whatsapp.net or @g.us
-  const name = recipient.split("@")[0];
-  return name;
+function getDisplayName(thread: MessageThread): string {
+  if (thread.chat_name) {
+    return thread.chat_name;
+  }
+  return thread.chat_jid.split("@")[0];
 }
 
-function getInitials(recipient: string, recipientName: string | null): string {
-  const name = getDisplayName(recipient, recipientName);
-  // For phone numbers, use first 2 digits
+function getInitials(thread: MessageThread): string {
+  const name = getDisplayName(thread);
   if (/^\d+$/.test(name)) {
     return name.slice(-2);
+  }
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
   }
   return name.slice(0, 2).toUpperCase();
 }
 
 export function ConversationListItem({
-  conversation,
+  thread,
   isSelected,
   onClick,
 }: ConversationListItemProps) {
-  const hasUnread = conversation.unread_count > 0;
+  const hasUnread = thread.unread_count > 0;
 
   return (
     <button
@@ -59,8 +62,8 @@ export function ConversationListItem({
       )}
     >
       <Avatar className="h-10 w-10 shrink-0">
-        <AvatarFallback className="text-xs">
-          {getInitials(conversation.recipient, conversation.recipient_name)}
+        <AvatarFallback className="text-xs bg-primary/10 text-primary">
+          {getInitials(thread)}
         </AvatarFallback>
       </Avatar>
       <div className="flex-1 overflow-hidden">
@@ -71,10 +74,10 @@ export function ConversationListItem({
               hasUnread ? "font-semibold" : "font-medium"
             )}
           >
-            {getDisplayName(conversation.recipient, conversation.recipient_name)}
+            {getDisplayName(thread)}
           </span>
           <span className="shrink-0 text-[11px] text-muted-foreground">
-            {formatRelativeTime(conversation.last_message_at)}
+            {formatRelativeTime(thread.last_message_at)}
           </span>
         </div>
         <div className="flex items-center justify-between gap-2 mt-0.5">
@@ -86,17 +89,17 @@ export function ConversationListItem({
                 : "text-muted-foreground"
             )}
           >
-            {conversation.last_message_direction === "outgoing" && (
+            {thread.last_message_direction === "outgoing" && (
               <span className="text-muted-foreground">You: </span>
             )}
-            {conversation.last_message_content}
+            {thread.last_message_content || "Media"}
           </p>
           {hasUnread && (
             <Badge
               variant="default"
               className="h-5 min-w-5 shrink-0 rounded-full px-1.5 text-[10px] font-bold"
             >
-              {conversation.unread_count}
+              {thread.unread_count}
             </Badge>
           )}
         </div>

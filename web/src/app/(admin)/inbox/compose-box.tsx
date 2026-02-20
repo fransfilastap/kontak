@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { SendHorizontalIcon, BoldIcon, ItalicIcon, StrikethroughIcon, CodeIcon, QuoteIcon } from "lucide-react";
+import { SendHorizontalIcon, BoldIcon, ItalicIcon, StrikethroughIcon, CodeIcon, QuoteIcon, PaperclipIcon, XIcon } from "lucide-react";
 
 interface ComposeBoxProps {
   onSend: (text: string) => void;
+  onSendMedia?: (file: File) => void;
   disabled?: boolean;
 }
 
@@ -53,10 +54,17 @@ function prependLines(textarea: HTMLTextAreaElement, prefix: string) {
   textarea.focus();
 }
 
-export function ComposeBox({ onSend, disabled }: ComposeBoxProps) {
+export function ComposeBox({ onSend, onSendMedia, disabled }: ComposeBoxProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
 
   const handleSend = useCallback(() => {
+    if (pendingFile && onSendMedia) {
+      onSendMedia(pendingFile);
+      setPendingFile(null);
+      return;
+    }
     const value = textareaRef.current?.value.trim();
     if (!value) return;
     onSend(value);
@@ -68,7 +76,16 @@ export function ComposeBox({ onSend, disabled }: ComposeBoxProps) {
       nativeInputValueSetter?.call(textareaRef.current, "");
       textareaRef.current.dispatchEvent(new Event("input", { bubbles: true }));
     }
-  }, [onSend]);
+  }, [onSend, onSendMedia, pendingFile]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setPendingFile(file);
+    }
+    // Reset input so the same file can be re-selected
+    e.target.value = "";
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     const ta = textareaRef.current;
@@ -106,6 +123,24 @@ export function ComposeBox({ onSend, disabled }: ComposeBoxProps) {
 
   return (
     <div className="border-t bg-background p-3">
+      {pendingFile && (
+        <div className="flex items-center gap-2 mb-2 rounded-md border bg-muted/50 px-3 py-2">
+          <PaperclipIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+          <span className="text-sm truncate flex-1">{pendingFile.name}</span>
+          <span className="text-xs text-muted-foreground shrink-0">
+            {(pendingFile.size / 1024).toFixed(0)} KB
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-6 w-6 p-0"
+            onClick={() => setPendingFile(null)}
+            type="button"
+          >
+            <XIcon className="h-3.5 w-3.5" />
+          </Button>
+        </div>
+      )}
       <div className="flex items-center gap-1 mb-2">
         {toolbarButtons.map((btn) => (
           <Button
@@ -122,6 +157,24 @@ export function ComposeBox({ onSend, disabled }: ComposeBoxProps) {
         ))}
       </div>
       <div className="flex items-end gap-2">
+        <input
+          ref={fileInputRef}
+          type="file"
+          className="hidden"
+          onChange={handleFileChange}
+          accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar"
+        />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="shrink-0"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={disabled}
+          title="Attach file"
+          type="button"
+        >
+          <PaperclipIcon className="h-4 w-4" />
+        </Button>
         <Textarea
           ref={textareaRef}
           placeholder="Type a message..."

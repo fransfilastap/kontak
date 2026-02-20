@@ -27,6 +27,8 @@ type Querier interface {
 	GetDeviceGroups(ctx context.Context, deviceID pgtype.Text) ([]WhatsappGroup, error)
 	GetMessageHistory(ctx context.Context, arg GetMessageHistoryParams) ([]MessageLog, error)
 	GetMessageTemplateByID(ctx context.Context, id pgtype.UUID) (MessageTemplate, error)
+	GetThreadMessages(ctx context.Context, arg GetThreadMessagesParams) ([]GetThreadMessagesRow, error)
+	GetThreads(ctx context.Context, arg GetThreadsParams) ([]GetThreadsRow, error)
 	GetUserByAPIKey(ctx context.Context, apiKey pgtype.Text) (User, error)
 	GetUserByID(ctx context.Context, id int32) (User, error)
 	GetUserByUsername(ctx context.Context, email string) (User, error)
@@ -35,6 +37,7 @@ type Querier interface {
 	LogIncomingMessage(ctx context.Context, arg LogIncomingMessageParams) (MessageLog, error)
 	LogOutgoingMessage(ctx context.Context, arg LogOutgoingMessageParams) (MessageLog, error)
 	MarkConversationRead(ctx context.Context, arg MarkConversationReadParams) error
+	ResetThreadUnread(ctx context.Context, arg ResetThreadUnreadParams) error
 	RevokeUserAPIKey(ctx context.Context, id int32) error
 	SendMessageData(ctx context.Context, arg SendMessageDataParams) (MessageLog, error)
 	SetClientJID(ctx context.Context, arg SetClientJIDParams) (Client, error)
@@ -45,6 +48,7 @@ type Querier interface {
 	UpdateMessageTemplate(ctx context.Context, arg UpdateMessageTemplateParams) (MessageTemplate, error)
 	UpdateQRCode(ctx context.Context, arg UpdateQRCodeParams) (Client, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
+	UpsertThread(ctx context.Context, arg UpsertThreadParams) error
 	UpsertWhatsAppContact(ctx context.Context, arg UpsertWhatsAppContactParams) error
 	UpsertWhatsAppGroup(ctx context.Context, arg UpsertWhatsAppGroupParams) error
 }

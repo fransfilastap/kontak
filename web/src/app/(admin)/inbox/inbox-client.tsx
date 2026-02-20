@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import type { KontakClient } from "@/lib/types";
+import useSWR from "swr";
+import fetcher from "@/lib/swr";
+import type { KontakClient, MessageThread as MessageThreadType } from "@/lib/types";
 import { ConversationList } from "./conversation-list";
 import { MessageThread } from "./message-thread";
 import { NewMessageDialog } from "./new-message-dialog";
@@ -13,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { PenSquareIcon, InboxIcon } from "lucide-react";
 
 interface InboxClientProps {
@@ -32,7 +35,7 @@ export function InboxClient({ devices }: InboxClientProps) {
     async (text: string) => {
       if (!selectedDeviceId || !selectedChatJid) return;
       await fetch(
-        `/api/kontak/inbox/${selectedDeviceId}/messages/${encodeURIComponent(selectedChatJid)}/send`,
+        `/api/kontak/inbox/${selectedDeviceId}/threads/${encodeURIComponent(selectedChatJid)}/send`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -47,18 +50,44 @@ export function InboxClient({ devices }: InboxClientProps) {
     async (to: string, text: string) => {
       if (!selectedDeviceId) return;
       await fetch(
-        `/api/kontak/inbox/${selectedDeviceId}/messages/send`,
+        `/api/kontak/inbox/${selectedDeviceId}/threads/send`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ to, text }),
         }
       );
-      // Select the new conversation
       setSelectedChatJid(to.includes("@") ? to : `${to}@s.whatsapp.net`);
     },
     [selectedDeviceId]
   );
+
+  const handleSendMedia = useCallback(
+    async (file: File) => {
+      if (!selectedDeviceId || !selectedChatJid) return;
+      const formData = new FormData();
+      formData.append("file", file);
+      await fetch(
+        `/api/kontak/inbox/${selectedDeviceId}/threads/${encodeURIComponent(selectedChatJid)}/send-media`,
+        { method: "POST", body: formData }
+      );
+    },
+    [selectedDeviceId, selectedChatJid]
+  );
+
+  // Fetch threads to resolve contact names for chat header
+  const { data: threads } = useSWR<MessageThreadType[]>(
+    selectedDeviceId ? `/api/kontak/inbox/${selectedDeviceId}/threads?limit=100` : null,
+    fetcher
+  );
+
+  const selectedThread = threads?.find(
+    (t) => t.chat_jid === selectedChatJid
+  );
+
+  const chatDisplayName = selectedThread?.chat_name
+    || selectedChatJid?.split("@")[0]
+    || "";
 
   if (devices.length === 0) {
     return (
@@ -131,12 +160,19 @@ export function InboxClient({ devices }: InboxClientProps) {
             <div className="flex h-full flex-col">
               {/* Chat Header */}
               <div className="flex items-center gap-3 border-b px-4 py-3">
+                <Avatar className="h-9 w-9 shrink-0">
+                  <AvatarFallback className="text-xs bg-primary/10 text-primary">
+                    {chatDisplayName.length > 0
+                      ? (/^\d+$/.test(chatDisplayName) ? chatDisplayName.slice(-2) : chatDisplayName.slice(0, 2).toUpperCase())
+                      : "?"}
+                  </AvatarFallback>
+                </Avatar>
                 <div>
                   <h3 className="text-sm font-semibold">
-                    {selectedChatJid.split("@")[0]}
+                    {chatDisplayName}
                   </h3>
                   <p className="text-xs text-muted-foreground">
-                    {selectedChatJid.includes("@g.us") ? "Group" : "Individual"}
+                    {selectedChatJid.includes("@g.us") ? "Group" : selectedChatJid.split("@")[0]}
                   </p>
                 </div>
               </div>
@@ -145,6 +181,7 @@ export function InboxClient({ devices }: InboxClientProps) {
                   deviceId={selectedDeviceId}
                   chatJid={selectedChatJid}
                   onSend={handleSendMessage}
+                  onSendMedia={handleSendMedia}
                 />
               </div>
             </div>

@@ -30,13 +30,13 @@ ORDER BY sent_at DESC
 LIMIT $2;
 
 -- name: LogIncomingMessage :one
-INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, status, direction, sender_jid, wa_message_id)
-VALUES ($1, $2, $3, 'text', $4, 'delivered', 'incoming', $5, $6)
+INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, media_url, media_filename, status, direction, sender_jid, wa_message_id)
+VALUES ($1, $2, $3, $4, $5, $6::text, $7::varchar(255), 'delivered', 'incoming', $8, $9)
 RETURNING *;
 
 -- name: LogOutgoingMessage :one
-INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, status, direction, wa_message_id)
-VALUES ($1, $2, $3, $4, $5, 'sent', 'outgoing', $6)
+INSERT INTO message_logs (device_id, recipient, recipient_type, message_type, content, media_url, media_filename, status, direction, wa_message_id)
+VALUES ($1, $2, $3, $4, $5, $6::text, $7::varchar(255), 'sent', 'outgoing', $8)
 RETURNING *;
 
 -- name: GetConversations :many
@@ -51,7 +51,7 @@ SELECT
      WHERE u.device_id = m.device_id AND u.recipient = m.recipient
        AND u.direction = 'incoming' AND u.status != 'read'), 0
   )::int AS unread_count,
-  COALESCE(wc.full_name, wc.push_name, wg.group_name) AS recipient_name
+  COALESCE(wc.full_name, wc.push_name, wg.group_name, '') AS recipient_name
 FROM message_logs m
 INNER JOIN (
   SELECT recipient, MAX(sent_at) AS max_sent_at
@@ -68,7 +68,7 @@ LIMIT @query_limit OFFSET @query_offset;
 -- name: GetConversationMessages :many
 SELECT 
     m.*,
-    COALESCE(wc.full_name, wc.push_name) AS sender_name
+    COALESCE(wc.full_name, wc.push_name, '') AS sender_name
 FROM message_logs m
 LEFT JOIN whatsapp_contacts wc ON wc.device_id = m.device_id AND wc.jid = m.sender_jid
 WHERE m.device_id = $1 AND m.recipient = $2

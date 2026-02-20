@@ -82,3 +82,16 @@ export type Conversation = {
   last_message_direction: string;
   unread_count: number;
 };
+
+export type MessageThread = {
+  id: string;
+  device_id: string;
+  chat_jid: string;
+  chat_type: string;
+  chat_name: string;
+  last_message_at: string;
+  last_message_content: string;
+  last_message_type: string;
+  last_message_direction: string;
+  unread_count: number;
+};

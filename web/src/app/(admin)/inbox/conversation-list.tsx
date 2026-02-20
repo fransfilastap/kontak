@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import fetcher from "@/lib/swr";
-import type { Conversation } from "@/lib/types";
+import type { MessageThread } from "@/lib/types";
 import { ConversationListItem } from "./conversation-list-item";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -23,15 +23,19 @@ export function ConversationList({
 }: ConversationListProps) {
   const [search, setSearch] = useState("");
 
-  const { data: conversations, isLoading } = useSWR<Conversation[]>(
-    deviceId ? `/api/kontak/inbox/${deviceId}/conversations?limit=100` : null,
+  const { data: threads, isLoading } = useSWR<MessageThread[]>(
+    deviceId ? `/api/kontak/inbox/${deviceId}/threads?limit=100` : null,
     fetcher,
     { refreshInterval: 5000 }
   );
 
-  const filtered = conversations?.filter((c) =>
-    c.recipient.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = threads?.filter((t) => {
+    const q = search.toLowerCase();
+    return (
+      t.chat_jid.toLowerCase().includes(q) ||
+      (t.chat_name && t.chat_name.toLowerCase().includes(q))
+    );
+  });
 
   return (
     <div className="flex h-full flex-col">
@@ -66,12 +70,12 @@ export function ConversationList({
               No conversations found
             </p>
           )}
-          {filtered?.map((conversation) => (
+          {filtered?.map((thread) => (
             <ConversationListItem
-              key={conversation.recipient}
-              conversation={conversation}
-              isSelected={selectedChatJid === conversation.recipient}
-              onClick={() => onSelectChat(conversation.recipient)}
+              key={thread.chat_jid}
+              thread={thread}
+              isSelected={selectedChatJid === thread.chat_jid}
+              onClick={() => onSelectChat(thread.chat_jid)}
             />
           ))}
         </div>

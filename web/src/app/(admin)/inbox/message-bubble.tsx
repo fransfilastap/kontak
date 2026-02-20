@@ -2,9 +2,8 @@
 
 import type { MessageLog } from "@/lib/types";
 import { WaMarkdown } from "./wa-markdown";
-import { CheckIcon, CheckCheckIcon, FileIcon, DownloadIcon } from "lucide-react";
+import { CheckIcon, CheckCheckIcon, ImageIcon, FileIcon, VideoIcon, MusicIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 interface MessageBubbleProps {
   message: MessageLog;
@@ -17,111 +16,118 @@ function formatTime(dateStr: string): string {
 
 function StatusIcon({ status }: { status: string }) {
   if (status === "read") {
-    return <CheckCheckIcon className="h-3.5 w-3.5 text-blue-500" />;
+    return <CheckCheckIcon className="h-3 w-3 text-blue-500" />;
   }
   if (status === "delivered") {
-    return <CheckCheckIcon className="h-3.5 w-3.5 text-muted-foreground" />;
+    return <CheckCheckIcon className="h-3 w-3 text-muted-foreground/70" />;
   }
-  // "sent"
-  return <CheckIcon className="h-3.5 w-3.5 text-muted-foreground" />;
+  return <CheckIcon className="h-3 w-3 text-muted-foreground/70" />;
+}
+
+function MediaAttachment({ message }: { message: MessageLog }) {
+  const type = message.message_type;
+  const filename = message.media_filename || message.content;
+
+  if (type === "image") {
+    return (
+      <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
+        <ImageIcon className="h-4 w-4 shrink-0 text-blue-500" />
+        <span className="text-xs truncate">{filename}</span>
+      </div>
+    );
+  }
+
+  if (type === "video") {
+    return (
+      <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
+        <VideoIcon className="h-4 w-4 shrink-0 text-purple-500" />
+        <span className="text-xs truncate">{filename}</span>
+      </div>
+    );
+  }
+
+  if (type === "audio") {
+    return (
+      <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
+        <MusicIcon className="h-4 w-4 shrink-0 text-orange-500" />
+        <span className="text-xs truncate">{filename}</span>
+      </div>
+    );
+  }
+
+  if (type === "document") {
+    return (
+      <div className="flex items-center gap-2 rounded-md bg-background/50 px-2.5 py-2 mb-1">
+        <FileIcon className="h-4 w-4 shrink-0 text-emerald-500" />
+        <span className="text-xs truncate">{filename}</span>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function getSenderDisplayName(message: MessageLog): string | null {
+  if (message.direction === "outgoing") return null;
+  if (message.sender_name) return message.sender_name;
+  if (message.sender_jid) return message.sender_jid.split("@")[0];
+  return null;
 }
 
 export function MessageBubble({ message }: MessageBubbleProps) {
   const isOutgoing = message.direction === "outgoing";
-
-  const renderContent = () => {
-    switch (message.message_type) {
-      case "image":
-        return (
-          <div className="space-y-2">
-            <img 
-              src={message.media_url || ""} 
-              alt={message.content} 
-              className="max-w-full rounded-md cursor-pointer hover:opacity-90 transition-opacity"
-              onClick={() => window.open(message.media_url || "", "_blank")}
-            />
-            {message.content && <WaMarkdown content={message.content} />}
-          </div>
-        );
-      case "video":
-        return (
-          <div className="space-y-2">
-            <video 
-              src={message.media_url || ""} 
-              controls 
-              className="max-w-full rounded-md"
-            />
-            {message.content && <WaMarkdown content={message.content} />}
-          </div>
-        );
-      case "audio":
-        return (
-          <audio 
-            src={message.media_url || ""} 
-            controls 
-            className="max-w-full"
-          />
-        );
-      case "document":
-        return (
-          <div className="flex items-center gap-3 p-2 bg-background/20 rounded-md border border-foreground/10">
-            <div className="p-2 bg-background/40 rounded-full">
-              <FileIcon className="h-5 w-5" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium truncate">{message.content || message.media_filename}</p>
-              <p className="text-[10px] opacity-60">Document</p>
-            </div>
-            <Button 
-              size="icon" 
-              variant="ghost" 
-              className="h-8 w-8"
-              onClick={() => window.open(message.media_url || "", "_blank")}
-            >
-              <DownloadIcon className="h-4 w-4" />
-            </Button>
-          </div>
-        );
-      default:
-        return <WaMarkdown content={message.content} />;
-    }
-  };
+  const isMedia = message.message_type !== "text";
+  const senderName = getSenderDisplayName(message);
 
   return (
     <div
       className={cn(
-        "flex w-full mb-1",
+        "flex w-full",
         isOutgoing ? "justify-end" : "justify-start"
       )}
     >
       <div
         className={cn(
-          "max-w-[75%] px-3 py-2 text-sm shadow-sm relative",
+          "relative max-w-[75%] rounded-2xl px-3 py-2 text-sm shadow-sm",
           isOutgoing
-            ? "bg-primary text-primary-foreground rounded-l-lg rounded-tr-lg"
-            : "bg-muted text-foreground rounded-r-lg rounded-tl-lg"
+            ? "bg-primary text-primary-foreground rounded-br-md"
+            : "bg-card border rounded-bl-md"
         )}
       >
-        {!isOutgoing && (
-          <p className="text-[11px] font-semibold mb-1 text-primary/80">
-            {message.sender_name || (message.sender_jid ? message.sender_jid.split("@")[0] : "")}
+        {senderName && (
+          <p className={cn(
+            "text-xs font-semibold mb-0.5",
+            isOutgoing ? "text-primary-foreground/80" : "text-primary"
+          )}>
+            {senderName}
           </p>
         )}
-        <div className="break-words">
-          {renderContent()}
-        </div>
-        <div
-          className={cn(
-            "flex items-center gap-1 mt-1",
-            isOutgoing ? "justify-end" : "justify-start"
-          )}
-        >
-          <span className="text-[10px] opacity-60">
+        {isMedia && <MediaAttachment message={message} />}
+        {message.content && (message.message_type === "text" || (isMedia && message.content !== message.media_filename)) && (
+          <div>
+            <WaMarkdown content={message.content} />
+          </div>
+        )}
+        <div className="flex items-center gap-1 mt-0.5 justify-end">
+          <span className={cn(
+            "text-[10px]",
+            isOutgoing ? "text-primary-foreground/50" : "text-muted-foreground"
+          )}>
             {formatTime(message.sent_at)}
           </span>
           {isOutgoing && <StatusIcon status={message.status} />}
         </div>
       </div>
+    </div>
+  );
+}
+
+export function DateSeparator({ date }: { date: string }) {
+  return (
+    <div className="flex items-center justify-center py-2">
+      <span className="rounded-full bg-muted px-3 py-1 text-[11px] text-muted-foreground font-medium">
+        {date}
+      </span>
     </div>
   );
 }
