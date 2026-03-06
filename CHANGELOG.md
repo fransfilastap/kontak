@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/fransfilastap/kontak/compare/v1.8.0...v1.9.0) (2026-03-06)
+
+
+### Features
+
+* Add CLI TUI, implement API key management, refine database models and queries, and enhance device validation and user context handling. ([13bbc28](https://github.com/fransfilastap/kontak/commit/13bbc28a51149c0c3cf334554bf87a0baa3ec051))
+
 # [1.8.0](https://github.com/fransfilastap/kontak/compare/v1.7.0...v1.8.0) (2026-03-06)
 
 
