@@ -20,6 +20,15 @@ func NewMessageTemplateHandler(db db.Querier) *MessageTemplateHandler {
 }
 
 // GetUserTemplates returns all message templates for the authenticated user
+// @Summary List templates
+// @Description Get all message templates for the authenticated user
+// @Tags templates
+// @Accept json
+// @Produce json
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/templates [get]
+// @Security BearerAuth
 func (h *MessageTemplateHandler) GetUserTemplates(c echo.Context) error {
 
 	// Get user ID from context (set by auth middleware)
@@ -45,7 +54,17 @@ func (h *MessageTemplateHandler) GetUserTemplates(c echo.Context) error {
 	return c.JSON(http.StatusOK, templates)
 }
 
-// CreateTemplate creates a new message template
+// @Summary Create template
+// @Description Create a new message template
+// @Tags templates
+// @Accept json
+// @Produce json
+// @Param request body MessageTemplateRequest true "Template data"
+// @Success 201 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/templates [post]
+// @Security BearerAuth
 func (h *MessageTemplateHandler) CreateTemplate(c echo.Context) error {
 	// Get user ID from context
 	userID := getUserIDFromContext(c)
@@ -79,7 +98,19 @@ func (h *MessageTemplateHandler) CreateTemplate(c echo.Context) error {
 	return c.JSON(http.StatusCreated, template)
 }
 
-// UpdateTemplate updates an existing message template
+// @Summary Update template
+// @Description Update an existing message template
+// @Tags templates
+// @Accept json
+// @Produce json
+// @Param id path string true "Template ID"
+// @Param request body MessageTemplateRequest true "Template data"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/templates/{id} [put]
+// @Security BearerAuth
 func (h *MessageTemplateHandler) UpdateTemplate(c echo.Context) error {
 	// Get user ID from context
 	userID := getUserIDFromContext(c)
@@ -126,7 +157,17 @@ func (h *MessageTemplateHandler) UpdateTemplate(c echo.Context) error {
 	return c.JSON(http.StatusOK, template)
 }
 
-// DeleteTemplate deletes a message template
+// @Summary Delete template
+// @Description Delete a message template
+// @Tags templates
+// @Accept json
+// @Produce json
+// @Param id path string true "Template ID"
+// @Success 204 {object} map[string]string
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/templates/{id} [delete]
+// @Security BearerAuth
 func (h *MessageTemplateHandler) DeleteTemplate(c echo.Context) error {
 	// Get user ID from context
 	userID := getUserIDFromContext(c)

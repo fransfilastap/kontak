@@ -20,6 +20,18 @@ func NewContactHandler(device *wa.DeviceStore, waClient *wa.WhatsappClient) *Con
 	}
 }
 
+// SyncContacts syncs contacts from WhatsApp for a device
+// @Summary Sync contacts
+// @Description Fetch and sync contacts from WhatsApp for a device
+// @Tags contacts
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} map[string]string
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/contacts/{client_id}/sync [put]
+// @Security BearerAuth
 func (h *ContactHandler) SyncContacts(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	clientID := c.Param("client_id")
@@ -55,6 +67,18 @@ func (h *ContactHandler) SyncContacts(c echo.Context) error {
 	})
 }
 
+// GetContacts returns the list of contacts for a device
+// @Summary List contacts
+// @Description Get all contacts for a device
+// @Tags contacts
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/contacts/{client_id} [get]
+// @Security BearerAuth
 func (h *ContactHandler) GetContacts(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	clientID := c.Param("client_id")

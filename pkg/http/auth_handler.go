@@ -14,6 +14,29 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// @title Kontak API
+// @version 1.0
+// @description WhatsApp-to-REST-API bridge
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url https://github.com/fransfilastap/kontak
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host localhost:8080
+// @BasePath /
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+// @description Type "Bearer" followed by a space and JWT token.
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
+// @description API Key authentication for v1 endpoints
+
 type AuthHandler struct {
 	db  db.Querier
 	cfg *config.Config // Unused field
@@ -24,6 +47,15 @@ func NewAuthHandler(db db.Querier, cfg *config.Config) *AuthHandler {
 }
 
 // Login handles the login request.
+// @Summary Login user
+// @Description Authenticate user and get JWT token
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param request body LoginRequest true "Login credentials"
+// @Success 200 {object} LoginResponse
+// @Failure 401 {object} map[string]string
+// @Router /login [post]
 func (w *AuthHandler) Login(c echo.Context) error {
 	var request LoginRequest
 	if err := c.Bind(&request); err != nil {
@@ -52,6 +84,16 @@ func (w *AuthHandler) Login(c echo.Context) error {
 	return c.JSON(http.StatusOK, response)
 }
 
+// @Summary Register new user
+// @Description Create a new user account
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param request body RegisterRequest true "Registration details"
+// @Success 201 {object} map[string]string
+// @Failure 400 {object} map[string]string
+// @Router /admin/users [post]
+// @Security BearerAuth
 func (w *AuthHandler) Register(c echo.Context) error {
 	var request RegisterRequest
 	if err := c.Bind(&request); err != nil {
@@ -75,6 +117,16 @@ func (w *AuthHandler) Register(c echo.Context) error {
 	return c.JSON(http.StatusOK, response)
 }
 
+// GenerateAPIKey generates a new API key for the user (legacy single key)
+// @Summary Generate API key
+// @Description Generate a new API key for the user (legacy endpoint, prefer /api-keys)
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Success 200 {object} GenerateAPIKeyResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/users/api-key [post]
+// @Security BearerAuth
 func (w *AuthHandler) GenerateAPIKey(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	logger.Info("GenerateAPIKey: userID=%d", userID)
@@ -134,6 +186,15 @@ type APIKeyResponse struct {
 }
 
 // ListAPIKeys returns all API keys for the authenticated user
+// @Summary List API keys
+// @Description Get all API keys for the authenticated user
+// @Tags api-keys
+// @Accept json
+// @Produce json
+// @Success 200 {array} APIKeyResponse
+// @Failure 401 {object} map[string]string
+// @Router /admin/users/api-keys [get]
+// @Security BearerAuth
 func (w *AuthHandler) ListAPIKeys(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	logger.Info("ListAPIKeys: userID=%d", userID)
@@ -164,6 +225,17 @@ func (w *AuthHandler) ListAPIKeys(c echo.Context) error {
 }
 
 // CreateAPIKey creates a new API key for the authenticated user
+// @Summary Create API key
+// @Description Create a new API key for the authenticated user
+// @Tags api-keys
+// @Accept json
+// @Produce json
+// @Param request body CreateAPIKeyRequest true "API key name"
+// @Success 201 {object} APIKeyResponse
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Router /admin/users/api-keys [post]
+// @Security BearerAuth
 func (w *AuthHandler) CreateAPIKey(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	logger.Info("CreateAPIKey: userID=%d", userID)
@@ -231,6 +303,17 @@ func (w *AuthHandler) CreateAPIKey(c echo.Context) error {
 }
 
 // DeleteAPIKey deletes an API key
+// @Summary Delete API key
+// @Description Delete an API key by ID
+// @Tags api-keys
+// @Accept json
+// @Produce json
+// @Param id path string true "API Key ID"
+// @Success 204 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Router /admin/users/api-keys/{id} [delete]
+// @Security BearerAuth
 func (w *AuthHandler) DeleteAPIKey(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	keyID := c.Param("id")

@@ -29,6 +29,17 @@ func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceStore, d
 // RegisterDevice registers a new WhatsApp device from the provided request data.
 // It binds request data to the wa.Device struct, attempts to register the device with deviceManagement,
 // and returns a JSON response with the registered device's information or an error message.
+// @Summary Register device
+// @Description Register a new WhatsApp device
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param request body map[string]interface{} true "Device data"
+// @Success 201 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/clients [post]
+// @Security BearerAuth
 func (w *DeviceHandler) RegisterDevice(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -48,6 +59,18 @@ func (w *DeviceHandler) RegisterDevice(c echo.Context) error {
 
 }
 
+// @Summary Connect device
+// @Description Connect to a WhatsApp device
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} DeviceConnectionResponse
+// @Failure 400 {object} DeviceConnectionResponse
+// @Failure 401 {object} DeviceConnectionResponse
+// @Failure 404 {object} DeviceConnectionResponse
+// @Router /admin/clients/{client_id}/connect [post]
+// @Security BearerAuth
 func (w *DeviceHandler) ConnectDevice(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -75,6 +98,17 @@ func (w *DeviceHandler) ConnectDevice(c echo.Context) error {
 	return c.JSON(200, DeviceConnectionResponse{ServerError: false, Message: "Connected to whatsapp"})
 }
 
+// @Summary Disconnect device
+// @Description Disconnect from a WhatsApp device
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} DeviceConnectionResponse
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/clients/{client_id}/disconnect [delete]
+// @Security BearerAuth
 func (w *DeviceHandler) DisconnectDevice(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -95,6 +129,15 @@ func (w *DeviceHandler) DisconnectDevice(c echo.Context) error {
 	return c.JSON(http.StatusInternalServerError, DeviceDisconnectionResponse{ServerError: true, Message: "Failed to disconnect from whatsapp"})
 }
 
+// @Summary List devices
+// @Description Get all devices for the authenticated user
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/clients [get]
+// @Security BearerAuth
 func (w *DeviceHandler) GetDevices(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -106,6 +149,17 @@ func (w *DeviceHandler) GetDevices(c echo.Context) error {
 	return c.JSON(200, clients)
 }
 
+// @Summary Get connection status
+// @Description Get the connection status of a device
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} map[string]string
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/clients/{client_id}/status [get]
+// @Security BearerAuth
 func (w *DeviceHandler) ConnectionStatus(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -127,6 +181,17 @@ func (w *DeviceHandler) ConnectionStatus(c echo.Context) error {
 	})
 }
 
+// @Summary Get QR code
+// @Description Get QR code for device pairing
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} map[string]string
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/clients/{client_id}/qr [get]
+// @Security BearerAuth
 func (w *DeviceHandler) GetDeviceQR(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -154,6 +219,17 @@ func (w *DeviceHandler) GetDeviceQR(c echo.Context) error {
 	}
 }
 
+// @Summary Send message
+// @Description Send a text message via WhatsApp
+// @Tags messages
+// @Accept json
+// @Produce json
+// @Param request body SendMessageRequest true "Message data"
+// @Success 200 {object} SendMessageResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /v1/chats [post]
+// @Security ApiKeyAuth
 func (w *DeviceHandler) SendMessage(c echo.Context) error {
 	var message SendMessageRequest
 	if err := c.Bind(&message); err != nil {
@@ -178,6 +254,20 @@ func (w *DeviceHandler) SendMessage(c echo.Context) error {
 	return c.JSON(200, GenericResponse{Message: "Message sent successfully"})
 }
 
+// @Summary Send media message
+// @Description Send a media message via WhatsApp
+// @Tags messages
+// @Accept multipart/form-data
+// @Produce json
+// @Param client_id formData string true "Client ID"
+// @Param mobile_number formData string true "Mobile number"
+// @Param media_url formData file true "Media file"
+// @Param caption formData string false "Caption"
+// @Success 200 {object} GenericResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /v1/chats/media [post]
+// @Security ApiKeyAuth
 func (w *DeviceHandler) SendMediaMessage(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 
@@ -228,6 +318,17 @@ func (w *DeviceHandler) SendMediaMessage(c echo.Context) error {
 }
 
 // SendTemplateMessage sends a message using a template
+// @Summary Send template message
+// @Description Send a message using a template
+// @Tags messages
+// @Accept json
+// @Produce json
+// @Param request body SendTemplateMessageRequest true "Template message data"
+// @Success 200 {object} GenericResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /v1/chats/template [post]
+// @Security ApiKeyAuth
 func (w *DeviceHandler) SendTemplateMessage(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 

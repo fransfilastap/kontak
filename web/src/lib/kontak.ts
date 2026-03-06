@@ -1,8 +1,32 @@
 import { auth } from "@/auth";
+import * as sdk from "@/types/generated/sdk.gen";
+import type {
+  GetAdminClientsResponse,
+  PostAdminClientsResponse,
+  PostAdminTemplatesResponse,
+  PutAdminTemplatesByIdResponse,
+  GetAdminTemplatesResponse,
+  GetAdminUsersApiKeysResponse,
+  PostAdminUsersApiKeysResponse,
+  DeleteAdminUsersApiKeysByIdResponse,
+  GetAdminInboxByClientIdThreadsResponse,
+  GetAdminInboxByClientIdThreadsByChatJidMessagesResponse,
+  PostAdminInboxByClientIdThreadsByChatJidSendResponse,
+  GetAdminClientsByClientIdQrResponse,
+  GetAdminClientsByClientIdStatusResponse,
+  PostAdminClientsByClientIdConnectResponse,
+  DeleteAdminClientsByClientIdDisconnectResponse,
+  GetAdminContactsByClientIdResponse,
+  GetAdminGroupsByClientIdResponse,
+  GetAdminBroadcastsResponse,
+  GetAdminBroadcastsByIdResponse,
+  PostAdminBroadcastsResponse,
+  PostAdminUsersApiKeyResponse,
+} from "@/types/generated/types.gen";
 
-const DEFAULT_BASE_URL = process.env.KONTAK_API_URL ?? "http://localhost:8080";
+const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_KONTAK_API_URL ?? "http://localhost:8080";
 
-const getHeaders = async (): Promise<HeadersInit> => {
+const getAuthHeaders = async (): Promise<Record<string, string>> => {
   let session: any;
   if (typeof window !== "undefined") {
     const { getSession } = await import("next-auth/react");
@@ -10,7 +34,7 @@ const getHeaders = async (): Promise<HeadersInit> => {
   } else {
     session = await auth();
   }
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };
   if (session?.access_token) {
@@ -19,13 +43,14 @@ const getHeaders = async (): Promise<HeadersInit> => {
   return headers;
 };
 
+const BASE_URL = DEFAULT_BASE_URL.replace(/\/v1\/?$/, "");
+
 const fetchWithAuth = async (
-  baseURL: string,
   endpoint: string,
   options: RequestInit = {}
 ): Promise<Response> => {
-  const url = `${baseURL}${endpoint}`;
-  const headers = await getHeaders();
+  const url = `${BASE_URL}${endpoint}`;
+  const headers = await getAuthHeaders();
   const response = await fetch(url, { ...options, headers });
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
@@ -33,32 +58,23 @@ const fetchWithAuth = async (
   return response;
 };
 
-// Auth
-// Login and admin endpoints are at root level, not under /v1 which requires an API key
-const BASE_URL = DEFAULT_BASE_URL.replace(/\/v1\/?$/, "");
-
 const login = async (username: string, password: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: username, password }),
+    console.log("[kontak] Login attempt for:", username);
+    const result = await sdk.postLogin({
+      body: { email: username, password },
     });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-
-    return data;
+    console.log("[kontak] Login result:", result);
+    console.log("[kontak] Login result.data:", result?.data);
+    return result?.data;
   } catch (error) {
-    console.error("Login failed:", error);
+    console.error("[kontak] Login failed:", error);
     throw error;
   }
 };
 
-// Admin routes
 const registerUser = async (userData: any) => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/users", {
+  const response = await fetchWithAuth("/admin/users", {
     method: "POST",
     body: JSON.stringify(userData),
   });
@@ -66,140 +82,125 @@ const registerUser = async (userData: any) => {
 };
 
 const generateAPIKey = async () => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    "/admin/users/api-key",
-    {
-      method: "POST",
-    }
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminUsersApiKey({ headers });
+  return result.data as PostAdminUsersApiKeyResponse;
 };
 
 const getAPIKeys = async () => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/users/api-keys");
-  const data = await response.json();
-  console.log("getAPIKeys raw response:", data);
-  return data;
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminUsersApiKeys({ headers });
+  return (result.data as GetAdminUsersApiKeysResponse) ?? [];
 };
 
 const createAPIKey = async (name: string) => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/users/api-keys", {
-    method: "POST",
-    body: JSON.stringify({ name }),
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminUsersApiKeys({
+    body: { name },
+    headers,
   });
-  return response.json();
+  return result.data as PostAdminUsersApiKeysResponse;
 };
 
 const deleteAPIKey = async (id: string) => {
-  console.log("deleteAPIKey called with id:", id, "type:", typeof id);
   if (!id || id === "undefined" || id === "null") {
-    console.error("Invalid ID passed to deleteAPIKey:", id);
     throw new Error("Invalid API key ID");
   }
-  const url = `${BASE_URL}/admin/users/api-keys/${id}`;
-  console.log("DELETE URL:", url);
-  const response = await fetchWithAuth(BASE_URL, `/admin/users/api-keys/${id}`, {
-    method: "DELETE",
+  const headers = await getAuthHeaders();
+  const result = await sdk.deleteAdminUsersApiKeysById({
+    path: { id },
+    headers,
   });
-  console.log("deleteAPIKey response status:", response.status);
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("deleteAPIKey error response:", errorText);
-    const error = JSON.parse(errorText || "{}").catch(() => ({ error: "Failed to delete API key" }));
-    throw new Error(error.error || `Failed to delete API key (${response.status})`);
-  }
-  return response.json();
+  return result.data as DeleteAdminUsersApiKeysByIdResponse;
 };
 
 const registerDevice = async (deviceData: any) => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/clients", {
-    method: "POST",
-    body: JSON.stringify(deviceData),
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminClients({
+    body: deviceData,
+    headers,
   });
-  return response.json();
+  return result.data as PostAdminClientsResponse;
 };
 
 const getDevices = async () => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/clients");
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminClients({ headers });
+  return (result.data as GetAdminClientsResponse) ?? [];
 };
 
 const connectDevice = async (clientId: string) => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    `/admin/clients/${clientId}/connect`,
-    {
-      method: "POST",
-    }
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminClientsByClientIdConnect({
+    path: { client_id: clientId },
+    headers,
+  });
+  return result.data as PostAdminClientsByClientIdConnectResponse;
 };
 
 const disconnectDevice = async (clientId: string) => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    `/admin/clients/${clientId}/disconnect`,
-    {
-      method: "DELETE",
-    }
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.deleteAdminClientsByClientIdDisconnect({
+    path: { client_id: clientId },
+    headers,
+  });
+  return result.data as DeleteAdminClientsByClientIdDisconnectResponse;
 };
 
 const getClientQRC = async (clientId: string) => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    `/admin/clients/${clientId}/qr`
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminClientsByClientIdQr({
+    path: { client_id: clientId },
+    headers,
+  });
+  return result.data as GetAdminClientsByClientIdQrResponse;
 };
 
 const getConnectionStatus = async (clientId: string) => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    `/admin/clients/${clientId}/status`
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminClientsByClientIdStatus({
+    path: { client_id: clientId },
+    headers,
+  });
+  return result.data as GetAdminClientsByClientIdStatusResponse;
 };
 
-// Contacts
 const getContacts = async (clientId: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/contacts/${clientId}`);
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminContactsByClientId({
+    path: { client_id: clientId },
+    headers,
+  });
+  return (result.data as GetAdminContactsByClientIdResponse) ?? [];
 };
 
 const syncContacts = async (clientId: string) => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    `/admin/contacts/${clientId}/sync`,
-    { method: "PUT" }
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.putAdminContactsByClientIdSync({
+    path: { client_id: clientId },
+    headers,
+  });
+  return result.data;
 };
 
-// Groups
 const getGroups = async (clientId: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/groups/${clientId}`);
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminGroupsByClientId({
+    path: { client_id: clientId },
+    headers,
+  });
+  return (result.data as GetAdminGroupsByClientIdResponse) ?? [];
 };
 
 const syncGroups = async (clientId: string) => {
-  const response = await fetchWithAuth(
-    BASE_URL,
-    `/admin/groups/${clientId}/sync`,
-    { method: "PUT" }
-  );
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.putAdminGroupsByClientIdSync({
+    path: { client_id: clientId },
+    headers,
+  });
+  return result.data;
 };
 
-// Message Templates
-// Go serializes []byte as base64. Parse variables from base64 or pass through if already an array.
 function parseVariables(variables: unknown): string[] {
   if (Array.isArray(variables)) return variables;
   if (typeof variables === "string") {
@@ -223,8 +224,9 @@ function normalizeTemplate(t: any) {
 }
 
 const getTemplates = async () => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/templates");
-  const data = await response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminTemplates({ headers });
+  const data = (result.data as GetAdminTemplatesResponse) ?? [];
   return Array.isArray(data) ? data.map(normalizeTemplate) : data;
 };
 
@@ -233,81 +235,115 @@ const createTemplate = async (data: {
   content: string;
   variables: string[];
 }) => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/templates", {
-    method: "POST",
-    body: JSON.stringify(data),
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminTemplates({
+    body: { ...data, variables: data.variables },
+    headers,
   });
-  return normalizeTemplate(await response.json());
+  return normalizeTemplate((result.data as PostAdminTemplatesResponse) ?? {});
 };
 
 const updateTemplate = async (
   id: string,
   data: { name: string; content: string; variables: string[] }
 ) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/templates/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(data),
+  const headers = await getAuthHeaders();
+  const result = await sdk.putAdminTemplatesById({
+    path: { id },
+    body: { ...data, variables: data.variables },
+    headers,
   });
-  return normalizeTemplate(await response.json());
+  return normalizeTemplate((result.data as PutAdminTemplatesByIdResponse) ?? {});
 };
 
 const deleteTemplate = async (id: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/templates/${id}`, {
-    method: "DELETE",
+  const headers = await getAuthHeaders();
+  const result = await sdk.deleteAdminTemplatesById({
+    path: { id },
+    headers,
   });
-  return response.json();
+  return result.data;
 };
 
-// Inbox / Threads
-const getThreads = async (clientId: string, params?: { limit?: number; offset?: number }) => {
-  const searchParams = new URLSearchParams();
-  if (params?.limit) searchParams.set("limit", String(params.limit));
-  if (params?.offset) searchParams.set("offset", String(params.offset));
-  const qs = searchParams.toString();
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads${qs ? `?${qs}` : ""}`);
-  return response.json();
-};
-
-const getThreadMessages = async (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => {
-  const searchParams = new URLSearchParams();
-  if (params?.limit) searchParams.set("limit", String(params.limit));
-  if (params?.offset) searchParams.set("offset", String(params.offset));
-  const qs = searchParams.toString();
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/${encodeURIComponent(chatJid)}/messages${qs ? `?${qs}` : ""}`);
-  return response.json();
-};
-
-const sendInboxMessage = async (clientId: string, chatJid: string, text: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/${encodeURIComponent(chatJid)}/send`, {
-    method: "POST",
-    body: JSON.stringify({ text }),
+const getThreads = async (
+  clientId: string,
+  params?: { limit?: number; offset?: number }
+) => {
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminInboxByClientIdThreads({
+    path: { client_id: clientId },
+    query: params,
+    headers,
   });
-  return response.json();
+  return (result.data as GetAdminInboxByClientIdThreadsResponse) ?? [];
 };
 
-const sendNewInboxMessage = async (clientId: string, to: string, text: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/send`, {
-    method: "POST",
-    body: JSON.stringify({ to, text }),
+const getThreadMessages = async (
+  clientId: string,
+  chatJid: string,
+  params?: { limit?: number; offset?: number }
+) => {
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminInboxByClientIdThreadsByChatJidMessages({
+    path: { client_id: clientId, chat_jid: chatJid },
+    query: params,
+    headers,
   });
-  return response.json();
+  return (
+    (result.data as GetAdminInboxByClientIdThreadsByChatJidMessagesResponse) ?? []
+  );
+};
+
+const sendInboxMessage = async (
+  clientId: string,
+  chatJid: string,
+  text: string
+) => {
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminInboxByClientIdThreadsByChatJidSend({
+    path: { client_id: clientId, chat_jid: chatJid },
+    body: { text },
+    headers,
+  });
+  return result.data as PostAdminInboxByClientIdThreadsByChatJidSendResponse;
+};
+
+const sendNewInboxMessage = async (
+  clientId: string,
+  to: string,
+  text: string
+) => {
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminInboxByClientIdThreadsSend({
+    path: { client_id: clientId },
+    body: { to, text },
+    headers,
+  });
+  return result.data;
 };
 
 const markThreadRead = async (clientId: string, chatJid: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/inbox/${clientId}/threads/${encodeURIComponent(chatJid)}/read`, {
-    method: "POST",
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminInboxByClientIdThreadsByChatJidRead({
+    path: { client_id: clientId, chat_jid: chatJid },
+    headers,
   });
-  return response.json();
+  return result.data;
 };
 
 const getBroadcasts = async () => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/broadcasts");
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminBroadcasts({ headers });
+  return (result.data as GetAdminBroadcastsResponse) ?? [];
 };
 
 const getBroadcastJob = async (id: string) => {
-  const response = await fetchWithAuth(BASE_URL, `/admin/broadcasts/${id}`);
-  return response.json();
+  const headers = await getAuthHeaders();
+  const result = await sdk.getAdminBroadcastsById({
+    path: { id },
+    headers,
+  });
+  return result.data as GetAdminBroadcastsByIdResponse;
 };
 
 const createBroadcast = async (data: {
@@ -318,11 +354,12 @@ const createBroadcast = async (data: {
   cooldown: number;
   recipients: string[];
 }) => {
-  const response = await fetchWithAuth(BASE_URL, "/admin/broadcasts", {
-    method: "POST",
-    body: JSON.stringify(data),
+  const headers = await getAuthHeaders();
+  const result = await sdk.postAdminBroadcasts({
+    body: data,
+    headers,
   });
-  return response.json();
+  return result.data as PostAdminBroadcastsResponse;
 };
 
 const kontakClient = {
@@ -353,11 +390,19 @@ const kontakClient = {
   syncContacts: (clientId: string) => syncContacts(clientId),
   getGroups: (clientId: string) => getGroups(clientId),
   syncGroups: (clientId: string) => syncGroups(clientId),
-  getThreads: (clientId: string, params?: { limit?: number; offset?: number }) => getThreads(clientId, params),
-  getThreadMessages: (clientId: string, chatJid: string, params?: { limit?: number; offset?: number }) => getThreadMessages(clientId, chatJid, params),
-  sendInboxMessage: (clientId: string, chatJid: string, text: string) => sendInboxMessage(clientId, chatJid, text),
-  sendNewInboxMessage: (clientId: string, to: string, text: string) => sendNewInboxMessage(clientId, to, text),
-  markThreadRead: (clientId: string, chatJid: string) => markThreadRead(clientId, chatJid),
+  getThreads: (clientId: string, params?: { limit?: number; offset?: number }) =>
+    getThreads(clientId, params),
+  getThreadMessages: (
+    clientId: string,
+    chatJid: string,
+    params?: { limit?: number; offset?: number }
+  ) => getThreadMessages(clientId, chatJid, params),
+  sendInboxMessage: (clientId: string, chatJid: string, text: string) =>
+    sendInboxMessage(clientId, chatJid, text),
+  sendNewInboxMessage: (clientId: string, to: string, text: string) =>
+    sendNewInboxMessage(clientId, to, text),
+  markThreadRead: (clientId: string, chatJid: string) =>
+    markThreadRead(clientId, chatJid),
   getBroadcasts: () => getBroadcasts(),
   getBroadcastJob: (id: string) => getBroadcastJob(id),
   createBroadcast: (data: any) => createBroadcast(data),

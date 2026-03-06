@@ -32,6 +32,19 @@ type CreateBroadcastRequest struct {
 	ScheduledAt string   `json:"scheduled_at"`
 }
 
+// CreateBroadcast creates a new broadcast job
+// @Summary Create broadcast
+// @Description Create a new broadcast job to send messages to multiple recipients
+// @Tags broadcasts
+// @Accept json
+// @Produce json
+// @Param request body CreateBroadcastRequest true "Broadcast data"
+// @Success 201 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/broadcasts [post]
+// @Security BearerAuth
 func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 	var req CreateBroadcastRequest
 	if err := c.Bind(&req); err != nil {
@@ -97,6 +110,16 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 	return c.JSON(http.StatusCreated, job)
 }
 
+// GetBroadcastJobs returns all broadcast jobs for the authenticated user
+// @Summary List broadcasts
+// @Description Get all broadcast jobs for the authenticated user
+// @Tags broadcasts
+// @Accept json
+// @Produce json
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/broadcasts [get]
+// @Security BearerAuth
 func (h *BroadcastHandler) GetBroadcastJobs(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	logger.Info("GetBroadcastJobs: userID=%d", userID)
@@ -114,6 +137,18 @@ func (h *BroadcastHandler) GetBroadcastJobs(c echo.Context) error {
 	return c.JSON(http.StatusOK, jobs)
 }
 
+// GetBroadcastJob returns a specific broadcast job with its recipients
+// @Summary Get broadcast
+// @Description Get a specific broadcast job with its recipients
+// @Tags broadcasts
+// @Accept json
+// @Produce json
+// @Param id path string true "Broadcast Job ID"
+// @Success 200 {object} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/broadcasts/{id} [get]
+// @Security BearerAuth
 func (h *BroadcastHandler) GetBroadcastJob(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	logger.Info("GetBroadcastJob: userID=%d", userID)

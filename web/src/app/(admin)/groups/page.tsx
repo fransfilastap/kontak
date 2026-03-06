@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { KontakProvider } from "@/app/providers/kontak-providers";
 import { GroupsManagementClient } from "@/app/(admin)/groups/groups-management-client";
 import { kontakClient } from "@/lib/kontak";
+import type { KontakClient } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Groups Management - Kontak",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const devices = await kontakClient.getDevices();
+  const devices = (await kontakClient.getDevices()) as unknown as KontakClient[];
   return (
     <KontakProvider>
       <GroupsManagementClient devices={devices ?? []} />

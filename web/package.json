@@ -58,6 +58,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@hey-api/openapi-ts": "^0.94.0",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^20.19.33",
     "@types/react": "19.2.14",

@@ -1,0 +1,1298 @@
+definitions:
+  pkg_http.APIKeyResponse:
+    properties:
+      api_key:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      is_active:
+        type: boolean
+      key_prefix:
+        type: string
+      last_used_at:
+        type: string
+      name:
+        type: string
+    type: object
+  pkg_http.CreateAPIKeyRequest:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
+  pkg_http.CreateBroadcastRequest:
+    properties:
+      content:
+        type: string
+      cooldown:
+        type: integer
+      device_id:
+        type: string
+      message_type:
+        type: string
+      name:
+        type: string
+      recipients:
+        items:
+          type: string
+        type: array
+      scheduled_at:
+        type: string
+    required:
+    - content
+    - device_id
+    - message_type
+    - name
+    - recipients
+    type: object
+  pkg_http.DeviceConnectionResponse:
+    properties:
+      message:
+        type: string
+      server_error:
+        type: boolean
+    type: object
+  pkg_http.ErrorResponse:
+    properties:
+      context:
+        type: string
+      error:
+        type: string
+    type: object
+  pkg_http.GenerateAPIKeyResponse:
+    properties:
+      api_key:
+        type: string
+    type: object
+  pkg_http.GenericResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  pkg_http.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  pkg_http.LoginResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  pkg_http.MessageTemplateRequest:
+    properties:
+      content:
+        type: string
+      name:
+        type: string
+      variables:
+        items: {}
+        type: array
+    required:
+    - content
+    - name
+    type: object
+  pkg_http.MessageType:
+    enum:
+    - text
+    - image
+    type: string
+    x-enum-varnames:
+    - MessageTypeText
+    - MessageTypeMediaImage
+  pkg_http.RegisterRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  pkg_http.ScheduleMessageRequest:
+    properties:
+      scheduled_at:
+        type: string
+      text:
+        type: string
+      to:
+        type: string
+    required:
+    - scheduled_at
+    - text
+    - to
+    type: object
+  pkg_http.SendInboxMessageRequest:
+    properties:
+      text:
+        type: string
+    required:
+    - text
+    type: object
+  pkg_http.SendMessageRequest:
+    properties:
+      client_id:
+        type: string
+      mobile_number:
+        type: string
+      text:
+        type: string
+      type:
+        $ref: '#/definitions/pkg_http.MessageType'
+    required:
+    - client_id
+    - mobile_number
+    - text
+    - type
+    type: object
+  pkg_http.SendMessageResponse:
+    properties:
+      message_id:
+        type: string
+    type: object
+  pkg_http.SendNewMessageRequest:
+    properties:
+      text:
+        type: string
+      to:
+        type: string
+    required:
+    - text
+    - to
+    type: object
+  pkg_http.SendTemplateMessageRequest:
+    properties:
+      deviceId:
+        type: string
+      templateId:
+        type: string
+      to:
+        type: string
+      variables:
+        additionalProperties: true
+        type: object
+    required:
+    - deviceId
+    - templateId
+    - to
+    type: object
+info:
+  contact: {}
+paths:
+  /admin/broadcasts:
+    get:
+      consumes:
+      - application/json
+      description: Get all broadcast jobs for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List broadcasts
+      tags:
+      - broadcasts
+    post:
+      consumes:
+      - application/json
+      description: Create a new broadcast job to send messages to multiple recipients
+      parameters:
+      - description: Broadcast data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.CreateBroadcastRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create broadcast
+      tags:
+      - broadcasts
+  /admin/broadcasts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get a specific broadcast job with its recipients
+      parameters:
+      - description: Broadcast Job ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get broadcast
+      tags:
+      - broadcasts
+  /admin/clients:
+    get:
+      consumes:
+      - application/json
+      description: Get all devices for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List devices
+      tags:
+      - devices
+    post:
+      consumes:
+      - application/json
+      description: Register a new WhatsApp device
+      parameters:
+      - description: Device data
+        in: body
+        name: request
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Register device
+      tags:
+      - devices
+  /admin/clients/{client_id}/connect:
+    post:
+      consumes:
+      - application/json
+      description: Connect to a WhatsApp device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.DeviceConnectionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.DeviceConnectionResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.DeviceConnectionResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.DeviceConnectionResponse'
+      security:
+      - BearerAuth: []
+      summary: Connect device
+      tags:
+      - devices
+  /admin/clients/{client_id}/disconnect:
+    delete:
+      consumes:
+      - application/json
+      description: Disconnect from a WhatsApp device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.DeviceConnectionResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Disconnect device
+      tags:
+      - devices
+  /admin/clients/{client_id}/qr:
+    get:
+      consumes:
+      - application/json
+      description: Get QR code for device pairing
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get QR code
+      tags:
+      - devices
+  /admin/clients/{client_id}/status:
+    get:
+      consumes:
+      - application/json
+      description: Get the connection status of a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get connection status
+      tags:
+      - devices
+  /admin/contacts/{client_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all contacts for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List contacts
+      tags:
+      - contacts
+  /admin/contacts/{client_id}/sync:
+    put:
+      consumes:
+      - application/json
+      description: Fetch and sync contacts from WhatsApp for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Sync contacts
+      tags:
+      - contacts
+  /admin/groups/{client_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all joined groups for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List groups
+      tags:
+      - groups
+  /admin/groups/{client_id}/sync:
+    put:
+      consumes:
+      - application/json
+      description: Fetch and sync joined groups from WhatsApp for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Sync groups
+      tags:
+      - groups
+  /admin/inbox/{client_id}/schedule:
+    post:
+      consumes:
+      - application/json
+      description: Schedule a message to be sent at a specific time
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Message data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.ScheduleMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Schedule message
+      tags:
+      - inbox
+  /admin/inbox/{client_id}/threads:
+    get:
+      consumes:
+      - application/json
+      description: Get all message threads for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List threads
+      tags:
+      - inbox
+  /admin/inbox/{client_id}/threads/{chat_jid}/media:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Send a media file (image, video, audio, document) to an existing
+        thread
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Chat JID
+        in: path
+        name: chat_jid
+        required: true
+        type: string
+      - description: Media file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Send media message
+      tags:
+      - inbox
+  /admin/inbox/{client_id}/threads/{chat_jid}/messages:
+    get:
+      consumes:
+      - application/json
+      description: Get messages for a specific thread
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Chat JID
+        in: path
+        name: chat_jid
+        required: true
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List thread messages
+      tags:
+      - inbox
+  /admin/inbox/{client_id}/threads/{chat_jid}/read:
+    post:
+      consumes:
+      - application/json
+      description: Mark all messages in a thread as read
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Chat JID
+        in: path
+        name: chat_jid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.GenericResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Mark thread as read
+      tags:
+      - inbox
+  /admin/inbox/{client_id}/threads/{chat_jid}/send:
+    post:
+      consumes:
+      - application/json
+      description: Send a text message to an existing thread
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Chat JID
+        in: path
+        name: chat_jid
+        required: true
+        type: string
+      - description: Message data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.SendInboxMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Send message to thread
+      tags:
+      - inbox
+  /admin/inbox/{client_id}/threads/send:
+    post:
+      consumes:
+      - application/json
+      description: Send a text message to a new recipient (creates thread if needed)
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Message data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.SendNewMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Send new message
+      tags:
+      - inbox
+  /admin/templates:
+    get:
+      consumes:
+      - application/json
+      description: Get all message templates for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List templates
+      tags:
+      - templates
+    post:
+      consumes:
+      - application/json
+      description: Create a new message template
+      parameters:
+      - description: Template data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.MessageTemplateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create template
+      tags:
+      - templates
+  /admin/templates/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a message template
+      parameters:
+      - description: Template ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete template
+      tags:
+      - templates
+    put:
+      consumes:
+      - application/json
+      description: Update an existing message template
+      parameters:
+      - description: Template ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Template data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.MessageTemplateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update template
+      tags:
+      - templates
+  /admin/users:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account
+      parameters:
+      - description: Registration details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Register new user
+      tags:
+      - auth
+  /admin/users/api-key:
+    post:
+      consumes:
+      - application/json
+      description: Generate a new API key for the user (legacy endpoint, prefer /api-keys)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.GenerateAPIKeyResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Generate API key
+      tags:
+      - auth
+  /admin/users/api-keys:
+    get:
+      consumes:
+      - application/json
+      description: Get all API keys for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/pkg_http.APIKeyResponse'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: List API keys
+      tags:
+      - api-keys
+    post:
+      consumes:
+      - application/json
+      description: Create a new API key for the authenticated user
+      parameters:
+      - description: API key name
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.CreateAPIKeyRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/pkg_http.APIKeyResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create API key
+      tags:
+      - api-keys
+  /admin/users/api-keys/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an API key by ID
+      parameters:
+      - description: API Key ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete API key
+      tags:
+      - api-keys
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user and get JWT token
+      parameters:
+      - description: Login credentials
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.LoginResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login user
+      tags:
+      - auth
+  /v1/chats:
+    post:
+      consumes:
+      - application/json
+      description: Send a text message via WhatsApp
+      parameters:
+      - description: Message data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.SendMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.SendMessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Send message
+      tags:
+      - messages
+  /v1/chats/media:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Send a media message via WhatsApp
+      parameters:
+      - description: Client ID
+        in: formData
+        name: client_id
+        required: true
+        type: string
+      - description: Mobile number
+        in: formData
+        name: mobile_number
+        required: true
+        type: string
+      - description: Media file
+        in: formData
+        name: media_url
+        required: true
+        type: file
+      - description: Caption
+        in: formData
+        name: caption
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.GenericResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Send media message
+      tags:
+      - messages
+  /v1/chats/template:
+    post:
+      consumes:
+      - application/json
+      description: Send a message using a template
+      parameters:
+      - description: Template message data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.SendTemplateMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.GenericResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Send template message
+      tags:
+      - messages
+swagger: "2.0"

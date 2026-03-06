@@ -27,15 +27,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         try {
+          console.log("[auth] Authorize called with credentials:", credentials);
           if (!credentials) return null;
           const { username, password } = await loginSchema.parseAsync(
             credentials
           );
+          console.log("[auth] Parsed credentials, username:", username);
           const response = await kontakClient.login(username, password);
+          console.log("[auth] Login response:", response);
+          if (!response?.token) return null;
           return {
             access_token: response.token,
           };
         } catch (error) {
+          console.log("[auth] Authorize error:", error);
           if (error instanceof ZodError) {
             return null;
           }

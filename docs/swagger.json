@@ -1,0 +1,2029 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "contact": {
+      "name": "API Support",
+      "url": "https://github.com/fransfilastap/kontak"
+    },
+    "title": "Kontak API",
+    "version": "1.0",
+    "description": "WhatsApp-to-REST-API bridge",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "paths": {
+    "/admin/broadcasts": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all broadcast jobs for the authenticated user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "broadcasts"
+        ],
+        "summary": "List broadcasts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Create a new broadcast job to send messages to multiple recipients",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "broadcasts"
+        ],
+        "summary": "Create broadcast",
+        "parameters": [
+          {
+            "description": "Broadcast data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.CreateBroadcastRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/broadcasts/{id}": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get a specific broadcast job with its recipients",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "broadcasts"
+        ],
+        "summary": "Get broadcast",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Broadcast Job ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/clients": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all devices for the authenticated user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "devices"
+        ],
+        "summary": "List devices",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Register a new WhatsApp device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "devices"
+        ],
+        "summary": "Register device",
+        "parameters": [
+          {
+            "description": "Device data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/clients/{client_id}/connect": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Connect to a WhatsApp device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "devices"
+        ],
+        "summary": "Connect device",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.DeviceConnectionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.DeviceConnectionResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.DeviceConnectionResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.DeviceConnectionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/clients/{client_id}/disconnect": {
+      "delete": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Disconnect from a WhatsApp device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "devices"
+        ],
+        "summary": "Disconnect device",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.DeviceConnectionResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/clients/{client_id}/qr": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get QR code for device pairing",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "devices"
+        ],
+        "summary": "Get QR code",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/clients/{client_id}/status": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get the connection status of a device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "devices"
+        ],
+        "summary": "Get connection status",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/contacts/{client_id}": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all contacts for a device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contacts"
+        ],
+        "summary": "List contacts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/contacts/{client_id}/sync": {
+      "put": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Fetch and sync contacts from WhatsApp for a device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Sync contacts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/groups/{client_id}": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all joined groups for a device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "groups"
+        ],
+        "summary": "List groups",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/groups/{client_id}/sync": {
+      "put": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Fetch and sync joined groups from WhatsApp for a device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "groups"
+        ],
+        "summary": "Sync groups",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/schedule": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Schedule a message to be sent at a specific time",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "Schedule message",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Message data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ScheduleMessageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/threads": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all message threads for a device",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "List threads",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "Offset",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/threads/send": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Send a text message to a new recipient (creates thread if needed)",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "Send new message",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Message data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.SendNewMessageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/threads/{chat_jid}/media": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Send a media file (image, video, audio, document) to an existing thread",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "Send media message",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Chat JID",
+            "name": "chat_jid",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "file",
+            "description": "Media file",
+            "name": "file",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/threads/{chat_jid}/messages": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get messages for a specific thread",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "List thread messages",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Chat JID",
+            "name": "chat_jid",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "Offset",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/threads/{chat_jid}/read": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Mark all messages in a thread as read",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "Mark thread as read",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Chat JID",
+            "name": "chat_jid",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.GenericResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/inbox/{client_id}/threads/{chat_jid}/send": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Send a text message to an existing thread",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "inbox"
+        ],
+        "summary": "Send message to thread",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Device ID",
+            "name": "client_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Chat JID",
+            "name": "chat_jid",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Message data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.SendInboxMessageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/templates": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all message templates for the authenticated user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "templates"
+        ],
+        "summary": "List templates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Create a new message template",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "templates"
+        ],
+        "summary": "Create template",
+        "parameters": [
+          {
+            "description": "Template data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.MessageTemplateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/templates/{id}": {
+      "put": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Update an existing message template",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "templates"
+        ],
+        "summary": "Update template",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Template ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Template data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.MessageTemplateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Delete a message template",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "templates"
+        ],
+        "summary": "Delete template",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Template ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/users": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Create a new user account",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "summary": "Register new user",
+        "parameters": [
+          {
+            "description": "Registration details",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.RegisterRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/api-key": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Generate a new API key for the user (legacy endpoint, prefer /api-keys)",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "summary": "Generate API key",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.GenerateAPIKeyResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/api-keys": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Get all API keys for the authenticated user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "api-keys"
+        ],
+        "summary": "List API keys",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/pkg_http.APIKeyResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Create a new API key for the authenticated user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "api-keys"
+        ],
+        "summary": "Create API key",
+        "parameters": [
+          {
+            "description": "API key name",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.CreateAPIKeyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.APIKeyResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/api-keys/{id}": {
+      "delete": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "Delete an API key by ID",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "api-keys"
+        ],
+        "summary": "Delete API key",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "API Key ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "Authenticate user and get JWT token",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "summary": "Login user",
+        "parameters": [
+          {
+            "description": "Login credentials",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.LoginResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chats": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Send a text message via WhatsApp",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "messages"
+        ],
+        "summary": "Send message",
+        "parameters": [
+          {
+            "description": "Message data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.SendMessageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.SendMessageResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/chats/media": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Send a media message via WhatsApp",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "messages"
+        ],
+        "summary": "Send media message",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Client ID",
+            "name": "client_id",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Mobile number",
+            "name": "mobile_number",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "file",
+            "description": "Media file",
+            "name": "media_url",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Caption",
+            "name": "caption",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.GenericResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/chats/template": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Send a message using a template",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "messages"
+        ],
+        "summary": "Send template message",
+        "parameters": [
+          {
+            "description": "Template message data",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pkg_http.SendTemplateMessageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.GenericResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/pkg_http.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "pkg_http.APIKeyResponse": {
+      "type": "object",
+      "properties": {
+        "api_key": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "key_prefix": {
+          "type": "string"
+        },
+        "last_used_at": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.CreateAPIKeyRequest": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.CreateBroadcastRequest": {
+      "type": "object",
+      "required": [
+        "content",
+        "device_id",
+        "message_type",
+        "name",
+        "recipients"
+      ],
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "cooldown": {
+          "type": "integer"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "message_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scheduled_at": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.DeviceConnectionResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "server_error": {
+          "type": "boolean"
+        }
+      }
+    },
+    "pkg_http.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.GenerateAPIKeyResponse": {
+      "type": "object",
+      "properties": {
+        "api_key": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.GenericResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.LoginRequest": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.MessageTemplateRequest": {
+      "type": "object",
+      "required": [
+        "content",
+        "name"
+      ],
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "array",
+          "items": {}
+        }
+      }
+    },
+    "pkg_http.MessageType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "image"
+      ],
+      "x-enum-varnames": [
+        "MessageTypeText",
+        "MessageTypeMediaImage"
+      ]
+    },
+    "pkg_http.RegisterRequest": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.ScheduleMessageRequest": {
+      "type": "object",
+      "required": [
+        "scheduled_at",
+        "text",
+        "to"
+      ],
+      "properties": {
+        "scheduled_at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.SendInboxMessageRequest": {
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.SendMessageRequest": {
+      "type": "object",
+      "required": [
+        "client_id",
+        "mobile_number",
+        "text",
+        "type"
+      ],
+      "properties": {
+        "client_id": {
+          "type": "string"
+        },
+        "mobile_number": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/pkg_http.MessageType"
+        }
+      }
+    },
+    "pkg_http.SendMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message_id": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.SendNewMessageRequest": {
+      "type": "object",
+      "required": [
+        "text",
+        "to"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      }
+    },
+    "pkg_http.SendTemplateMessageRequest": {
+      "type": "object",
+      "required": [
+        "deviceId",
+        "templateId",
+        "to"
+      ],
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/"
+}

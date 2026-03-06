@@ -42,7 +42,7 @@ const RegisterDevicePage: React.FC = () => {
   const onSubmit = async (data: DeviceFormValues) => {
     const response = await executeAsync(data);
 
-    if (response?.data.success) {
+    if (response?.data?.success) {
       toast.success("Device registered successfully");
     } else {
       toast.error("Failed to register device");

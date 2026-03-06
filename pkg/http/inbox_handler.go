@@ -58,6 +58,18 @@ type SendNewMessageRequest struct {
 }
 
 // GetThreads returns the list of message threads for a device.
+// @Summary List threads
+// @Description Get all message threads for a device
+// @Tags inbox
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param limit query int false "Limit"
+// @Param offset query int false "Offset"
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/threads [get]
+// @Security BearerAuth
 func (h *InboxHandler) GetThreads(c echo.Context) error {
 	clientID := c.Param("client_id")
 	limit, _ := strconv.ParseInt(c.QueryParam("limit"), 10, 64)
@@ -110,6 +122,19 @@ func (h *InboxHandler) GetThreads(c echo.Context) error {
 }
 
 // GetThreadMessages returns the messages for a specific thread (identified by chat_jid).
+// @Summary List thread messages
+// @Description Get messages for a specific thread
+// @Tags inbox
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param chat_jid path string true "Chat JID"
+// @Param limit query int false "Limit"
+// @Param offset query int false "Offset"
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/threads/{chat_jid}/messages [get]
+// @Security BearerAuth
 func (h *InboxHandler) GetThreadMessages(c echo.Context) error {
 	clientID := c.Param("client_id")
 	chatJID := decodeChatJID(c)
@@ -156,6 +181,19 @@ func (h *InboxHandler) GetThreadMessages(c echo.Context) error {
 }
 
 // SendMessage sends a text message within an existing thread.
+// @Summary Send message to thread
+// @Description Send a text message to an existing thread
+// @Tags inbox
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param chat_jid path string true "Chat JID"
+// @Param request body SendInboxMessageRequest true "Message data"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/threads/{chat_jid}/send [post]
+// @Security BearerAuth
 func (h *InboxHandler) SendMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
 	chatJID := decodeChatJID(c)
@@ -203,6 +241,18 @@ func (h *InboxHandler) SendMessage(c echo.Context) error {
 }
 
 // SendNewMessage sends a text message to a new recipient (creates thread if needed).
+// @Summary Send new message
+// @Description Send a text message to a new recipient (creates thread if needed)
+// @Tags inbox
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param request body SendNewMessageRequest true "Message data"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/threads/send [post]
+// @Security BearerAuth
 func (h *InboxHandler) SendNewMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
 
@@ -249,6 +299,17 @@ func (h *InboxHandler) SendNewMessage(c echo.Context) error {
 }
 
 // MarkRead marks all incoming messages in a thread as read and resets unread count.
+// @Summary Mark thread as read
+// @Description Mark all messages in a thread as read
+// @Tags inbox
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param chat_jid path string true "Chat JID"
+// @Success 200 {object} GenericResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/threads/{chat_jid}/read [post]
+// @Security BearerAuth
 func (h *InboxHandler) MarkRead(c echo.Context) error {
 	clientID := c.Param("client_id")
 	chatJID := decodeChatJID(c)
@@ -271,6 +332,19 @@ func (h *InboxHandler) MarkRead(c echo.Context) error {
 }
 
 // SendMediaMessage sends a media file within an existing thread.
+// @Summary Send media message
+// @Description Send a media file (image, video, audio, document) to an existing thread
+// @Tags inbox
+// @Accept multipart/form-data
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param chat_jid path string true "Chat JID"
+// @Param file formData file true "Media file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/threads/{chat_jid}/media [post]
+// @Security BearerAuth
 func (h *InboxHandler) SendMediaMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
 	chatJID := decodeChatJID(c)
@@ -353,6 +427,18 @@ type ScheduleMessageRequest struct {
 }
 
 // ScheduleMessage creates a delayed singleton broadcast job
+// @Summary Schedule message
+// @Description Schedule a message to be sent at a specific time
+// @Tags inbox
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param request body ScheduleMessageRequest true "Message data"
+// @Success 201 {object} map[string]interface{}
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Router /admin/inbox/{client_id}/schedule [post]
+// @Security BearerAuth
 func (h *InboxHandler) ScheduleMessage(c echo.Context) error {
 	clientID := c.Param("client_id")
 	userID := getUserIDFromContext(c)

@@ -20,6 +20,18 @@ func NewGroupHandler(device *wa.DeviceStore, waClient *wa.WhatsappClient) *Group
 	}
 }
 
+// SyncJoinedGroup syncs joined groups from WhatsApp for a device
+// @Summary Sync groups
+// @Description Fetch and sync joined groups from WhatsApp for a device
+// @Tags groups
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} map[string]string
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/groups/{client_id}/sync [put]
+// @Security BearerAuth
 func (g *GroupHandler) SyncJoinedGroup(c echo.Context) error {
 
 	userID := getUserIDFromContext(c)
@@ -57,6 +69,18 @@ func (g *GroupHandler) SyncJoinedGroup(c echo.Context) error {
 	})
 }
 
+// GetJoinedGroups returns the list of joined groups for a device
+// @Summary List groups
+// @Description Get all joined groups for a device
+// @Tags groups
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {array} map[string]interface{}
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/groups/{client_id} [get]
+// @Security BearerAuth
 func (g *GroupHandler) GetJoinedGroups(c echo.Context) error {
 	userID := getUserIDFromContext(c)
 	clientID := c.Param("client_id")

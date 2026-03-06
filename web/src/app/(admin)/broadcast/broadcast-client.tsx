@@ -228,7 +228,7 @@ export function BroadcastClient({ devices, broadcasts: initialBroadcasts }: { de
     setLoadingDetails(true);
     try {
       const details = await kontakClient.getBroadcastJob(job.id);
-      setJobRecipients(details.recipients || []);
+      setJobRecipients((details.recipients || []) as any);
     } catch (error: any) {
       toast.error(error.message || "Failed to load broadcast details");
     } finally {

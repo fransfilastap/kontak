@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { KontakProvider } from "@/app/providers/kontak-providers";
 import { BroadcastClient } from "@/app/(admin)/broadcast/broadcast-client";
 import { kontakClient } from "@/lib/kontak";
+import type { KontakClient } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Broadcast - Kontak",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const devices = await kontakClient.getDevices();
+  const devices = (await kontakClient.getDevices()) as unknown as KontakClient[];
   const broadcasts = await kontakClient.getBroadcasts();
   
   return (

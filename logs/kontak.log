@@ -5606,3 +5606,491 @@
 {"level":"info","time":"2026-03-06T23:00:26+07:00","message":"DeleteAPIKey: userID=1 keyID=77b8721b-f88c-4453-8e5f-799fe4023bdf"}
 {"level":"info","time":"2026-03-06T23:00:26+07:00","message":"DeleteAPIKey: success for userID=1 keyID=77b8721b-f88c-4453-8e5f-799fe4023bdf"}
 {"level":"info","time":"2026-03-06T23:00:26+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-06T23:08:36+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:08:36+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:08:36+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:08:36+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:08:37+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:08:37+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:08:37+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x14000493860 0x14000493870 0x1400048c7c0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:08:37+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:08:38+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:08:38+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:08:38+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:08:38+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:08:39+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:08:39+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:08:39+07:00","message":"Connecting to Whatsapp &{0x14000120040 0x14000117890 0x140001178a0 0x140001207c0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122740 0x14000122100 0x140001200a0}"}
+{"level":"info","time":"2026-03-06T23:08:39+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:08:39+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:08:40+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:08:55+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:08:55+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:08:55+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:08:55+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:08:56+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:08:56+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:08:56+07:00","message":"Connecting to Whatsapp &{0x14000090060 0x140004822a0 0x140004822b0 0x140004a4040 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x1400049e200 0x14000056140 0x140000900c0}"}
+{"level":"info","time":"2026-03-06T23:08:56+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:08:56+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:08:57+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x140001a5c00 0x140001a5c10 0x140003e8b40 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x140003e2d00 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:09:09+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:09:10+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:09:11+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Connecting to Whatsapp &{0x1400040c040 0x1400003dc30 0x1400003dc40 0x1400033cb40 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000410100 0x1400040c0a0}"}
+{"level":"info","time":"2026-03-06T23:09:28+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:09:29+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:09:30+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:09:46+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:09:46+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:09:46+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:09:46+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:09:47+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:09:47+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:09:47+07:00","message":"Connecting to Whatsapp &{0x14000354b60 0x14000510120 0x14000510130 0x14000522000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x14000528180 0x1400034ebc0 0x14000354bc0}"}
+{"level":"info","time":"2026-03-06T23:09:47+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:09:47+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:09:48+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Connecting to Whatsapp &{0x14000394040 0x1400003d9e0 0x1400003d9f0 0x140003549e0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x1400034eb80 0x14000396100 0x140003940a0}"}
+{"level":"info","time":"2026-03-06T23:09:51+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:09:52+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:09:53+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:10:00+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:10:00+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:10:00+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:10:00+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:10:01+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:10:01+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:10:01+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x14000493860 0x14000493870 0x1400048c7c0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:10:01+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:10:01+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:10:02+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x14000493860 0x14000493870 0x1400048c7c0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490740 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:10:23+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:10:24+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:10:25+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:10:46+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:10:46+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:10:46+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:10:46+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:10:47+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:10:47+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:10:47+07:00","message":"Connecting to Whatsapp &{0x14000120040 0x1400051e120 0x1400051e130 0x14000530000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000536180 0x14000122100 0x140001200a0}"}
+{"level":"info","time":"2026-03-06T23:10:47+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:10:47+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:10:48+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Connecting to Whatsapp &{0x14000124040 0x1400010f790 0x1400010f7a0 0x14000124760 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128700 0x14000128100 0x140001240a0}"}
+{"level":"info","time":"2026-03-06T23:11:03+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:11:04+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:11:05+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Connecting to Whatsapp &{0x14000120040 0x1400040c220 0x1400040c230 0x14000416080 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000420200 0x14000122100 0x140001200a0}"}
+{"level":"info","time":"2026-03-06T23:11:12+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:11:13+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:11:14+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:11:30+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:11:30+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:11:31+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:11:31+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:11:31+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:11:31+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:11:31+07:00","message":"Connecting to Whatsapp &{0x140003a0020 0x1400049e120 0x1400049e130 0x140004b0000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140004b6180 0x140003b0000 0x140003a0080}"}
+{"level":"info","time":"2026-03-06T23:11:31+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:11:32+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:11:33+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x140004925e0 0x140004925f0 0x1400048c440 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:11:52+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:11:53+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:11:54+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Connecting to Whatsapp &{0x14000414040 0x1400058e120 0x1400058e130 0x140005a0000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x14000418100 0x140004140a0}"}
+{"level":"info","time":"2026-03-06T23:12:19+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:12:20+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:12:21+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Connecting to Whatsapp &{0x14000394040 0x14000131d70 0x14000131d80 0x14000372bc0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x1400036cd80 0x14000396100 0x140003940a0}"}
+{"level":"info","time":"2026-03-06T23:12:41+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:12:42+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:12:43+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:13:02+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:13:02+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:13:02+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:13:02+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:13:03+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:13:03+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:13:03+07:00","message":"Connecting to Whatsapp &{0x14000194040 0x1400019b860 0x1400019b870 0x140001947c0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198740 0x14000198100 0x140001940a0}"}
+{"level":"info","time":"2026-03-06T23:13:03+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:13:03+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:13:04+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:13:16+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:13:16+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:13:16+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:13:16+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:13:17+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:13:17+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:13:17+07:00","message":"Connecting to Whatsapp &{0x14000414040 0x1400050a1f0 0x1400050a200 0x1400054e000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x140005161c0 0x14000418100 0x140004140a0}"}
+{"level":"info","time":"2026-03-06T23:13:17+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:13:17+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:13:18+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Connecting to Whatsapp &{0x140000aa040 0x140000a9890 0x140000a98a0 0x140000aa7e0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d46c0 0x140000d4080 0x140000aa0a0}"}
+{"level":"info","time":"2026-03-06T23:13:34+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:13:35+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:13:36+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Connecting to Whatsapp &{0x14000394040 0x1400003dda0 0x1400003ddb0 0x1400033cbc0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000336dc0 0x14000396100 0x140003940a0}"}
+{"level":"info","time":"2026-03-06T23:13:58+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:13:59+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:14:00+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:14:08+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:14:08+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:14:08+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:14:08+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:14:09+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:14:09+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:14:09+07:00","message":"Connecting to Whatsapp &{0x1400040a040 0x140001162e0 0x140001162f0 0x1400012c0a0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x14000128200 0x1400040e100 0x1400040a0a0}"}
+{"level":"info","time":"2026-03-06T23:14:09+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:14:09+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:14:11+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:14:48+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:14:48+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:14:48+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:14:48+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:14:49+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:14:49+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:14:49+07:00","message":"Connecting to Whatsapp &{0x14000394040 0x14000480200 0x14000480210 0x1400049e060 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x1400048c1c0 0x14000396100 0x140003940a0}"}
+{"level":"info","time":"2026-03-06T23:14:49+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:14:49+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:14:50+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:15:03+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:15:03+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Connecting to Whatsapp &{0x140000aa060 0x1400038c1e0 0x1400038c1f0 0x14000398080 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\" accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\" accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\" deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140003a2200 0x140000bc100 0x140000aa0c0}"}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:15:04+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:15:06+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:15:10+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:15:10+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:15:10+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:15:10+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:15:11+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:15:11+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:15:11+07:00","message":"Connecting to Whatsapp &{0x14000090060 0x1400058e120 0x1400058e130 0x140005a0000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x140005a6180 0x14000056140 0x140000900c0}"}
+{"level":"info","time":"2026-03-06T23:15:11+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:15:11+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:15:12+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Connecting to Whatsapp &{0x140000c0040 0x14000503860 0x14000503870 0x140000c0900 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0740 0x140000b0100 0x140000c01e0}"}
+{"level":"info","time":"2026-03-06T23:15:46+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:15:47+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:15:48+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Connecting to Whatsapp &{0x14000090060 0x140005940d0 0x140005940e0 0x1400058e000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x1400059c180 0x14000056140 0x140000900c0}"}
+{"level":"info","time":"2026-03-06T23:15:51+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:15:52+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:15:53+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Connecting to Whatsapp &{0x1400012e020 0x1400003dd30 0x1400003dd40 0x14000354be0 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x1400034ee40 0x14000134080 0x1400012e080}"}
+{"level":"info","time":"2026-03-06T23:16:01+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:16:02+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:16:03+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:16:06+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:16:06+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:16:06+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:16:06+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:16:07+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:16:07+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:16:07+07:00","message":"Connecting to Whatsapp &{0x14000122040 0x1400038a230 0x1400038a240 0x140003a4060 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x140003941c0 0x14000126100 0x140001220a0}"}
+{"level":"info","time":"2026-03-06T23:16:07+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:16:07+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:16:08+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Connecting to Whatsapp &{0x1400039c060 0x1400003dc50 0x1400003dc60 0x14000354b60 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x1400034ed40 0x140003a0100 0x1400039c0c0}"}
+{"level":"info","time":"2026-03-06T23:16:12+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:16:13+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:16:14+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-06T23:16:17+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:16:17+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:16:17+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:16:17+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:16:18+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:16:18+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:16:18+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x1400003c300 0x1400003c310 0x14000090080 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000610100 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:16:18+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:16:18+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:16:19+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-03-06T23:27:33+07:00","message":"Logged incoming image message from 120363144038483540@newsletter in chat 120363144038483540@newsletter"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Connecting to Whatsapp &{0x1400048c040 0x140004925e0 0x140004925f0 0x1400048c440 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490700 0x14000490100 0x1400048c0a0}"}
+{"level":"info","time":"2026-03-06T23:28:43+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-06T23:28:44+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-06T23:28:45+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-03-07T00:04:13+07:00","message":"Failed to set connection status to false: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:05:36+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"info","time":"2026-03-07T00:06:14+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-03-07T00:06:51+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:07:29+07:00","message":"Failed to set connection status to true: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:08:06+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:09:21+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:10:36+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:11:51+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:13:07+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:14:22+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:15:37+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:16:52+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:18:07+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:19:22+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"error","time":"2026-03-07T00:20:37+07:00","message":"Failed to get pending broadcast jobs: failed to connect to `user=kontakuser database=kontak_db`: 10.10.0.62:5432 (10.10.0.62): dial error: timeout: dial tcp 10.10.0.62:5432: connect: operation timed out"}
+{"level":"info","time":"2026-03-07T00:38:41+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:38:41+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:38:59+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:38:59+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:39:11+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:39:11+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:39:18+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T00:39:18+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T00:39:19+07:00","message":"Connecting to Whatsapp &{0x14000100060 0x1400003c320 0x1400003c330 0x14000100200 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x140000564c0 0x14000056140 0x140001000c0}"}
+{"level":"info","time":"2026-03-07T00:39:19+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T00:39:20+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T00:39:24+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Connecting to Whatsapp &{0x14000372b80 0x1400038a250 0x1400038a260 0x14000396080 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400039c200 0x1400036cc80 0x14000372be0}"}
+{"level":"info","time":"2026-03-07T00:40:49+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T00:40:50+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T00:40:51+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-07T00:48:25+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:48:25+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:48:25+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:48:25+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:48:40+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:48:40+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:48:40+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:48:40+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:48:41+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T00:48:41+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T00:48:41+07:00","message":"Connecting to Whatsapp &{0x1400011a1a0 0x140000a9ad0 0x140000a9ae0 0x1400011a920 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc9c0 0x140000fc380 0x1400011a200}"}
+{"level":"info","time":"2026-03-07T00:48:41+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T00:48:42+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T00:48:43+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-07T00:48:49+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:48:49+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Connecting to Whatsapp &{0x14000354b00 0x140003a1170 0x140003a1180 0x14000355220 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034f140 0x1400034eb40 0x14000354b60}"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:48:50+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:48:51+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T00:48:52+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Connecting to Whatsapp &{0x14000090060 0x14000482220 0x14000482230 0x14000496080 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x140004a0200 0x14000056140 0x140000900c0}"}
+{"level":"info","time":"2026-03-07T00:49:08+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T00:49:10+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T00:49:12+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-07T00:49:43+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:49:43+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:49:44+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:49:44+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:49:55+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:49:55+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:49:56+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:49:56+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:54:40+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T00:54:40+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T00:54:40+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T00:54:40+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T00:54:41+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T00:54:41+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T00:54:41+07:00","message":"Connecting to Whatsapp &{0x140000ba040 0x1400003dc50 0x1400003dc60 0x1400033cb60 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x14000336d40 0x140000be100 0x140000ba0a0}"}
+{"level":"info","time":"2026-03-07T00:54:41+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T00:54:41+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T00:54:42+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-03-07T01:00:45+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:00:45+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:00:49+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:00:49+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:00:59+07:00","message":"GetBroadcastJobs: userID=1"}
+{"level":"info","time":"2026-03-07T01:00:59+07:00","message":"GetBroadcastJobs: found 5 jobs"}
+{"level":"info","time":"2026-03-07T01:01:02+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:01:02+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:01:09+07:00","message":"CreateAPIKey: userID=1"}
+{"level":"info","time":"2026-03-07T01:01:09+07:00","message":"CreateAPIKey: success for userID=1 keyID=05f7dac5-eb68-403e-bc21-304d094661f2 name=Dev"}
+{"level":"info","time":"2026-03-07T01:01:09+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:01:29+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:01:29+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:01:35+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:01:35+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:05+07:00","message":"GetBroadcastJobs: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:05+07:00","message":"GetBroadcastJobs: found 5 jobs"}
+{"level":"info","time":"2026-03-07T01:02:11+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:02:11+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:02:17+07:00","message":"GetBroadcastJobs: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:17+07:00","message":"GetBroadcastJobs: found 5 jobs"}
+{"level":"info","time":"2026-03-07T01:02:18+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:18+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:30+07:00","message":"GetBroadcastJobs: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:30+07:00","message":"GetBroadcastJobs: found 5 jobs"}
+{"level":"info","time":"2026-03-07T01:02:31+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:31+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:02:41+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:02:41+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"debug","time":"2026-03-07T01:02:45+07:00","message":"Logged incoming text message from 20963903201307@lid in chat 120363356438819264@g.us"}
+{"level":"info","time":"2026-03-07T01:02:46+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:02:46+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:02:51+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:02:51+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:02:57+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:02:57+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:02+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:03:02+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:07+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:03:07+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:12+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:03:12+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:17+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:03:17+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:22+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:03:22+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:27+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:03:27+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:03:42+07:00","message":"GetBroadcastJobs: userID=1"}
+{"level":"info","time":"2026-03-07T01:03:42+07:00","message":"GetBroadcastJobs: found 5 jobs"}
+{"level":"info","time":"2026-03-07T01:03:43+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"info","time":"2026-03-07T01:03:43+07:00","message":"ListAPIKeys: userID=1"}
+{"level":"debug","time":"2026-03-07T01:04:37+07:00","message":"Logged incoming image message from 20963903201307@lid in chat 120363356438819264@g.us"}
+{"level":"info","time":"2026-03-07T01:04:37+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:04:37+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:04:42+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:04:43+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:04:48+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:04:48+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:06+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:06+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:11+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:11+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:12+07:00","message":"SendMessage: clientID=01JWM92Y82VBADFSAWWT6K55Q8 recipient=120363356438819264@g.us"}
+{"level":"info","time":"2026-03-07T01:05:15+07:00","message":"SendMessage: success to 120363356438819264@g.us, messageID=3EB09CC29683BEFF01868C"}
+{"level":"info","time":"2026-03-07T01:05:16+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:16+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:21+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:21+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:26+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:26+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:31+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:32+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:37+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:37+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:42+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:42+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:47+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:47+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:52+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:52+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:05:57+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:05:57+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:06:02+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
+{"level":"info","time":"2026-03-07T01:06:02+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
