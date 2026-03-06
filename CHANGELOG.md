@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/fransfilastap/kontak/compare/v1.12.0...v1.13.0) (2026-03-06)
+
+
+### Features
+
+* add device event subscription management including database migrations, API endpoints, and UI components. ([efb9cd2](https://github.com/fransfilastap/kontak/commit/efb9cd2905142dc98fbaa3b102c781800fad1b80))
+
 # [1.12.0](https://github.com/fransfilastap/kontak/compare/v1.11.0...v1.12.0) (2026-03-06)
 
 
