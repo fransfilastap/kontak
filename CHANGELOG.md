@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/fransfilastap/kontak/compare/v1.10.0...v1.11.0) (2026-03-06)
+
+
+### Features
+
+* Generate OpenAPI specification from Go handlers and a TypeScript client for the web application. ([b00e68e](https://github.com/fransfilastap/kontak/commit/b00e68e532a608c4d272f2cacd99f9370870c126))
+
 # [1.10.0](https://github.com/fransfilastap/kontak/compare/v1.9.0...v1.10.0) (2026-03-06)
 
 
