@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/fransfilastap/kontak/compare/v1.11.0...v1.12.0) (2026-03-06)
+
+
+### Features
+
+* Refactor navigation to support grouped and nested menus, update API URL environment variable, and adjust scroll area padding. ([39c0165](https://github.com/fransfilastap/kontak/commit/39c0165eb8e1ef0b78bcce1121609df053cb358a))
+
 # [1.11.0](https://github.com/fransfilastap/kontak/compare/v1.10.0...v1.11.0) (2026-03-06)
 
 
