@@ -59,6 +59,7 @@ type Querier interface {
 	UpdateMessageTemplate(ctx context.Context, arg UpdateMessageTemplateParams) (MessageTemplate, error)
 	UpdateQRCode(ctx context.Context, arg UpdateQRCodeParams) (Client, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
+	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error)
 	UpsertThread(ctx context.Context, arg UpsertThreadParams) error
 	UpsertWhatsAppContact(ctx context.Context, arg UpsertWhatsAppContactParams) error
 	UpsertWhatsAppGroup(ctx context.Context, arg UpsertWhatsAppGroupParams) error
