@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/fransfilastap/kontak/compare/v1.9.0...v1.10.0) (2026-03-06)
+
+
+### Features
+
+* Add CLI commands for user management including create, list, update password, and delete operations. ([d3f3694](https://github.com/fransfilastap/kontak/commit/d3f36943ef1ff88a49ed53dc3b278093dcb520c6))
+
 # [1.9.0](https://github.com/fransfilastap/kontak/compare/v1.8.0...v1.9.0) (2026-03-06)
 
 
