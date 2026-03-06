@@ -15,6 +15,11 @@ import (
 func (w *WhatsappClient) SendMessage(clientID string, recipient string, message string) (string, error) {
 	logger.Info("SendMessage: clientID=%s recipient=%s", clientID, recipient)
 
+	client, ok := w.runningClients[clientID]
+	if !ok {
+		return "", fmt.Errorf("client %s not found", clientID)
+	}
+
 	jid, err := getJID(recipient)
 	if err != nil {
 		logger.Error("SendMessage: failed to parse jid for %s: %v", recipient, err)
@@ -23,7 +28,7 @@ func (w *WhatsappClient) SendMessage(clientID string, recipient string, message 
 	msg := &waE2E.Message{
 		Conversation: &message,
 	}
-	resp, err := w.runningClients[clientID].SendMessage(context.Background(), jid, msg)
+	resp, err := client.SendMessage(context.Background(), jid, msg)
 	if err != nil {
 		logger.Error("SendMessage: failed to send to %s: %v", recipient, err)
 		return "", fmt.Errorf("failed to send message: %v", err)
@@ -33,6 +38,11 @@ func (w *WhatsappClient) SendMessage(clientID string, recipient string, message 
 }
 
 func (w *WhatsappClient) SendMediaMessage(clientID string, recipient string, mediaFile []byte, fileName string, contentType string) (string, error) {
+	client, ok := w.runningClients[clientID]
+	if !ok {
+		return "", fmt.Errorf("client %s not found", clientID)
+	}
+
 	jid, err := getJID(recipient)
 	if err != nil {
 		return "", fmt.Errorf("failed to parse jid: %v", err)
@@ -49,7 +59,7 @@ func (w *WhatsappClient) SendMediaMessage(clientID string, recipient string, med
 		mediaType = whatsmeow.MediaDocument
 	}
 
-	resp, err := w.runningClients[clientID].Upload(context.Background(), mediaFile, mediaType)
+	resp, err := client.Upload(context.Background(), mediaFile, mediaType)
 	if err != nil {
 		return "", fmt.Errorf("failed to upload media: %v", err)
 	}
@@ -101,7 +111,7 @@ func (w *WhatsappClient) SendMediaMessage(clientID string, recipient string, med
 		}
 	}
 
-	sendResp, err := w.runningClients[clientID].SendMessage(context.Background(), jid, &msg)
+	sendResp, err := client.SendMessage(context.Background(), jid, &msg)
 	if err != nil {
 		return "", fmt.Errorf("failed to send message: %v", err)
 	}

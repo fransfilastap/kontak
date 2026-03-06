@@ -2,6 +2,7 @@ package wa
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/fransfilastap/kontak/pkg/db"
@@ -36,13 +37,30 @@ func (s *BroadcastService) Start(ctx context.Context) {
 }
 
 func (s *BroadcastService) processPendingJobs(ctx context.Context) {
+	logger.Debug("processPendingJobs: checking at %v", time.Now().UTC())
+
+	start := time.Now()
 	jobs, err := s.db.GetPendingBroadcastJobs(ctx)
+	logger.Debug("GetPendingBroadcastJobs took %v, found %d jobs", time.Since(start), len(jobs))
 	if err != nil {
 		logger.Error("Failed to get pending broadcast jobs: %v", err)
 		return
 	}
 
+	logger.Debug("Found %d pending broadcast jobs at %v", len(jobs), time.Now().UTC())
+
+	// Debug: query all jobs to see what's in DB
+	allJobs, err := s.db.GetBroadcastJobs(context.Background(), pgtype.Int4{Int32: 1, Valid: true})
+	if err == nil {
+		for _, j := range allJobs {
+			logger.Debug("DB job: id=%s name=%s status=%s is_scheduled=%v scheduled_at=%v",
+				j.ID.String(), j.Name, j.Status.String, j.IsScheduled, j.ScheduledAt)
+		}
+	}
+
 	for _, job := range jobs {
+		logger.Debug("Processing pending job: id=%s name=%s is_scheduled=%v scheduled_at=%v status=%s",
+			job.ID.String(), job.Name, job.IsScheduled, job.ScheduledAt, job.Status.String)
 		s.processJob(ctx, job)
 	}
 }
@@ -117,8 +135,16 @@ func (s *BroadcastService) processJob(ctx context.Context, job db.BroadcastJob) 
 }
 
 func (s *BroadcastService) sendBroadcastMessage(job db.BroadcastJob, recipientJid string) error {
+	logger.Debug("sendBroadcastMessage: deviceID=%s recipient=%s", job.DeviceID.String, recipientJid)
+
+	if !job.DeviceID.Valid || job.DeviceID.String == "" {
+		logger.Error("Invalid device ID in broadcast job: %v", job.DeviceID)
+		return fmt.Errorf("invalid device ID")
+	}
+
 	if !s.waClient.IsConnected(job.DeviceID.String) {
-		return context.DeadlineExceeded // Or a more appropriate error
+		logger.Warn("Device not connected: %s", job.DeviceID.String)
+		return fmt.Errorf("device %s is not connected", job.DeviceID.String)
 	}
 
 	waMessageID, err := s.waClient.SendMessage(job.DeviceID.String, recipientJid, job.Content)

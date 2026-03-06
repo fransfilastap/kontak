@@ -456,6 +456,13 @@ func (h *InboxHandler) ScheduleMessage(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Invalid scheduled_at format, must be RFC3339"})
 	}
 
+	logger.Info("ScheduleMessage: received scheduled_at=%s parsed=%v UTC=%v", req.ScheduledAt, t, t.UTC())
+
+	// Convert to UTC for consistent storage
+	t = t.UTC()
+
+	logger.Info("ScheduleMessage: after UTC conversion=%v", t)
+
 	job, err := h.db.CreateBroadcastJob(c.Request().Context(), db.CreateBroadcastJobParams{
 		UserID:      pgtype.Int4{Int32: userID, Valid: true},
 		DeviceID:    pgtype.Text{String: clientID, Valid: true},
@@ -465,6 +472,8 @@ func (h *InboxHandler) ScheduleMessage(c echo.Context) error {
 		IsScheduled: true,
 		ScheduledAt: pgtype.Timestamptz{Time: t, Valid: true},
 	})
+	logger.Info("ScheduledMessage created: id=%s is_scheduled=%v scheduled_at=%s status=%s",
+		job.ID.String(), job.IsScheduled, job.ScheduledAt, job.Status.String)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}

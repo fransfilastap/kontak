@@ -12,6 +12,7 @@ import {
   MegaphoneIcon,
   LifeBuoyIcon,
   SettingsIcon,
+  BookOpenIcon,
   UserPlusIcon,
   ChevronsLeftIcon,
 } from "lucide-react"
@@ -95,19 +96,9 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Help Center",
-      url: "#",
-      icon: LifeBuoyIcon,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: SettingsIcon,
-    },
-    {
-      title: "Invite teams",
-      url: "#",
-      icon: UserPlusIcon,
+      title: "API Docs",
+      url: "/docs",
+      icon: BookOpenIcon,
     },
   ],
 }

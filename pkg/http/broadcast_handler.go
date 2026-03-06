@@ -77,6 +77,8 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 		t, err := time.Parse(time.RFC3339, req.ScheduledAt)
 		if err == nil {
 			isScheduled = true
+			// Convert to UTC for consistent storage
+			t = t.UTC()
 			scheduledAt = pgtype.Timestamptz{Time: t, Valid: true}
 		}
 	}
