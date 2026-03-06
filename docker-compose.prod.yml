@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  api:
+    image: ghcr.io/fransfilastap/kontak-backend:latest
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+      - DB=postgres://user:password@db:5432/dbname
+      - JWT_SECRET=${JWT_SECRET}
+      - INIT_USER=${INIT_USER}
+      - INIT_PASS=${INIT_PASS}
+      - LOG_LEVEL=info
+      - LOG_FILE_ENABLED=true
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    image: ghcr.io/fransfilastap/kontak-web:latest
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=http://api:8080/v1
+      - KONTAK_API_URL=http://api:8080/v1
+      - AUTH_SECRET=${AUTH_SECRET}
+      - AUTH_TRUST_HOST=true
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dbname
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  db_data:

@@ -27,14 +27,17 @@ jobs:
         include:
           - context: .
             dockerfile: Dockerfile
-            image_name: kontak-backend
+            image_name: fransfilastap/kontak-backend
           - context: ./web
             dockerfile: Dockerfile
-            image_name: kontak-web
+            image_name: fransfilastap/kontak-web
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
@@ -51,10 +54,10 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
+            type=semver,pattern=v{{version}}
+            type=semver,pattern=v{{major}}.{{minor}}
+            type=semver,pattern=v{{major}}
+            type=sha,prefix=
             latest
 
       - name: Build and push Docker image
