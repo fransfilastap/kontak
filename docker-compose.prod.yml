@@ -4,16 +4,16 @@ services:
   api:
     image: ghcr.io/fransfilastap/kontak-backend:latest
     environment:
-      - PORT=8080
-      - HOST=0.0.0.0
-      - DB=postgres://user:password@db:5432/dbname
-      - JWT_SECRET=${JWT_SECRET}
-      - INIT_USER=${INIT_USER}
-      - INIT_PASS=${INIT_PASS}
-      - LOG_LEVEL=info
-      - LOG_FILE_ENABLED=true
+      - PORT=${PORT:-8080}
+      - HOST=${HOST:-0.0.0.0}
+      - DB=${DB:-postgres://user:password@db:5432/dbname}
+      - JWT_SECRET=${JWT_SECRET:-your-jwt-secret-change-me}
+      - INIT_USER=${INIT_USER:-admin}
+      - INIT_PASS=${INIT_PASS:-password}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_FILE_ENABLED=${LOG_FILE_ENABLED:-true}
     ports:
-      - "8080:8080"
+      - "${PORT:-8080}:${PORT:-8080}"
     depends_on:
       db:
         condition: service_healthy
@@ -22,26 +22,26 @@ services:
     image: ghcr.io/fransfilastap/kontak-web:latest
     environment:
       - NODE_ENV=production
-      - BACKEND_URL=http://api:8080/v1
-      - KONTAK_API_URL=http://api:8080/v1
-      - AUTH_SECRET=${AUTH_SECRET}
-      - AUTH_TRUST_HOST=true
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - BACKEND_URL=http://api:${PORT:-8080}/v1
+      - KONTAK_API_URL=http://api:${PORT:-8080}/v1
+      - AUTH_SECRET=${AUTH_SECRET:-your-auth-secret-change-me}
+      - AUTH_TRUST_HOST=${AUTH_TRUST_HOST:-true}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:3000}
     ports:
-      - "3000:3000"
+      - "${WEB_PORT:-3000}:3000"
     depends_on:
       - api
 
   db:
     image: postgres:13
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=dbname
+      - POSTGRES_USER=${POSTGRES_USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - POSTGRES_DB=${POSTGRES_DB:-dbname}
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "user"]
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-user}"]
       interval: 30s
       timeout: 10s
       retries: 5
