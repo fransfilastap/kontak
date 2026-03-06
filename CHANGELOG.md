@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/fransfilastap/kontak/compare/v1.7.0...v1.8.0) (2026-03-06)
+
+
+### Features
+
+* Implement production Docker Compose setup, refine Dockerfile environment variable handling, and update CI/CD image tagging and naming. ([f3a6a9a](https://github.com/fransfilastap/kontak/commit/f3a6a9a15759ebdbbd7e424061031308792234ae))
+
 # [1.7.0](https://github.com/fransfilastap/kontak/compare/v1.6.0...v1.7.0) (2026-03-06)
 
 
