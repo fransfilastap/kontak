@@ -2,7 +2,7 @@
 
 import {
   LogOutIcon,
-  MoreVerticalIcon,
+  ChevronsUpDownIcon,
 } from "lucide-react"
 import { signOut } from "next-auth/react"
 
@@ -50,13 +50,13 @@ export function NavUser({
                   {user.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
+              <div className="grid flex-1 text-left text-sm leading-tight ml-1">
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">
                   {user.email}
                 </span>
               </div>
-              <MoreVerticalIcon className="ml-auto size-4" />
+              <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
