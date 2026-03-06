@@ -19,7 +19,11 @@ RUN go build -o main cmd/main.go
 # Start a new stage from scratch
 FROM alpine:latest
 
+RUN apk --no-cache add ca-certificates
+
 WORKDIR /root/
+
+COPY --from=builder /app/main .
 
 ARG PORT=8080
 ARG HOST=localhost
