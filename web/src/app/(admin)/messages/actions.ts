@@ -2,6 +2,7 @@
 
 import { actionClient } from "@/lib/safe-action";
 import { kontakClient } from "@/lib/kontak";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const templateSchema = z.object({
@@ -27,6 +28,7 @@ export const createTemplate = actionClient
         content,
         variables,
       });
+      revalidatePath("/messages");
       return response;
     } catch (error) {
       console.error("Error creating template:", error);

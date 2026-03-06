@@ -11,7 +11,7 @@ export async function GET(
 
   // Find the base URL of the Go backend
   // fallback to localhost:8080 if not defined
-  const apiUrl = process.env.KONTAK_API_URL || "http://localhost:8080/v1";
+  const apiUrl = process.env.KONTAK_API_URL || "http://localhost:8080";
   
   // Replace '/v1' or '/api/v1' if present so we can reach the top level static folder
   const baseUrl = apiUrl.replace(/\/v1\/?$/, "");

@@ -24,7 +24,7 @@ import type {
   PostAdminUsersApiKeyResponse,
 } from "@/types/generated/types.gen";
 
-const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_KONTAK_API_URL ?? "http://localhost:8080";
+const DEFAULT_BASE_URL = process.env.KONTAK_API_URL ?? "http://localhost:8080";
 
 const getAuthHeaders = async (): Promise<Record<string, string>> => {
   let session: any;

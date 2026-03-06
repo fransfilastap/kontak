@@ -29,9 +29,72 @@ import {
   updateTemplate,
 } from "@/app/(admin)/messages/actions";
 import { toast } from "sonner";
-import { FileTextIcon, Loader2Icon, PlusIcon, XIcon } from "lucide-react";
+import {
+  FileTextIcon,
+  Loader2Icon,
+  PlusIcon,
+  XIcon,
+  BoldIcon,
+  ItalicIcon,
+  StrikethroughIcon,
+  CodeIcon,
+  QuoteIcon,
+  EyeIcon,
+  PenLineIcon,
+} from "lucide-react";
 import type { MessageTemplate } from "@/lib/types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { WaMarkdown } from "../inbox/wa-markdown";
+
+function wrapSelection(
+  textarea: HTMLTextAreaElement,
+  prefix: string,
+  suffix: string
+) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = textarea.value;
+  const selected = text.slice(start, end);
+  const replacement = `${prefix}${selected}${suffix}`;
+
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLTextAreaElement.prototype,
+    "value"
+  )?.set;
+  nativeInputValueSetter?.call(
+    textarea,
+    text.slice(0, start) + replacement + text.slice(end)
+  );
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+  textarea.focus();
+  textarea.setSelectionRange(
+    start + prefix.length,
+    start + prefix.length + selected.length
+  );
+}
+
+function prependLines(textarea: HTMLTextAreaElement, prefix: string) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = textarea.value;
+  const selected = text.slice(start, end);
+  const replacement = selected
+    .split("\n")
+    .map((line) => `${prefix}${line}`)
+    .join("\n");
+
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLTextAreaElement.prototype,
+    "value"
+  )?.set;
+  nativeInputValueSetter?.call(
+    textarea,
+    text.slice(0, start) + replacement + text.slice(end)
+  );
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+  textarea.focus();
+}
 
 const templateFormSchema = z.object({
   name: z.string().min(1, "Template name is required"),
@@ -56,6 +119,8 @@ export function CreateTemplateDialog({
   const isEditing = !!template;
   const [variables, setVariables] = useState<string[]>([]);
   const [variableInput, setVariableInput] = useState("");
+  const [showPreview, setShowPreview] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const form = useForm<TemplateFormValues>({
     resolver: zodResolver(templateFormSchema),
@@ -133,12 +198,36 @@ export function CreateTemplateDialog({
     }
   };
 
-  const contentValue = form.watch("content");
-
   const renderPreview = (text: string) => {
     if (!text) return "Your message preview will appear here...";
     return text.replace(/{{(\w+)}}/g, (_, name) => `[${name}]`);
   };
+
+  const handleEditorKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const ta = textareaRef.current;
+    if (!ta) return;
+
+    if (e.ctrlKey || e.metaKey) {
+      if (e.key === "b") {
+        e.preventDefault();
+        wrapSelection(ta, "*", "*");
+      } else if (e.key === "i") {
+        e.preventDefault();
+        wrapSelection(ta, "_", "_");
+      } else if (e.shiftKey && e.key === "x") {
+        e.preventDefault();
+        wrapSelection(ta, "~", "~");
+      }
+    }
+  };
+
+  const toolbarButtons = [
+    { icon: BoldIcon, label: "Bold (Ctrl+B)", action: () => textareaRef.current && wrapSelection(textareaRef.current, "*", "*") },
+    { icon: ItalicIcon, label: "Italic (Ctrl+I)", action: () => textareaRef.current && wrapSelection(textareaRef.current, "_", "_") },
+    { icon: StrikethroughIcon, label: "Strikethrough", action: () => textareaRef.current && wrapSelection(textareaRef.current, "~", "~") },
+    { icon: CodeIcon, label: "Monospace", action: () => textareaRef.current && wrapSelection(textareaRef.current, "```", "```") },
+    { icon: QuoteIcon, label: "Quote", action: () => textareaRef.current && prependLines(textareaRef.current, "> ") },
+  ];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -155,8 +244,10 @@ export function CreateTemplateDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <ScrollArea className="max-h-[70vh] pr-4 -mr-4">
+          <div className="px-1 pb-2">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="name"
@@ -176,13 +267,72 @@ export function CreateTemplateDialog({
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Content</FormLabel>
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Content</FormLabel>
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-0.5">
+                        {toolbarButtons.map((btn) => (
+                          <Button
+                            key={btn.label}
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0"
+                            onClick={btn.action}
+                            title={btn.label}
+                            type="button"
+                          >
+                            <btn.icon className="h-3.5 w-3.5" />
+                          </Button>
+                        ))}
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 gap-1 text-xs px-2"
+                        onClick={() => setShowPreview(!showPreview)}
+                        type="button"
+                      >
+                        {showPreview ? (
+                          <>
+                            <PenLineIcon className="h-3.5 w-3.5" />
+                            Edit
+                          </>
+                        ) : (
+                          <>
+                            <EyeIcon className="h-3.5 w-3.5" />
+                            Preview
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
                   <FormControl>
-                    <Textarea
-                      placeholder="Hello {{name}}, your order #{{order_id}} is confirmed."
-                      className="min-h-[100px] resize-none"
-                      {...field}
-                    />
+                    {showPreview ? (
+                      <div className="rounded-md border p-3 overflow-auto min-h-[120px] max-h-[240px] bg-muted/30">
+                        {field.value ? (
+                          <WaMarkdown content={renderPreview(field.value)} />
+                        ) : (
+                          <p className="text-sm text-muted-foreground italic">
+                            Nothing to preview
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <Textarea
+                        placeholder="Hello {{name}}, your order #{{order_id}} is confirmed."
+                        className="min-h-[120px] max-h-[240px] resize-none font-mono text-sm"
+                        {...field}
+                        ref={(e) => {
+                          field.ref(e);
+                          if (e) textareaRef.current = e;
+                        }}
+                        onKeyDown={(e) => {
+                          handleEditorKeyDown(e);
+                          if (e.defaultPrevented) return;
+                          // react-hook-form doesn't specifically need onKeyDown unless passed, but we handle it safely
+                        }}
+                      />
+                    )}
                   </FormControl>
                   <p className="text-xs text-muted-foreground">
                     {"Use {{variable_name}} to insert dynamic values."}
@@ -234,18 +384,7 @@ export function CreateTemplateDialog({
               )}
             </div>
 
-            {/* Preview */}
-            {contentValue && (
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Preview</label>
-                <div className="rounded-md border bg-muted/30 p-3">
-                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                    {renderPreview(contentValue)}
-                  </p>
-                </div>
-              </div>
-            )}
-
+            {/* Removed standalone preview, integrated into the Content block */}
             <DialogFooter className="pt-2">
               <Button
                 type="button"
@@ -267,8 +406,10 @@ export function CreateTemplateDialog({
                 )}
               </Button>
             </DialogFooter>
-          </form>
-        </Form>
+              </form>
+            </Form>
+          </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
