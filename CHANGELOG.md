@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/fransfilastap/kontak/compare/v1.6.0...v1.7.0) (2026-03-06)
+
+
+### Features
+
+* Implement broadcast messaging with dedicated UI, API, database schema, and media handling. ([a106f3d](https://github.com/fransfilastap/kontak/commit/a106f3d44289d318112766e427a69dd3882c325c))
+* Implement message scheduling for broadcast jobs with new UI and API endpoints. ([e2b0a96](https://github.com/fransfilastap/kontak/commit/e2b0a96efb2406d1a593ee78db90991cb16fd5f0))
+
 # [1.6.0](https://github.com/fransfilastap/kontak/compare/v1.5.0...v1.6.0) (2026-02-19)
 
 
