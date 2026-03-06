@@ -6094,3 +6094,13 @@
 {"level":"info","time":"2026-03-07T01:05:57+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
 {"level":"info","time":"2026-03-07T01:06:02+07:00","message":"GetThreads: clientID=01JWM92Y82VBADFSAWWT6K55Q8 userID=1"}
 {"level":"info","time":"2026-03-07T01:06:02+07:00","message":"Device found: id=01JWM92Y82VBADFSAWWT6K55Q8 user_id={1 true}"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Connecting to Whatsapp 62859106509617:57@s.whatsapp.net"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Starting client 01JWM92Y82VBADFSAWWT6K55Q8"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Connecting to Whatsapp &{0x14000314040 0x14000426230 0x14000426240 0x14000420000 2958391939 [186 175 43 213 91 71 174 139 143 242 243 231 96 132 138 49 247 121 192 47 72 134 216 10 0 78 143 87 80 28 128 87] 62859106509617:57@s.whatsapp.net 226087229460526:57@lid details:\"\\x08\\x85숬\\x04\\x10\\xfd\\xa7\\xee\\xc1\\x06\\x182 \\x00(\\x00\"  accountSignatureKey:\"\\x9f\\xb541F\\xee\\xb3٫\\xafv͆#\\xd6\\xfaL\\x94\\xf0\\x1f\\x9fD\\x93E\\xba\\x98\\x8a\\x93j\\x0e\\x06d\"  accountSignature:\"\\xe2\\xe1\\x0eV;\\xaf\\xa4\\x05[\\xe9@\\xd8~\\\\\\xbaʁ\\xba\\xfa\\xdbY\\xb6c(]-X\\x142\\xa0鮫8\\xdb<P\\x00\\\" \\x9d3\\x1bX\\xa5\\x91\\x1fq-\\xb9\\x1d\\xadV\\x0eD^薛\\x90\\xb1H\\xba\\t\"  deviceSignature:\"s꫻<\\xb3\\xd7\\xd7\\\\\\x86\\xee\\x8c\\xc8\\x01\\x86\\xe4:7\\x96л\\xe3\\xdeՖ\\x97\\x0f\\x8c\\xbcr\\xfa\\x8bn\\x97\\xe2~53\\xdbP\\xcf\\xd7v~m&\\x0c\\x08\\xba#\\xa9\\x87\\xa0d{\\xe8\\xe4Z\\x0cu\\x95Q\\x88\\x07\" smba FFP. FFP. 0 00000000-0000-0000-0000-000000000000 true 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x1400043e300 0x14000316100 0x140003140a0}"}
+{"level":"info","time":"2026-03-07T01:21:26+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-03-07T01:21:27+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-03-07T01:21:28+07:00","message":"Marked self as available"}

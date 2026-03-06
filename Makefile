@@ -9,7 +9,7 @@ swagger:
 # Generate TypeScript client from OpenAPI spec using hey-api
 generate-client:
 	rm -rf web/src/types/generated tmp/gen
-	npx @hey-api/openapi-ts -f openapi-ts.config.ts
+	npx @hey-api/openapi-ts -f web/openapi-ts.config.ts
 
 # Extract only API client and models from generated output
 extract-client:
