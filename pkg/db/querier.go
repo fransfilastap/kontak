@@ -14,18 +14,23 @@ type Querier interface {
 	CreateAPIKey(ctx context.Context, arg CreateAPIKeyParams) (ApiKey, error)
 	CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJobParams) (BroadcastJob, error)
 	CreateBroadcastRecipient(ctx context.Context, arg CreateBroadcastRecipientParams) error
+	// filename: subscriptions.sql
+	CreateDeviceSubscription(ctx context.Context, arg CreateDeviceSubscriptionParams) (DeviceSubscription, error)
 	// filename: queries/clients/create_new_client.sql
 	CreateNewClient(ctx context.Context, arg CreateNewClientParams) (Client, error)
 	CreateNewMessageTemplate(ctx context.Context, arg CreateNewMessageTemplateParams) (MessageTemplate, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeleteAPIKey(ctx context.Context, id pgtype.UUID) error
+	DeleteAllDeviceSubscriptions(ctx context.Context, deviceID string) error
 	DeleteClient(ctx context.Context, id string) error
+	DeleteDeviceSubscription(ctx context.Context, arg DeleteDeviceSubscriptionParams) (DeviceSubscription, error)
 	DeleteMessageTemplate(ctx context.Context, arg DeleteMessageTemplateParams) error
 	DeleteUser(ctx context.Context, id int32) error
 	GetAPIKeyByID(ctx context.Context, id pgtype.UUID) (ApiKey, error)
 	GetAPIKeyByPrefix(ctx context.Context, keyPrefix string) (ApiKey, error)
 	GetAPIKeyUsageLogs(ctx context.Context, arg GetAPIKeyUsageLogsParams) ([]ApiKeyLog, error)
 	GetAPIKeysByUserID(ctx context.Context, userID int32) ([]ApiKey, error)
+	GetAllDeviceSubscriptions(ctx context.Context) ([]DeviceSubscription, error)
 	GetBroadcastJob(ctx context.Context, arg GetBroadcastJobParams) (BroadcastJob, error)
 	GetBroadcastJobs(ctx context.Context, userID pgtype.Int4) ([]BroadcastJob, error)
 	GetBroadcastRecipients(ctx context.Context, jobID pgtype.UUID) ([]BroadcastRecipient, error)
@@ -38,6 +43,8 @@ type Querier interface {
 	GetConversations(ctx context.Context, arg GetConversationsParams) ([]GetConversationsRow, error)
 	GetDeviceContacts(ctx context.Context, deviceID pgtype.Text) ([]WhatsappContact, error)
 	GetDeviceGroups(ctx context.Context, deviceID pgtype.Text) ([]WhatsappGroup, error)
+	GetDeviceSubscription(ctx context.Context, arg GetDeviceSubscriptionParams) (DeviceSubscription, error)
+	GetDeviceSubscriptions(ctx context.Context, deviceID string) ([]DeviceSubscription, error)
 	GetMessageHistory(ctx context.Context, arg GetMessageHistoryParams) ([]MessageLog, error)
 	GetMessageTemplateByID(ctx context.Context, id pgtype.UUID) (MessageTemplate, error)
 	GetPendingBroadcastJobs(ctx context.Context) ([]BroadcastJob, error)
@@ -63,11 +70,13 @@ type Querier interface {
 	UpdateAPIKeyLastUsed(ctx context.Context, id pgtype.UUID) error
 	UpdateBroadcastJobStatus(ctx context.Context, arg UpdateBroadcastJobStatusParams) error
 	UpdateBroadcastRecipientStatus(ctx context.Context, arg UpdateBroadcastRecipientStatusParams) error
+	UpdateDeviceSubscription(ctx context.Context, arg UpdateDeviceSubscriptionParams) (DeviceSubscription, error)
 	UpdateMessageStatus(ctx context.Context, arg UpdateMessageStatusParams) error
 	UpdateMessageTemplate(ctx context.Context, arg UpdateMessageTemplateParams) (MessageTemplate, error)
 	UpdateQRCode(ctx context.Context, arg UpdateQRCodeParams) (Client, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
 	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error)
+	UpsertDeviceSubscriptions(ctx context.Context, arg UpsertDeviceSubscriptionsParams) error
 	UpsertThread(ctx context.Context, arg UpsertThreadParams) error
 	UpsertWhatsAppContact(ctx context.Context, arg UpsertWhatsAppContactParams) error
 	UpsertWhatsAppGroup(ctx context.Context, arg UpsertWhatsAppGroupParams) error

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,6 +14,7 @@ import {
     UnlinkIcon,
     WifiIcon,
     WifiOffIcon,
+    BellIcon,
 } from "lucide-react";
 import {
     DropdownMenu,
@@ -23,6 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useKontak } from "@/app/providers/kontak-providers";
 import useSWR from "swr";
+import { SubscriptionsDialog } from "@/app/(admin)/clients/subscriptions-dialog";
 
 interface DeviceCardProps {
     device: KontakClient;
@@ -32,6 +35,7 @@ interface DeviceCardProps {
 export function DeviceCard({ device, onPairDevice }: DeviceCardProps) {
     const { connectDevice, disconnectDevice, isConnecting, isDisconnecting } =
         useKontak();
+    const [showSubscriptions, setShowSubscriptions] = useState(false);
 
     const { data: statusData } = useSWR<ConnectionStatusResponse>(
         `/api/kontak/status?clientId=${device.id}`,
@@ -84,6 +88,10 @@ export function DeviceCard({ device, onPairDevice }: DeviceCardProps) {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
+                            <DropdownMenuItem onClick={() => setShowSubscriptions(true)}>
+                                <BellIcon className="h-4 w-4 mr-2" />
+                                Subscriptions
+                            </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => onPairDevice(device)}>
                                 <QrCodeIcon className="h-4 w-4 mr-2" />
                                 QR Pairing
@@ -147,6 +155,13 @@ export function DeviceCard({ device, onPairDevice }: DeviceCardProps) {
                     )}
                 </div>
             </CardContent>
+
+            <SubscriptionsDialog
+                open={showSubscriptions}
+                onOpenChange={setShowSubscriptions}
+                clientId={device.id}
+                deviceName={device.name}
+            />
         </Card>
     );
 }

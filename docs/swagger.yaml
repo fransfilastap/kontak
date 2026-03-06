@@ -185,6 +185,13 @@ definitions:
     - templateId
     - to
     type: object
+  pkg_http.SubscriptionRequest:
+    properties:
+      subscriptions:
+        additionalProperties:
+          type: boolean
+        type: object
+    type: object
 info:
   contact: {}
 paths:
@@ -467,6 +474,79 @@ paths:
       security:
       - BearerAuth: []
       summary: Get connection status
+      tags:
+      - devices
+  /admin/clients/{client_id}/subscriptions:
+    get:
+      consumes:
+      - application/json
+      description: Get event subscriptions for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get device subscriptions
+      tags:
+      - devices
+    put:
+      consumes:
+      - application/json
+      description: Update event subscriptions for a device
+      parameters:
+      - description: Device ID
+        in: path
+        name: client_id
+        required: true
+        type: string
+      - description: Subscriptions data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/pkg_http.SubscriptionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_http.GenericResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_http.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update device subscriptions
       tags:
       - devices
   /admin/contacts/{client_id}:

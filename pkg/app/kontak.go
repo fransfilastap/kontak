@@ -78,7 +78,12 @@ func NewKontak(config *config.Config) *Kontak {
 
 	ctx := context.Background()
 
-	waClient := wa.NewWhatsappClient(ctx, config.DB, dbQueries, qrChan)
+	subscriptionStore := wa.NewSubscriptionStore(dbQueries)
+	if err := subscriptionStore.Load(ctx); err != nil {
+		logger.Fatal("Could not load device subscriptions: %v", err)
+	}
+
+	waClient := wa.NewWhatsappClient(ctx, config.DB, dbQueries, qrChan, subscriptionStore)
 	// Use the same store implementation for device management
 	store, err := wa.NewPostgresStore(ctx, config.DB, dbQueries, nil)
 	if err != nil {
@@ -86,7 +91,7 @@ func NewKontak(config *config.Config) *Kontak {
 	}
 	deviceManagement := wa.NewDeviceStore(store)
 
-	webhookHandler := http.NewWebhook(waClient, deviceManagement, dbQueries)
+	webhookHandler := http.NewWebhook(waClient, deviceManagement, dbQueries, subscriptionStore)
 	authHandler := http.NewAuthHandler(dbQueries, config)
 	groupHandler := http.NewGroupHandler(deviceManagement, waClient)
 	contactHandler := http.NewContactHandler(deviceManagement, waClient)
@@ -94,7 +99,7 @@ func NewKontak(config *config.Config) *Kontak {
 	broadcastHandler := http.NewBroadcastHandler(dbQueries, deviceManagement)
 	broadcastService := wa.NewBroadcastService(dbQueries, waClient)
 
-	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, dbQueries)
+	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, dbQueries, subscriptionStore)
 
 	return &Kontak{
 		HttpServer: httpServer,

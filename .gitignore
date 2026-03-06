@@ -21,3 +21,5 @@ uploads/**
 # Binaries
 /main
 /cli-tui
+
+**/*.log

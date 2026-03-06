@@ -67,6 +67,15 @@ type Client struct {
 	UserID         pgtype.Int4        `json:"user_id"`
 }
 
+type DeviceSubscription struct {
+	ID        pgtype.UUID        `json:"id"`
+	DeviceID  string             `json:"device_id"`
+	EventType string             `json:"event_type"`
+	Enabled   pgtype.Bool        `json:"enabled"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+}
+
 type MessageLog struct {
 	ID            pgtype.UUID        `json:"id"`
 	DeviceID      pgtype.Text        `json:"device_id"`

@@ -10,6 +10,7 @@ import (
 	"github.com/go-playground/validator/v10"
 
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/wa"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"golang.org/x/time/rate"
@@ -26,15 +27,16 @@ type Server struct {
 	inboxHandler           *InboxHandler
 	broadcastHandler       *BroadcastHandler
 	db                     db.Querier
+	subscriptionStore      *wa.SubscriptionStore
 }
 
 // NewServer initializes a new Server instance.
-func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier) *Server {
+func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier, subscriptionStore *wa.SubscriptionStore) *Server {
 	messageTemplateHandler := NewMessageTemplateHandler(db)
 	return &Server{
 		httpServer: &http.Server{
 			Addr:    addr,
-			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, db),
+			Handler: createEchoServer(webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, db, subscriptionStore),
 		},
 		webhookHandler:         webhook,
 		authHandler:            authHandler,
@@ -44,11 +46,12 @@ func NewServer(addr string, webhook *DeviceHandler, authHandler *AuthHandler, gr
 		inboxHandler:           inboxHandler,
 		broadcastHandler:       broadcastHandler,
 		db:                     db,
+		subscriptionStore:      subscriptionStore,
 	}
 }
 
 // createEchoServer sets up the Echo server with middleware.
-func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier) *echo.Echo {
+func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier, subscriptionStore *wa.SubscriptionStore) *echo.Echo {
 	e := echo.New()
 
 	e.Validator = &CustomValidator{validator: validator.New()}
@@ -65,7 +68,7 @@ func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageT
 	e.Static("/api/media", "uploads")
 
 	// Separate function for routes configuration
-	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, db)
+	registerRoutes(e, webhook, authHandler, messageTemplateHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, db, subscriptionStore)
 
 	return e
 }
@@ -75,7 +78,7 @@ func createEchoServer(webhook *DeviceHandler, authHandler *AuthHandler, messageT
 // - GET /client/qr: Handles requests to retrieve a QR code using the SendQrHandler method of the ConnectionHandler.
 // - GET /: Handles requests to the root path using the Index method of the ConnectionHandler.
 // - POST /http: Handles http events using the SendMessage method of the DeviceHandler.
-func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier) {
+func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandler, messageTemplateHandler *MessageTemplateHandler, groupHandler *GroupHandler, contactHandler *ContactHandler, inboxHandler *InboxHandler, broadcastHandler *BroadcastHandler, db db.Querier, subscriptionStore *wa.SubscriptionStore) {
 
 	e.POST("/login", authHandler.Login)
 
@@ -97,6 +100,10 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 	admin.DELETE("/clients/:client_id/disconnect", webhook.DisconnectDevice, JwtUserIDMiddleware())
 	admin.GET("/clients/:client_id/qr", webhook.GetDeviceQR, JwtUserIDMiddleware())
 	admin.GET("/clients/:client_id/status", webhook.ConnectionStatus, JwtUserIDMiddleware())
+
+	// Admin Device Subscriptions (JWT-protected)
+	admin.GET("/clients/:client_id/subscriptions", webhook.GetDeviceSubscriptions, JwtUserIDMiddleware())
+	admin.PUT("/clients/:client_id/subscriptions", webhook.UpdateDeviceSubscriptions, JwtUserIDMiddleware())
 
 	// Admin Message Templates (JWT-protected)
 	admin.GET("/templates", messageTemplateHandler.GetUserTemplates, JwtUserIDMiddleware())

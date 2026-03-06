@@ -13,14 +13,15 @@ import (
 // WhatsappClient handles the WhatsApp client operations including sending and receiving messages, connecting, and disconnecting.
 // It uses the whatsmeow library to interact with the WhatsApp service and a Store interface for database operations.
 type WhatsappClient struct {
-	store          Store                             // Store interface for database and device operations
-	db             db.Querier                        // Database queries for message logging
-	qr             chan<- kontaktypes.WaConnectEvent // Channel to send WhatsApp connection events such as QR codes
-	runningClients map[string]*whatsmeow.Client
+	store             Store                             // Store interface for database and device operations
+	db                db.Querier                        // Database queries for message logging
+	qr                chan<- kontaktypes.WaConnectEvent // Channel to send WhatsApp connection events such as QR codes
+	subscriptionStore *SubscriptionStore
+	runningClients    map[string]*whatsmeow.Client
 }
 
 // NewWhatsappClient creates a new instance of WhatsappClient.
-func NewWhatsappClient(ctx context.Context, database string, dbQueries db.Querier, qr chan<- kontaktypes.WaConnectEvent) *WhatsappClient {
+func NewWhatsappClient(ctx context.Context, database string, dbQueries db.Querier, qr chan<- kontaktypes.WaConnectEvent, subscriptionStore *SubscriptionStore) *WhatsappClient {
 	dbLog := waLog.Stdout("Database", "DEBUG", true)
 	pgStore, err := NewPostgresStore(ctx, database, dbQueries, dbLog)
 	if err != nil {
@@ -28,10 +29,11 @@ func NewWhatsappClient(ctx context.Context, database string, dbQueries db.Querie
 	}
 
 	client := &WhatsappClient{
-		store:          pgStore,
-		db:             dbQueries,
-		qr:             qr,
-		runningClients: make(map[string]*whatsmeow.Client),
+		store:             pgStore,
+		db:                dbQueries,
+		qr:                qr,
+		subscriptionStore: subscriptionStore,
+		runningClients:    make(map[string]*whatsmeow.Client),
 	}
 
 	return client
@@ -58,7 +60,7 @@ func (w *WhatsappClient) Start(ctx context.Context, client db.Client) {
 
 	clientLog := waLog.Stdout("Client", "DEBUG", true)
 	waClient := whatsmeow.NewClient(deviceStore, clientLog)
-	eventHandler := BuildEventHandler(client.ID, w, w.store, w.db)
+	eventHandler := BuildEventHandler(client.ID, w, w.store, w.db, w.subscriptionStore)
 	waClient.AddEventHandler(eventHandler.handle)
 
 	logger.Info("Connecting to Whatsapp %v", deviceStore)

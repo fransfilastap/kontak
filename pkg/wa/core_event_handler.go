@@ -17,22 +17,29 @@ import (
 )
 
 type EventHandler struct {
-	client   *WhatsappClient
-	store    Store
-	db       db.Querier
-	clientID string
+	client            *WhatsappClient
+	store             Store
+	db                db.Querier
+	clientID          string
+	subscriptionStore *SubscriptionStore
 }
 
-func BuildEventHandler(clientID string, client *WhatsappClient, store Store, dbQuerier db.Querier) *EventHandler {
+func BuildEventHandler(clientID string, client *WhatsappClient, store Store, dbQuerier db.Querier, subscriptionStore *SubscriptionStore) *EventHandler {
 	return &EventHandler{
-		clientID: clientID,
-		client:   client,
-		store:    store,
-		db:       dbQuerier,
+		clientID:          clientID,
+		client:            client,
+		store:             store,
+		db:                dbQuerier,
+		subscriptionStore: subscriptionStore,
 	}
 }
 
 func (w *EventHandler) handle(rawEvt interface{}) {
+	eventType := w.getEventType(rawEvt)
+	if eventType != "" && !w.subscriptionStore.IsEnabled(w.clientID, eventType) {
+		return
+	}
+
 	switch evt := rawEvt.(type) {
 	case *events.AppStateSyncComplete:
 		w.handleAppStateSyncComplete(evt)
@@ -40,19 +47,77 @@ func (w *EventHandler) handle(rawEvt interface{}) {
 		w.handleConnection(evt)
 	case *events.PairSuccess:
 		w.handlePairSuccess(evt)
+	case *events.PairError:
+		logger.Info("PairError: %v", evt)
+	case *events.QRScannedWithoutMultidevice:
+		logger.Info("QR scanned without multidevice")
 	case *events.StreamReplaced:
 		logger.Info("Received StreamReplaced event")
 		return
+	case *events.ManualLoginReconnect:
+		logger.Info("ManualLoginReconnect")
+	case *events.TemporaryBan:
+		logger.Info("TemporaryBan: %v", evt)
+	case *events.ConnectFailure:
+		logger.Info("ConnectFailure: %v", evt)
+	case *events.ClientOutdated:
+		logger.Info("ClientOutdated")
+	case *events.CATRefreshError:
+		logger.Info("CATRefreshError: %v", evt)
+	case *events.StreamError:
+		logger.Info("StreamError: %v", evt)
 	case *events.AppState:
 		logger.Debug("AppState: %v", evt)
+	case *events.KeepAliveTimeout:
+		logger.Debug("KeepAliveTimeout: %v", evt)
+	case *events.KeepAliveRestored:
+		logger.Debug("KeepAliveRestored")
 	case *events.LoggedOut:
 		w.handleLoggedOut(evt)
 	case *events.Disconnected:
 		w.setConnectionStatus(false)
 	case *events.Message:
 		w.handleIncomingMessage(evt)
+	case *events.FBMessage:
+		logger.Debug("FBMessage: %v", evt)
 	case *events.Receipt:
 		w.handleReceipt(evt)
+	case *events.ChatPresence:
+		w.handleChatPresence(evt)
+	case *events.Presence:
+		w.handlePresence(evt)
+	case *events.JoinedGroup:
+		w.handleJoinedGroup(evt)
+	case *events.GroupInfo:
+		w.handleGroupInfo(evt)
+	case *events.Picture:
+		w.handlePicture(evt)
+	case *events.UserAbout:
+		w.handleUserAbout(evt)
+	case *events.IdentityChange:
+		w.handleIdentityChange(evt)
+	case *events.HistorySync:
+		logger.Info("HistorySync: %v", evt)
+	case *events.UndecryptableMessage:
+		logger.Debug("UndecryptableMessage: %v", evt)
+	case *events.MediaRetry:
+		logger.Debug("MediaRetry: %v", evt)
+	case *events.OfflineSyncPreview:
+		logger.Debug("OfflineSyncPreview: %v", evt)
+	case *events.OfflineSyncCompleted:
+		logger.Debug("OfflineSyncCompleted: %v", evt)
+	case *events.Blocklist:
+		logger.Debug("Blocklist: %v", evt)
+	case *events.PrivacySettings:
+		logger.Debug("PrivacySettings: %v", evt)
+	case *events.NewsletterJoin:
+		logger.Debug("NewsletterJoin: %v", evt)
+	case *events.NewsletterLeave:
+		logger.Debug("NewsletterLeave: %v", evt)
+	case *events.NewsletterLiveUpdate:
+		logger.Debug("NewsletterLiveUpdate: %v", evt)
+	default:
+		logger.Debug("Unknown event type: %T", rawEvt)
 	}
 }
 
@@ -264,4 +329,117 @@ func (w *EventHandler) setClientJID(jid string) {
 	if err != nil {
 		logger.Error("Failed to set client jid: %v", err)
 	}
+}
+
+func (w *EventHandler) getEventType(rawEvt interface{}) string {
+	switch rawEvt.(type) {
+	case *events.AppStateSyncComplete:
+		return "app_state_sync_complete"
+	case *events.Connected:
+		return "connected"
+	case *events.PushNameSetting:
+		return "push_name_setting"
+	case *events.PairSuccess:
+		return "pair_success"
+	case *events.PairError:
+		return "pair_error"
+	case *events.QRScannedWithoutMultidevice:
+		return "qr_scanned_without_multidevice"
+	case *events.StreamReplaced:
+		return "stream_replaced"
+	case *events.ManualLoginReconnect:
+		return "manual_login_reconnect"
+	case *events.TemporaryBan:
+		return "temp_ban"
+	case *events.ConnectFailure:
+		return "connect_failure"
+	case *events.ClientOutdated:
+		return "client_outdated"
+	case *events.CATRefreshError:
+		return "cat_refresh_error"
+	case *events.StreamError:
+		return "stream_error"
+	case *events.AppState:
+		return "app_state"
+	case *events.KeepAliveTimeout:
+		return "keep_alive_timeout"
+	case *events.KeepAliveRestored:
+		return "keep_alive_restored"
+	case *events.LoggedOut:
+		return "logged_out"
+	case *events.Disconnected:
+		return "disconnected"
+	case *events.Message:
+		return "message"
+	case *events.FBMessage:
+		return "fb_message"
+	case *events.Receipt:
+		return "receipt"
+	case *events.ChatPresence:
+		return "chat_presence"
+	case *events.Presence:
+		return "presence"
+	case *events.JoinedGroup:
+		return "joined_group"
+	case *events.GroupInfo:
+		return "group_info"
+	case *events.Picture:
+		return "picture"
+	case *events.UserAbout:
+		return "user_about"
+	case *events.IdentityChange:
+		return "identity_change"
+	case *events.HistorySync:
+		return "history_sync"
+	case *events.UndecryptableMessage:
+		return "undecryptable_message"
+	case *events.MediaRetry:
+		return "media_retry"
+	case *events.OfflineSyncPreview:
+		return "offline_sync_preview"
+	case *events.OfflineSyncCompleted:
+		return "offline_sync_completed"
+	case *events.Blocklist:
+		return "blocklist"
+	case *events.PrivacySettings:
+		return "privacy_settings"
+	case *events.NewsletterJoin:
+		return "newsletter_join"
+	case *events.NewsletterLeave:
+		return "newsletter_leave"
+	case *events.NewsletterLiveUpdate:
+		return "newsletter_live_update"
+	case *events.QR:
+		return "qr"
+	default:
+		return ""
+	}
+}
+
+func (w *EventHandler) handleChatPresence(evt *events.ChatPresence) {
+	logger.Debug("ChatPresence: %v", evt)
+}
+
+func (w *EventHandler) handlePresence(evt *events.Presence) {
+	logger.Debug("Presence: %v", evt)
+}
+
+func (w *EventHandler) handleJoinedGroup(evt *events.JoinedGroup) {
+	logger.Info("JoinedGroup: %v", evt)
+}
+
+func (w *EventHandler) handleGroupInfo(evt *events.GroupInfo) {
+	logger.Debug("GroupInfo: %v", evt)
+}
+
+func (w *EventHandler) handlePicture(evt *events.Picture) {
+	logger.Info("Picture changed: %v", evt)
+}
+
+func (w *EventHandler) handleUserAbout(evt *events.UserAbout) {
+	logger.Info("UserAbout changed: %v", evt)
+}
+
+func (w *EventHandler) handleIdentityChange(evt *events.IdentityChange) {
+	logger.Info("IdentityChange: %v", evt)
 }

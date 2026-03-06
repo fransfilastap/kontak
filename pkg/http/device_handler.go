@@ -17,13 +17,14 @@ import (
 )
 
 type DeviceHandler struct {
-	whatsappClient   *wa.WhatsappClient
-	deviceManagement *wa.DeviceStore
-	db               db.Querier
+	whatsappClient    *wa.WhatsappClient
+	deviceManagement  *wa.DeviceStore
+	db                db.Querier
+	subscriptionStore *wa.SubscriptionStore
 }
 
-func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceStore, db db.Querier) *DeviceHandler {
-	return &DeviceHandler{whatsappClient: whatsappClient, deviceManagement: management, db: db}
+func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceStore, db db.Querier, subscriptionStore *wa.SubscriptionStore) *DeviceHandler {
+	return &DeviceHandler{whatsappClient: whatsappClient, deviceManagement: management, db: db, subscriptionStore: subscriptionStore}
 }
 
 // RegisterDevice registers a new WhatsApp device from the provided request data.
@@ -397,4 +398,81 @@ func (w *DeviceHandler) DeleteDevice(c echo.Context) error {
 
 	return c.JSON(200, GenericResponse{Message: "Successfully disconnected from whatsapp"})
 
+}
+
+type SubscriptionRequest struct {
+	Subscriptions map[string]bool `json:"subscriptions"`
+}
+
+// @Summary Get device subscriptions
+// @Description Get event subscriptions for a device
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Success 200 {object} map[string]bool
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/clients/{client_id}/subscriptions [get]
+// @Security BearerAuth
+func (w *DeviceHandler) GetDeviceSubscriptions(c echo.Context) error {
+	userID := getUserIDFromContext(c)
+
+	_, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
+	subscriptions := w.subscriptionStore.GetDeviceSubscriptions(c.Param("client_id"))
+
+	availableEvents := make(map[string]bool)
+	for _, eventType := range wa.DefaultEventTypes {
+		if enabled, exists := subscriptions[eventType]; exists {
+			availableEvents[eventType] = enabled
+		} else {
+			availableEvents[eventType] = true
+		}
+	}
+
+	return c.JSON(200, availableEvents)
+}
+
+// @Summary Update device subscriptions
+// @Description Update event subscriptions for a device
+// @Tags devices
+// @Accept json
+// @Produce json
+// @Param client_id path string true "Device ID"
+// @Param request body SubscriptionRequest true "Subscriptions data"
+// @Success 200 {object} GenericResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 401 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /admin/clients/{client_id}/subscriptions [put]
+// @Security BearerAuth
+func (w *DeviceHandler) UpdateDeviceSubscriptions(c echo.Context) error {
+	userID := getUserIDFromContext(c)
+
+	_, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
+	var req SubscriptionRequest
+	if err := c.Bind(&req); err != nil {
+		return c.JSON(400, ErrorResponse{Error: err.Error()})
+	}
+
+	err = w.subscriptionStore.SetDeviceSubscriptions(c.Request().Context(), c.Param("client_id"), req.Subscriptions)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
+	return c.JSON(200, GenericResponse{Message: "Subscriptions updated successfully"})
 }
