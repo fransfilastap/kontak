@@ -3531,3 +3531,1006 @@
 {"level":"debug","time":"2026-02-20T11:46:35+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
 {"level":"debug","time":"2026-02-20T11:47:17+07:00","message":"Logged synced outgoing text message in chat 273946553352238@lid"}
 {"level":"debug","time":"2026-02-20T11:49:59+07:00","message":"Logged synced outgoing image message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-20T11:50:29+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-20T11:55:07+07:00","message":"Logged incoming video message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:07:41+07:00","message":"Logged incoming image message from 6281282056365@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:16:39+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:18:36+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:29:37+07:00","message":"Logged incoming image message from 258814897070304@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:52:50+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:54:34+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T12:55:58+07:00","message":"Logged incoming text message from 120363177678792291@newsletter in chat 120363177678792291@newsletter"}
+{"level":"debug","time":"2026-02-20T12:59:02+07:00","message":"Logged incoming video message from 90838608674990@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-20T13:00:27+07:00","message":"Logged incoming image message from 628118107193:61@s.whatsapp.net in chat status@broadcast"}
+{"level":"info","time":"2026-02-20T13:02:39+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:02:39+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x140004720a0 0x140004720b0 0x14000210020 1695701723 [91 125 132 112 156 19 16 153 30 81 21 122 97 20 52 69 186 238 187 92 112 159 43 124 210 191 8 142 120 105 146 237] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x1400048e0a0 0x1400048e0b0 0x140004bc000 3352027264 [16 225 175 217 230 105 0 149 171 155 198 33 41 53 14 138 123 33 124 171 222 138 15 154 94 193 131 89 191 101 94 190] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x1400018e270 0x1400018e280 0x1400019a020 796475523 [248 189 86 135 109 39 91 127 241 242 102 254 229 68 102 186 19 125 69 231 51 236 178 240 38 136 240 151 7 175 160 204] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x140000aa270 0x140000aa280 0x140001b60c0 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\"  accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\"  accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\"  deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000233080 0x14000056140 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:02:40+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:02:41+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:02:41+07:00","message":"Received QR code 2@XqazHfCBtA2BirOjFf5aCGcvlhDYJjp2O0+tchpGoqFK7xwRauaMTmwDCEXF2dElxo8hw9FUB0aE+Gz6q1XMHvYvrc+9LS1gnCE=,+T7pl/oRnmlv6mfV+PJBuNzE7UeBVV6etPHS2EToWxY=,A36aLxl4AQtGZ2uZyFc8R3WWjdEp/PYYD68TLODyDTo=,W32EcJwTEJkeURV6YRQ0Rbruu1xwnyt80r8Ijnhpku0="}
+{"level":"info","time":"2026-02-20T13:02:42+07:00","message":"Received QR code 2@3nszGLbUwTEnuFq5PxbXgemutCnpTpPYmG9EqLNSvsPUWUYjxL53O+KOkPKHw19KJhwFpt5s0tf3VzY9e483Pmqo5JByEE377w0=,VqNAOtVpgzLztLvXHfWq+aObcSMS88ktILppQFJ3/n0=,9EbvsozIB1ojJMtedYYN9ltIg88vssaRvpz/C/DWfwU=,+L1Wh20nW3/x8mb+5URmuhN9Recz7LLwJojwlwevoMw="}
+{"level":"info","time":"2026-02-20T13:02:42+07:00","message":"Received QR code 2@JI+A+6y0iZUrUMmBIAuQ+okRxtj6pi/MH1ngCDw2mGX3/qhlYHWriYDtfzTNCarwr9a1cE/xOX8sIMNhzoa8Oa9lnGlngnFOMqk=,B3BU3JSfqjMvCfFr+e795VtCYPTg0Cfd0t1NCfExgAg=,fr4MYmFZFVsxsbdbxXvrqzT1yHmVfVn3aHMnne2lcjw=,EOGv2eZpAJWrm8YhKTUOinshfKveig+aXsGDWb9lXr4="}
+{"level":"info","time":"2026-02-20T13:02:42+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-20T13:02:50+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp &{0x14000100080 0x1400003c550 0x1400003c560 0x14000100480 2062529431 [11 205 175 121 38 239 62 153 244 148 232 102 16 252 210 167 38 170 39 128 39 65 73 36 47 163 136 57 210 116 94 29] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140001000e0}"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp &{0x14000100080 0x140000ae4a0 0x140000ae4b0 0x140000ba020 2421507915 [43 8 29 51 207 92 150 98 116 94 229 235 213 193 142 62 72 7 196 11 215 147 132 98 153 243 241 52 199 76 43 188] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140001000e0}"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp &{0x14000100080 0x140000ae4d0 0x140000ae4e0 0x140000ba040 3979583347 [217 168 249 197 83 233 137 214 62 173 191 138 62 156 84 128 176 56 151 32 75 43 34 49 219 179 214 157 225 154 255 46] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140001000e0}"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Connecting to Whatsapp &{0x14000100080 0x1400048e220 0x1400048e230 0x140004ca000 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\"  accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\"  accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\"  deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x1400049a200 0x14000056140 0x140001000e0}"}
+{"level":"info","time":"2026-02-20T13:03:07+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:03:08+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:03:08+07:00","message":"Received QR code 2@tvsH+YpjOm/ib9j6vvVBQWiNIdMiU8ltHCPXjXkA6h2/73tPi266jSuh9pDE8a4sSwypfczDQC+brFPTydJKiW2CAWTQ7LQjHY0=,egpOgkINOM0tM7F7kO6M2jr4Tq3/Xnr3gfWmO8D4rEM=,NPR6sE2b/pKo2oWqByfa0prMhkW07YeEqer+dvrsth0=,KwgdM89clmJ0XuXr1cGOPkgHxAvXk4RimfPxNMdMK7w="}
+{"level":"info","time":"2026-02-20T13:03:08+07:00","message":"Received QR code 2@mTS9LlotWNNB76SZIdIyQ4jtAgO6DsO+78m69baK97DMFwzyc3UDfRar67nyh6Kun7dUOwOT9VqqRhOHegsy/+qPJWDq7/muJc0=,8d1/j8mtkii1OMRDA0u0G8fsi9r0xB32zu5aizabnkg=,oWEN30nmQvnoHiNTrkAl5anHtAOxdDryjzn1kbcPny0=,C82veSbvPpn0lOhmEPzSpyaqJ4AnQUkkL6OIOdJ0Xh0="}
+{"level":"info","time":"2026-02-20T13:03:08+07:00","message":"Received QR code 2@jmb9BSFOHFjgHHukL8xlR6lDiCDLbu5ddzRlMjEOXiU8HFuZntSXSVPuF36Z/K5WA2lM9w8hikSzJHnZf7r+KJ4OPUIJqVtg9uY=,YHJCs8AGL0QiYHuZudyhWr27saKA8Yrl0BfKOPgEWWA=,pYpGe0v2nXu38/213Q2FkbtLlvG6qf44DdOHnxUVk3Q=,2aj5xVPpidY+rb+KPpxUgLA4lyBLKyIx27PWneGa/y4="}
+{"level":"info","time":"2026-02-20T13:03:08+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-20T13:03:09+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-20T13:03:17+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:03:27+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-20T13:03:32+07:00","message":"Logged incoming video message from 6281218445950@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-20T13:03:37+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:03:47+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:03:57+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp &{0x1400011c220 0x140000d8160 0x140000d8170 0x1400047a000 4189927523 [251 60 182 88 57 171 116 52 188 110 160 156 95 61 131 76 57 6 86 74 38 84 99 162 34 88 137 134 118 149 241 42] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x1400011c280}"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp &{0x1400011c220 0x1400012c230 0x1400012c240 0x14000302000 3132492126 [56 30 5 174 3 0 157 227 86 214 154 195 168 232 190 143 205 167 173 252 36 116 25 113 218 100 88 194 189 93 183 165] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x1400011c280}"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp &{0x1400011c220 0x14000020200 0x14000020210 0x1400051a000 379187568 [55 22 75 158 91 109 117 224 219 182 68 125 110 131 194 168 144 43 90 227 234 85 250 134 57 58 138 204 93 143 43 85] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x1400011c280}"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Connecting to Whatsapp &{0x1400011c220 0x1400003de80 0x1400003de90 0x1400011c8a0 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\"  accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\"  accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\"  deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x14000057300 0x1400013e140 0x1400011c280}"}
+{"level":"info","time":"2026-02-20T13:04:06+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:04:07+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:04:07+07:00","message":"Received QR code 2@+jni+IzwVvshuLAMTjSy6UdZNi1myCo1EYmjJJnR+2b1h553JQ5Ha9VL/92TNTppa17V4EJ8Swvf8KyPOlVlZmwNTEAQAjnnqG8=,H7QbAuZsuoaANmtRv2O28Rn6yvpvY+9mrHDoRwoIbmQ=,n1xjLtdwXq4PrpTEyDyjTZIEKF/aY9T74MCn0OdAQCg=,+zy2WDmrdDS8bqCcXz2DTDkGVkomVGOiIliJhnaV8So="}
+{"level":"info","time":"2026-02-20T13:04:07+07:00","message":"Received QR code 2@NzNCmw+Y7GONvCxARx5y80G+BSlsVzFeBOHhYDhL1ML5gumCWS2C32HuFalE+f0MEwwnoSB7aT3M0+uIuBW71hHN84+EH03zxPw=,UnLRFK+Ybc4V1XX7rMQNxj7jIQfOYF2lIHmoQ8ueOA8=,vKOQ7G6P5Y4QgqpVipQ6xhOcP5yhrhqEohQ8/7yBLWU=,OB4FrgMAneNW1prDqOi+j82nrfwkdBlx2mRYwr1dt6U="}
+{"level":"info","time":"2026-02-20T13:04:07+07:00","message":"Received QR code 2@UfdpbEeg21vJ4oJx6qS6QgqTxga25e2v3rRq4qVPS39XvxsQBiLTrBO4qlhrclZxQWZL/VZ0y/Yju/M23NWoEFsRfqC3wldKheE=,Q63vLgXPjPg04ifGg+N9BBntvHt2VXwfet24ef6GMUM=,9BoHk2P44iEdp8h/vbxmZZToveMyxIOaoaA5RRIfHUQ=,NxZLnlttdeDbtkR9boPCqJArWuPqVfqGOTqKzF2PK1U="}
+{"level":"info","time":"2026-02-20T13:04:08+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-20T13:04:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp &{0x140003e8a60 0x1400050e190 0x1400050e1a0 0x1400051c020 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\" accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\" accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\" deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x14000502340 0x140003e2ac0 0x140003e8ac0}"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp &{0x140003e8a60 0x1400003c1e0 0x1400003c1f0 0x14000100020 849253352 [140 146 46 162 69 48 27 192 184 16 217 83 4 252 17 56 215 147 147 230 73 115 41 109 192 79 50 111 30 112 162 12] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140003e8ac0}"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp &{0x140003e8a60 0x1400050e0a0 0x1400050e0b0 0x1400051c000 2960160097 [44 3 81 229 61 208 194 67 116 56 65 4 79 221 22 236 26 176 136 208 20 192 146 22 20 206 66 237 125 236 33 145] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140003e8ac0}"}
+{"level":"info","time":"2026-02-20T13:04:27+07:00","message":"Connecting to Whatsapp &{0x140003e8a60 0x14000437080 0x14000437090 0x140003e9240 3607718045 [223 40 68 96 117 37 57 215 150 108 223 241 179 57 87 123 168 250 86 135 133 152 120 77 209 82 66 99 187 4 133 226] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140003e8ac0}"}
+{"level":"info","time":"2026-02-20T13:04:29+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:04:30+07:00","message":"Received QR code 2@J6cYyDyIlZODiAmkWokNABS2m1ujEuhrmTP2ryNKznKlgG5IDfEEqh3eA9P+a4wY7xpHevcJ8qLY5vnv5c0JR49XjDufl0JVQig=,SD4d5Ts2qJ5PR91HyHx+ELSM370ERWJVqwf3DPTTzSQ=,HxUMnW5QR7trPUg1+PYCj1rYAnknF0X7kDlXCEKGnTA=,3yhEYHUlOdeWbN/xszlXe6j6VoeFmHhN0VJCY7sEheI="}
+{"level":"info","time":"2026-02-20T13:04:30+07:00","message":"Received QR code 2@oMjjSfikwPfP9QW05DLa5NDBH0WmLQCnca/c6ZJPy/MlXWzcPPi1YlyG73Sv0DPNiYCgsl2LibBau4oFr+slyfgR5rM2HDRlP7Y=,poRcN5y6+Ipt2ZUK5G+iBGdqpjiOVP6T0BLS/fn9HS4=,U96WMaAYXVC5mu711SDl6+7tI1LhB2xVn1vVvvxFGx8=,LANR5T3QwkN0OEEET90W7BqwiNAUwJIWFM5C7X3sIZE="}
+{"level":"info","time":"2026-02-20T13:04:30+07:00","message":"Received QR code 2@utcOsyREDV5HDnCqpDF4ClPLP+YC0zqITnchFD01PfZ2Wm72J/CvFEcdSdasaQe8W2F7AttK8zyg/hTXF+f7qgD66ojN6AF0EvU=,avbnvJ2sZu1S2zXUqOm4KXJg+AUsQvBYhstA9aJG4gs=,aZIOZk7IMm2LyFU3l47KR3Z1/EI5M4vL6o/B/qR6pkE=,jJIuokUwG8C4ENlTBPwRONeTk+ZJcyltwE8ybx5wogw="}
+{"level":"info","time":"2026-02-20T13:04:30+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-20T13:04:37+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:04:47+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:04:57+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:05:07+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp &{0x14000392a60 0x14000490160 0x14000490170 0x1400048a000 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\" accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\" accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\" deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400048e240 0x1400038ca40 0x14000392ac0}"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp &{0x14000392a60 0x1400003c420 0x1400003c430 0x14000100020 2964469604 [235 34 183 168 72 205 228 31 216 95 47 224 143 29 172 109 139 32 201 115 244 108 203 201 217 226 97 56 152 82 88 245] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x14000392ac0}"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp &{0x14000392a60 0x14000490230 0x14000490240 0x14000608000 3737905267 [130 212 132 93 50 141 74 171 68 202 58 218 204 202 159 12 27 107 7 104 72 76 120 96 31 144 229 84 206 187 143 104] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x14000392ac0}"}
+{"level":"info","time":"2026-02-20T13:05:15+07:00","message":"Connecting to Whatsapp &{0x14000392a60 0x14000516210 0x14000516220 0x1400053e080 2514159905 [172 136 7 44 11 53 150 163 4 4 82 7 238 35 65 78 67 241 77 218 126 176 156 98 94 59 252 187 101 61 73 162] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x14000392ac0}"}
+{"level":"info","time":"2026-02-20T13:05:16+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:05:17+07:00","message":"Received QR code 2@gdMh082KCI+D+hX7zAZb9HM3E1WN+m7wJlN2end4aWUvaiVaQj/ZPf+QI9z/o2XCsQD8lbgL6euYJgYqgMdMJptbaB4sApTkIrc=,3PJ+TlJeEG0MSUG2ofadT2d9V5DWC3e2bXeCf9rJC1o=,Rj3V9hSUocMvp93ibu4baCqT0cu5tuFXtqsp2LWEMjE=,gtSEXTKNSqtEyjrazMqfDBtrB2hITHhgH5DlVM67j2g="}
+{"level":"info","time":"2026-02-20T13:05:17+07:00","message":"Received QR code 2@2TMko92xrgAh/+vbDqU/QTDGBwwDHSgNcz+HnDKwVUek1dR/RdWbYLUs9ycCwBJ0f9Kzx5jvpbkkMPYgjnb1F/x13zSkvd17fYk=,PNbVHN46j24x/Le2ux9gGfl2dFTl94JppJiAn9cy3AA=,/eAJIhgWUrsiLXXBspHpYHmp4B+Hlr/rPPA8yebbQS0=,6yK3qEjN5B/YXy/gjx2sbYsgyXP0bMvJ2eJhOJhSWPU="}
+{"level":"info","time":"2026-02-20T13:05:17+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-02-20T13:05:17+07:00","message":"Received QR code 2@v0YqFd/yggRMXZJGuCvFB4Ls2TWc2oMZVVEJ3qgPUEXGo1V3rJoPGgh10flX9kvswI6PxTqdjrUAMnvx/yHAb5Nb5x7Hj07NX5c=,F+80e+QFtKIGNq4IoBvYuY7AFnUvd4CxSQ/V0o88AQ4=,UUhDekwH9b5azaJc0ohRW28dV0P/11SGoN2KX6er70o=,rIgHLAs1lqMEBFIH7iNBTkPxTdp+sJxiXjv8u2U9SaI="}
+{"level":"error","time":"2026-02-20T13:05:25+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:05:35+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp &{0x14000414060 0x140005161f0 0x14000516200 0x14000548020 1033895576 [67 15 59 90 82 201 125 74 131 162 79 100 113 138 96 118 80 186 42 211 198 125 247 51 226 77 69 36 247 120 21 73] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140004140c0}"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp &{0x14000414060 0x1400010e1a0 0x1400003c140 0x14000090040 4044975851 [21 250 241 64 243 83 83 83 240 224 195 185 154 240 13 200 231 133 27 15 150 112 252 227 50 141 246 228 203 163 114 170] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140004140c0}"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp &{0x14000414060 0x1400003c130 0x1400019fee0 0x140003f0c20 1785092418 [54 9 85 249 178 112 214 101 153 221 62 157 146 214 208 143 22 129 246 222 235 14 88 70 0 222 255 64 118 61 178 182] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140004140c0}"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Connecting to Whatsapp &{0x14000414060 0x1400041a130 0x1400041a150 0x14000548040 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\"  accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\"  accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\"  deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000522340 0x14000418100 0x140004140c0}"}
+{"level":"info","time":"2026-02-20T13:05:45+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:05:46+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:05:46+07:00","message":"Received QR code 2@fcwTOu2rouX5jXkoJS5vvUAMQAxDgvuCiivT+qquLcw6Sn4spZqzpJtzzsjwkl3mumz+RDgPTDpLHkCTnuepHJktMjYysI2Yerc=,vWqE2K3zvsfcy5NCqFJgOpgH2K7rZ3svOV8u/OydPFQ=,drYuY0v9xxB4HKNzyHDEjUObw/LzYTtVcfbFxziyJmE=,FfrxQPNTU1Pw4MO5mvANyOeFGw+WcPzjMo325Mujcqo="}
+{"level":"info","time":"2026-02-20T13:05:46+07:00","message":"Received QR code 2@GgnUSzkLXJXCeJDW0jNREjWegKYF1LnkMkGkA9gfErLVSBUf5KfVKOnP44k4IbuBd1vS6ywhHDPBxdRGnMUkybJxQaxuq/qrYxM=,L/KfwWuLvyMjZlmoZ0IZCPicVkVpqq9KpmdSjL9QXHY=,IjfM34/fZw5vdB48wMHK/UefkqV/jIwR3Bdh4CaK4i4=,NglV+bJw1mWZ3T6dktbQjxaB9t7rDlhGAN7/QHY9srY="}
+{"level":"info","time":"2026-02-20T13:05:47+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-02-20T13:05:47+07:00","message":"Received QR code 2@FyNVruP4lBQ8k3N4WIvFjHCYBtWb85uXn/XCNRDI4CaI81IeplvTWKcm1P1/pu17VII5nqpcJW45KetLRpovzLvI0mgD+F/oXYo=,uOQ5BQSVKwAx64Q6zFmrg0+cDziCNGhFtMzWI8UloGM=,aza4pcgWqTJ1RNrNRU+XBy3XFlx+ADsvkgpMjRm5I2s=,Qw87WlLJfUqDok9kcYpgdlC6KtPGffcz4k1FJPd4FUk="}
+{"level":"error","time":"2026-02-20T13:05:55+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:06:05+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-20T13:06:15+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x14000221cd0 0x14000221ce0 0x14000470c00 2136339799 [248 77 215 113 154 168 50 37 253 123 72 146 211 35 237 185 245 26 220 235 153 215 18 203 98 197 88 13 254 68 120 185] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x14000221da0 0x14000221db0 0x14000470c20 3417069673 [171 20 66 193 31 41 4 126 1 212 87 255 126 100 183 40 167 136 94 192 219 169 247 35 207 72 98 237 109 74 239 254] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x1400003c5c0 0x1400003c5d0 0x140000904a0 3442760686 [144 44 128 210 113 78 124 32 234 19 137 87 230 135 146 203 164 151 247 253 56 148 96 32 79 223 149 107 46 55 115 56] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Connecting to Whatsapp &{0x14000090080 0x1400051c140 0x1400003c5f0 0x14000516000 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\" accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\" accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\" deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x140001bc180 0x14000056140 0x140000900e0}"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Received QR code 2@/8ydjv6RfG/ePNwMwriCqHXhzNbDY2STVj7/JhtZ0nHJ8tIKXvjqSc/cG8Xs2X4WzJifkqlgnWU1dt03ZaGqR8WiFwOqH85p8/w=,t/GugF7EyZspKTSvrUFvI/NEDgi9lKd73uaISfbgAlg=,8hA/RnbRX/wwDO8uWf6v7FF8UU0bUriL3MyDw51xPnc=,+E3XcZqoMiX9e0iS0yPtufUa3OuZ1xLLYsVYDf5EeLk="}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Received QR code 2@UtriKBB75IxQ6PMN681W24B7+062TEPqlKoeCCySe5qYUajZqZrwiQEGUDssdvEJEyD+5AwzAgQ0++JKaGEWrOPE6aXP0pGZRbM=,ffHRZP2IwZ9mqpaFjA5gO/o85cfSQV/02ngErgLbbVw=,fxoOa9hjMQtXoxeAGnxfglkzb+ylfQ0zRUPoT43az2c=,qxRCwR8pBH4B1Ff/fmS3KKeIXsDbqfcjz0hi7W1K7/4="}
+{"level":"info","time":"2026-02-20T13:06:16+07:00","message":"Received QR code 2@Xm5Kf/jG+P7Z6vMU4BGh3U52tjSchh0IzbAetUGTJAZFY//y7jfAh1rvwx/pUUEgW9QRBjiRdTPpiA==,JTLEZ056R//l8AclpRv2pWkxZVsvmuYTOIGBoy54emY=,6SpzQVddFKoX/MdSaYZ9do7pKvPXZh1um5DxtQaaimk=,kCyA0nFOfCDqE4lX5oeSy6SX9/04lGAgT9+Vay43czg="}
+{"level":"info","time":"2026-02-20T13:06:17+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-20T13:06:25+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:06:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:06:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:06:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:07:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:07:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:07:16+07:00","message":"Received QR code 2@x23g8YjOAfYsmeEdI+dzz1F9VvX0FwZVVex/6cW5itd+bITyPd5UgdRaJqgihZL28NiPTvmFEH4rSA==,JTLEZ056R//l8AclpRv2pWkxZVsvmuYTOIGBoy54emY=,6SpzQVddFKoX/MdSaYZ9do7pKvPXZh1um5DxtQaaimk=,kCyA0nFOfCDqE4lX5oeSy6SX9/04lGAgT9+Vay43czg="}
+{"level":"info","time":"2026-02-20T13:07:16+07:00","message":"Received QR code 2@I+yyot4TT4HMADTnmpxoSKTagkcmfd+dNRW6iemUgZBDMNx7PsOqOXpAkaVPJIr8csSpK/maRDs8ix6laEcSQSlrs5cnobzPFJM=,ffHRZP2IwZ9mqpaFjA5gO/o85cfSQV/02ngErgLbbVw=,fxoOa9hjMQtXoxeAGnxfglkzb+ylfQ0zRUPoT43az2c=,qxRCwR8pBH4B1Ff/fmS3KKeIXsDbqfcjz0hi7W1K7/4="}
+{"level":"info","time":"2026-02-20T13:07:16+07:00","message":"Received QR code 2@6Ss+dZAXfpPpmpTNgsSkfOoZVQ/XOc2RU5lLnMBSb8xSHPIIgWXbfUGa2M3cBsJWBB6cI8tzx5u6U8jOH+f59rzc3JXW0Bzooh0=,t/GugF7EyZspKTSvrUFvI/NEDgi9lKd73uaISfbgAlg=,8hA/RnbRX/wwDO8uWf6v7FF8UU0bUriL3MyDw51xPnc=,+E3XcZqoMiX9e0iS0yPtufUa3OuZ1xLLYsVYDf5EeLk="}
+{"level":"error","time":"2026-02-20T13:07:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:07:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:07:36+07:00","message":"Received QR code 2@NabWrPlsJCBiemDpgdUASM9Hohw9v2/GIR8RIbE2ZgHCl17gNUfhORmiUEJUprRzh0HhPvMi0vPlEg==,JTLEZ056R//l8AclpRv2pWkxZVsvmuYTOIGBoy54emY=,6SpzQVddFKoX/MdSaYZ9do7pKvPXZh1um5DxtQaaimk=,kCyA0nFOfCDqE4lX5oeSy6SX9/04lGAgT9+Vay43czg="}
+{"level":"info","time":"2026-02-20T13:07:36+07:00","message":"Received QR code 2@JO1ntt3tuez8L27JM8dKGzW1xao7Qh10IeJ5eULMHuwIn6i2G+q4Aello+Sumv/k6uBm/GVtvqFq8Q/9cmIixXbbNfiTBwuNMVk=,t/GugF7EyZspKTSvrUFvI/NEDgi9lKd73uaISfbgAlg=,8hA/RnbRX/wwDO8uWf6v7FF8UU0bUriL3MyDw51xPnc=,+E3XcZqoMiX9e0iS0yPtufUa3OuZ1xLLYsVYDf5EeLk="}
+{"level":"info","time":"2026-02-20T13:07:36+07:00","message":"Received QR code 2@rO4zVe1/rED8lYOmMTBjR72uhvmCHYsOxB/z8Ouv1pg34utke59CybN+q9caTprY7+u68YJPOeOT1ZIhG+avlgz5bDN/P8tG+fs=,ffHRZP2IwZ9mqpaFjA5gO/o85cfSQV/02ngErgLbbVw=,fxoOa9hjMQtXoxeAGnxfglkzb+ylfQ0zRUPoT43az2c=,qxRCwR8pBH4B1Ff/fmS3KKeIXsDbqfcjz0hi7W1K7/4="}
+{"level":"error","time":"2026-02-20T13:07:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:07:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:07:56+07:00","message":"Received QR code 2@TCryb/AZdS6zTySVrMm1EGJ+jaquDDybx11Z/2hDqSagBx9GEvP3j4q5/Usd/14WrDl9Rdo+hM0FwgrVsd/OMBX9LJBRq39dfsY=,t/GugF7EyZspKTSvrUFvI/NEDgi9lKd73uaISfbgAlg=,8hA/RnbRX/wwDO8uWf6v7FF8UU0bUriL3MyDw51xPnc=,+E3XcZqoMiX9e0iS0yPtufUa3OuZ1xLLYsVYDf5EeLk="}
+{"level":"info","time":"2026-02-20T13:07:56+07:00","message":"Received QR code 2@F0g/LXDa8vPFGvRPBmhE8pkw+2WcmTr1qUpErZcGr5Bk+wev+18gAlwSE4V0aeVwXsXAHStAhtIIoBA8GAEJNvRYGysCw5tSR30=,ffHRZP2IwZ9mqpaFjA5gO/o85cfSQV/02ngErgLbbVw=,fxoOa9hjMQtXoxeAGnxfglkzb+ylfQ0zRUPoT43az2c=,qxRCwR8pBH4B1Ff/fmS3KKeIXsDbqfcjz0hi7W1K7/4="}
+{"level":"info","time":"2026-02-20T13:07:56+07:00","message":"Received QR code 2@OXXDGxwSUrdEl1+5NixEYRGFtHITl+0/DBJRo/iGthCZG3695kLcJWFVCj0gCRmE9mPSruIwHEgCaA==,JTLEZ056R//l8AclpRv2pWkxZVsvmuYTOIGBoy54emY=,6SpzQVddFKoX/MdSaYZ9do7pKvPXZh1um5DxtQaaimk=,kCyA0nFOfCDqE4lX5oeSy6SX9/04lGAgT9+Vay43czg="}
+{"level":"error","time":"2026-02-20T13:08:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:08:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:08:16+07:00","message":"Received QR code 2@aJlicG7tjzizr8wycaLa1kpilztLZ+/ahYCgpyDuGuXGR7q6F67h3cb1OgYM3uAFEkzePTytTMSHTQ==,JTLEZ056R//l8AclpRv2pWkxZVsvmuYTOIGBoy54emY=,6SpzQVddFKoX/MdSaYZ9do7pKvPXZh1um5DxtQaaimk=,kCyA0nFOfCDqE4lX5oeSy6SX9/04lGAgT9+Vay43czg="}
+{"level":"info","time":"2026-02-20T13:08:16+07:00","message":"Received QR code 2@B/D4oX/dUgTAcH0B3vQylcN8SuY13JVF0rJbThVhJ/otmmifPGbHSUtEJqkTMLzYmHd5QDxp/E7lEfZhwmoK8E78pvTxJHmZ4IM=,t/GugF7EyZspKTSvrUFvI/NEDgi9lKd73uaISfbgAlg=,8hA/RnbRX/wwDO8uWf6v7FF8UU0bUriL3MyDw51xPnc=,+E3XcZqoMiX9e0iS0yPtufUa3OuZ1xLLYsVYDf5EeLk="}
+{"level":"info","time":"2026-02-20T13:08:16+07:00","message":"Received QR code 2@AF8ygb4jRmOHUQhsh79EwWovZrNGJQ9BkNOqf6E96/LhgNui6ZEhPpnOD4KgxkvXg+nRjyEJ+lJ6BJbRVbY3k2x9XmkUhOalOPY=,ffHRZP2IwZ9mqpaFjA5gO/o85cfSQV/02ngErgLbbVw=,fxoOa9hjMQtXoxeAGnxfglkzb+ylfQ0zRUPoT43az2c=,qxRCwR8pBH4B1Ff/fmS3KKeIXsDbqfcjz0hi7W1K7/4="}
+{"level":"error","time":"2026-02-20T13:08:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:08:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-20T13:08:36+07:00","message":"Received QR code 2@eeykdrBUFykD8gXPEZn/TRGlxo+CvyGe/1FgoJM7WL0sx2dGZ1EXmr1UvFaBTtGeYQJ9/k1cloRPDHiQFnnOGXDIRiUGf0ivTHg=,t/GugF7EyZspKTSvrUFvI/NEDgi9lKd73uaISfbgAlg=,8hA/RnbRX/wwDO8uWf6v7FF8UU0bUriL3MyDw51xPnc=,+E3XcZqoMiX9e0iS0yPtufUa3OuZ1xLLYsVYDf5EeLk="}
+{"level":"info","time":"2026-02-20T13:08:36+07:00","message":"Received QR code 2@AOtOewWxs+wSs2BfqmIATMUchouFGKmObBdMBzElqo3l7JLk0gdu8AwCB85x5xSCzyNluUUSLg85eQ==,JTLEZ056R//l8AclpRv2pWkxZVsvmuYTOIGBoy54emY=,6SpzQVddFKoX/MdSaYZ9do7pKvPXZh1um5DxtQaaimk=,kCyA0nFOfCDqE4lX5oeSy6SX9/04lGAgT9+Vay43czg="}
+{"level":"info","time":"2026-02-20T13:08:36+07:00","message":"Received QR code 2@WR7BxolMCTWk7U6sA1LA9G4p8ZIlGFHSHSSWMsmMp+hofI5q/mkglpK9sZPC0wmjXFjEgaA5LxKAHCtD4v7gWHEAX2iXCWeOs6A=,ffHRZP2IwZ9mqpaFjA5gO/o85cfSQV/02ngErgLbbVw=,fxoOa9hjMQtXoxeAGnxfglkzb+ylfQ0zRUPoT43az2c=,qxRCwR8pBH4B1Ff/fmS3KKeIXsDbqfcjz0hi7W1K7/4="}
+{"level":"error","time":"2026-02-20T13:08:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:08:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:09:05+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:09:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:09:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-20T13:09:33+07:00","message":"Logged incoming video message from 93643255857403@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-20T13:09:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:09:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-20T13:09:51+07:00","message":"Logged incoming text message from 63063340376165@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-20T13:09:55+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:10:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:10:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:10:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:10:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:10:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:10:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:11:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:11:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:11:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:11:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:11:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:11:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:12:05+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:12:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:12:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:12:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:12:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:12:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:13:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:13:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:13:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:13:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:13:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:13:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:14:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:14:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:14:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:14:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:14:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:14:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:15:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:15:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:15:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:15:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:15:46+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:15:56+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:16:06+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-20T13:16:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Initializing Kontak application"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Running database migrations using golang-migrate..."}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Found existing tables in the database"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Database already initialized, skipping migrations"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp "}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp 6287887998244:27@s.whatsapp.net"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Starting client 01KHV4D6TDY059051C2CKJK1H3"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Starting client 01KHV49BRYR6N1F16DZ66DV3Z6"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Starting client 01KHV5DHE114MB20RQKRHYRPC7"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"JID is empty. Creating new device"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Starting client 01KHV4E3GATMGGMFTERQ1B3PWE"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp &{0x14000128080 0x1400019fd60 0x1400019fd70 0x140003e8d40 3157708936 [19 133 126 65 241 153 36 216 44 68 202 95 163 102 46 7 183 77 11 141 136 188 32 183 218 72 243 66 196 143 40 188] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140001280e0}"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp &{0x14000128080 0x14000488170 0x14000488180 0x140004a4000 1244459644 [192 130 164 184 131 94 115 12 214 134 89 69 75 198 180 64 59 163 204 220 151 24 60 187 180 89 173 25 80 218 38 84] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140001280e0}"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp &{0x14000128080 0x1400003c1e0 0x140004881a0 0x140005c8080 733206702 [77 185 82 75 159 177 133 107 41 38 75 254 157 64 217 180 48 57 155 179 189 31 109 89 0 114 207 82 70 235 101 181] <nil>  <nil>    0 00000000-0000-0000-0000-000000000000 false <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> <nil> 0x140001280e0}"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Connecting to Whatsapp &{0x14000128080 0x1400019ea60 0x1400019ea70 0x140004a4020 788872604 [45 117 139 197 61 147 236 168 174 147 202 110 120 159 129 59 67 131 215 166 75 100 36 2 45 241 139 24 103 208 26 187] 6287887998244:27@s.whatsapp.net 195545599598631:27@lid details:\"\\x08\\x8f\\xb5\\xbb\\xe7\\x07\\x10Ǿ\\xdc\\xcc\\x06\\x18\\x01 \\x00(\\x00\" accountSignatureKey:\"\\xf6\\x9f]?\\n\\x06\\xe1\\xc3碝\\xa4\\xad\\xf8\\xb8n\\xf1\\xbcZ3rr\\xa5K\\x86ԏ\\xb3\\x15\\xb0,j\" accountSignature:\"\\xb5\\x8dz\\xf1o\\xf5[\\x0f\\xba\\xfb]\\x00\\x17%\\x98-\\xb7\\xd4h\\xaf;\\xcep\\x06\\x88\\x9bW\\x81\\xcc\\xcf\\xce8\\xf2\\xa9\\xdbG\\x82\\x8f`X\\xc9a\\xad\\xf0bW\\x19\\x1c\\x825\\x93\\x12\\xea\\xaf0\\xf5\\xba+\\xfcNHt\\xc5\\x08\" deviceSignature:\"\\xef\\xfbX\\x8e\\x89xj\\xb4\\x02!\\x92\\x9e;v\\xfc\\t[Y#lx\\xb1.\\xab@\\xe7S \\x1ac\\xc0\\x07\\x9a\\x86\\x13Ns\\x8a\\xdf\\xcb\\ti\\xd3\\xfaB\\x92\\xadsd\\xde\\xe1\\x03hϷ\\xfc\\xcb[%>+\\xe3}\\x0b\" android  Frans 0 00000000-0000-0000-0000-000000000000 true 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x14000492180 0x1400012c100 0x140001280e0}"}
+{"level":"info","time":"2026-02-21T21:06:33+07:00","message":"Already logged in"}
+{"level":"info","time":"2026-02-21T21:06:34+07:00","message":"Connected to whatsapp"}
+{"level":"info","time":"2026-02-21T21:06:34+07:00","message":"Received QR code 2@j8Q5Hd2uqjqiFuqmhsnn0tECvy75rLUyvI8R3Q/9X82j9gb7x+YCGx7Lz9x1xEdxTfcGGlk9RoyYu7t2lPp5tjs+GOdunUqA2LE=,Ic0yUFSyBvuVmwNrAAOTbJx3cP2rm795T5Z3i1W6WW0=,0B4VBke/rHXkN559KRA+Oqx5JtB45A0o5yEvt62KEVA=,TblSS5+xhWspJkv+nUDZtDA5m7O9H21ZAHLPUkbrZbU="}
+{"level":"info","time":"2026-02-21T21:06:34+07:00","message":"Received QR code 2@9kkD5OGvmZMKUYKWptlxmy+pof5ZzugouA2npib+W1MeB+GnRy4tB+2al9HECXfbXKnngYys1iyYyp9WYryBmL7wduRvxuDzJHM=,z6oq3gc0kE7e73J3AsrK8BdopzNBS9IQloTZACW6wS4=,s9675kAd6vAPnuVhPn+Urn+Iv3PahV12HqnubA1P8hQ=,E4V+QfGZJNgsRMpfo2YuB7dNC42IvCC32kjzQsSPKLw="}
+{"level":"info","time":"2026-02-21T21:06:34+07:00","message":"Received QR code 2@vHlG8W0u3nUo8mUyO0/AA36LHxiewXVAiiR28JyKlzX+VWcDVJpO7+4Engeb3W5osPLfz5Iuens4Y3UHGC8V+wZXshO4GA/7L4A=,Pwt+YaGoOybEtiv9ngrom4L+COgAET1iLDquAdOO2jk=,nKLjmlYCo4NiVmfzmGvzooKrvft7fw6FjEGG+ixeFTQ=,wIKkuINecwzWhllFS8a0QDujzNyXGDy7tFmtGVDaJlQ="}
+{"level":"info","time":"2026-02-21T21:06:35+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-21T21:06:35+07:00","message":"Logged incoming text message from 273946553352238:12@lid in chat 273946553352238@lid"}
+{"level":"debug","time":"2026-02-21T21:06:35+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:06:35+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:36+07:00","message":"Logged incoming image message from 153523740266722@lid in chat 6282175112151-1509782055@g.us"}
+{"level":"debug","time":"2026-02-21T21:06:36+07:00","message":"Logged incoming text message from 153523740266722@lid in chat 6282175112151-1509782055@g.us"}
+{"level":"debug","time":"2026-02-21T21:06:36+07:00","message":"Logged incoming text message from 84774181961928@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-21T21:06:37+07:00","message":"Logged incoming image message from 120363160757210405@newsletter in chat 120363160757210405@newsletter"}
+{"level":"debug","time":"2026-02-21T21:06:37+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:37+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:37+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:37+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:37+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"AppState: timestamp:1771583861276 stickerAction:{fileEncSHA256:\"Wg\\x0b\\xe4\\x08\\x0bcU\\t\\xfc\\xe9\\xc5V\\x00\\xc3YX\\x05/u\\xe9\\x1e\\xd2!\\xaec\\xc9\\n|\\xc1\\xeb\\xa1\" mediaKey:\"\\xec\\xaa\\xdcU\\xf3\\xa8\\xbcfs\\x15|\\x9d\\xec9[M7\\xcf\\x10\\x9b\\xd7V\\x98\\xcbF\\xcd\\xf8\\xb8\\xf4\\x8e\\xb4\\\\\" mimetype:\"image/webp\" height:64 width:64 directPath:\"/v/t62.15575-24/637986327_864202363314844_1764201706568558467_n.enc?ccb=11-4&oh=01_Q5Aa3wHdCNtbW82mDxn3SN5SHzimbHTOnjlYXy1gf32SkzgyDA&oe=69BF5E68&_nc_sid=5e03e0\" fileLength:0 isFavorite:true deviceIDHint:0 isLottie:false isAvatarSticker:false}"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"AppState: timestamp:1771599743421 stickerAction:{fileEncSHA256:\"8t\\xa4Xo\\xdf\\x18\\xf8\\xac\\x0fG\\xa9LгuŘ\\x94$Q\\x93\\x9b\\x83\\xa8\\x10\\x1dWG\\x8d\\xaek\" mediaKey:\"\\x96\\xa5\\xe4\\x15\\x12~\\x07\\x96N\\xcc\\xc7\\x19m\\xf7qf\\xd9\\xf8f\\x83\\xb6\\x8c[\\xa48\\x81R\\x83ߵQ\\xdd\" mimetype:\"image/webp\" height:512 width:512 directPath:\"/v/t62.15575-24/589724109_1540145113716105_6301157704818383067_n.enc?ccb=11-4&oh=01_Q5Aa3wHjUdTnOEbqUrSM52ieskXaRImuZZtfZIl3pyDtGkhSwQ&oe=69BFEFD3&_nc_sid=5e03e0\" fileLength:0 isFavorite:true deviceIDHint:0 isLottie:false isAvatarSticker:false}"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"AppState: timestamp:1771655618510 primaryVersionAction:{version:\"2.26.6.72\"}"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"AppState: timestamp:1771663454541 stickerAction:{fileEncSHA256:\"\\x96\\r\\xff;\\x90\\x8bj\\xf9\\xad\\x11\\xbe&\\xebilr\\xf0\\xc8\\xd6\\xc4\\xe2\\xb1@\\x7f\\x08?;t2B\\xceE\" mediaKey:\"\\xb4\\xc6\\xd6Q\\xaa9\\x14\\x18\\t+\\xbaT\\x81\\x14\\x16\\x01\\xb8t\\x07 Q\\xd8wtI\\x8c\\xca\\xfd\\xbd\\x01\\xe3\\xc6\" mimetype:\"image/webp\" height:0 width:0 directPath:\"/v/t62.15575-24/595821587_752210704629803_6761743034013003078_n.enc?ccb=11-4&oh=01_Q5Aa3wH8V7uVyqUHzot-sZkTA6qjbCBx5Ao657OV185Qcy-xOQ&oe=69C0F1F7&_nc_sid=5e03e0\" fileLength:0 isFavorite:true deviceIDHint:0 isLottie:false isAvatarSticker:false}"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"AppState: timestamp:1771674644840 stickerAction:{fileEncSHA256:\"\\xe3\\xc3\\x080\\x9a\\xc3>\\x86\\x8b\\x9es\\xf7\\xa9\\x86\\x85\\x0c_\\xa1\\x997\\xcd\\xdc\\x0e\\\"\\xec^\\x9848+\\xd4%\" mediaKey:\"ۜВrm]qPe\\xbax\\x83:\\x94\\xad+\\xe2\\xafˋ\\x1c\\x89\\xac%\\xcc\\x18\\xc8\\xc3u\\xfa\\xa4\" mimetype:\"image/webp\" height:64 width:64 directPath:\"/v/t62.15575-24/596112134_894151470206610_1981746237245151298_n.enc?ccb=11-4&oh=01_Q5Aa3wGS2GWWFojAF972WWA4OCLD-8NrnZAW5uhqnERm_FVpbQ&oe=69C0F90A&_nc_sid=5e03e0\" fileLength:0 isFavorite:true deviceIDHint:0 isLottie:false isAvatarSticker:false}"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"Logged incoming image message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:38+07:00","message":"Logged incoming text message from 120363198075123857@newsletter in chat 120363198075123857@newsletter"}
+{"level":"debug","time":"2026-02-21T21:06:39+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:06:39+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:39+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:39+07:00","message":"Logged synced outgoing text message in chat 120363418618931787@g.us"}
+{"level":"debug","time":"2026-02-21T21:06:40+07:00","message":"Logged incoming image message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:41+07:00","message":"Logged incoming image message from 120363258624189695@newsletter in chat 120363258624189695@newsletter"}
+{"level":"debug","time":"2026-02-21T21:06:41+07:00","message":"Logged incoming image message from 6281297938193@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:42+07:00","message":"Logged incoming image message from 6281297938193@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:42+07:00","message":"Logged incoming image message from 6281297938193@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:42+07:00","message":"Logged incoming image message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:42+07:00","message":"Logged incoming image message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:42+07:00","message":"Logged incoming image message from 173787463069878@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:43+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:43+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:43+07:00","message":"Logged incoming image message from 6281717777754@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:06:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:06:44+07:00","message":"Logged incoming video message from 6281380803385@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:44+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:44+07:00","message":"Logged synced outgoing text message in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:06:45+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:45+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:06:45+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:06:45+07:00","message":"Logged synced outgoing image message in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:45+07:00","message":"Logged incoming text message from 6282324383996@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged incoming image message from 6281717777754@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged incoming text message from 6282324383996@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged incoming image message from 6285769059727@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:06:46+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:06:47+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:06:47+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:47+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:06:48+07:00","message":"Logged incoming text message from 6282324383996:49@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:48+07:00","message":"AppState: timestamp:1771600532094 contactAction:{fullName:\"BPHN Komcad Bondan\" lidJID:\"139346069991539@lid\" saveOnPrimaryAddressbook:true}"}
+{"level":"debug","time":"2026-02-21T21:06:48+07:00","message":"AppState: timestamp:1771647415947 contactAction:{fullName:\"BPHN Letda Bondan\" lidJID:\"139346069991539@lid\" saveOnPrimaryAddressbook:true}"}
+{"level":"debug","time":"2026-02-21T21:06:48+07:00","message":"Logged synced outgoing image message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:06:49+07:00","message":"Logged incoming image message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:49+07:00","message":"Logged incoming image message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:49+07:00","message":"Logged incoming text message from 6282324383996:49@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:06:50+07:00","message":"Logged incoming video message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:50+07:00","message":"Logged incoming text message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:50+07:00","message":"Logged incoming text message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:51+07:00","message":"Logged incoming video message from 6282137967683@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:52+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:53+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:06:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:06:55+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:56+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:06:56+07:00","message":"Logged incoming text message from 178164168974507:25@lid in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:06:57+07:00","message":"Logged incoming video message from 6281279434786@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:00+07:00","message":"Logged incoming video message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:00+07:00","message":"Logged incoming image message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:00+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:00+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:00+07:00","message":"Logged incoming text message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:00+07:00","message":"Logged incoming image message from 143808591319187@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:01+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:03+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:07:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:07:04+07:00","message":"Logged incoming video message from 6282177031110@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:04+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:07:04+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:04+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:06+07:00","message":"Logged incoming video message from 6282177031110@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:06+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:06+07:00","message":"Logged synced outgoing text message in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:06+07:00","message":"Logged incoming image message from 6282177417081@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:06+07:00","message":"Logged incoming video message from 6282177031110@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:06+07:00","message":"Logged incoming image message from 6282177417081@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:07+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:07+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:07+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:07+07:00","message":"Logged incoming video message from 6282177031110@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:07+07:00","message":"Logged incoming image message from 6282189103455@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:08+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:08+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:08+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:09+07:00","message":"Logged incoming video message from 6285695596779@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:09+07:00","message":"Logged incoming image message from 6282178322728@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:10+07:00","message":"Logged incoming text message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:10+07:00","message":"Logged incoming image message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:11+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:11+07:00","message":"Logged incoming image message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:11+07:00","message":"Logged incoming text message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:11+07:00","message":"Logged incoming text message from 6282324383996@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:12+07:00","message":"Logged incoming text message from 6282324383996@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:12+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"error","time":"2026-02-21T21:07:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:07:15+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:15+07:00","message":"Logged incoming image message from 6287736238511@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:15+07:00","message":"Logged incoming text message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:15+07:00","message":"Logged synced outgoing image message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:15+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:15+07:00","message":"Logged incoming image message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:20+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:20+07:00","message":"Logged incoming text message from 178164168974507:25@lid in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:20+07:00","message":"Logged incoming image message from 6281295174438@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:20+07:00","message":"Logged incoming image message from 6281295174438@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:20+07:00","message":"Logged synced outgoing image message in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged synced outgoing text message in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged incoming text message from 178164168974507:25@lid in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged incoming text message from 178164168974507:25@lid in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged synced outgoing text message in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged incoming video message from 90838608674990@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged incoming text message from 6281379695070:21@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:21+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:22+07:00","message":"Logged incoming video message from 6285273024456@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:22+07:00","message":"Logged incoming text message from 63063340376165@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming video message from 6281315611279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming image message from 6281295174438@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming image message from 6281295174438@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:07:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming image message from 6281295174438@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming image message from 6281295174438@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:23+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:27+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged synced outgoing text message in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged incoming image message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:28+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged incoming text message from 178164168974507:25@lid in chat 178164168974507@lid"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:29+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:30+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:30+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6283181289023@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6283181289023@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6283181289023@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6283181289023@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6283181289023@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 42258468499513@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming image message from 6282177417081@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming text message from 6281379695070:21@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:31+07:00","message":"Logged incoming text message from 6281379695070:21@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:32+07:00","message":"Logged incoming text message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:32+07:00","message":"Logged incoming video message from 6281261465950@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged incoming video message from 261636623483087@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged incoming text message from 6281379695070:17@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged incoming text message from 6281379695070:17@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged incoming image message from 628562966068@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:07:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:07:33+07:00","message":"Logged incoming image message from 628562966068@s.whatsapp.net in chat status@broadcast"}
+{"level":"info","time":"2026-02-21T21:07:34+07:00","message":"Received QR code 2@07m5Afo4OTT28RRPle5FN+B0HyDkAdDwnDSQPuU9f0ClEA3x1qmOBMFAW07CN1tVCSDUr7i1sMcSihFLW0o4eZ03UlN4YMxgbZ0=,Ic0yUFSyBvuVmwNrAAOTbJx3cP2rm795T5Z3i1W6WW0=,0B4VBke/rHXkN559KRA+Oqx5JtB45A0o5yEvt62KEVA=,TblSS5+xhWspJkv+nUDZtDA5m7O9H21ZAHLPUkbrZbU="}
+{"level":"info","time":"2026-02-21T21:07:34+07:00","message":"Received QR code 2@Eek5OFxRS4pID27Cz22iBE/6r/jrJSoFcLr6XUJRLGN0fsbrOAeztU73WQ2UmmrG9cJTotKObDvkqyWFLbHGZv7RZcMt50GcKh4=,z6oq3gc0kE7e73J3AsrK8BdopzNBS9IQloTZACW6wS4=,s9675kAd6vAPnuVhPn+Urn+Iv3PahV12HqnubA1P8hQ=,E4V+QfGZJNgsRMpfo2YuB7dNC42IvCC32kjzQsSPKLw="}
+{"level":"info","time":"2026-02-21T21:07:34+07:00","message":"Received QR code 2@7IOSLZbwNdtf16B5DXm3wC0EFHqUBBxXCqG0le2f27H2VBnrwLdbxd26mx2xwhEV+mL+yRhmKeZhHUGrs/TqOUlT00QLxt3Gv1I=,Pwt+YaGoOybEtiv9ngrom4L+COgAET1iLDquAdOO2jk=,nKLjmlYCo4NiVmfzmGvzooKrvft7fw6FjEGG+ixeFTQ=,wIKkuINecwzWhllFS8a0QDujzNyXGDy7tFmtGVDaJlQ="}
+{"level":"error","time":"2026-02-21T21:07:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:07:45+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:46+07:00","message":"Logged incoming image message from 628562966068@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:48+07:00","message":"Logged synced outgoing video message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:49+07:00","message":"Logged synced outgoing video message in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:49+07:00","message":"Logged incoming video message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:50+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:50+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:07:50+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:07:51+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:52+07:00","message":"Logged synced outgoing image message in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:07:52+07:00","message":"Logged incoming text message from 274036311490592@lid in chat 274036311490592@lid"}
+{"level":"debug","time":"2026-02-21T21:07:52+07:00","message":"Logged incoming text message from 277287719145616@lid in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:07:52+07:00","message":"Logged synced outgoing text message in chat 274036311490592@lid"}
+{"level":"debug","time":"2026-02-21T21:07:53+07:00","message":"Logged synced outgoing text message in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:07:53+07:00","message":"Logged incoming text message from 277287719145616@lid in chat 277287719145616@lid"}
+{"level":"error","time":"2026-02-21T21:07:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:07:54+07:00","message":"Logged incoming text message from 277287719145616@lid in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:07:54+07:00","message":"Logged synced outgoing text message in chat 277287719145616@lid"}
+{"level":"info","time":"2026-02-21T21:07:54+07:00","message":"Received QR code 2@5NO9wF6h6mfkO2xIoAzzur1dXfAzjDnrHd9F4UuNARgS71wpCyOG9s+/lQRUV4kgBsifGnnhubn7DhH2eD0yj/T8UHqZWrYBAhE=,Ic0yUFSyBvuVmwNrAAOTbJx3cP2rm795T5Z3i1W6WW0=,0B4VBke/rHXkN559KRA+Oqx5JtB45A0o5yEvt62KEVA=,TblSS5+xhWspJkv+nUDZtDA5m7O9H21ZAHLPUkbrZbU="}
+{"level":"info","time":"2026-02-21T21:07:54+07:00","message":"Received QR code 2@0uNP2SL8BTYG9vrw2Vu9g8pIWn+TnTERQ+uJbFDMDFZnQiBSNnXSyIn+VZ4EW3rzhTJ0lBA2bZ5UQigUnesE6nSPS7MbROecUvs=,z6oq3gc0kE7e73J3AsrK8BdopzNBS9IQloTZACW6wS4=,s9675kAd6vAPnuVhPn+Urn+Iv3PahV12HqnubA1P8hQ=,E4V+QfGZJNgsRMpfo2YuB7dNC42IvCC32kjzQsSPKLw="}
+{"level":"info","time":"2026-02-21T21:07:54+07:00","message":"Received QR code 2@IzndVC1/R1MpG05Std5isukczVD05DrG9JXYxYfC/41rMta7v8OnqzDNQ0BldVWmeIv7dk7F3NbIjp3BHxh+1dxjivzbHlT4CBg=,Pwt+YaGoOybEtiv9ngrom4L+COgAET1iLDquAdOO2jk=,nKLjmlYCo4NiVmfzmGvzooKrvft7fw6FjEGG+ixeFTQ=,wIKkuINecwzWhllFS8a0QDujzNyXGDy7tFmtGVDaJlQ="}
+{"level":"debug","time":"2026-02-21T21:07:54+07:00","message":"Logged synced outgoing text message in chat 277287719145616@lid"}
+{"level":"error","time":"2026-02-21T21:08:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:08:05+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:05+07:00","message":"Logged incoming text message from 277287719145616@lid in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:08:05+07:00","message":"Logged synced outgoing text message in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:08:05+07:00","message":"Logged synced outgoing text message in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:08:05+07:00","message":"Logged synced outgoing image message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming image message from 6281282056365@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming image message from 6281282056365@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:06+07:00","message":"Logged incoming text message from 277287719145616@lid in chat 277287719145616@lid"}
+{"level":"debug","time":"2026-02-21T21:08:07+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:08+07:00","message":"Logged incoming image message from 628999888000@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:08+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:08+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:08+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:08+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:09+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:09+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:09+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:09+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:09+07:00","message":"Logged incoming image message from 6282176392386@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:10+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:10+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:10+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:11+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:11+07:00","message":"Logged incoming image message from 6282177823250@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:11+07:00","message":"Logged incoming image message from 6285736730565@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:11+07:00","message":"Logged incoming text message from 8830570217615@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:12+07:00","message":"AppState: timestamp:1771668238499 userStatusMuteAction:{muted:true}"}
+{"level":"debug","time":"2026-02-21T21:08:12+07:00","message":"Logged incoming image message from 90838608674990@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:12+07:00","message":"Logged incoming video message from 90838608674990@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:13+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:08:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:08:14+07:00","message":"Logged incoming video message from 120363144038483540@newsletter in chat 120363144038483540@newsletter"}
+{"level":"info","time":"2026-02-21T21:08:14+07:00","message":"Received QR code 2@fhVswwc1ffL9Ap7zLxZM8hTmLFEpBnWfsIKXc7JomtTSsFwqiOIWb8OXIAssi4677xCshNXIOUJctDdgPcd4BnVmzPH7c415lZA=,Ic0yUFSyBvuVmwNrAAOTbJx3cP2rm795T5Z3i1W6WW0=,0B4VBke/rHXkN559KRA+Oqx5JtB45A0o5yEvt62KEVA=,TblSS5+xhWspJkv+nUDZtDA5m7O9H21ZAHLPUkbrZbU="}
+{"level":"info","time":"2026-02-21T21:08:14+07:00","message":"Received QR code 2@TDdaW8EYZkZtZ0fXhKXq6av0f4gN5dl6Yxm7lPY0q1xTwifYXBHasLKFue/BH2NocGbvf2LDw0z2dg6hvKmga+wtllQbJ6Z+4ss=,z6oq3gc0kE7e73J3AsrK8BdopzNBS9IQloTZACW6wS4=,s9675kAd6vAPnuVhPn+Urn+Iv3PahV12HqnubA1P8hQ=,E4V+QfGZJNgsRMpfo2YuB7dNC42IvCC32kjzQsSPKLw="}
+{"level":"info","time":"2026-02-21T21:08:14+07:00","message":"Received QR code 2@7bj8wub/GDTh/4vdSXonJ4fwm7ZLbbZ+st2qk12jKGBtn9iUXRjiCy6pB0PUUoUhA3pRVvUyBQofpzQVDT3qWoxMq3C8lnQgiSg=,Pwt+YaGoOybEtiv9ngrom4L+COgAET1iLDquAdOO2jk=,nKLjmlYCo4NiVmfzmGvzooKrvft7fw6FjEGG+ixeFTQ=,wIKkuINecwzWhllFS8a0QDujzNyXGDy7tFmtGVDaJlQ="}
+{"level":"debug","time":"2026-02-21T21:08:19+07:00","message":"Logged incoming video message from 6282137967683@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:23+07:00","message":"Logged incoming video message from 6282137967683@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:23+07:00","message":"Logged incoming image message from 6282137967683@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:23+07:00","message":"Logged incoming video message from 95052021932076@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:08:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:08:23+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:23+07:00","message":"Logged incoming text message from 6282232919219@s.whatsapp.net in chat 6282232919219@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:27+07:00","message":"Logged incoming video message from 6285769059727@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:27+07:00","message":"Logged incoming image message from 10814744449098@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:28+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:28+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:28+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:28+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:30+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:30+07:00","message":"Logged incoming text message from 6281379695070@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:30+07:00","message":"Logged incoming text message from 6287736238511@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:30+07:00","message":"Logged incoming text message from 255138321137669@lid in chat 255138321137669@lid"}
+{"level":"debug","time":"2026-02-21T21:08:32+07:00","message":"Logged incoming video message from 6287736238511@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:32+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged incoming image message from 6281584299444:1@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged incoming text message from 6281584299444:1@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged synced outgoing text message in chat 160417397633046@lid"}
+{"level":"error","time":"2026-02-21T21:08:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:08:33+07:00","message":"Logged synced outgoing text message in chat 255138321137669@lid"}
+{"level":"debug","time":"2026-02-21T21:08:34+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-21T21:08:34+07:00","message":"Logged incoming image message from 6285648389003@s.whatsapp.net in chat status@broadcast"}
+{"level":"info","time":"2026-02-21T21:08:34+07:00","message":"Received QR code 2@0ApGyFuLHwLPuNEG+9HbH6a0xJZSHFEFOVvyk+nEZlNnQZRppZZYu/QWg9e7cuQFpk2R4gEY9rao7jkCX8JxThHLS9kg6vKY1qA=,Ic0yUFSyBvuVmwNrAAOTbJx3cP2rm795T5Z3i1W6WW0=,0B4VBke/rHXkN559KRA+Oqx5JtB45A0o5yEvt62KEVA=,TblSS5+xhWspJkv+nUDZtDA5m7O9H21ZAHLPUkbrZbU="}
+{"level":"debug","time":"2026-02-21T21:08:34+07:00","message":"Logged incoming video message from 628118107193@s.whatsapp.net in chat status@broadcast"}
+{"level":"info","time":"2026-02-21T21:08:34+07:00","message":"Received QR code 2@NJoHNzoPfeSMo+w937DIVBHQr21Rt4/W3yw46XfRtCbTlODI5iKNlLdLhgg7R5ChKge2oNGECX7bXnYBNzl+3BbLmtYfDxf20KM=,z6oq3gc0kE7e73J3AsrK8BdopzNBS9IQloTZACW6wS4=,s9675kAd6vAPnuVhPn+Urn+Iv3PahV12HqnubA1P8hQ=,E4V+QfGZJNgsRMpfo2YuB7dNC42IvCC32kjzQsSPKLw="}
+{"level":"info","time":"2026-02-21T21:08:34+07:00","message":"Received QR code 2@sfyYQ5z+pdtOjSlgVr6BKYT2rs0zDSnjcWrybblIw/WItj0Wbzm1O0iyAVW3isP+1vDP5he5VFSkM2i7ZtuMEGsUlvNdV3MlrAo=,Pwt+YaGoOybEtiv9ngrom4L+COgAET1iLDquAdOO2jk=,nKLjmlYCo4NiVmfzmGvzooKrvft7fw6FjEGG+ixeFTQ=,wIKkuINecwzWhllFS8a0QDujzNyXGDy7tFmtGVDaJlQ="}
+{"level":"debug","time":"2026-02-21T21:08:35+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:35+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:36+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:37+07:00","message":"Logged incoming video message from 170072198881393@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:37+07:00","message":"Logged incoming image message from 6285296797899@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming video message from 628118107193@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming text message from 6281379695070:17@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming text message from 6281379695070:17@s.whatsapp.net in chat 6281379695070@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming video message from 6282176392386@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:41+07:00","message":"Logged incoming image message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:42+07:00","message":"Logged incoming video message from 6282251019156@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:43+07:00","message":"Logged incoming image message from 120363160757210405@newsletter in chat 120363160757210405@newsletter"}
+{"level":"debug","time":"2026-02-21T21:08:43+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:08:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:08:44+07:00","message":"Logged incoming video message from 6285367715992@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:44+07:00","message":"Logged incoming text message from 120363171174534728@newsletter in chat 120363171174534728@newsletter"}
+{"level":"debug","time":"2026-02-21T21:08:44+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:46+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:46+07:00","message":"Logged incoming video message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:46+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:46+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:46+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:47+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:47+07:00","message":"Logged incoming image message from 6282324383996:49@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:48+07:00","message":"Logged incoming image message from 6282324383996:49@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:48+07:00","message":"Logged incoming text message from 6282324383996:49@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T21:08:49+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:50+07:00","message":"Logged incoming video message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T21:08:52+07:00","message":"Logged incoming video message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:08:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-21T21:08:54+07:00","message":"Received QR code 2@0ah5LG1HJFAzezipYb2/g5HkEmDo+Cd6ahb3Aeq7HQN8QxyXaSG9HA50ZV+3/nC1hFz7mbla2hv1oOaeFhuFBc8MHZY1KTGXNtQ=,Ic0yUFSyBvuVmwNrAAOTbJx3cP2rm795T5Z3i1W6WW0=,0B4VBke/rHXkN559KRA+Oqx5JtB45A0o5yEvt62KEVA=,TblSS5+xhWspJkv+nUDZtDA5m7O9H21ZAHLPUkbrZbU="}
+{"level":"info","time":"2026-02-21T21:08:54+07:00","message":"Received QR code 2@UuMiuEfJtu0ZOMAKUzGkjkn0eZIhlFFlbj8rdhu75ttHlJXAEwklwwHFnO+v/yygfVQ1EX1qxKCpgQz3d2zwoHxIoc5YBzFG+hE=,z6oq3gc0kE7e73J3AsrK8BdopzNBS9IQloTZACW6wS4=,s9675kAd6vAPnuVhPn+Urn+Iv3PahV12HqnubA1P8hQ=,E4V+QfGZJNgsRMpfo2YuB7dNC42IvCC32kjzQsSPKLw="}
+{"level":"info","time":"2026-02-21T21:08:54+07:00","message":"Received QR code 2@tBlr+0P4vk8qqazWCCrxJhz7FnHJLuWUU4TuPw0MkyKz2i9PZ8qD9nV6hlHpfNGZgKZYeHd/OeSKALmLtA7cfrO6i8RqFUiEp9E=,Pwt+YaGoOybEtiv9ngrom4L+COgAET1iLDquAdOO2jk=,nKLjmlYCo4NiVmfzmGvzooKrvft7fw6FjEGG+ixeFTQ=,wIKkuINecwzWhllFS8a0QDujzNyXGDy7tFmtGVDaJlQ="}
+{"level":"error","time":"2026-02-21T21:09:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:09:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:09:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:09:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:09:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:09:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:10:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:10:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:10:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:10:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:10:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-21T21:10:45+07:00","message":"Sending media message: client=01KHV4E3GATMGGMFTERQ1B3PWE chat=6281379695070@s.whatsapp.net file=3EB08FF738E4D4C179D012-image.jpg type=image/jpeg size=413121"}
+{"level":"error","time":"2026-02-21T21:10:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:11:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:11:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:11:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T21:11:27+07:00","message":"Logged incoming image message from 6285227544731@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T21:11:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:11:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:11:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:12:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:12:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:12:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:12:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:12:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:12:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:13:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:13:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:13:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:13:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:13:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:13:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:14:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:14:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:14:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:14:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:14:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:14:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:15:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:15:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:15:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:15:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:15:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:15:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:16:03+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T21:31:18+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T22:05:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-21T22:05:31+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-21T22:05:32+07:00","message":"Logged incoming image message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:05:32+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:05:33+07:00","message":"Logged incoming video message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:05:33+07:00","message":"Logged incoming image message from 262345276309746:33@lid in chat 6289607064356-1615665916@g.us"}
+{"level":"debug","time":"2026-02-21T22:05:33+07:00","message":"Logged incoming image message from 262345276309746:33@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-21T22:05:33+07:00","message":"Logged incoming text message from 6282324383996:49@s.whatsapp.net in chat 6282324383996@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-21T22:05:34+07:00","message":"Logged incoming image message from 6282197641964@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T22:40:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-21T22:40:33+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-21T22:40:33+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:40:33+07:00","message":"Logged incoming image message from 6282176392386@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:40:33+07:00","message":"Logged incoming image message from 6282176392386@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:40:34+07:00","message":"Logged incoming video message from 628118107193@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:40:34+07:00","message":"Logged incoming image message from 628118107193@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T22:40:34+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T23:13:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T23:17:14+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-21T23:17:24+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-21T23:29:12+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-21T23:29:12+07:00","message":"Logged incoming text message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T23:29:12+07:00","message":"Logged incoming text message from 30640699375640@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-21T23:29:12+07:00","message":"Logged incoming text message from 30640699375640@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-21T23:29:12+07:00","message":"Logged incoming text message from 30640699375640@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-21T23:29:12+07:00","message":"Logged incoming image message from 6281379695070@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T23:29:12+07:00","message":"Logged incoming video message from 95052021932076@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T23:29:13+07:00","message":"Logged incoming image message from 6281379695070@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T23:29:13+07:00","message":"Logged incoming image message from 6281379695070@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-21T23:29:13+07:00","message":"Logged incoming image message from 6281283264515:78@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-21T23:29:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-21T23:29:14+07:00","message":"Logged incoming video message from 6281283264515:78@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T00:02:20+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T00:18:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T00:18:26+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T00:36:09+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T01:10:09+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T01:19:18+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-22T01:19:18+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T01:19:20+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T01:19:20+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T01:19:20+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T01:19:20+07:00","message":"Logged incoming image message from 6281290263605@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T01:19:22+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T01:19:22+07:00","message":"Logged incoming image message from 6285883753103@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T01:19:22+07:00","message":"Logged incoming image message from 6285883753103@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T01:19:28+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T01:51:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T02:07:14+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T02:07:15+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T02:07:15+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T02:07:15+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T02:20:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T02:20:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T02:36:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T02:52:00+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T02:52:01+07:00","message":"Logged incoming video message from 6285882365201@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T03:08:24+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T03:21:20+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T03:53:21+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T04:08:34+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T04:22:16+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T04:22:16+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T04:22:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T04:22:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T04:22:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T04:38:23+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T05:11:24+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T05:23:18+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T05:23:28+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T05:39:28+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T05:39:29+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T05:39:30+07:00","message":"Logged incoming video message from 6285267011177@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T06:13:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T06:13:33+07:00","message":"Logged incoming video message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T06:13:33+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"debug","time":"2026-02-22T06:13:33+07:00","message":"Logged synced outgoing text message in chat 139346069991539@lid"}
+{"level":"info","time":"2026-02-22T06:24:16+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T06:24:16+07:00","message":"Logged incoming video message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T06:24:17+07:00","message":"Logged synced outgoing image message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-22T06:24:18+07:00","message":"Logged synced outgoing image message in chat 160417397633046@lid"}
+{"level":"debug","time":"2026-02-22T06:24:18+07:00","message":"Logged incoming video message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T06:24:18+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T06:24:19+07:00","message":"Logged incoming video message from 6281388316232@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T06:24:20+07:00","message":"Logged incoming video message from 628117832002@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T06:24:21+07:00","message":"Logged incoming video message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T06:24:28+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T06:24:38+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T06:34:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T06:34:43+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T07:08:40+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T07:08:41+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T07:08:42+07:00","message":"Logged incoming video message from 120363160757210405@newsletter in chat 120363160757210405@newsletter"}
+{"level":"error","time":"2026-02-22T07:41:58+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T07:42:17+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T07:42:27+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T07:42:37+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T07:58:34+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T07:58:36+07:00","message":"Logged incoming video message from 188510543835258@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T07:58:36+07:00","message":"Logged synced outgoing text message in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T07:58:36+07:00","message":"Logged incoming image message from 6287788260928@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T07:58:36+07:00","message":"Logged incoming image message from 6287788260928@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T08:16:10+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T08:25:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T08:25:40+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T08:25:50+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T08:25:51+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T08:25:51+07:00","message":"Logged incoming video message from 6287788260928@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T08:25:52+07:00","message":"Logged incoming video message from 6287788260928@s.whatsapp.net in chat status@broadcast"}
+{"level":"info","time":"2026-02-22T08:43:13+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-22T08:43:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T09:15:40+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T09:26:32+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T09:26:42+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T09:26:52+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T09:26:54+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T10:00:34+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T10:27:28+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T10:27:39+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T10:27:48+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T10:27:52+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T10:27:58+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T11:01:08+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T11:28:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T11:28:33+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-02-22T11:28:34+07:00","message":"Marked self as available"}
+{"level":"error","time":"2026-02-22T12:01:12+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T12:01:16+07:00","message":"Logged incoming video message from 90838608674990@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T12:01:16+07:00","message":"Logged incoming image message from 6281584299444:1@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T12:01:16+07:00","message":"Logged incoming video message from 90838608674990@lid in chat status@broadcast"}
+{"level":"info","time":"2026-02-22T12:16:57+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T12:16:59+07:00","message":"Logged incoming image message from 8830570217615@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T12:17:00+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T12:17:00+07:00","message":"Logged incoming video message from 8830570217615@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T12:45:58+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T12:45:59+07:00","message":"Logged incoming video message from 8830570217615@lid in chat status@broadcast"}
+{"level":"info","time":"2026-02-22T12:46:00+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T12:46:00+07:00","message":"Logged incoming video message from 8830570217615@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T12:46:01+07:00","message":"Logged incoming image message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T13:18:45+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T13:18:48+07:00","message":"Logged incoming video message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T13:18:48+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"error","time":"2026-02-22T13:30:35+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T14:05:29+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T14:05:29+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T14:05:30+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"error","time":"2026-02-22T14:31:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T14:46:53+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T15:19:38+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T15:19:41+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T15:19:41+07:00","message":"Logged incoming text message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T15:32:35+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T15:49:16+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T15:49:18+07:00","message":"Logged incoming video message from 6285218571889@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T15:55:19+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T16:13:14+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T16:13:16+07:00","message":"Logged incoming image message from 90838608674990@lid in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T16:33:30+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T16:33:33+07:00","message":"Marked self as available"}
+{"level":"info","time":"2026-02-22T16:33:34+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T16:33:34+07:00","message":"Logged incoming image message from 90838608674990@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:34+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming video message from 6283175527142@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:35+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:36+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:36+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T16:33:36+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T16:49:15+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T17:06:44+07:00","message":"Logged incoming video message from 6287788987577@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T17:06:44+07:00","message":"Logged incoming text message from 6282231492595:30@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T17:06:44+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T17:23:35+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T17:30:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T17:49:40+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T17:49:42+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T17:49:44+07:00","message":"Logged incoming video message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T17:49:44+07:00","message":"Logged incoming image message from 6282175625046@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T18:05:19+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T18:21:54+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"info","time":"2026-02-22T18:35:34+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T18:35:34+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T18:35:35+07:00","message":"Logged incoming text message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:35+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:35+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T18:35:36+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T18:35:37+07:00","message":"Logged incoming video message from 6282189103455@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:37+07:00","message":"Logged incoming image message from 6287788260928@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:37+07:00","message":"Logged incoming video message from 6285695596779@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:38+07:00","message":"Logged incoming video message from 6285695596779@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:38+07:00","message":"Logged incoming video message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:38+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:38+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:38+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:39+07:00","message":"Logged incoming image message from 6285641163115@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:39+07:00","message":"Logged incoming image message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:39+07:00","message":"Logged incoming image message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T18:35:39+07:00","message":"Logged incoming text message from 272064820814040@lid in chat 272064820814040@lid"}
+{"level":"debug","time":"2026-02-22T18:35:39+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T19:07:34+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T19:36:33+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T19:53:13+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T19:53:13+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T19:53:13+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T19:53:13+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T19:53:13+07:00","message":"Logged synced outgoing text message in chat 272064820814040@lid"}
+{"level":"debug","time":"2026-02-22T19:53:13+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T19:53:14+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T19:53:15+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T20:00:41+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T20:00:51+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"error","time":"2026-02-22T20:01:01+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T20:01:05+07:00","message":"Logged incoming image message from 6282184383369@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:05+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T20:01:11+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"info","time":"2026-02-22T20:01:19+07:00","message":"Marked self as available"}
+{"level":"debug","time":"2026-02-22T20:01:20+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:20+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:20+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:20+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T20:01:21+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T20:01:22+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:22+07:00","message":"Logged incoming text message from 272064820814040@lid in chat 272064820814040@lid"}
+{"level":"debug","time":"2026-02-22T20:01:22+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T20:01:22+07:00","message":"Logged incoming video message from 143808591319187@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:22+07:00","message":"Logged incoming image message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming video message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming text message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming text message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:23+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:24+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:25+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:25+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:25+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:25+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:25+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:25+07:00","message":"Logged incoming image message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:26+07:00","message":"Logged incoming video message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:26+07:00","message":"Logged incoming image message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:26+07:00","message":"Logged synced outgoing text message in chat 272064820814040@lid"}
+{"level":"debug","time":"2026-02-22T20:01:26+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T20:01:29+07:00","message":"Logged incoming video message from 6282177417081@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:29+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T20:01:29+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T20:01:29+07:00","message":"Logged incoming text message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:30+07:00","message":"Logged incoming video message from 6285367027234@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"error","time":"2026-02-22T20:01:31+07:00","message":"Failed to get pending broadcast jobs: ERROR: column \"is_scheduled\" does not exist (SQLSTATE 42703)"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming image message from 262345276309746:32@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming image message from 6281388316232@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:31+07:00","message":"Logged incoming text message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:32+07:00","message":"Logged incoming image message from 262345276309746:32@lid in chat 120363041657343195@g.us"}
+{"level":"debug","time":"2026-02-22T20:01:32+07:00","message":"Logged incoming image message from 6282176392386@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:32+07:00","message":"Logged incoming image message from 6285218571889:2@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:33+07:00","message":"Logged incoming video message from 6282299028702@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:33+07:00","message":"Logged incoming video message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:33+07:00","message":"Logged incoming image message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:34+07:00","message":"Logged incoming video message from 261636623483087@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:34+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:34+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:34+07:00","message":"Logged incoming image message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:34+07:00","message":"Logged incoming video message from 6281381828279@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:34+07:00","message":"Logged incoming text message from 6281910001918@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:35+07:00","message":"Logged incoming video message from 261636623483087@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged incoming video message from 169076236259582@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged incoming text message from 272064820814040@lid in chat 272064820814040@lid"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged incoming text message from 6287776274466@s.whatsapp.net in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged incoming text message from 6281282056365@s.whatsapp.net in chat 6281282056365@s.whatsapp.net"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged incoming image message from 143512070799371@lid in chat status@broadcast"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged synced outgoing text message in chat 63114661896268@lid"}
+{"level":"debug","time":"2026-02-22T20:01:36+07:00","message":"Logged synced outgoing text message in chat 272064820814040@lid"}

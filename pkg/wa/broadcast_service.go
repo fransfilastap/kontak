@@ -114,8 +114,37 @@ func (s *BroadcastService) sendBroadcastMessage(job db.BroadcastJob, recipientJi
 		return context.DeadlineExceeded // Or a more appropriate error
 	}
 
-	// For now, only text is supported in this simplified implementation
-	// but we can expand based on job.MessageType
-	_, err := s.waClient.SendMessage(job.DeviceID.String, recipientJid, job.Content)
+	waMessageID, err := s.waClient.SendMessage(job.DeviceID.String, recipientJid, job.Content)
+
+	if err == nil {
+		recipientType := "individual"
+		if len(recipientJid) > 5 && recipientJid[len(recipientJid)-5:] == "@g.us" {
+			recipientType = "group"
+		}
+
+		ctx := context.Background()
+		_, logErr := s.db.LogOutgoingMessage(ctx, db.LogOutgoingMessageParams{
+			DeviceID:      job.DeviceID,
+			Recipient:     recipientJid,
+			RecipientType: pgtype.Text{String: recipientType, Valid: true},
+			MessageType:   job.MessageType,
+			Content:       job.Content,
+			WaMessageID:   pgtype.Text{String: waMessageID, Valid: true},
+		})
+		if logErr != nil {
+			logger.Error("Failed to log outgoing broadcast message: %v", logErr)
+		}
+
+		_ = s.db.UpsertThread(ctx, db.UpsertThreadParams{
+			DeviceID:    job.DeviceID.String,
+			ChatJid:     recipientJid,
+			ChatType:    recipientType,
+			Content:     job.Content,
+			MessageType: job.MessageType.String,
+			Direction:   "outgoing",
+			IsIncoming:  false,
+		})
+	}
+
 	return err
 }

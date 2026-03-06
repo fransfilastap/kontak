@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/fransfilastap/kontak/pkg/logger"
@@ -297,4 +298,52 @@ func (h *InboxHandler) SendMediaMessage(c echo.Context) error {
 	})
 
 	return c.JSON(http.StatusOK, msg)
+}
+
+type ScheduleMessageRequest struct {
+	To          string `json:"to" validate:"required"`
+	Text        string `json:"text" validate:"required"`
+	ScheduledAt string `json:"scheduled_at" validate:"required"`
+}
+
+// ScheduleMessage creates a delayed singleton broadcast job
+func (h *InboxHandler) ScheduleMessage(c echo.Context) error {
+	clientID := c.Param("client_id")
+	userID := getUserIDFromContext(c)
+
+	var req ScheduleMessageRequest
+	if err := c.Bind(&req); err != nil {
+		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
+	}
+	if err := c.Validate(req); err != nil {
+		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
+	}
+
+	t, err := time.Parse(time.RFC3339, req.ScheduledAt)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Invalid scheduled_at format, must be RFC3339"})
+	}
+
+	job, err := h.db.CreateBroadcastJob(c.Request().Context(), db.CreateBroadcastJobParams{
+		UserID:      pgtype.Int4{Int32: userID, Valid: true},
+		DeviceID:    pgtype.Text{String: clientID, Valid: true},
+		Name:        "Scheduled Message for " + req.To,
+		MessageType: pgtype.Text{String: "text", Valid: true},
+		Content:     req.Text,
+		IsScheduled: pgtype.Bool{Bool: true, Valid: true},
+		ScheduledAt: pgtype.Timestamptz{Time: t, Valid: true},
+	})
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
+	err = h.db.CreateBroadcastRecipient(c.Request().Context(), db.CreateBroadcastRecipientParams{
+		JobID:        job.ID,
+		RecipientJid: req.To,
+	})
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
+	return c.JSON(http.StatusCreated, job)
 }

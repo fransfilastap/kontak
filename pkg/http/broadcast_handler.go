@@ -2,6 +2,7 @@ package http
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/fransfilastap/kontak/pkg/db"
 	"github.com/google/uuid"
@@ -24,6 +25,7 @@ type CreateBroadcastRequest struct {
 	MessageType string   `json:"message_type" validate:"required"`
 	Cooldown    int32    `json:"cooldown"`
 	Recipients  []string `json:"recipients" validate:"required"`
+	ScheduledAt string   `json:"scheduled_at"`
 }
 
 func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
@@ -36,6 +38,16 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 	if userID == 0 {
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "unauthorized"})
 	}
+	var isScheduled pgtype.Bool
+	var scheduledAt pgtype.Timestamptz
+	if req.ScheduledAt != "" {
+		t, err := time.Parse(time.RFC3339, req.ScheduledAt)
+		if err == nil {
+			isScheduled = pgtype.Bool{Bool: true, Valid: true}
+			scheduledAt = pgtype.Timestamptz{Time: t, Valid: true}
+		}
+	}
+
 	job, err := h.db.CreateBroadcastJob(c.Request().Context(), db.CreateBroadcastJobParams{
 		UserID:      pgtype.Int4{Int32: userID, Valid: true},
 		DeviceID:    pgtype.Text{String: req.DeviceID, Valid: true},
@@ -43,6 +55,8 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 		MessageType: pgtype.Text{String: req.MessageType, Valid: true},
 		Content:     req.Content,
 		Cooldown:    pgtype.Int4{Int32: req.Cooldown, Valid: true},
+		IsScheduled: isScheduled,
+		ScheduledAt: scheduledAt,
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})

@@ -1,0 +1,3 @@
+ALTER TABLE broadcast_jobs
+ADD COLUMN is_scheduled BOOLEAN NOT NULL DEFAULT FALSE,
+    ADD COLUMN scheduled_at TIMESTAMPTZ;

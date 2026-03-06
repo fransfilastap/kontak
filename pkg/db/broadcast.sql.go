@@ -12,20 +12,22 @@ import (
 )
 
 const createBroadcastJob = `-- name: CreateBroadcastJob :one
-INSERT INTO broadcast_jobs (user_id, device_id, name, message_type, content, media_url, media_filename, cooldown)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-RETURNING id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at
+INSERT INTO broadcast_jobs (user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, is_scheduled, scheduled_at)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, COALESCE($9::boolean, FALSE), $10::timestamptz)
+RETURNING id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at
 `
 
 type CreateBroadcastJobParams struct {
-	UserID        pgtype.Int4 `json:"user_id"`
-	DeviceID      pgtype.Text `json:"device_id"`
-	Name          string      `json:"name"`
-	MessageType   pgtype.Text `json:"message_type"`
-	Content       string      `json:"content"`
-	MediaUrl      pgtype.Text `json:"media_url"`
-	MediaFilename pgtype.Text `json:"media_filename"`
-	Cooldown      pgtype.Int4 `json:"cooldown"`
+	UserID        pgtype.Int4        `json:"user_id"`
+	DeviceID      pgtype.Text        `json:"device_id"`
+	Name          string             `json:"name"`
+	MessageType   pgtype.Text        `json:"message_type"`
+	Content       string             `json:"content"`
+	MediaUrl      pgtype.Text        `json:"media_url"`
+	MediaFilename pgtype.Text        `json:"media_filename"`
+	Cooldown      pgtype.Int4        `json:"cooldown"`
+	IsScheduled   pgtype.Bool        `json:"is_scheduled"`
+	ScheduledAt   pgtype.Timestamptz `json:"scheduled_at"`
 }
 
 func (q *Queries) CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJobParams) (BroadcastJob, error) {
@@ -38,6 +40,8 @@ func (q *Queries) CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJob
 		arg.MediaUrl,
 		arg.MediaFilename,
 		arg.Cooldown,
+		arg.IsScheduled,
+		arg.ScheduledAt,
 	)
 	var i BroadcastJob
 	err := row.Scan(
@@ -51,6 +55,8 @@ func (q *Queries) CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJob
 		&i.MediaFilename,
 		&i.Cooldown,
 		&i.Status,
+		&i.IsScheduled,
+		&i.ScheduledAt,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -74,7 +80,7 @@ func (q *Queries) CreateBroadcastRecipient(ctx context.Context, arg CreateBroadc
 }
 
 const getBroadcastJob = `-- name: GetBroadcastJob :one
-SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at FROM broadcast_jobs
+SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at FROM broadcast_jobs
 WHERE id = $1 AND user_id = $2
 `
 
@@ -97,6 +103,8 @@ func (q *Queries) GetBroadcastJob(ctx context.Context, arg GetBroadcastJobParams
 		&i.MediaFilename,
 		&i.Cooldown,
 		&i.Status,
+		&i.IsScheduled,
+		&i.ScheduledAt,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -104,7 +112,7 @@ func (q *Queries) GetBroadcastJob(ctx context.Context, arg GetBroadcastJobParams
 }
 
 const getBroadcastJobs = `-- name: GetBroadcastJobs :many
-SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at FROM broadcast_jobs
+SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at FROM broadcast_jobs
 WHERE user_id = $1
 ORDER BY created_at DESC
 `
@@ -129,6 +137,8 @@ func (q *Queries) GetBroadcastJobs(ctx context.Context, userID pgtype.Int4) ([]B
 			&i.MediaFilename,
 			&i.Cooldown,
 			&i.Status,
+			&i.IsScheduled,
+			&i.ScheduledAt,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -175,8 +185,8 @@ func (q *Queries) GetBroadcastRecipients(ctx context.Context, jobID pgtype.UUID)
 }
 
 const getPendingBroadcastJobs = `-- name: GetPendingBroadcastJobs :many
-SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at FROM broadcast_jobs
-WHERE status = 'pending'
+SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at FROM broadcast_jobs
+WHERE status = 'pending' AND (is_scheduled = FALSE OR (is_scheduled = TRUE AND scheduled_at <= NOW()))
 ORDER BY created_at ASC
 `
 
@@ -200,6 +210,8 @@ func (q *Queries) GetPendingBroadcastJobs(ctx context.Context) ([]BroadcastJob, 
 			&i.MediaFilename,
 			&i.Cooldown,
 			&i.Status,
+			&i.IsScheduled,
+			&i.ScheduledAt,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {

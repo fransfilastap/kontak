@@ -111,6 +111,7 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 	admin.POST("/inbox/:client_id/threads/:chat_jid/send", inboxHandler.SendMessage)
 	admin.POST("/inbox/:client_id/threads/:chat_jid/send-media", inboxHandler.SendMediaMessage)
 	admin.POST("/inbox/:client_id/threads/send", inboxHandler.SendNewMessage)
+	admin.POST("/inbox/:client_id/threads/schedule", inboxHandler.ScheduleMessage)
 	admin.POST("/inbox/:client_id/threads/:chat_jid/read", inboxHandler.MarkRead)
 
 	// Admin Broadcasts (JWT-protected)

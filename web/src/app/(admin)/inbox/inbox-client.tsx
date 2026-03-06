@@ -47,14 +47,16 @@ export function InboxClient({ devices }: InboxClientProps) {
   );
 
   const handleSendNewMessage = useCallback(
-    async (to: string, text: string) => {
+    async (to: string, text: string, scheduledAt?: string) => {
       if (!selectedDeviceId) return;
+      const endpoint = scheduledAt ? `/api/kontak/inbox/${selectedDeviceId}/threads/schedule` : `/api/kontak/inbox/${selectedDeviceId}/threads/send`;
+      const body = scheduledAt ? { to, text, scheduled_at: scheduledAt } : { to, text };
       await fetch(
-        `/api/kontak/inbox/${selectedDeviceId}/threads/send`,
+        endpoint,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ to, text }),
+          body: JSON.stringify(body),
         }
       );
       setSelectedChatJid(to.includes("@") ? to : `${to}@s.whatsapp.net`);

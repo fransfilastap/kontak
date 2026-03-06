@@ -50,7 +50,7 @@ interface NewMessageDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   deviceId: string;
-  onSend: (to: string, text: string) => Promise<void>;
+  onSend: (to: string, text: string, scheduledAt?: string) => Promise<void>;
 }
 
 function wrapSelection(
@@ -112,6 +112,7 @@ export function NewMessageDialog({
   const [selectedContact, setSelectedContact] = useState<WhatsAppContact | null>(null);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [messageText, setMessageText] = useState("");
+  const [scheduledAt, setScheduledAt] = useState("");
   const [sending, setSending] = useState(false);
   const [showContactPicker, setShowContactPicker] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -144,10 +145,11 @@ export function NewMessageDialog({
     if (!recipient || !messageText.trim()) return;
     setSending(true);
     try {
-      await onSend(recipient, messageText.trim());
+      await onSend(recipient, messageText.trim(), scheduledAt ? new Date(scheduledAt).toISOString() : undefined);
       // Reset form
       setMessageText("");
       setPhoneNumber("");
+      setScheduledAt("");
       setSelectedContact(null);
       setShowContactPicker(false);
       setShowPreview(false);
@@ -155,7 +157,7 @@ export function NewMessageDialog({
     } finally {
       setSending(false);
     }
-  }, [recipient, messageText, onSend, onOpenChange]);
+  }, [recipient, messageText, scheduledAt, onSend, onOpenChange]);
 
   const handleSelectTemplate = (templateId: string) => {
     const template = templates?.find((t) => t.id === templateId);
@@ -313,6 +315,25 @@ export function NewMessageDialog({
                 </CommandList>
               </Command>
             )}
+
+            {/* Schedule For field */}
+            <div className="flex items-center gap-2 mt-4">
+              <Label className="text-sm font-medium shrink-0 w-8">Send</Label>
+              <div className="flex-1 flex items-center gap-2">
+                <Input
+                  type="datetime-local"
+                  value={scheduledAt}
+                  onChange={(e) => setScheduledAt(e.target.value)}
+                  className="h-8 max-w-[220px]"
+                  min={new Date().toISOString().slice(0, 16)}
+                />
+                {scheduledAt && (
+                  <Button variant="ghost" size="sm" onClick={() => setScheduledAt("")} className="h-8 text-xs px-2 text-muted-foreground">
+                    Clear (send now)
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
 
           <Separator />
