@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/fransfilastap/kontak/compare/v1.13.0...v1.14.0) (2026-03-06)
+
+
+### Features
+
+* Add API documentation page to the admin UI and improve broadcast service message handling and logging. ([b708b43](https://github.com/fransfilastap/kontak/commit/b708b435e1d5b172b25ab94cb5d627a10ceb46f5))
+
 # [1.13.0](https://github.com/fransfilastap/kontak/compare/v1.12.0...v1.13.0) (2026-03-06)
 
 
