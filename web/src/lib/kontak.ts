@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 const DEFAULT_BASE_URL = process.env.KONTAK_API_URL ?? "http://localhost:8080";
 
 const getHeaders = async (): Promise<HeadersInit> => {
-  let session;
+  let session: any;
   if (typeof window !== "undefined") {
     const { getSession } = await import("next-auth/react");
     session = await getSession();
@@ -73,6 +73,42 @@ const generateAPIKey = async () => {
       method: "POST",
     }
   );
+  return response.json();
+};
+
+const getAPIKeys = async () => {
+  const response = await fetchWithAuth(BASE_URL, "/admin/users/api-keys");
+  const data = await response.json();
+  console.log("getAPIKeys raw response:", data);
+  return data;
+};
+
+const createAPIKey = async (name: string) => {
+  const response = await fetchWithAuth(BASE_URL, "/admin/users/api-keys", {
+    method: "POST",
+    body: JSON.stringify({ name }),
+  });
+  return response.json();
+};
+
+const deleteAPIKey = async (id: string) => {
+  console.log("deleteAPIKey called with id:", id, "type:", typeof id);
+  if (!id || id === "undefined" || id === "null") {
+    console.error("Invalid ID passed to deleteAPIKey:", id);
+    throw new Error("Invalid API key ID");
+  }
+  const url = `${BASE_URL}/admin/users/api-keys/${id}`;
+  console.log("DELETE URL:", url);
+  const response = await fetchWithAuth(BASE_URL, `/admin/users/api-keys/${id}`, {
+    method: "DELETE",
+  });
+  console.log("deleteAPIKey response status:", response.status);
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("deleteAPIKey error response:", errorText);
+    const error = JSON.parse(errorText || "{}").catch(() => ({ error: "Failed to delete API key" }));
+    throw new Error(error.error || `Failed to delete API key (${response.status})`);
+  }
   return response.json();
 };
 
@@ -293,6 +329,9 @@ const kontakClient = {
   login: (username: string, password: string) => login(username, password),
   registerUser: (userData: any) => registerUser(userData),
   generateAPIKey: () => generateAPIKey(),
+  getAPIKeys: () => getAPIKeys(),
+  createAPIKey: (name: string) => createAPIKey(name),
+  deleteAPIKey: (id: string) => deleteAPIKey(id),
   registerDevice: (deviceData: any) => registerDevice(deviceData),
   getDevices: () => getDevices(),
   connectDevice: (clientId: string) => connectDevice(clientId),

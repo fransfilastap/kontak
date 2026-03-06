@@ -1,21 +1,25 @@
 package http
 
 import (
+	"errors"
 	"net/http"
 	"time"
 
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/logger"
+	"github.com/fransfilastap/kontak/pkg/wa"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/labstack/echo/v4"
 )
 
 type BroadcastHandler struct {
-	db db.Querier
+	db          db.Querier
+	deviceStore *wa.DeviceStore
 }
 
-func NewBroadcastHandler(db db.Querier) *BroadcastHandler {
-	return &BroadcastHandler{db: db}
+func NewBroadcastHandler(db db.Querier, deviceStore *wa.DeviceStore) *BroadcastHandler {
+	return &BroadcastHandler{db: db, deviceStore: deviceStore}
 }
 
 type CreateBroadcastRequest struct {
@@ -31,13 +35,29 @@ type CreateBroadcastRequest struct {
 func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 	var req CreateBroadcastRequest
 	if err := c.Bind(&req); err != nil {
+		logger.Error("CreateBroadcast: bind error=%v", err)
 		return c.JSON(http.StatusBadRequest, echo.Map{"error": err.Error()})
 	}
 
 	userID := getUserIDFromContext(c)
+	logger.Info("CreateBroadcast: userID=%d deviceID=%s", userID, req.DeviceID)
+
 	if userID == 0 {
+		logger.Error("CreateBroadcast: unauthorized userID=0")
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "unauthorized"})
 	}
+
+	// Verify device ownership
+	_, err := h.deviceStore.GetDeviceByIDAndUserID(c.Request().Context(), req.DeviceID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		logger.Error("CreateBroadcast: device not found deviceID=%s userID=%d", req.DeviceID, userID)
+		return c.JSON(http.StatusNotFound, echo.Map{"error": "Device not found"})
+	}
+	if err != nil {
+		logger.Error("CreateBroadcast: error checking device ownership deviceID=%s userID=%d error=%v", req.DeviceID, userID, err)
+		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
+	}
+
 	var isScheduled bool
 	var scheduledAt pgtype.Timestamptz
 	if req.ScheduledAt != "" {
@@ -59,6 +79,7 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 		ScheduledAt: scheduledAt,
 	})
 	if err != nil {
+		logger.Error("CreateBroadcast: failed to create job error=%v", err)
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
 	}
 
@@ -68,33 +89,43 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 			RecipientJid: recipientJid,
 		})
 		if err != nil {
-			// Log error but continue
+			logger.Error("CreateBroadcast: failed to add recipient %s error=%v", recipientJid, err)
 		}
 	}
 
+	logger.Info("CreateBroadcast: success jobID=%s", job.ID)
 	return c.JSON(http.StatusCreated, job)
 }
 
 func (h *BroadcastHandler) GetBroadcastJobs(c echo.Context) error {
 	userID := getUserIDFromContext(c)
+	logger.Info("GetBroadcastJobs: userID=%d", userID)
+
 	if userID == 0 {
+		logger.Error("GetBroadcastJobs: unauthorized userID=0")
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "unauthorized"})
 	}
 	jobs, err := h.db.GetBroadcastJobs(c.Request().Context(), pgtype.Int4{Int32: userID, Valid: true})
 	if err != nil {
+		logger.Error("GetBroadcastJobs: error=%v", err)
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
 	}
+	logger.Info("GetBroadcastJobs: found %d jobs", len(jobs))
 	return c.JSON(http.StatusOK, jobs)
 }
 
 func (h *BroadcastHandler) GetBroadcastJob(c echo.Context) error {
 	userID := getUserIDFromContext(c)
+	logger.Info("GetBroadcastJob: userID=%d", userID)
+
 	if userID == 0 {
+		logger.Error("GetBroadcastJob: unauthorized userID=0")
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "unauthorized"})
 	}
 	idStr := c.Param("id")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
+		logger.Error("GetBroadcastJob: invalid id=%s error=%v", idStr, err)
 		return c.JSON(http.StatusBadRequest, echo.Map{"error": "invalid id"})
 	}
 
@@ -103,11 +134,13 @@ func (h *BroadcastHandler) GetBroadcastJob(c echo.Context) error {
 		UserID: pgtype.Int4{Int32: userID, Valid: true},
 	})
 	if err != nil {
+		logger.Error("GetBroadcastJob: job not found id=%s error=%v", idStr, err)
 		return c.JSON(http.StatusNotFound, echo.Map{"error": "job not found"})
 	}
 
 	recipients, err := h.db.GetBroadcastRecipients(c.Request().Context(), job.ID)
 	if err != nil {
+		logger.Error("GetBroadcastJob: error fetching recipients jobID=%s error=%v", job.ID, err)
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
 	}
 

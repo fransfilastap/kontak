@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/fransfilastap/kontak/pkg/logger"
 	"go.mau.fi/whatsmeow"
 	"go.mau.fi/whatsmeow/proto/waE2E"
 	"google.golang.org/protobuf/proto"
@@ -12,8 +13,11 @@ import (
 
 // SendMessage sends a text message to a specified recipient and returns the WhatsApp message ID.
 func (w *WhatsappClient) SendMessage(clientID string, recipient string, message string) (string, error) {
+	logger.Info("SendMessage: clientID=%s recipient=%s", clientID, recipient)
+
 	jid, err := getJID(recipient)
 	if err != nil {
+		logger.Error("SendMessage: failed to parse jid for %s: %v", recipient, err)
 		return "", fmt.Errorf("failed to parse jid: %v", err)
 	}
 	msg := &waE2E.Message{
@@ -21,8 +25,10 @@ func (w *WhatsappClient) SendMessage(clientID string, recipient string, message 
 	}
 	resp, err := w.runningClients[clientID].SendMessage(context.Background(), jid, msg)
 	if err != nil {
-		return "", fmt.Errorf("failed to send message: %v tp %v", err, resp)
+		logger.Error("SendMessage: failed to send to %s: %v", recipient, err)
+		return "", fmt.Errorf("failed to send message: %v", err)
 	}
+	logger.Info("SendMessage: success to %s, messageID=%s", recipient, resp.ID)
 	return resp.ID, nil
 }
 

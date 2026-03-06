@@ -11,15 +11,21 @@ import (
 )
 
 type Querier interface {
+	CreateAPIKey(ctx context.Context, arg CreateAPIKeyParams) (ApiKey, error)
 	CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJobParams) (BroadcastJob, error)
 	CreateBroadcastRecipient(ctx context.Context, arg CreateBroadcastRecipientParams) error
 	// filename: queries/clients/create_new_client.sql
 	CreateNewClient(ctx context.Context, arg CreateNewClientParams) (Client, error)
 	CreateNewMessageTemplate(ctx context.Context, arg CreateNewMessageTemplateParams) (MessageTemplate, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	DeleteAPIKey(ctx context.Context, id pgtype.UUID) error
 	DeleteClient(ctx context.Context, id string) error
 	DeleteMessageTemplate(ctx context.Context, arg DeleteMessageTemplateParams) error
 	DeleteUser(ctx context.Context, id int32) error
+	GetAPIKeyByID(ctx context.Context, id pgtype.UUID) (ApiKey, error)
+	GetAPIKeyByPrefix(ctx context.Context, keyPrefix string) (ApiKey, error)
+	GetAPIKeyUsageLogs(ctx context.Context, arg GetAPIKeyUsageLogsParams) ([]ApiKeyLog, error)
+	GetAPIKeysByUserID(ctx context.Context, userID int32) ([]ApiKey, error)
 	GetBroadcastJob(ctx context.Context, arg GetBroadcastJobParams) (BroadcastJob, error)
 	GetBroadcastJobs(ctx context.Context, userID pgtype.Int4) ([]BroadcastJob, error)
 	GetBroadcastRecipients(ctx context.Context, jobID pgtype.UUID) ([]BroadcastRecipient, error)
@@ -43,6 +49,7 @@ type Querier interface {
 	GetUserByUsername(ctx context.Context, email string) (User, error)
 	GetUserTemplates(ctx context.Context, userID pgtype.Int4) ([]MessageTemplate, error)
 	GetUsers(ctx context.Context) ([]User, error)
+	LogAPIKeyUsage(ctx context.Context, arg LogAPIKeyUsageParams) error
 	LogIncomingMessage(ctx context.Context, arg LogIncomingMessageParams) (MessageLog, error)
 	LogOutgoingMessage(ctx context.Context, arg LogOutgoingMessageParams) (MessageLog, error)
 	MarkConversationRead(ctx context.Context, arg MarkConversationReadParams) error
@@ -53,6 +60,7 @@ type Querier interface {
 	SetConnectionStatus(ctx context.Context, arg SetConnectionStatusParams) (Client, error)
 	SetUserAPIKey(ctx context.Context, arg SetUserAPIKeyParams) (User, error)
 	SetUserAPIPrefix(ctx context.Context, arg SetUserAPIPrefixParams) error
+	UpdateAPIKeyLastUsed(ctx context.Context, id pgtype.UUID) error
 	UpdateBroadcastJobStatus(ctx context.Context, arg UpdateBroadcastJobStatusParams) error
 	UpdateBroadcastRecipientStatus(ctx context.Context, arg UpdateBroadcastRecipientStatusParams) error
 	UpdateMessageStatus(ctx context.Context, arg UpdateMessageStatusParams) error

@@ -42,3 +42,16 @@ func GenerateAPIKeyWithPrefix() (string, error) {
 	}
 	return GenerateAPIKey(prefix)
 }
+
+// VerifyAPIKey compares the input API key against the stored hash using constant-time comparison.
+func VerifyAPIKey(storedHash, inputKey string) bool {
+	if len(storedHash) != len(inputKey) {
+		return false
+	}
+
+	var result byte
+	for i := 0; i < len(storedHash); i++ {
+		result |= storedHash[i] ^ inputKey[i]
+	}
+	return result == 0
+}

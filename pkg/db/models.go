@@ -8,6 +8,26 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type ApiKey struct {
+	ID         pgtype.UUID        `json:"id"`
+	UserID     int32              `json:"user_id"`
+	Name       string             `json:"name"`
+	KeyHash    string             `json:"key_hash"`
+	KeyPrefix  string             `json:"key_prefix"`
+	CreatedAt  pgtype.Timestamptz `json:"created_at"`
+	LastUsedAt pgtype.Timestamptz `json:"last_used_at"`
+	IsActive   pgtype.Bool        `json:"is_active"`
+}
+
+type ApiKeyLog struct {
+	ID        pgtype.UUID        `json:"id"`
+	ApiKeyID  pgtype.UUID        `json:"api_key_id"`
+	Endpoint  string             `json:"endpoint"`
+	Method    pgtype.Text        `json:"method"`
+	IpAddress pgtype.Text        `json:"ip_address"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+}
+
 type BroadcastJob struct {
 	ID            pgtype.UUID        `json:"id"`
 	UserID        pgtype.Int4        `json:"user_id"`

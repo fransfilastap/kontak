@@ -1,6 +1,8 @@
 package http
 
 import (
+	"context"
+	"errors"
 	"io"
 	"net/http"
 	"net/url"
@@ -66,20 +68,37 @@ func (h *InboxHandler) GetThreads(c echo.Context) error {
 	}
 
 	userID := getUserIDFromContext(c)
-	_, err := h.deviceStore.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
-	if err != nil && err.Error() == "device not found" {
+	logger.Info("GetThreads: clientID=%s userID=%d", clientID, userID)
+
+	ctx, cancel := context.WithTimeout(c.Request().Context(), 10*time.Second)
+	defer cancel()
+
+	device, err := h.deviceStore.GetDeviceByIDAndUserID(ctx, clientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		logger.Error("Device not found: clientID=%s userID=%d error=%v", clientID, userID, err)
 		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
 	}
 	if err != nil {
+		if ctx.Err() == context.DeadlineExceeded {
+			logger.Error("Context deadline exceeded getting device: clientID=%s userID=%d", clientID, userID)
+			return c.JSON(http.StatusRequestTimeout, ErrorResponse{Error: "Request timeout"})
+		}
+		logger.Error("Error fetching device: clientID=%s userID=%d error=%v", clientID, userID, err)
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
+	logger.Info("Device found: id=%s user_id=%v", device.ID, device.UserID)
 
-	threads, err := h.db.GetThreads(c.Request().Context(), db.GetThreadsParams{
+	threads, err := h.db.GetThreads(ctx, db.GetThreadsParams{
 		DeviceID:    clientID,
 		QueryLimit:  int32(limit),
 		QueryOffset: int32(offset),
 	})
 	if err != nil {
+		if ctx.Err() == context.DeadlineExceeded {
+			logger.Error("Context deadline exceeded fetching threads: clientID=%s", clientID)
+			return c.JSON(http.StatusRequestTimeout, ErrorResponse{Error: "Request timeout"})
+		}
+		logger.Error("Error fetching threads: clientID=%s error=%v", clientID, err)
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
@@ -102,21 +121,30 @@ func (h *InboxHandler) GetThreadMessages(c echo.Context) error {
 	}
 
 	userID := getUserIDFromContext(c)
-	_, err := h.deviceStore.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
-	if err != nil && err.Error() == "device not found" {
+	ctx, cancel := context.WithTimeout(c.Request().Context(), 10*time.Second)
+	defer cancel()
+
+	_, err := h.deviceStore.GetDeviceByIDAndUserID(ctx, clientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
 		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
 	}
 	if err != nil {
+		if ctx.Err() == context.DeadlineExceeded {
+			return c.JSON(http.StatusRequestTimeout, ErrorResponse{Error: "Request timeout"})
+		}
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
-	messages, err := h.db.GetThreadMessages(c.Request().Context(), db.GetThreadMessagesParams{
+	messages, err := h.db.GetThreadMessages(ctx, db.GetThreadMessagesParams{
 		DeviceID:  pgtype.Text{String: clientID, Valid: true},
 		Recipient: chatJID,
 		Limit:     int32(limit),
 		Offset:    int32(offset),
 	})
 	if err != nil {
+		if ctx.Err() == context.DeadlineExceeded {
+			return c.JSON(http.StatusRequestTimeout, ErrorResponse{Error: "Request timeout"})
+		}
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 

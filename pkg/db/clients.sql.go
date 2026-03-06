@@ -95,7 +95,7 @@ func (q *Queries) GetClient(ctx context.Context, id string) (Client, error) {
 const getClientByIDAndUserID = `-- name: GetClientByIDAndUserID :one
 SELECT id, name, whatsapp_number, jid, qr_code, is_connected, created_at, updated_at, deleted_at, user_id
 FROM clients
-WHERE id = $1 AND user_id = $2
+WHERE id = $1 AND (user_id = $2 OR user_id IS NULL)
 LIMIT 1
 `
 
@@ -186,7 +186,7 @@ func (q *Queries) GetClients(ctx context.Context) ([]Client, error) {
 const getClientsByUserID = `-- name: GetClientsByUserID :many
 SELECT id, name, whatsapp_number, jid, qr_code, is_connected, created_at, updated_at, deleted_at, user_id
 FROM clients
-WHERE user_id = $1
+WHERE user_id = $1 OR user_id IS NULL
 `
 
 func (q *Queries) GetClientsByUserID(ctx context.Context, userID pgtype.Int4) ([]Client, error) {

@@ -1,9 +1,11 @@
 package http
 
 import (
+	"context"
 	"os"
 
 	"github.com/fransfilastap/kontak/pkg/db"
+	"github.com/fransfilastap/kontak/pkg/logger"
 	"github.com/fransfilastap/kontak/pkg/security"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/jackc/pgx/v5/pgtype"
@@ -12,20 +14,63 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
-// AppKeyAuthMiddleware checks for the app key in the request header and compares it with the token from the client table
-func AppKeyAuthMiddleware(db db.Querier) echo.MiddlewareFunc {
+type apiKeyUsageParams struct {
+	ApiKeyID  pgtype.UUID
+	Endpoint  string
+	Method    pgtype.Text
+	IpAddress pgtype.Text
+}
+
+// AppKeyAuthMiddleware checks for the app key in the request header and compares it with the token from the api_keys table
+func AppKeyAuthMiddleware(queries db.Querier) echo.MiddlewareFunc {
 	return middleware.KeyAuthWithConfig(middleware.KeyAuthConfig{
 		KeyLookup: "header:X-API-Key",
 		Validator: func(key string, c echo.Context) (bool, error) {
-			client, err := db.GetUserByAPIKey(c.Request().Context(), pgtype.Text{String: key, Valid: true})
+			// Get first 5 chars as prefix
+			if len(key) < 5 {
+				logger.Error("AppKeyAuthMiddleware: key too short")
+				return false, nil
+			}
+			prefix := key[:5]
+
+			// Look up key by prefix in api_keys table
+			apiKey, err := queries.GetAPIKeyByPrefix(c.Request().Context(), prefix)
 			if err != nil {
-				return false, err
+				logger.Error("AppKeyAuthMiddleware: failed to find key with prefix %s: %v", prefix, err)
+				return false, nil
 			}
 
-			// Store the client in the context for later access
-			c.Set("userID", client.ID)
+			// Verify the key using constant-time comparison
+			if !security.VerifyAPIKey(apiKey.KeyHash, key) {
+				logger.Error("AppKeyAuthMiddleware: key verification failed for prefix %s", prefix)
+				return false, nil
+			}
 
-			return client.ApiKey.String == key, nil
+			// Log the usage
+			go func() {
+				err := queries.LogAPIKeyUsage(context.Background(), db.LogAPIKeyUsageParams{
+					ApiKeyID:  apiKey.ID,
+					Endpoint:  c.Request().URL.Path,
+					Method:    pgtype.Text{String: c.Request().Method, Valid: true},
+					IpAddress: pgtype.Text{String: c.RealIP(), Valid: true},
+				})
+				if err != nil {
+					logger.Error("AppKeyAuthMiddleware: failed to log usage: %v", err)
+				}
+			}()
+
+			// Update last_used_at asynchronously
+			go func() {
+				err := queries.UpdateAPIKeyLastUsed(context.Background(), apiKey.ID)
+				if err != nil {
+					logger.Error("AppKeyAuthMiddleware: failed to update last_used: %v", err)
+				}
+			}()
+
+			// Store userID in context
+			c.Set("userID", apiKey.UserID)
+
+			return true, nil
 		},
 	})
 }

@@ -91,7 +91,7 @@ func NewKontak(config *config.Config) *Kontak {
 	groupHandler := http.NewGroupHandler(deviceManagement, waClient)
 	contactHandler := http.NewContactHandler(deviceManagement, waClient)
 	inboxHandler := http.NewInboxHandler(dbQueries, waClient, deviceManagement)
-	broadcastHandler := http.NewBroadcastHandler(dbQueries)
+	broadcastHandler := http.NewBroadcastHandler(dbQueries, deviceManagement)
 	broadcastService := wa.NewBroadcastService(dbQueries, waClient)
 
 	httpServer := http.NewServer(addr, webhookHandler, authHandler, groupHandler, contactHandler, inboxHandler, broadcastHandler, dbQueries)

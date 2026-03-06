@@ -83,7 +83,14 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 
 	//v1.GET("/users", authHandler.GetUsers)
 	admin.POST("/users", authHandler.Register)
-	admin.POST("/users/api-key", authHandler.GenerateAPIKey)
+
+	// API Keys (new multi-key system)
+	admin.GET("/users/api-keys", authHandler.ListAPIKeys, JwtUserIDMiddleware())
+	admin.POST("/users/api-keys", authHandler.CreateAPIKey, JwtUserIDMiddleware())
+	admin.DELETE("/users/api-keys/:id", authHandler.DeleteAPIKey, JwtUserIDMiddleware())
+
+	// Legacy single key (keep for backwards compatibility)
+	admin.POST("/users/api-key", authHandler.GenerateAPIKey, JwtUserIDMiddleware())
 	admin.POST("/clients", webhook.RegisterDevice, JwtUserIDMiddleware())
 	admin.GET("/clients", webhook.GetDevices, JwtUserIDMiddleware())
 	admin.POST("/clients/:client_id/connect", webhook.ConnectDevice, JwtUserIDMiddleware())
@@ -106,13 +113,13 @@ func registerRoutes(e *echo.Echo, webhook *DeviceHandler, authHandler *AuthHandl
 	admin.PUT("/groups/:client_id/sync", groupHandler.SyncJoinedGroup, JwtUserIDMiddleware())
 
 	// Admin Inbox (JWT-protected)
-	admin.GET("/inbox/:client_id/threads", inboxHandler.GetThreads)
-	admin.GET("/inbox/:client_id/threads/:chat_jid/messages", inboxHandler.GetThreadMessages)
-	admin.POST("/inbox/:client_id/threads/:chat_jid/send", inboxHandler.SendMessage)
-	admin.POST("/inbox/:client_id/threads/:chat_jid/send-media", inboxHandler.SendMediaMessage)
-	admin.POST("/inbox/:client_id/threads/send", inboxHandler.SendNewMessage)
-	admin.POST("/inbox/:client_id/threads/schedule", inboxHandler.ScheduleMessage)
-	admin.POST("/inbox/:client_id/threads/:chat_jid/read", inboxHandler.MarkRead)
+	admin.GET("/inbox/:client_id/threads", inboxHandler.GetThreads, JwtUserIDMiddleware())
+	admin.GET("/inbox/:client_id/threads/:chat_jid/messages", inboxHandler.GetThreadMessages, JwtUserIDMiddleware())
+	admin.POST("/inbox/:client_id/threads/:chat_jid/send", inboxHandler.SendMessage, JwtUserIDMiddleware())
+	admin.POST("/inbox/:client_id/threads/:chat_jid/send-media", inboxHandler.SendMediaMessage, JwtUserIDMiddleware())
+	admin.POST("/inbox/:client_id/threads/send", inboxHandler.SendNewMessage, JwtUserIDMiddleware())
+	admin.POST("/inbox/:client_id/threads/schedule", inboxHandler.ScheduleMessage, JwtUserIDMiddleware())
+	admin.POST("/inbox/:client_id/threads/:chat_jid/read", inboxHandler.MarkRead, JwtUserIDMiddleware())
 
 	// Admin Broadcasts (JWT-protected)
 	admin.GET("/broadcasts", broadcastHandler.GetBroadcastJobs, JwtUserIDMiddleware())

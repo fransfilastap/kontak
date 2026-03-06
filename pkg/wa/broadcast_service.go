@@ -74,6 +74,8 @@ func (s *BroadcastService) processJob(ctx context.Context, job db.BroadcastJob) 
 		default:
 		}
 
+		logger.Info("Sending broadcast to recipient: %s", recipient.RecipientJid)
+
 		err := s.sendBroadcastMessage(job, recipient.RecipientJid)
 		status := "sent"
 		errMsg := ""
@@ -81,6 +83,8 @@ func (s *BroadcastService) processJob(ctx context.Context, job db.BroadcastJob) 
 			status = "failed"
 			errMsg = err.Error()
 			logger.Error("Failed to send broadcast message to %s: %v", recipient.RecipientJid, err)
+		} else {
+			logger.Info("Successfully sent broadcast to %s", recipient.RecipientJid)
 		}
 
 		err = s.db.UpdateBroadcastRecipientStatus(ctx, db.UpdateBroadcastRecipientStatusParams{
@@ -93,7 +97,10 @@ func (s *BroadcastService) processJob(ctx context.Context, job db.BroadcastJob) 
 			logger.Error("Failed to update recipient status: %v", err)
 		}
 
-		// Cooldown
+		// Wait between each recipient to avoid rate limiting and protocol issues
+		time.Sleep(2 * time.Second)
+
+		// Cooldown (additional delay if specified)
 		if job.Cooldown.Valid && job.Cooldown.Int32 > 0 {
 			time.Sleep(time.Duration(job.Cooldown.Int32) * time.Second)
 		}

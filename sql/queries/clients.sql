@@ -52,10 +52,10 @@ WHERE ID = $1;
 -- name: GetClientsByUserID :many
 SELECT *
 FROM clients
-WHERE user_id = $1;
+WHERE user_id = $1 OR user_id IS NULL;
 
 -- name: GetClientByIDAndUserID :one
 SELECT *
 FROM clients
-WHERE id = $1 AND user_id = $2
+WHERE id = $1 AND (user_id = $2 OR user_id IS NULL)
 LIMIT 1;
