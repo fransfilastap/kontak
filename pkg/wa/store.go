@@ -16,7 +16,9 @@ type Store interface {
 	// Client management operations
 	GetClients(ctx context.Context) ([]db.Client, error)
 	GetClient(ctx context.Context, id string) (db.Client, error)
-	CreateClient(ctx context.Context, name, mobileNumber string) (db.Client, error)
+	GetClientsByUserID(ctx context.Context, userID int32) ([]db.Client, error)
+	GetClientByIDAndUserID(ctx context.Context, clientID string, userID int32) (db.Client, error)
+	CreateClient(ctx context.Context, name, mobileNumber string, userID int32) (db.Client, error)
 	DeleteClient(ctx context.Context, id string) error
 
 	// Device store operations
@@ -66,14 +68,31 @@ func (s *PostgresStore) GetClient(ctx context.Context, id string) (db.Client, er
 	return s.dbQueries.GetClient(ctx, id)
 }
 
+// GetClientsByUserID retrieves clients for a specific user
+func (s *PostgresStore) GetClientsByUserID(ctx context.Context, userID int32) ([]db.Client, error) {
+	return s.dbQueries.GetClientsByUserID(ctx, pgtype.Int4{Int32: userID, Valid: true})
+}
+
+// GetClientByIDAndUserID retrieves a client by ID if it belongs to the user
+func (s *PostgresStore) GetClientByIDAndUserID(ctx context.Context, clientID string, userID int32) (db.Client, error) {
+	return s.dbQueries.GetClientByIDAndUserID(ctx, db.GetClientByIDAndUserIDParams{
+		ID:     clientID,
+		UserID: pgtype.Int4{Int32: userID, Valid: true},
+	})
+}
+
 // CreateClient creates a new client in the database
-func (s *PostgresStore) CreateClient(ctx context.Context, name, mobileNumber string) (db.Client, error) {
+func (s *PostgresStore) CreateClient(ctx context.Context, name, mobileNumber string, userID int32) (db.Client, error) {
 	return s.dbQueries.CreateNewClient(ctx, db.CreateNewClientParams{
 		ID:   ulid.Make().String(),
 		Name: name,
 		WhatsappNumber: pgtype.Text{
 			String: mobileNumber,
 			Valid:  true,
+		},
+		UserID: pgtype.Int4{
+			Int32: userID,
+			Valid: true,
 		},
 	})
 }

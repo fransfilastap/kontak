@@ -65,10 +65,19 @@ func (h *InboxHandler) GetThreads(c echo.Context) error {
 		limit = 50
 	}
 
+	userID := getUserIDFromContext(c)
+	_, err := h.deviceStore.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
+	if err != nil && err.Error() == "device not found" {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
 	threads, err := h.db.GetThreads(c.Request().Context(), db.GetThreadsParams{
 		DeviceID:    clientID,
-		QueryLimit:  limit,
-		QueryOffset: offset,
+		QueryLimit:  int32(limit),
+		QueryOffset: int32(offset),
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
@@ -92,11 +101,20 @@ func (h *InboxHandler) GetThreadMessages(c echo.Context) error {
 		limit = 50
 	}
 
+	userID := getUserIDFromContext(c)
+	_, err := h.deviceStore.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
+	if err != nil && err.Error() == "device not found" {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
 	messages, err := h.db.GetThreadMessages(c.Request().Context(), db.GetThreadMessagesParams{
 		DeviceID:  pgtype.Text{String: clientID, Valid: true},
 		Recipient: chatJID,
-		Limit:     limit,
-		Offset:    offset,
+		Limit:     int32(limit),
+		Offset:    int32(offset),
 	})
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
@@ -330,7 +348,7 @@ func (h *InboxHandler) ScheduleMessage(c echo.Context) error {
 		Name:        "Scheduled Message for " + req.To,
 		MessageType: pgtype.Text{String: "text", Valid: true},
 		Content:     req.Text,
-		IsScheduled: pgtype.Bool{Bool: true, Valid: true},
+		IsScheduled: true,
 		ScheduledAt: pgtype.Timestamptz{Time: t, Valid: true},
 	})
 	if err != nil {

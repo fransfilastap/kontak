@@ -48,3 +48,14 @@ FROM clients WHERE id = $1 LIMIT 1;
 DELETE
 FROM clients
 WHERE ID = $1;
+
+-- name: GetClientsByUserID :many
+SELECT *
+FROM clients
+WHERE user_id = $1;
+
+-- name: GetClientByIDAndUserID :one
+SELECT *
+FROM clients
+WHERE id = $1 AND user_id = $2
+LIMIT 1;

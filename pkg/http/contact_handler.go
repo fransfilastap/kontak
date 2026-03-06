@@ -1,9 +1,11 @@
 package http
 
 import (
+	"errors"
+	"net/http"
+
 	"github.com/fransfilastap/kontak/pkg/wa"
 	"github.com/labstack/echo/v4"
-	"net/http"
 )
 
 type ContactHandler struct {
@@ -28,6 +30,14 @@ func (h *ContactHandler) SyncContacts(c echo.Context) error {
 
 	if clientID == "" {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Client ID is required"})
+	}
+
+	_, err := h.device.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	contacts, err := h.waClient.GetContacts(clientID)
@@ -55,6 +65,14 @@ func (h *ContactHandler) GetContacts(c echo.Context) error {
 
 	if clientID == "" {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Client ID is required"})
+	}
+
+	_, err := h.device.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	contacts, err := h.device.GetContacts(c.Request().Context(), clientID)

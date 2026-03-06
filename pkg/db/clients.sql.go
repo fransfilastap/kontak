@@ -92,6 +92,36 @@ func (q *Queries) GetClient(ctx context.Context, id string) (Client, error) {
 	return i, err
 }
 
+const getClientByIDAndUserID = `-- name: GetClientByIDAndUserID :one
+SELECT id, name, whatsapp_number, jid, qr_code, is_connected, created_at, updated_at, deleted_at, user_id
+FROM clients
+WHERE id = $1 AND user_id = $2
+LIMIT 1
+`
+
+type GetClientByIDAndUserIDParams struct {
+	ID     string      `json:"id"`
+	UserID pgtype.Int4 `json:"user_id"`
+}
+
+func (q *Queries) GetClientByIDAndUserID(ctx context.Context, arg GetClientByIDAndUserIDParams) (Client, error) {
+	row := q.db.QueryRow(ctx, getClientByIDAndUserID, arg.ID, arg.UserID)
+	var i Client
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.WhatsappNumber,
+		&i.Jid,
+		&i.QrCode,
+		&i.IsConnected,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.DeletedAt,
+		&i.UserID,
+	)
+	return i, err
+}
+
 const getClientByJID = `-- name: GetClientByJID :one
 SELECT id, name, whatsapp_number, jid, qr_code, is_connected, created_at, updated_at, deleted_at, user_id
 FROM clients
@@ -124,6 +154,43 @@ FROM clients
 
 func (q *Queries) GetClients(ctx context.Context) ([]Client, error) {
 	rows, err := q.db.Query(ctx, getClients)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Client
+	for rows.Next() {
+		var i Client
+		if err := rows.Scan(
+			&i.ID,
+			&i.Name,
+			&i.WhatsappNumber,
+			&i.Jid,
+			&i.QrCode,
+			&i.IsConnected,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+			&i.UserID,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getClientsByUserID = `-- name: GetClientsByUserID :many
+SELECT id, name, whatsapp_number, jid, qr_code, is_connected, created_at, updated_at, deleted_at, user_id
+FROM clients
+WHERE user_id = $1
+`
+
+func (q *Queries) GetClientsByUserID(ctx context.Context, userID pgtype.Int4) ([]Client, error) {
+	rows, err := q.db.Query(ctx, getClientsByUserID, userID)
 	if err != nil {
 		return nil, err
 	}

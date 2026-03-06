@@ -12,16 +12,16 @@ INSERT INTO broadcast_jobs (
         scheduled_at
     )
 VALUES (
-        $1,
-        $2,
-        $3,
-        $4,
-        $5,
-        $6,
-        $7,
-        $8,
-        COALESCE($9::boolean, FALSE),
-        $10::timestamptz
+        @user_id,
+        @device_id,
+        @name,
+        @message_type,
+        @content,
+        @media_url,
+        @media_filename,
+        @cooldown,
+        COALESCE(@is_scheduled::boolean, FALSE),
+        @scheduled_at::timestamptz
     )
 RETURNING *;
 -- name: GetBroadcastJobs :many

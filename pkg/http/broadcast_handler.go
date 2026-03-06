@@ -38,12 +38,12 @@ func (h *BroadcastHandler) CreateBroadcast(c echo.Context) error {
 	if userID == 0 {
 		return c.JSON(http.StatusUnauthorized, echo.Map{"error": "unauthorized"})
 	}
-	var isScheduled pgtype.Bool
+	var isScheduled bool
 	var scheduledAt pgtype.Timestamptz
 	if req.ScheduledAt != "" {
 		t, err := time.Parse(time.RFC3339, req.ScheduledAt)
 		if err == nil {
-			isScheduled = pgtype.Bool{Bool: true, Valid: true}
+			isScheduled = true
 			scheduledAt = pgtype.Timestamptz{Time: t, Valid: true}
 		}
 	}

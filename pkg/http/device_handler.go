@@ -30,6 +30,8 @@ func NewWebhook(whatsappClient *wa.WhatsappClient, management *wa.DeviceStore, d
 // It binds request data to the wa.Device struct, attempts to register the device with deviceManagement,
 // and returns a JSON response with the registered device's information or an error message.
 func (w *DeviceHandler) RegisterDevice(c echo.Context) error {
+	userID := getUserIDFromContext(c)
+
 	var req wa.Device
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(400, ErrorResponse{
@@ -37,7 +39,7 @@ func (w *DeviceHandler) RegisterDevice(c echo.Context) error {
 		})
 	}
 
-	dev, err := w.deviceManagement.Register(c.Request().Context(), req)
+	dev, err := w.deviceManagement.Register(c.Request().Context(), req, userID)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
@@ -47,9 +49,14 @@ func (w *DeviceHandler) RegisterDevice(c echo.Context) error {
 }
 
 func (w *DeviceHandler) ConnectDevice(c echo.Context) error {
-	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
-	if err != nil && errors.Is(err, wa.ErrClientNotFound) {
-		return c.JSON(http.StatusNotFound, DeviceConnectionResponse{ServerError: true, Message: err.Error()})
+	userID := getUserIDFromContext(c)
+
+	client, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, DeviceConnectionResponse{ServerError: true, Message: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, DeviceConnectionResponse{ServerError: true, Message: err.Error()})
 	}
 
 	if client.Jid.String == "" {
@@ -69,9 +76,14 @@ func (w *DeviceHandler) ConnectDevice(c echo.Context) error {
 }
 
 func (w *DeviceHandler) DisconnectDevice(c echo.Context) error {
-	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
+	userID := getUserIDFromContext(c)
+
+	client, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, DeviceDisconnectionResponse{ServerError: true, Message: "Device not found"})
+	}
 	if err != nil {
-		return err
+		return c.JSON(http.StatusInternalServerError, DeviceDisconnectionResponse{ServerError: true, Message: err.Error()})
 	}
 
 	if ok, err := w.whatsappClient.DisconnectDevice(client.ID); err != nil {
@@ -84,15 +96,27 @@ func (w *DeviceHandler) DisconnectDevice(c echo.Context) error {
 }
 
 func (w *DeviceHandler) GetDevices(c echo.Context) error {
-	clients, err := w.deviceManagement.GetDevices(c.Request().Context())
+	userID := getUserIDFromContext(c)
+
+	clients, err := w.deviceManagement.GetDevicesByUserID(c.Request().Context(), userID)
 	if err != nil {
-		return err
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	return c.JSON(200, clients)
 }
 
 func (w *DeviceHandler) ConnectionStatus(c echo.Context) error {
+	userID := getUserIDFromContext(c)
+
+	_, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
+	}
+
 	var isConnected bool
 	if w.whatsappClient.IsConnected(c.Param("client_id")) {
 		isConnected = true
@@ -104,10 +128,14 @@ func (w *DeviceHandler) ConnectionStatus(c echo.Context) error {
 }
 
 func (w *DeviceHandler) GetDeviceQR(c echo.Context) error {
+	userID := getUserIDFromContext(c)
 
-	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
+	client, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	if w.whatsappClient.RetrieveDevice(client.ID) == nil {
@@ -132,9 +160,14 @@ func (w *DeviceHandler) SendMessage(c echo.Context) error {
 		return err
 	}
 
-	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), message.ClientID)
-	if errors.Is(err, wa.ErrClientNotFound) {
-		return c.JSON(http.StatusNotFound, GenericResponse{Message: err.Error()})
+	userID := getUserIDFromContext(c)
+
+	client, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), message.ClientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, GenericResponse{Message: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
 	_, err = w.whatsappClient.SendMessage(client.ID, message.MobileNumber, message.Text)
@@ -146,6 +179,7 @@ func (w *DeviceHandler) SendMessage(c echo.Context) error {
 }
 
 func (w *DeviceHandler) SendMediaMessage(c echo.Context) error {
+	userID := getUserIDFromContext(c)
 
 	err := c.Request().ParseMultipartForm(16 << 20) // 16MB
 	if err != nil {
@@ -161,9 +195,17 @@ func (w *DeviceHandler) SendMediaMessage(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
+	_, err = w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), message.ClientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, GenericResponse{Message: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
 	fileHeader, err := c.FormFile("media_url")
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		return echo.NewHTTPError(http.StatusBadRequest, "File is required")
 	}
 
 	file, err := fileHeader.Open()
@@ -187,15 +229,20 @@ func (w *DeviceHandler) SendMediaMessage(c echo.Context) error {
 
 // SendTemplateMessage sends a message using a template
 func (w *DeviceHandler) SendTemplateMessage(c echo.Context) error {
+	userID := getUserIDFromContext(c)
+
 	var request SendTemplateMessageRequest
 	if err := c.Bind(&request); err != nil {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: err.Error()})
 	}
 
-	// Get the device
-	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), request.DeviceID)
-	if errors.Is(err, wa.ErrClientNotFound) {
+	// Get the device with ownership check
+	client, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), request.DeviceID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
 		return c.JSON(http.StatusNotFound, GenericResponse{Message: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	// Parse template ID
@@ -228,9 +275,14 @@ func (w *DeviceHandler) SendTemplateMessage(c echo.Context) error {
 }
 
 func (w *DeviceHandler) DeleteDevice(c echo.Context) error {
-	client, err := w.deviceManagement.GetDeviceByID(c.Request().Context(), c.Param("client_id"))
+	userID := getUserIDFromContext(c)
+
+	client, err := w.deviceManagement.GetDeviceByIDAndUserID(c.Request().Context(), c.Param("client_id"), userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	if success, err := w.whatsappClient.DisconnectDevice(client.Jid.String); !success {

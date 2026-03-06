@@ -12,9 +12,31 @@ import (
 )
 
 const createBroadcastJob = `-- name: CreateBroadcastJob :one
-INSERT INTO broadcast_jobs (user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, is_scheduled, scheduled_at)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8, COALESCE($9::boolean, FALSE), $10::timestamptz)
-RETURNING id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at
+INSERT INTO broadcast_jobs (
+        user_id,
+        device_id,
+        name,
+        message_type,
+        content,
+        media_url,
+        media_filename,
+        cooldown,
+        is_scheduled,
+        scheduled_at
+    )
+VALUES (
+        $1,
+        $2,
+        $3,
+        $4,
+        $5,
+        $6,
+        $7,
+        $8,
+        COALESCE($9::boolean, FALSE),
+        $10::timestamptz
+    )
+RETURNING id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at, is_scheduled, scheduled_at
 `
 
 type CreateBroadcastJobParams struct {
@@ -26,7 +48,7 @@ type CreateBroadcastJobParams struct {
 	MediaUrl      pgtype.Text        `json:"media_url"`
 	MediaFilename pgtype.Text        `json:"media_filename"`
 	Cooldown      pgtype.Int4        `json:"cooldown"`
-	IsScheduled   pgtype.Bool        `json:"is_scheduled"`
+	IsScheduled   bool               `json:"is_scheduled"`
 	ScheduledAt   pgtype.Timestamptz `json:"scheduled_at"`
 }
 
@@ -55,18 +77,17 @@ func (q *Queries) CreateBroadcastJob(ctx context.Context, arg CreateBroadcastJob
 		&i.MediaFilename,
 		&i.Cooldown,
 		&i.Status,
-		&i.IsScheduled,
-		&i.ScheduledAt,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.IsScheduled,
+		&i.ScheduledAt,
 	)
 	return i, err
 }
 
 const createBroadcastRecipient = `-- name: CreateBroadcastRecipient :exec
 INSERT INTO broadcast_recipients (job_id, recipient_jid)
-VALUES ($1, $2)
-ON CONFLICT (job_id, recipient_jid) DO NOTHING
+VALUES ($1, $2) ON CONFLICT (job_id, recipient_jid) DO NOTHING
 `
 
 type CreateBroadcastRecipientParams struct {
@@ -80,8 +101,10 @@ func (q *Queries) CreateBroadcastRecipient(ctx context.Context, arg CreateBroadc
 }
 
 const getBroadcastJob = `-- name: GetBroadcastJob :one
-SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at FROM broadcast_jobs
-WHERE id = $1 AND user_id = $2
+SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at, is_scheduled, scheduled_at
+FROM broadcast_jobs
+WHERE id = $1
+    AND user_id = $2
 `
 
 type GetBroadcastJobParams struct {
@@ -103,16 +126,17 @@ func (q *Queries) GetBroadcastJob(ctx context.Context, arg GetBroadcastJobParams
 		&i.MediaFilename,
 		&i.Cooldown,
 		&i.Status,
-		&i.IsScheduled,
-		&i.ScheduledAt,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.IsScheduled,
+		&i.ScheduledAt,
 	)
 	return i, err
 }
 
 const getBroadcastJobs = `-- name: GetBroadcastJobs :many
-SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at FROM broadcast_jobs
+SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at, is_scheduled, scheduled_at
+FROM broadcast_jobs
 WHERE user_id = $1
 ORDER BY created_at DESC
 `
@@ -137,10 +161,10 @@ func (q *Queries) GetBroadcastJobs(ctx context.Context, userID pgtype.Int4) ([]B
 			&i.MediaFilename,
 			&i.Cooldown,
 			&i.Status,
-			&i.IsScheduled,
-			&i.ScheduledAt,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.IsScheduled,
+			&i.ScheduledAt,
 		); err != nil {
 			return nil, err
 		}
@@ -153,7 +177,8 @@ func (q *Queries) GetBroadcastJobs(ctx context.Context, userID pgtype.Int4) ([]B
 }
 
 const getBroadcastRecipients = `-- name: GetBroadcastRecipients :many
-SELECT id, job_id, recipient_jid, status, error_message, sent_at FROM broadcast_recipients
+SELECT id, job_id, recipient_jid, status, error_message, sent_at
+FROM broadcast_recipients
 WHERE job_id = $1
 `
 
@@ -185,8 +210,16 @@ func (q *Queries) GetBroadcastRecipients(ctx context.Context, jobID pgtype.UUID)
 }
 
 const getPendingBroadcastJobs = `-- name: GetPendingBroadcastJobs :many
-SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, is_scheduled, scheduled_at, created_at, updated_at FROM broadcast_jobs
-WHERE status = 'pending' AND (is_scheduled = FALSE OR (is_scheduled = TRUE AND scheduled_at <= NOW()))
+SELECT id, user_id, device_id, name, message_type, content, media_url, media_filename, cooldown, status, created_at, updated_at, is_scheduled, scheduled_at
+FROM broadcast_jobs
+WHERE status = 'pending'
+    AND (
+        is_scheduled = FALSE
+        OR (
+            is_scheduled = TRUE
+            AND scheduled_at <= NOW()
+        )
+    )
 ORDER BY created_at ASC
 `
 
@@ -210,10 +243,10 @@ func (q *Queries) GetPendingBroadcastJobs(ctx context.Context) ([]BroadcastJob, 
 			&i.MediaFilename,
 			&i.Cooldown,
 			&i.Status,
-			&i.IsScheduled,
-			&i.ScheduledAt,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.IsScheduled,
+			&i.ScheduledAt,
 		); err != nil {
 			return nil, err
 		}
@@ -226,8 +259,10 @@ func (q *Queries) GetPendingBroadcastJobs(ctx context.Context) ([]BroadcastJob, 
 }
 
 const getPendingRecipients = `-- name: GetPendingRecipients :many
-SELECT id, job_id, recipient_jid, status, error_message, sent_at FROM broadcast_recipients
-WHERE job_id = $1 AND status = 'pending'
+SELECT id, job_id, recipient_jid, status, error_message, sent_at
+FROM broadcast_recipients
+WHERE job_id = $1
+    AND status = 'pending'
 ORDER BY id ASC
 `
 
@@ -260,7 +295,8 @@ func (q *Queries) GetPendingRecipients(ctx context.Context, jobID pgtype.UUID) (
 
 const updateBroadcastJobStatus = `-- name: UpdateBroadcastJobStatus :exec
 UPDATE broadcast_jobs
-SET status = $2, updated_at = NOW()
+SET status = $2,
+    updated_at = NOW()
 WHERE id = $1
 `
 
@@ -276,8 +312,11 @@ func (q *Queries) UpdateBroadcastJobStatus(ctx context.Context, arg UpdateBroadc
 
 const updateBroadcastRecipientStatus = `-- name: UpdateBroadcastRecipientStatus :exec
 UPDATE broadcast_recipients
-SET status = $3, error_message = $4, sent_at = NOW()
-WHERE job_id = $1 AND recipient_jid = $2
+SET status = $3,
+    error_message = $4,
+    sent_at = NOW()
+WHERE job_id = $1
+    AND recipient_jid = $2
 `
 
 type UpdateBroadcastRecipientStatusParams struct {

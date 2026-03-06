@@ -11,8 +11,13 @@ web/.next
 .env.test
 .env.*
 !.env.template
+!.env.prod.template
 
 .idea
 
 node_modules
 uploads/**
+
+# Binaries
+/main
+/cli-tui

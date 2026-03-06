@@ -25,8 +25,8 @@ LIMIT $3 OFFSET $4
 type GetConversationMessagesParams struct {
 	DeviceID  pgtype.Text `json:"device_id"`
 	Recipient string      `json:"recipient"`
-	Limit     int64       `json:"limit"`
-	Offset    int64       `json:"offset"`
+	Limit     int32       `json:"limit"`
+	Offset    int32       `json:"offset"`
 }
 
 type GetConversationMessagesRow struct {
@@ -113,7 +113,7 @@ FROM message_logs m
 INNER JOIN (
   SELECT recipient, MAX(sent_at) AS max_sent_at
   FROM message_logs
-  WHERE device_id = $1
+  WHERE message_logs.device_id = $1
   GROUP BY recipient
 ) latest ON m.recipient = latest.recipient AND m.sent_at = latest.max_sent_at
 LEFT JOIN whatsapp_contacts wc ON wc.device_id = m.device_id AND wc.jid = m.recipient
@@ -125,8 +125,8 @@ LIMIT $3 OFFSET $2
 
 type GetConversationsParams struct {
 	DeviceID    pgtype.Text `json:"device_id"`
-	QueryOffset pgtype.Int8 `json:"query_offset"`
-	QueryLimit  pgtype.Int8 `json:"query_limit"`
+	QueryOffset int32       `json:"query_offset"`
+	QueryLimit  int32       `json:"query_limit"`
 }
 
 type GetConversationsRow struct {
@@ -177,7 +177,7 @@ LIMIT $2
 
 type GetMessageHistoryParams struct {
 	UserID pgtype.Int4 `json:"user_id"`
-	Limit  int64       `json:"limit"`
+	Limit  int32       `json:"limit"`
 }
 
 func (q *Queries) GetMessageHistory(ctx context.Context, arg GetMessageHistoryParams) ([]MessageLog, error) {

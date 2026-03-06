@@ -1,9 +1,11 @@
 package http
 
 import (
+	"errors"
+	"net/http"
+
 	"github.com/fransfilastap/kontak/pkg/wa"
 	"github.com/labstack/echo/v4"
-	"net/http"
 )
 
 type GroupHandler struct {
@@ -29,6 +31,14 @@ func (g *GroupHandler) SyncJoinedGroup(c echo.Context) error {
 
 	if clientID == "" {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Client ID is required"})
+	}
+
+	_, err := g.device.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	groups, err := g.waClient.GetJoinedGroups(clientID)
@@ -57,6 +67,14 @@ func (g *GroupHandler) GetJoinedGroups(c echo.Context) error {
 
 	if clientID == "" {
 		return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "Client ID is required"})
+	}
+
+	_, err := g.device.GetDeviceByIDAndUserID(c.Request().Context(), clientID, userID)
+	if err != nil && errors.Is(err, wa.ErrDeviceNotFound) {
+		return c.JSON(http.StatusNotFound, ErrorResponse{Error: "Device not found"})
+	}
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 	}
 
 	groups, err := g.device.GetJoinedGroups(c.Request().Context(), clientID)

@@ -16,6 +16,9 @@ COPY . .
 # Build the Go app
 RUN go build -o main cmd/main.go
 
+# Build CLI tool
+RUN go build -o cli-tui cmd/cli-tui
+
 # Start a new stage from scratch
 FROM alpine:latest
 
@@ -24,6 +27,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 COPY --from=builder /app/main .
+COPY --from=builder /app/cli-tui .
 
 ARG PORT=8080
 ARG HOST=localhost

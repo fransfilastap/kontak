@@ -56,7 +56,7 @@ FROM message_logs m
 INNER JOIN (
   SELECT recipient, MAX(sent_at) AS max_sent_at
   FROM message_logs
-  WHERE device_id = @device_id
+  WHERE message_logs.device_id = @device_id
   GROUP BY recipient
 ) latest ON m.recipient = latest.recipient AND m.sent_at = latest.max_sent_at
 LEFT JOIN whatsapp_contacts wc ON wc.device_id = m.device_id AND wc.jid = m.recipient

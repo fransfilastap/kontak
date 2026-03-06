@@ -28,8 +28,8 @@ LIMIT $3 OFFSET $4
 type GetThreadMessagesParams struct {
 	DeviceID  pgtype.Text `json:"device_id"`
 	Recipient string      `json:"recipient"`
-	Limit     int64       `json:"limit"`
-	Offset    int64       `json:"offset"`
+	Limit     int32       `json:"limit"`
+	Offset    int32       `json:"offset"`
 }
 
 type GetThreadMessagesRow struct {
@@ -121,8 +121,8 @@ LIMIT $3 OFFSET $2
 
 type GetThreadsParams struct {
 	DeviceID    string `json:"device_id"`
-	QueryOffset int64  `json:"query_offset"`
-	QueryLimit  int64  `json:"query_limit"`
+	QueryOffset int32  `json:"query_offset"`
+	QueryLimit  int32  `json:"query_limit"`
 }
 
 type GetThreadsRow struct {

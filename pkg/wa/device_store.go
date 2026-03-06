@@ -2,11 +2,15 @@ package wa
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"go.mau.fi/whatsmeow/types"
 
 	"github.com/fransfilastap/kontak/pkg/db"
 )
+
+var ErrDeviceNotFound = errors.New("device not found")
+var ErrDeviceNotOwned = errors.New("device not owned by user")
 
 // Device represents a device with a name and mobile number.
 type Device struct {
@@ -26,9 +30,9 @@ func NewDeviceStore(store Store) *DeviceStore {
 	}
 }
 
-// Register registers a new device in the database.
-func (cm *DeviceStore) Register(ctx context.Context, device Device) (db.Client, error) {
-	dvc, err := cm.store.CreateClient(ctx, device.Name, device.MobileNumber)
+// Register registers a new device in the database for a specific user.
+func (cm *DeviceStore) Register(ctx context.Context, device Device, userID int32) (db.Client, error) {
+	dvc, err := cm.store.CreateClient(ctx, device.Name, device.MobileNumber, userID)
 	if err != nil {
 		return db.Client{}, fmt.Errorf("failed to register device: %w", err)
 	}
@@ -39,7 +43,16 @@ func (cm *DeviceStore) Register(ctx context.Context, device Device) (db.Client, 
 func (cm *DeviceStore) GetDeviceByID(ctx context.Context, id string) (db.Client, error) {
 	dvc, err := cm.store.GetClient(ctx, id)
 	if err != nil {
-		return db.Client{}, fmt.Errorf("failed to get device: %w", ErrClientNotFound)
+		return db.Client{}, fmt.Errorf("failed to get device: %w", ErrDeviceNotFound)
+	}
+	return dvc, nil
+}
+
+// GetDeviceByIDAndUserID retrieves a device by ID if it belongs to the user.
+func (cm *DeviceStore) GetDeviceByIDAndUserID(ctx context.Context, id string, userID int32) (db.Client, error) {
+	dvc, err := cm.store.GetClientByIDAndUserID(ctx, id, userID)
+	if err != nil {
+		return db.Client{}, fmt.Errorf("failed to get device: %w", ErrDeviceNotFound)
 	}
 	return dvc, nil
 }
@@ -47,6 +60,15 @@ func (cm *DeviceStore) GetDeviceByID(ctx context.Context, id string) (db.Client,
 // GetDevices retrieves all clients from the database.
 func (cm *DeviceStore) GetDevices(ctx context.Context) ([]db.Client, error) {
 	dvc, err := cm.store.GetClients(ctx)
+	if err != nil {
+		return []db.Client{}, fmt.Errorf("failed to get clients: %w", err)
+	}
+	return dvc, nil
+}
+
+// GetDevicesByUserID retrieves devices for a specific user.
+func (cm *DeviceStore) GetDevicesByUserID(ctx context.Context, userID int32) ([]db.Client, error) {
+	dvc, err := cm.store.GetClientsByUserID(ctx, userID)
 	if err != nil {
 		return []db.Client{}, fmt.Errorf("failed to get clients: %w", err)
 	}

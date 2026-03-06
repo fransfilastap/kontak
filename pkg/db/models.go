@@ -19,10 +19,10 @@ type BroadcastJob struct {
 	MediaFilename pgtype.Text        `json:"media_filename"`
 	Cooldown      pgtype.Int4        `json:"cooldown"`
 	Status        pgtype.Text        `json:"status"`
-	IsScheduled   pgtype.Bool        `json:"is_scheduled"`
-	ScheduledAt   pgtype.Timestamptz `json:"scheduled_at"`
 	CreatedAt     pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+	IsScheduled   bool               `json:"is_scheduled"`
+	ScheduledAt   pgtype.Timestamptz `json:"scheduled_at"`
 }
 
 type BroadcastRecipient struct {
