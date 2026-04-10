@@ -107,7 +107,8 @@ export const endpointsData: EndpointData[] = [
       {
         "name": "caption",
         "type": "string",
-        "description": "Caption",
+        "required": false,
+        "description": "Caption"
       }
     ],
     "example": "curl -X POST \\\n  \"https://api.kontak.com/v1/chats/media\" \\\n  -H \"Authorization: Bearer <YOUR_KEY>\" \\\n  -F \"client_id=value\" \\\n  -F \"mobile_number=value\" \\\n  -F \"media_url=@/path/to/file.jpg\" \\\n  -F \"caption=value\"",
