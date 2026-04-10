@@ -23,3 +23,5 @@ uploads/**
 /cli-tui
 
 **/*.log
+uploads/**/*
+.DS_Store

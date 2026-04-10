@@ -10,12 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const devices = (await kontakClient.getDevices()) as unknown as KontakClient[];
-  const broadcasts = await kontakClient.getBroadcasts();
+  const [devices, broadcasts] = await Promise.all([
+    kontakClient.getDevices(),
+    kontakClient.getBroadcasts(),
+  ]);
+  const deviceList = devices as unknown as KontakClient[];
   
   return (
     <KontakProvider>
-      <BroadcastClient devices={devices ?? []} broadcasts={broadcasts ?? []} />
+      <BroadcastClient devices={deviceList ?? []} broadcasts={broadcasts ?? []} />
     </KontakProvider>
   );
 }
