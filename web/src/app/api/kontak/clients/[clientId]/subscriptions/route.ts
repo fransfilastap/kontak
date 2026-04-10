@@ -1,14 +1,24 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { kontakClient } from "@/lib/kontak";
+import { requireKontakSession } from "@/lib/api-session";
+
+const BASE_URL = (process.env.KONTAK_API_URL || "http://localhost:8080").replace(
+  /\/v1\/?$/,
+  ""
+);
 
 export async function GET(
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: Promise<{ clientId: string }> }
 ) {
   const { clientId } = await params;
-  const headers = await getAuthHeaders(req);
+  const authz = await requireKontakSession();
+  if (!authz.ok) return authz.response;
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${authz.accessToken}`,
+  };
   const response = await fetch(
-    `${process.env.KONTAK_API_URL || "http://localhost:8080"}/admin/clients/${clientId}/subscriptions`,
+    `${BASE_URL}/admin/clients/${clientId}/subscriptions`,
     { headers }
   );
   const data = await response.json();
@@ -20,10 +30,15 @@ export async function PUT(
   { params }: { params: Promise<{ clientId: string }> }
 ) {
   const { clientId } = await params;
-  const headers = await getAuthHeaders(req);
+  const authz = await requireKontakSession();
+  if (!authz.ok) return authz.response;
   const body = await req.json();
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${authz.accessToken}`,
+  };
   const response = await fetch(
-    `${process.env.KONTAK_API_URL || "http://localhost:8080"}/admin/clients/${clientId}/subscriptions`,
+    `${BASE_URL}/admin/clients/${clientId}/subscriptions`,
     {
       method: "PUT",
       headers,
@@ -32,22 +47,4 @@ export async function PUT(
   );
   const data = await response.json();
   return NextResponse.json(data);
-}
-
-async function getAuthHeaders(req: NextRequest): Promise<Record<string, string>> {
-  const { auth } = await import("@/auth");
-  let session: any;
-  if (typeof window !== "undefined") {
-    const { getSession } = await import("next-auth/react");
-    session = await getSession();
-  } else {
-    session = await auth();
-  }
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
-  if (session?.access_token) {
-    headers["Authorization"] = `Bearer ${session.access_token}`;
-  }
-  return headers;
 }

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { kontakClient } from "@/lib/kontak";
+import { requireKontakSession } from "@/lib/api-session";
 
 export async function DELETE(req: NextRequest) {
   const clientId = req.nextUrl.searchParams.get("clientId");
@@ -11,6 +12,8 @@ export async function DELETE(req: NextRequest) {
   }
 
   try {
+    const authz = await requireKontakSession();
+    if (!authz.ok) return authz.response;
     const status = await kontakClient.disconnectDevice(clientId);
     return NextResponse.json(status);
   } catch (error) {

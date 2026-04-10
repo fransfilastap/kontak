@@ -11,6 +11,14 @@ import {
 } from "lucide-react";
 import type { EndpointData, EndpointPayloadProperty } from "./endpoints";
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 interface DocsClientProps {
   endpoints: EndpointData[];
 }
@@ -237,22 +245,28 @@ export function DocsClient({ endpoints }: DocsClientProps) {
                       <pre className="p-5 overflow-x-auto text-[13px] font-mono leading-relaxed text-zinc-300 selection:bg-zinc-800 max-h-[500px]">
                         <code>
                           {selectedEndpoint.example.split('\n').map((line, i) => {
-                            // Simple syntax highlighting for curl examples
-                            let coloredLine = line;
+                            const safe = escapeHtml(line);
+                            let coloredLine = safe;
                             if (line.includes('curl -X')) {
-                              coloredLine = line.replace('curl', '<span class="text-pink-400">curl</span>')
-                                               .replace('-X', '<span class="text-yellow-400">-X</span>')
-                                               .replace(selectedEndpoint.method, `<span class="text-emerald-400">${selectedEndpoint.method}</span>`);
+                              coloredLine = safe
+                                .replace('curl', '<span class="text-pink-400">curl</span>')
+                                .replace('-X', '<span class="text-yellow-400">-X</span>')
+                                .replace(
+                                  selectedEndpoint.method,
+                                  `<span class="text-emerald-400">${escapeHtml(selectedEndpoint.method)}</span>`
+                                );
                             } else if (line.includes('https://')) {
-                              coloredLine = `<span class="text-green-300">${line.replace(/\\$/, '<span class="text-zinc-500">\\</span>')}</span>`;
+                              coloredLine = `<span class="text-green-300">${safe.replace(/\\$/, '<span class="text-zinc-500">\\</span>')}</span>`;
                             } else if (line.includes('-H ')) {
-                              coloredLine = line.replace('-H', '<span class="text-yellow-400">-H</span>')
-                                               .replace(/"(.*?)"/g, '<span class="text-green-300">"$1"</span>')
-                                               .replace(/\\$/, '<span class="text-zinc-500">\\</span>');
+                              coloredLine = safe
+                                .replace('-H', '<span class="text-yellow-400">-H</span>')
+                                .replace(/&quot;(.*?)&quot;/g, '<span class="text-green-300">&quot;$1&quot;</span>')
+                                .replace(/\\$/, '<span class="text-zinc-500">\\</span>');
                             } else if (line.includes('-d ') || line.includes('-F ')) {
-                              coloredLine = line.replace('-d', '<span class="text-yellow-400">-d</span>')
-                                                .replace('-F', '<span class="text-yellow-400">-F</span>')
-                                                .replace(/\\$/, '<span class="text-zinc-500">\\</span>');
+                              coloredLine = safe
+                                .replace('-d', '<span class="text-yellow-400">-d</span>')
+                                .replace('-F', '<span class="text-yellow-400">-F</span>')
+                                .replace(/\\$/, '<span class="text-zinc-500">\\</span>');
                             }
                             
                             return (

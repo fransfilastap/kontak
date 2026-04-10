@@ -1,10 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { kontakClient } from "@/lib/kontak";
+import { requireKontakSession } from "@/lib/api-session";
 
 export async function GET(req: NextRequest) {
   try {
+    const authz = await requireKontakSession();
+    if (!authz.ok) return authz.response;
     const data = await kontakClient.getAPIKeys();
-    console.log("GET /api/kontak/api-keys returning:", data);
     return NextResponse.json(data);
   } catch (error) {
     console.error("Error fetching API keys:", error);
@@ -14,6 +16,8 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const authz = await requireKontakSession();
+    if (!authz.ok) return authz.response;
     const body = await req.json();
     const data = await kontakClient.createAPIKey(body.name);
     return NextResponse.json(data, { status: 201 });

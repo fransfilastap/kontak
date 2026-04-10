@@ -202,7 +202,8 @@ func (w *EventHandler) handleIncomingMessage(evt *events.Message) {
 			// Save media locally
 			if err := os.MkdirAll("uploads", os.ModePerm); err == nil {
 				// generate safe unique filename
-				uniqueFilename := fmt.Sprintf("%s-%s", evt.Info.ID, strings.ReplaceAll(mediaFilename, " ", "_"))
+				safeBase := filepath.Base(strings.ReplaceAll(mediaFilename, " ", "_"))
+				uniqueFilename := fmt.Sprintf("%s-%s", evt.Info.ID, safeBase)
 				filePath := filepath.Join("uploads", uniqueFilename)
 				if err := os.WriteFile(filePath, data, 0644); err == nil { // Fixed: using io/ioutil instead of os for older go versions, but standard since go1.16 is os.WriteFile. Ensure imports
 					// Store the local API route

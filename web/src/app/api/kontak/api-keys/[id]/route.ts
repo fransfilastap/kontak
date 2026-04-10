@@ -1,13 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { kontakClient } from "@/lib/kontak";
+import { requireKontakSession } from "@/lib/api-session";
 
-export async function DELETE(req: NextRequest, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
+export async function DELETE(
+  _req: NextRequest,
+  props: { params: Promise<{ id: string }> }
+) {
+  const { id } = await props.params;
   try {
-    const { id } = await params;
-    console.log("DELETE api-key route, id:", id, "raw params:", params);
+    const authz = await requireKontakSession();
+    if (!authz.ok) return authz.response;
     if (!id) {
-      console.error("No id in params:", params);
       return NextResponse.json({ error: "Missing API key ID" }, { status: 400 });
     }
     await kontakClient.deleteAPIKey(id);
