@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { auth } from "@/auth";
+import { getKontakSession } from "@/lib/kontak-session";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const session = await auth();
+  const session = await getKontakSession();
   if (session) {
     return redirect("/clients");
   }

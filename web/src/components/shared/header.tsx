@@ -1,6 +1,7 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,6 +12,7 @@ import {
 import { ChevronDown } from "lucide-react";
 
 export function Header() {
+  const router = useRouter();
   return (
     <header className=" flex items-center justify-between p-4 bg-background text-foreground border-border border-b">
       <h1 className="text-xl font-bold">Kontak</h1>
@@ -24,7 +26,13 @@ export function Header() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-48">
-            <DropdownMenuItem onClick={() => signOut()}>
+            <DropdownMenuItem
+              onClick={() =>
+                authClient.signOut({
+                  fetchOptions: { onSuccess: () => router.push("/login") },
+                })
+              }
+            >
               Logout
             </DropdownMenuItem>
           </DropdownMenuContent>

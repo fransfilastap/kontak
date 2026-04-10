@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import useSWR from "swr";
 import fetcher from "@/lib/swr";
 import type { WhatsAppContact } from "@/lib/types";
-import { kontakClient } from "@/lib/kontak";
+import { kontakClient } from "@/lib/kontak-browser";
 import { WaMarkdown } from "../inbox/wa-markdown";
 
 import { Button } from "@/components/ui/button";

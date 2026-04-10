@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { auth } from "@/auth";
+import { getKontakSession } from "@/lib/kontak-session";
 import { redirect } from "next/navigation";
 
 export default async function AdminLayout({
@@ -9,7 +9,7 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
+  const session = await getKontakSession();
   if (!session) {
     return redirect("/login");
   }

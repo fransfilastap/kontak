@@ -4,7 +4,8 @@ import {
   LogOutIcon,
   ChevronsUpDownIcon,
 } from "lucide-react"
-import { signOut } from "next-auth/react"
+import { authClient } from "@/lib/auth-client"
+import { useRouter } from "next/navigation"
 
 import {
   Avatar,
@@ -35,6 +36,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const router = useRouter()
 
   return (
     <SidebarMenu>
@@ -81,7 +83,15 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
+            <DropdownMenuItem
+              onClick={() =>
+                authClient.signOut({
+                  fetchOptions: {
+                    onSuccess: () => router.push("/login"),
+                  },
+                })
+              }
+            >
               <LogOutIcon />
               Keluar
             </DropdownMenuItem>

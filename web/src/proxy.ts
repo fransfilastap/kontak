@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "@/auth";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 export async function proxy(request: NextRequest) {
-  const session = await auth();
+  const session = await auth.api.getSession({ headers: await headers() });
 
-  // Check if the user is authenticated
   if (!session) {
-    // Redirect unauthenticated users to the login page
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

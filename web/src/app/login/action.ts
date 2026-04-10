@@ -2,22 +2,24 @@
 
 import { actionClient } from "@/lib/safe-action";
 import { loginSchema } from "./zod-schema";
-import { signIn } from "@/auth";
+import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { isAPIError } from "better-auth/api";
 
 export const loginAction = actionClient
   .schema(loginSchema)
-  .action(async ({ parsedInput: { username, password } }) => {
+  .action(async ({ parsedInput: { email, password } }) => {
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        username,
-        password,
+      await auth.api.signInKontak({
+        body: { email, password },
+        headers: await headers(),
       });
-      console.log("[loginAction] SignIn result:", result);
-      redirect("/clients");
-    } catch (error) {
-      console.log("[loginAction] SignIn error:", error);
-      throw error;
+    } catch (e) {
+      if (isAPIError(e)) {
+        throw new Error("Invalid email or password");
+      }
+      throw e;
     }
+    redirect("/clients");
   });

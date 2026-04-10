@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -29,7 +27,7 @@ import type { z } from "zod";
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const DEFAULT_VALUES: LoginFormValues = {
-  username: "",
+  email: "",
   password: "",
 };
 
@@ -53,29 +51,43 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Selamat Datang</CardTitle>
-          <CardDescription>Masuk ke akun Anda</CardDescription>
+    <div
+      className={cn(
+        "flex flex-col gap-6 touch-manipulation",
+        className
+      )}
+      {...props}
+    >
+      <Card className="border-border/80 shadow-sm">
+        <CardHeader className="space-y-2 text-center">
+          <h1 className="text-pretty text-xl font-semibold tracking-tight">
+            Welcome Back
+          </h1>
+          <p className="text-pretty text-sm text-muted-foreground">
+            Sign in with your email and password.
+          </p>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="grid gap-6"
+              noValidate
             >
               <div className="grid gap-4">
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
-                          type="text"
-                          placeholder="username"
+                          type="email"
+                          inputMode="email"
+                          autoComplete="email"
+                          spellCheck={false}
+                          placeholder="you@company.com…"
                           {...field}
                         />
                       </FormControl>
@@ -92,7 +104,8 @@ export function LoginForm({
                       <FormControl>
                         <Input
                           type="password"
-                          placeholder="Masukkan password"
+                          autoComplete="current-password"
+                          placeholder="Your password…"
                           {...field}
                         />
                       </FormControl>
@@ -101,8 +114,12 @@ export function LoginForm({
                   )}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={isExecuting}>
-                {isExecuting ? "Memproses..." : "Masuk"}
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={isExecuting}
+              >
+                {isExecuting ? "Signing in…" : "Sign In"}
               </Button>
             </form>
           </Form>

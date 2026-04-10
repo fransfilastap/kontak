@@ -1,13 +1,13 @@
-import { auth } from "@/auth";
+import { getKontakSession } from "@/lib/kontak-session";
 import { NextResponse } from "next/server";
 
 export type KontakSessionResult =
   | { ok: true; accessToken: string }
   | { ok: false; response: NextResponse };
 
-/** Single `auth()` call for BFF routes; returns 401 when there is no API JWT. */
+/** Single session read for BFF routes; returns 401 when there is no API JWT. */
 export async function requireKontakSession(): Promise<KontakSessionResult> {
-  const session = await auth();
+  const session = await getKontakSession();
   if (!session?.access_token) {
     return {
       ok: false,
