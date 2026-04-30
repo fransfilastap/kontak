@@ -5,7 +5,7 @@ go 1.25.9
 require (
 	github.com/go-playground/validator/v10 v10.30.2
 	github.com/golang-migrate/migrate/v4 v4.19.1
-	github.com/jackc/pgx/v5 v5.9.1
+	github.com/jackc/pgx/v5 v5.9.2
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.15.1
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
