@@ -1,6 +1,7 @@
 {
   "name": "kontak",
   "private": true,
+  "packageManager": "bun@1.3.5",
   "version": "0.1.0-development",
   "description": "Kontak - WhatsApp API",
   "devDependencies": {

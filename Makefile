@@ -40,4 +40,4 @@ clean:
 # Install dependencies for code generation
 deps:
 	go mod download
-	cd web && pnpm add -D @hey-api/openapi-ts
+	cd web && bun add -d @hey-api/openapi-ts

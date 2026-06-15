@@ -21,7 +21,7 @@ Kontak is a WhatsApp-to-REST-API bridge. It connects WhatsApp (via Whatsmeow Web
 
 **Frontend (`web/`)** — Next.js 15 with React 18, shadcn/ui, Tailwind CSS
 - Auth via next-auth v5 (beta), SWR for data fetching, Zod for validation
-- Package manager: pnpm
+- Package manager: bun
 
 **Database** — PostgreSQL, managed via golang-migrate (numbered migration files in `pkg/migrations/schema/`)
 
@@ -37,10 +37,10 @@ go test ./pkg/wa/                    # Run tests for a specific package
 
 ### Frontend (Next.js)
 ```bash
-cd web && pnpm install               # Install dependencies
-cd web && pnpm dev                   # Dev server
-cd web && pnpm build                 # Production build
-cd web && pnpm lint                  # Lint
+cd web && bun install                 # Install dependencies
+cd web && bun dev                     # Dev server
+cd web && bun run build               # Production build
+cd web && bun lint                    # Lint
 ```
 
 ### Database
