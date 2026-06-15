@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY . .
-RUN pnpm install
+RUN pnpm install --no-ignored-builds
 
 
 # Rebuild the source code only when needed
@@ -22,12 +22,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NODE_ENV production
-ENV BACKEND_URL ${BACKEND_URL:-http://api:8080/v1}
-ENV KONTAK_API_URL ${KONTAK_API_URL:-http://api:8080/v1}
-ENV AUTH_SECRET ${AUTH_SECRET:-''}
-ENV AUTH_TRUST_HOST ${AUTH_TRUST_HOST:-true}
-ENV NEXT_PUBLIC_API_URL ${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
+ENV NODE_ENV=production
+ARG BACKEND_URL
+ENV BACKEND_URL=${BACKEND_URL:-http://api:8080/v1}
+ARG KONTAK_API_URL
+ENV KONTAK_API_URL=${KONTAK_API_URL:-http://api:8080/v1}
+ARG AUTH_SECRET
+ENV AUTH_SECRET=${AUTH_SECRET:-''}
+ARG AUTH_TRUST_HOST
+ENV AUTH_TRUST_HOST=${AUTH_TRUST_HOST:-true}
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
