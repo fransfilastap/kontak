@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY . .
-RUN pnpm install --no-ignored-builds
+RUN pnpm install
 
 
 # Rebuild the source code only when needed
