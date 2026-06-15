@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/fransfilastap/kontak/compare/v1.14.2...v1.14.3) (2026-06-15)
+
+
+### Bug Fixes
+
+* **docker:** add .npmrc for pnpm approved builds (sharp, unrs-resolver) ([10194b1](https://github.com/fransfilastap/kontak/commit/10194b11224673c2ec0b196facb7d00c5b2c2484))
+
 ## [1.14.2](https://github.com/fransfilastap/kontak/compare/v1.14.1...v1.14.2) (2026-06-15)
 
 
