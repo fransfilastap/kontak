@@ -1,3 +1,10 @@
+## [1.14.5](https://github.com/fransfilastap/kontak/compare/v1.14.4...v1.14.5) (2026-06-15)
+
+
+### Bug Fixes
+
+* lock pnpm version to v9 and resolve config mismatch in docker build ([56b8b33](https://github.com/fransfilastap/kontak/commit/56b8b334607499df4b50695978b118bc4f4c1668))
+
 ## [1.14.4](https://github.com/fransfilastap/kontak/compare/v1.14.3...v1.14.4) (2026-06-15)
 
 
