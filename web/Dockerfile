@@ -10,9 +10,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY . .
-RUN pnpm install
-
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -27,10 +26,6 @@ ARG BACKEND_URL
 ENV BACKEND_URL=${BACKEND_URL:-http://api:8080/v1}
 ARG KONTAK_API_URL
 ENV KONTAK_API_URL=${KONTAK_API_URL:-http://api:8080/v1}
-ARG AUTH_SECRET
-ENV AUTH_SECRET=${AUTH_SECRET:-''}
-ARG AUTH_TRUST_HOST
-ENV AUTH_TRUST_HOST=${AUTH_TRUST_HOST:-true}
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:3000/api}
 
