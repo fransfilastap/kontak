@@ -1,3 +1,10 @@
+## [1.14.4](https://github.com/fransfilastap/kontak/compare/v1.14.3...v1.14.4) (2026-06-15)
+
+
+### Bug Fixes
+
+* resolve web docker build failure and optimize Dockerfile ([ca85e68](https://github.com/fransfilastap/kontak/commit/ca85e6898bce16b649f89112c0bb0ccea5f2ad1a))
+
 ## [1.14.3](https://github.com/fransfilastap/kontak/compare/v1.14.2...v1.14.3) (2026-06-15)
 
 
