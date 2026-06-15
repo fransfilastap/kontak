@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/fransfilastap/kontak/compare/v1.14.0...v1.14.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* **docker:** resolve pnpm install failure and Dockerfile warnings ([f86e239](https://github.com/fransfilastap/kontak/commit/f86e23933c96502b0f1268536389ef29c60af382))
+
 # [1.14.0](https://github.com/fransfilastap/kontak/compare/v1.13.0...v1.14.0) (2026-03-06)
 
 
