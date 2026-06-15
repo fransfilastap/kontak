@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/fransfilastap/kontak/compare/v1.14.1...v1.14.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* **docker:** use pnpm onlyBuiltDependencies for sharp/unrs-resolver ([c553598](https://github.com/fransfilastap/kontak/commit/c553598ee31ee2a717eab2f2e8eb3cdca45e2c63))
+
 ## [1.14.1](https://github.com/fransfilastap/kontak/compare/v1.14.0...v1.14.1) (2026-06-15)
 
 
