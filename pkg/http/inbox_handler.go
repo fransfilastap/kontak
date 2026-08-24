@@ -72,8 +72,8 @@ type SendNewMessageRequest struct {
 // @Security BearerAuth
 func (h *InboxHandler) GetThreads(c echo.Context) error {
 	clientID := c.Param("client_id")
-	limit, _ := strconv.ParseInt(c.QueryParam("limit"), 10, 64)
-	offset, _ := strconv.ParseInt(c.QueryParam("offset"), 10, 64)
+	limit, _ := strconv.ParseInt(c.QueryParam("limit"), 10, 32)
+	offset, _ := strconv.ParseInt(c.QueryParam("offset"), 10, 32)
 
 	if limit <= 0 {
 		limit = 50
