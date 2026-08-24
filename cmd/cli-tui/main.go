@@ -243,11 +243,9 @@ func printBoxedTable(users []User) {
 	fmt.Printf(bold+cyan+"│ %-4s │ %-30s │ %-15s │"+reset+"\n", "ID", "Email", "API Key Prefix")
 	fmt.Println(bold + cyan + "├" + border + "┤" + reset)
 	for _, u := range users {
-		prefix := u.ApiKeyPrefix
-		if prefix == "" {
-			prefix = "-"
-		} else if len(prefix) > 12 {
-			prefix = prefix[:12] + "..."
+		prefix := "-"
+		if u.ApiKeyPrefix != "" {
+			prefix = "[REDACTED]"
 		}
 		fmt.Printf("│ %-4d │ %-30s │ %-15s │\n", u.ID, u.Email, prefix)
 	}
