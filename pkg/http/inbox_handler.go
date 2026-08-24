@@ -138,11 +138,14 @@ func (h *InboxHandler) GetThreads(c echo.Context) error {
 func (h *InboxHandler) GetThreadMessages(c echo.Context) error {
 	clientID := c.Param("client_id")
 	chatJID := decodeChatJID(c)
-	limit, _ := strconv.ParseInt(c.QueryParam("limit"), 10, 64)
-	offset, _ := strconv.ParseInt(c.QueryParam("offset"), 10, 64)
-
-	if limit <= 0 {
+	limit, err := strconv.ParseInt(c.QueryParam("limit"), 10, 32)
+	if err != nil || limit <= 0 {
 		limit = 50
+	}
+
+	offset, err := strconv.ParseInt(c.QueryParam("offset"), 10, 32)
+	if err != nil || offset < 0 {
+		offset = 0
 	}
 
 	userID := getUserIDFromContext(c)
